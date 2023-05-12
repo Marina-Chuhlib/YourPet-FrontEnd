@@ -1,0 +1,47 @@
+.container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.wrapper {
+}
+
+.userInfo {
+  margin-top: 62px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 38px;
+  color: #111111;
+}
+
+.wrapperForm {
+  width: 395px;
+  height: 520px;
+  background-color: #ffffff;
+
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+}
+
+/* @media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    background-color: antiquewhite;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+} */
