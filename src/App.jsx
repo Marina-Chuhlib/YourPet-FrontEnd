@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Loader from 'shared/components/Loader/Loader';
 
-import Layout from 'modules/Layout/Layout';
+import SharedLayout from 'modules/SharedLayout/SharedLayout';
 import MainPage from 'pages/MainPage/MainPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
@@ -25,7 +25,7 @@ export const App = () => {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<SharedLayout />}>
             <Route path="main" element={<MainPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />

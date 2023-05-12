@@ -1,9 +1,9 @@
-import Home from 'modules/Home/Home';
+import Main from 'modules/Main/Main';
 
 const MainPage = () => {
   return (
     <>
-      <Home/>
+      <Main/>
     </>
   );
 };
