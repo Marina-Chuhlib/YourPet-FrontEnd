@@ -50,7 +50,12 @@ export const RegisterFormDetails = () => {
   const dispatch = useDispatch();
   const handleFormSubmit = values => {
     // console.log(values);
-    dispatch(register(values));
+    const data = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(register(data));
   };
 
   return (
