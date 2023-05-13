@@ -1,0 +1,14 @@
+.link {
+    color: black;
+
+    
+}
+
+.link:global(.active) {
+    color: red;
+}
+
+.wraper {
+    display: flex;
+    
+}
