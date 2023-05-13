@@ -5,7 +5,7 @@ import styles from "./navbarauth.module.css"
 const NavBarAuth = () => {
     return (
         <div className={styles.wraper}>
-            <NavLink to="/registr" className={styles.link}><button>Registr</button></NavLink>
+            <NavLink to="/register" className={styles.link}><button>Register</button></NavLink>
             <NavLink to="/login" className={styles.link}><button>Login</button></NavLink>
     </div>
     )
