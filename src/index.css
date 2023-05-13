@@ -48,10 +48,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  margin-left: auto;
+  margin-right: auto;
+
+  background-blend-mode: multiply;
+  background-image: url(/src/images/bg-desctop.jpg);
+  background-position: center;
+  background-size: cover;
   background-color: #fef9f9;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (min-width: 280px) {
+  body {
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    padding: 24px 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  body {
+    padding: 20px 16px;
+  }
 }
