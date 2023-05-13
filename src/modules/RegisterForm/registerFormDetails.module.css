@@ -3,13 +3,14 @@
   margin: 0 auto;
   padding: 40px 12px;
   border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 }
 
 @media screen and (min-width: 768px) {
   .form {
     width: 608px;
     padding: 60px 80px 40px 80px;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
 }

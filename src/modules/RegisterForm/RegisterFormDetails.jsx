@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import PropTypes from 'prop-types';
-
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
-import { TextField, IconButton, Box, Button } from '@mui/material';
+import { TextField, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 
@@ -34,7 +32,14 @@ const registerSchema = yup.object({
   // }),
 });
 
-export const RegisterFormDetails = ({ data }) => {
+const data = {
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
+
+export const RegisterFormDetails = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -198,9 +203,6 @@ export const RegisterFormDetails = ({ data }) => {
               />
             </Box>
             <div className={css.buttonContainer}>
-              {/* <Button type="submit" variant="contained" size="small">
-                Registration
-              </Button> */}
               <button type="submit" className={css.button}>
                 Registration
               </button>
@@ -216,8 +218,4 @@ export const RegisterFormDetails = ({ data }) => {
       </Formik>
     </>
   );
-};
-
-RegisterFormDetails.propTypes = {
-  data: PropTypes.object.isRequired,
 };
