@@ -41,9 +41,15 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
 
-    const isLogin = useSelector(store => store.auth.isLogin)
 
 
+// остановился здесь!!!!!!!!!!!!!!!
+    const isLogin = useSelector(isUserLogin)
+
+// остановился здесь
+  
+  
+  
     const theme = useTheme();
     const isMobileScreen = useMediaQuery(theme.breakpoints.between('xs', 'sm'));
     const isTabletScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
@@ -137,7 +143,7 @@ function ResponsiveAppBar() {
                                 </Button>
                             ))}
                         </Box>
-            {/* settings */}
+{/* settings */}
             {!isLogin && <NavBarAuth />}
             {isLogin && <NavBarUser/>}
                         <Box sx={{ flexGrow: 0 }}>
@@ -146,7 +152,7 @@ function ResponsiveAppBar() {
                   <Avatar src="/static/images/avatar/2.jpg" sx={{
                     color: "#FFC107",
                     background: 'transparent',
-                    // borderColor: "#FFC107"
+                    
                   }} />
                 
                   
@@ -175,7 +181,7 @@ function ResponsiveAppBar() {
                                 ))}
                             </Menu>
                         </Box>
-                    {/* бургер */}
+            {/* бургер */}
                         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
