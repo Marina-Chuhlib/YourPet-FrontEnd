@@ -1,5 +1,5 @@
 import Notices from "modules/Notices/Notices";
-
+import NavNoticesCategory from "modules/Notices/NavNoticesCategory/NavNoticesCategory";
 
 
 const NoticesPage = () => {
@@ -7,6 +7,7 @@ const NoticesPage = () => {
   return (
     <>
       <Notices />
+      <NavNoticesCategory/>
     </>
   );
 };
