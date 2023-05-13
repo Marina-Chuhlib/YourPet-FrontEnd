@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
-import { InputAdornment, IconButton, Input } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { InputAdornment, IconButton, Input,Typography } from '@mui/material';
+import { Search, Clear } from '@mui/icons-material';
 
 import css from '../Notices/Notices.module.css';
 
 const Notices = () => {
   const [keyword, setKeyword] = useState('');
+   const [showHelperText, setShowHelperText] = useState(false);
 
   // const SearchInput = () => {
   //   const [keyword, setKeyword] = useState('');
 
-  const handleSearch = () => {
-    // Здесь можно выполнить действия при нажатии на кнопку поиска, например, отправить запрос на сервер
-    console.log('Выполняется поиск по ключевому слову:', keyword);
+    const handleSearch = () => {
+    if (keyword.trim() === '') {
+      // Если поле пустое, показываем вспомогательный текст
+      setShowHelperText(true);
+    } else {
+      console.log('Выполняется поиск по ключевому слову:', keyword);
+    }
   };
 
-  const handleChange = event => {
-    setKeyword(event.target.value);
+   const handleChange = (event) => {
+    const value = event.target.value;
+    setKeyword(value);
+    setShowHelperText(false);
+  };
+
+   const handleClear = () => {
+    setKeyword('');
+    setShowHelperText(false); 
   };
 
   return (
@@ -31,24 +43,32 @@ const Notices = () => {
           style={{
             borderRadius: '20px',
             backgroundColor: '#FFFFFF',
-            paddingLeft: '20px',
-            paddingRight: '14px',
-            paddingTop: '10px',
-            paddingBottom: '10px',
+            padding: "0px 14px 0px 20px",
+            height:"43px",
             boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
           }}
-           inputProps={{
-            className: css.placeholder, 
+          inputProps={{
+            className: css.placeholder,
           }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton onClick={handleSearch} style={{ color: '#54ADFF' }}>
                 <Search />
               </IconButton>
+              {keyword && (
+                <IconButton onClick={handleClear} style={{color:"#FFC107"}}>
+                  <Clear />
+                </IconButton>
+              )}
             </InputAdornment>
           }
           fullWidth
         />
+        {showHelperText && (
+          <Typography variant="caption" color="error" marginLeft="20px">
+            Please enter something.
+          </Typography>
+        )}
       </div>
     </>
   );

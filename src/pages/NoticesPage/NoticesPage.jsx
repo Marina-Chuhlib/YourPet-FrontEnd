@@ -6,7 +6,7 @@ const NoticesPage = () => {
 
   return (
     <>
-      <Notices/>
+      <Notices />
     </>
   );
 };
