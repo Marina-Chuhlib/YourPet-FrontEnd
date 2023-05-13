@@ -1,9 +1,10 @@
-.container {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
 .wrapper {
+  /* background-color: #ffffff;
+  padding: 20px 8px 25px 8px;
+
+  border: 1px solid black;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px; */
 }
 
 .userInfo {
@@ -17,12 +18,39 @@
 }
 
 .wrapperForm {
-  width: 395px;
-  height: 520px;
+  /* width: 300px;
+  height: 520px; */
+  max-width: fit-content;
+  padding: 20px 8px 25px 8px;
   background-color: #ffffff;
 
+  border: 1px solid black;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
+
+  display: flex;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  /* background-color: aquamarine; */
+}
+
+.label {
+  background-color: aqua;
+  font-size: 14px;
+
+  display: inline-flex;
+}
+
+.input {
+  display: inline-flex;
+  background-color: bisque;
+}
+
+@media screen and (min-width: 280px) {
+  .wrapperForm {
+  }
 }
 
 /* @media screen and (min-width: 768px) {

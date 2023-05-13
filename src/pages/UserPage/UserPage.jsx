@@ -1,9 +1,9 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import UserForm from '../../modules/UserForm/UserForm';
 
 const UserPage = () => {
   useEffect(() => {
-    document.body.style.backgroundColor = '#fef9f9';
+    document.body.style.backgroundImage = 'none';
   });
 
   return (
