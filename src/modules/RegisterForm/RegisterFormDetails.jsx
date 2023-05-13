@@ -60,18 +60,12 @@ export const RegisterFormDetails = () => {
         onSubmit={handleFormSubmit}
         validationSchema={registerSchema}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleSubmit,
-          handleBlur,
-          handleChange,
-        }) => (
+        {({ values, errors, touched, handleSubmit, handleChange }) => (
           <Form className={css.form} onSubmit={handleSubmit}>
             <h2 className={css.title}>Registration</h2>
             <Box
               sx={{
+                marginBottom: '10px',
                 display: 'flex',
                 alignItems: 'flex-end',
               }}
@@ -81,7 +75,6 @@ export const RegisterFormDetails = () => {
                 type="text"
                 label="Name"
                 size="small"
-                margin="normal"
                 fullWidth
                 sx={{
                   '& .MuiOutlinedInput-root': {
@@ -92,19 +85,23 @@ export const RegisterFormDetails = () => {
                   },
                 }}
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.name}
                 error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name}
               />
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <Box
+              sx={{
+                marginBottom: '10px',
+                display: 'flex',
+                alignItems: 'flex-end',
+              }}
+            >
               <TextField
                 name="email"
                 type="email"
                 label="Email"
                 size="small"
-                margin="normal"
                 fullWidth
                 sx={{
                   '& .MuiOutlinedInput-root': {
@@ -115,13 +112,18 @@ export const RegisterFormDetails = () => {
                   },
                 }}
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.email}
                 error={touched.email && Boolean(errors.email)}
                 helperText={touched.email && errors.email}
               />
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <Box
+              sx={{
+                marginBottom: '10px',
+                display: 'flex',
+                alignItems: 'flex-end',
+              }}
+            >
               <TextField
                 name="password"
                 type={showPassword ? 'text' : 'password'}
@@ -136,7 +138,6 @@ export const RegisterFormDetails = () => {
                     },
                   },
                 }}
-                margin="normal"
                 InputProps={{
                   endAdornment: (
                     <IconButton
@@ -155,13 +156,18 @@ export const RegisterFormDetails = () => {
                   ),
                 }}
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.password}
                 error={touched.password && Boolean(errors.password)}
                 helperText={touched.password && errors.password}
               />
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <Box
+              sx={{
+                marginBottom: '10px',
+                display: 'flex',
+                alignItems: 'flex-end',
+              }}
+            >
               <TextField
                 name="confirmPassword"
                 type={showConfirmPassword ? 'text' : 'password'}
@@ -176,7 +182,6 @@ export const RegisterFormDetails = () => {
                     },
                   },
                 }}
-                margin="normal"
                 InputProps={{
                   endAdornment: (
                     <IconButton
@@ -194,7 +199,6 @@ export const RegisterFormDetails = () => {
                   ),
                 }}
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.confirmPassword}
                 error={
                   touched.confirmPassword && Boolean(errors.confirmPassword)
