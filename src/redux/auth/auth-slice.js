@@ -15,12 +15,14 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(register.pending, state => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(register.fulfilled, (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.user.token;
-      state.isLoggedIn = true;
+      const { user, token } = payload;
       state.isLoading = false;
+      state.user = user;
+      state.token = token;
+      state.isLoggedIn = true;
       state.error = null;
     });
     builder.addCase(register.rejected, (state, { payload }) => {
@@ -30,4 +32,4 @@ const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
+export default authSlice.reducer;
