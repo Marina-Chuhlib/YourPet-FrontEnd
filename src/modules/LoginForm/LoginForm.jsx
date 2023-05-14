@@ -1,8 +1,11 @@
+import { LoginFormDetails } from './LoginFormDetails';
+
 const LoginForm = () => {
   return (
     <>
-      <h2>LoginForm</h2>
+      <LoginFormDetails />
     </>
   );
 };
+
 export default LoginForm;

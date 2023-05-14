@@ -26,10 +26,15 @@ import { ReactComponent as Logo } from "./logo/logo.svg";
 
 
 
+// import { Link } from 'react-router-dom';
+
+
+
+
 import { useSelector } from "react-redux"
 
 
-import {isUserLogin} from "../../redux/auth/auth-selectors"
+import {selectIsLoggedIn} from "../../redux/auth/auth-selectors"
 
 import NavBarAuth from './NavBarAuth/NavBarAuth';
 import NavBarUser from './NavBarUser/NavBarUser';
@@ -38,18 +43,16 @@ import NavBarUser from './NavBarUser/NavBarUser';
 const pages = ['News', 'Find Pets', 'Our Friends'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+// const items = [
+//   { id: 1, title: 'News', link: '/news' },
+//   { id: 2, title: 'Find Pets', link: '/notices/sell'},
+//   { id: 3, title: 'Our Friends', link: '/friends' },
+// ];
+
 
 function ResponsiveAppBar() {
+    const isLoggedIn = useSelector(selectIsLoggedIn)
 
-
-
-// остановился здесь!!!!!!!!!!!!!!!
-    const isLogin = useSelector(isUserLogin)
-
-// остановился здесь
-  
-  
-  
     const theme = useTheme();
     const isMobileScreen = useMediaQuery(theme.breakpoints.between('xs', 'sm'));
     const isTabletScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
@@ -60,6 +63,7 @@ function ResponsiveAppBar() {
         tablet: '32px',
         mobile: '20px',
     };
+
 
 
 
@@ -131,21 +135,37 @@ function ResponsiveAppBar() {
                         >
                             <Logo width={116} height={20} />
                         </Typography>
-               {/* список траниц */}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'black', display: 'block' }}
+                                    sx={{
+                                        my: 2,
+                                        color: 'black',
+                                        fontFamily: 'Manrope',
+                                        fontWeight: 500,
+                                        letterSpacing: '0.04em',
+                                        display: 'block'
+                                    }}
                                 >
                                     {page}
                                 </Button>
                             ))}
-                        </Box>
+                    </Box>
+                    
+
+                      {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {items.map(item => (
+                            <div key={item.id}>
+                            <Link to={item.link}>
+                            {item.title}</Link>
+                            </div>
+                        ))}
+                        </Box> */}
 {/* settings */}
-            {!isLogin && <NavBarAuth />}
-            {isLogin && <NavBarUser/>}
+            {!isLoggedIn && <NavBarAuth />}
+            {isLoggedIn && <NavBarUser/>}
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

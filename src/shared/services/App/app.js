@@ -23,4 +23,10 @@ export const register = async data => {
   return result;
 };
 
+export const login = async data => {
+  const { data: result } = await instance.post('/auth/login', data);
+  setToken(result.token);
+  return result;
+};
+
 export default instance;

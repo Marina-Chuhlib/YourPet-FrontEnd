@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -10,13 +9,13 @@ import { TextField, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 
-import css from './registerFormDetails.module.css';
+import css from './loginFormDetails.module.css';
 
-import { register } from 'redux/auth/auth-operations';
+import { login } from 'redux/auth/auth-operations';
 
 const registerSchema = yup.object({
-  name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
+  //name: yup.string().required('Name is required'),
+  email: yup.string().email('Invalid email').required('Enter a valid Email'),
   password: yup.string().required('Password is required'),
   // .matches(/^[^ ]{7,32}$/, 'Password should not contain space')
   // .matches(
@@ -24,7 +23,8 @@ const registerSchema = yup.object({
   //   'Password is not valid as per password policy'
   // )
   // .max(32),
-  confirmPassword: yup.string().required('Confirm password is required'),
+
+  // confirmPassword: yup.string().required('Confirm password is required'),
   // .when('password', {
   //   is: val => (val && val.length > 0 ? true : false),
   //   then: yup
@@ -34,35 +34,29 @@ const registerSchema = yup.object({
 });
 
 const data = {
-  name: '',
+  //name: '',
   email: '',
   password: '',
-  confirmPassword: '',
+  //confirmPassword: '',
 };
 
-export const RegisterFormDetails = () => {
-
-
-
+export const LoginFormDetails = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const navigate = useNavigate();
+ // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword(show => !show);
+//   const handleClickShowConfirmPassword = () =>
+//     setShowConfirmPassword(show => !show);
 
   const dispatch = useDispatch();
   const handleFormSubmit = values => {
     // console.log(values);
     const data = {
-      name: values.name,
+      //name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(register(data));
-    navigate('/user');
+    dispatch(login(data));
   };
 
   return (
@@ -74,8 +68,8 @@ export const RegisterFormDetails = () => {
       >
         {({ values, errors, touched, handleSubmit, handleChange }) => (
           <Form className={css.form} onSubmit={handleSubmit}>
-            <h2 className={css.title}>Registration</h2>
-            <Box
+            <h2 className={css.title}>Login</h2>
+            {/* <Box
               sx={{
                 marginBottom: '10px',
                 display: 'flex',
@@ -101,7 +95,7 @@ export const RegisterFormDetails = () => {
                 error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name}
               />
-            </Box>
+            </Box> */}
             <Box
               sx={{
                 marginBottom: '10px',
@@ -173,7 +167,7 @@ export const RegisterFormDetails = () => {
                 helperText={touched.password && errors.password}
               />
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 marginBottom: '10px',
                 display: 'flex',
@@ -217,16 +211,16 @@ export const RegisterFormDetails = () => {
                 }
                 helperText={touched.confirmPassword && errors.confirmPassword}
               />
-            </Box>
+            </Box> */}
             <div className={css.buttonContainer}>
               <button type="submit" className={css.button}>
-                Registration
+                Login
               </button>
             </div>
             <p className={css.questionText}>
-              Already have an account?{' '}
-              <Link to="/login" className={css.loginLink}>
-                Login
+              Don't have an account?{' '}
+              <Link to="/register" className={css.registerLink}>
+                Register
               </Link>
             </p>
           </Form>
