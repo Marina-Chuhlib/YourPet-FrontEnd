@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
@@ -18,7 +19,13 @@ import css from './UserForm.module.css';
 //   email: Yup.string().email('Invalid email').required('Required'),
 // });
 
+// import {selectAuth} from  "../../redux/auth/auth-selectors"
+
 const UserForm = () => {
+  const data = useSelector(state => state.auth);
+  console.log(data);
+  // const dispatch = useDispatch();
+
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
