@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { Formik, Form } from 'formik';
@@ -43,6 +43,8 @@ export const RegisterFormDetails = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword(show => !show);
@@ -56,6 +58,7 @@ export const RegisterFormDetails = () => {
       password: values.password,
     };
     dispatch(register(data));
+    navigate('/user');
   };
 
   return (
