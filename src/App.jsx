@@ -11,6 +11,7 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import UserPage from 'pages/UserPage/UserPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
+import NoticesCategoriesList from 'modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
 
 // const Layout = lazy(() => import('./modules/Layout/Layout'));
 // const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
@@ -30,7 +31,21 @@ export const App = () => {
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="user" element={<UserPage />} />
-            <Route path="notices/:categoryName" element={<NoticesPage />} />
+            <Route path="notices" element={<NoticesPage />}>
+              <Route index element={<NoticesCategoriesList />} />
+              <Route
+								path="sell"
+								element={<NoticesCategoriesList />}
+							/>
+              <Route
+								path="lost-found"
+								element={<NoticesCategoriesList />}
+							/>
+							<Route
+								path="in-good-hands"
+								element={<NoticesCategoriesList />}
+							/>
+            </Route>
             <Route path="add-pet " element={<AddPetPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />

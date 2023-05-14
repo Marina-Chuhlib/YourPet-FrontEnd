@@ -1,0 +1,29 @@
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .navList {
+    margin-top: 40px;
+    gap: 12px;
+  }
+}
+.navLink {
+  border-radius: 40px;
+  padding: 8px 16px;
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+  background: #cce4fb;
+  color: #54adff;
+}
+.navLink.active {
+  background: #54adff;
+  color: #fef9f9;
+}
