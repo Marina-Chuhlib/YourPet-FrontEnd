@@ -3,8 +3,8 @@ import PlusIcon from 'icons/PlusIcon';
 
 import css from './notices-categories-list.module.css';
 
-const NoticesCategoriesList = ({ items }) => {
-  const noticeItem = items.map(({ id, props }) => (
+const NoticesCategoriesList = ({ id }) => {
+  const noticeItem = id.map(({ id, props }) => (
     <NoticeCategoryItem key={id} {...props} />
   ));
 
