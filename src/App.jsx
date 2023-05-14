@@ -42,7 +42,7 @@ export const App = () => {
 								element={<NoticesCategoriesList />}
 							/>
 							<Route
-								path="in-good-hands"
+								path="for-free"
 								element={<NoticesCategoriesList />}
 							/>
             </Route>
