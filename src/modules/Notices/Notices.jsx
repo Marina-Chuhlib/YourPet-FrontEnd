@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { InputAdornment, IconButton, Input,Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 
+import NavNoticesCategory from './NavNoticesCategory/NavNoticesCategory';
+
 import css from '../Notices/Notices.module.css';
 
 const Notices = () => {
@@ -70,6 +72,7 @@ const Notices = () => {
           </Typography>
         )}
       </div>
+      <NavNoticesCategory/>
     </>
   );
 };
