@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+///
+// import { Navigate } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
+///
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
@@ -12,7 +16,9 @@ import { blue } from '@mui/material/colors';
 import css from './registerFormDetails.module.css';
 
 import { register } from 'redux/auth/auth-operations';
-
+////
+// import { isUserLogin } from 'redux/auth/auth-selectors';
+/////
 const registerSchema = yup.object({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -40,6 +46,12 @@ const data = {
 };
 
 export const RegisterFormDetails = () => {
+
+////////
+  // const isLogin = useSelector(isUserLogin);
+////
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -60,7 +72,11 @@ export const RegisterFormDetails = () => {
     dispatch(register(data));
     navigate('/user');
   };
-
+//////
+  // if (isLogin) {
+  //   return <Navigate to=""/>
+  // }
+//////
   return (
     <>
       <Formik
