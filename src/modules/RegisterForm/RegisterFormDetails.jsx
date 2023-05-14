@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
@@ -40,6 +41,9 @@ const data = {
 };
 
 export const RegisterFormDetails = () => {
+
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 

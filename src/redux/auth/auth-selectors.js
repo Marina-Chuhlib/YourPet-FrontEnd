@@ -9,4 +9,6 @@ export const selectIsLoading = state => state.auth.isLoading;
 
 export const selectError = state => state.auth.error;
 
-export const isUserLogin = ({ auth }) => auth.isLogin;
+// export const isUserLogin = ({ auth }) => auth.isLogin;
+//// имя возле аватара
+export const getUser = ({ auth }) => auth.user;
