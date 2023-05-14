@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+//import { useNavigate } from 'react-router-dom';
 
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -57,6 +58,7 @@ export const LoginFormDetails = () => {
       password: values.password,
     };
     dispatch(login(data));
+    Navigate('/user');
   };
 
   return (
