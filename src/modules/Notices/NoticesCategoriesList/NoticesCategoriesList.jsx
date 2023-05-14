@@ -3,10 +3,8 @@ import PlusIcon from 'icons/PlusIcon';
 
 import css from './notices-categories-list.module.css';
 
-const NoticesCategoriesList = ({ data }) => {
-
-  const noticesItem = data.map(({ id, ...props }) => (
-
+const NoticesCategoriesList = ({ items }) => {
+  const noticesItem = items.map(({ id, ...props }) => (
     <NoticeCategoryItem key={id} {...props} />
   ));
 
@@ -27,3 +25,7 @@ const NoticesCategoriesList = ({ data }) => {
   );
 };
 export default NoticesCategoriesList;
+
+NoticesCategoriesList.defaultProps = {
+  items: [],
+};
