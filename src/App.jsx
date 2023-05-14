@@ -12,7 +12,6 @@ import UserPage from 'pages/UserPage/UserPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import NoticesCategoriesList from 'modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import Modal from 'shared/components/ModalWindow/Modal';
 
 // const Layout = lazy(() => import('./modules/Layout/Layout'));
 // const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
