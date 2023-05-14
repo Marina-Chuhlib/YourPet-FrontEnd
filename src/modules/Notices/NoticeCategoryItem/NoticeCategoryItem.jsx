@@ -23,8 +23,7 @@ const NoticeCategoryItem = ({
 }) => {
   return (
     <li className={css.listItems}>
-      <h2>Hello</h2>
-      {/* <div className={css.imageThumb}>
+      <div className={css.imageThumb}>
         <img className={css.photoAnimal} src="" alt="Pets avatar" width="280" />
         <div className={css.topBlock}>
           <p className={css.categoryInfo}>{category}</p>
@@ -67,7 +66,7 @@ const NoticeCategoryItem = ({
       <div className={css.noticeDesc}>
         <h3 className={css.noticeTitle}>{titleOfAdd}</h3>
         <button className={css.learnBtn}>Learn more</button>
-      </div> */}
+      </div>
     </li>
   );
 };
