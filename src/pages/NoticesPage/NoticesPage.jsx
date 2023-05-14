@@ -1,11 +1,13 @@
+import NavNoticesCategory from 'modules/Notices/NavNoticesCategory/NavNoticesCategory';
 import Notices from 'modules/Notices/Notices';
-import NoticesCategoriesList from '../../modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
+// import { Outlet } from 'react-router-dom';
 
 const NoticesPage = () => {
   return (
     <>
       <Notices />
-      <NoticesCategoriesList />
+      <NavNoticesCategory/>
+      {/* <Outlet /> */}
     </>
   );
 };
