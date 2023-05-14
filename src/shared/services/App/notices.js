@@ -1,4 +1,5 @@
 import instance from './app';
+
 export const getAllNotices = async () => {
   const { data } = await instance.get('/notices');
   return data;
@@ -11,5 +12,10 @@ export const addNotice = async data => {
 
 export const deleteNotice = async id => {
   const { data } = await instance.delete(`/notices/${id}`);
+  return data;
+};
+
+export const getNoticesByCategory = async categoryName => {
+  const { data } = await instance.get(`notices/?category=${categoryName}`);
   return data;
 };

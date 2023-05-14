@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { InputAdornment, IconButton, Input,Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 
-import css from '../Notices/Notices.module.css';
+import css from "../NoticesSearch/NoticesSearch.module.css"
 
-const Notices = () => {
+const NoticesSearch = () => {
   const [keyword, setKeyword] = useState('');
    const [showHelperText, setShowHelperText] = useState(false);
 
@@ -33,7 +33,6 @@ const Notices = () => {
 
   return (
     <>
-      <h2 className={css.title}>Find your favorite pet</h2>
       <div className={css.inputContainer}>
         <Input
           value={keyword}
@@ -74,5 +73,5 @@ const Notices = () => {
   );
 };
 
-export default Notices;
+export default NoticesSearch;
 
