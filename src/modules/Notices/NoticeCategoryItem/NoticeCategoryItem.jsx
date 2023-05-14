@@ -9,16 +9,19 @@ import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
   id,
+  title,
   category,
-  favorite,
-  titleOfAdd,
-  namePet,
-  dateOfBirth,
+  name,
+  date,
   breed,
-  theSex,
+  file,
+  sex,
   location,
   price,
   comments,
+  favorite,
+  titleOfAdd,
+  namePet,
   age,
 }) => {
   return (
@@ -53,13 +56,13 @@ const NoticeCategoryItem = ({
             <ClockIcon className={css.icon} color="#54ADFF" />
           </p>
           <p className={css.noticeInfo}>
-            {theSex.toLowerCase() === 'male' && (
+            {sex.toLowerCase() === 'male' && (
               <MaleIcon className={css.icon} color="#54ADFF" />
             )}
-            {theSex.toLowerCase() === 'female' && (
+            {sex.toLowerCase() === 'female' && (
               <FemaleIcon className={css.icon} color="#54ADFF" />
             )}
-            {theSex}
+            {sex}
           </p>
         </div>
       </div>
