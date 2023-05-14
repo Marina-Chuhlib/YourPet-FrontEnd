@@ -15,7 +15,7 @@ const getClassNameLink = ({ isActive }) => {
 const link = [
   { to: '/notices/sell', text: 'Sell' },
   { to: '/notices/lost-found', text: 'Lost/Found' },
-  { to: '/notices/for-free', text: 'In good hands' },
+  { to: '/notices/in-good-hands', text: 'In good hands' },
 ];
 
 const linkAuth = [
