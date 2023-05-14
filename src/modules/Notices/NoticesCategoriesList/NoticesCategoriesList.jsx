@@ -4,7 +4,7 @@ import PlusIcon from 'icons/PlusIcon';
 import css from './notices-categories-list.module.css';
 
 const NoticesCategoriesList = ({ data }) => {
-  const noticeItem = data.map(({ id, ...props }) => (
+  const noticesItem = data.map(({ id, ...props }) => (
     <NoticeCategoryItem key={id} {...props} />
   ));
 
@@ -20,7 +20,7 @@ const NoticesCategoriesList = ({ data }) => {
           Add Pet
         </button>
       )}
-      <ul className={css.noticeList}>{noticeItem}</ul>
+      <ul className={css.noticeList}>{noticesItem}</ul>
     </>
   );
 };

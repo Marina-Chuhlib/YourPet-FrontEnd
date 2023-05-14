@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth/auth-slice';
 import petsReducer from './pets/petsSlice';
+import noticesReducer from './notices/noticesSlice';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +17,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const rootReducer = combineReducers({
   auth: persistedAuthReducer,
   pets: petsReducer,
+  notices: noticesReducer,
 });
 
 export default rootReducer;
