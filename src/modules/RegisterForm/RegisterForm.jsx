@@ -1,8 +1,11 @@
+import { RegisterFormDetails } from './RegisterFormDetails';
+
 const RegisterForm = () => {
   return (
     <>
-      <h2>RegisterForm</h2>
+      <RegisterFormDetails />
     </>
   );
 };
+
 export default RegisterForm;
