@@ -33,7 +33,6 @@ const NoticesSearch = () => {
 
   return (
     <>
-      <h2 className={css.title}>Find your favorite pet</h2>
       <div className={css.inputContainer}>
         <Input
           value={keyword}

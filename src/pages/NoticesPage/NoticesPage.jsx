@@ -6,6 +6,8 @@ import NoticesCategoriesNav from 'modules/Notices/NoticesCategoriesNav/NoticesCa
 
 // import { Outlet } from 'react-router-dom';
 
+import css from "../NoticesPage/NoticesPage.module.css"
+
 const NoticesPage = () => {
   // const dispatch = useDispatch()
 
@@ -14,6 +16,7 @@ const NoticesPage = () => {
   // })
   return (
     <>
+      <h2 className={css.title}>Find your favorite pet</h2>
       <NoticesSearch />
       <NoticesCategoriesNav />
       {/* <Outlet /> */}
