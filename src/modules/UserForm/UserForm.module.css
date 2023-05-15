@@ -22,27 +22,30 @@
   margin-bottom: 14px;
 }
 
+.wrapperFile {
+  /* display: inline-flex; */
+  display: flex;
+  align-items: center;
+
+  border: 1px solid rgb(221, 46, 84);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .avatarL {
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
-  margin-bottom: 22px;
+  /* margin-bottom: 22px; */
 
   border: 1px solid rgb(46, 66, 221);
+  background-color: aliceblue;
 }
 
 .avatarBtn {
   display: none;
-
-  /* border: none;
-  background-color: transparent; */
-  /* color: transparent; */
 }
 
-.icon {
-  width: 25px;
-  height: 25px;
-}
 .Btn {
   margin-left: auto;
   margin-right: auto;
@@ -73,7 +76,7 @@
 }
 
 .row {
-  /* border: 1px solid rgb(143, 53, 53); */
+  border: 1px solid rgb(143, 53, 53);
   display: flex;
 
   justify-content: space-between;
@@ -88,6 +91,12 @@
   font-size: 14px;
   line-height: 19px;
   color: #111111;
+
+  background-color: aliceblue;
+}
+
+.inputContainer {
+  position: relative;
 }
 
 .input {
@@ -103,6 +112,26 @@
   font-size: 12px;
   line-height: 16px;
   color: #111111;
+}
+
+.checkbox {
+  position: absolute;
+  top: -8px;
+  right: 2px;
+
+  /* padding: 5px; */
+  cursor: pointer;
+
+  /* border: 1px solid #54adff; */
+}
+
+/* .checkbox:hover input ~ .editIcon {
+  opacity: 0.8;
+} */
+
+.editIcon {
+  position: absolute;
+  right: 12px;
 }
 
 /* @media screen and (min-width: 280px) {

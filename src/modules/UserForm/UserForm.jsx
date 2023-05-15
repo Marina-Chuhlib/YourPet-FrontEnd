@@ -1,11 +1,20 @@
-import React from 'react';
+// import React from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 import css from './UserForm.module.css';
+
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+
+import Favorite from '@mui/icons-material/Favorite';
 
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
@@ -22,9 +31,21 @@ import css from './UserForm.module.css';
 // import {selectAuth} from  "../../redux/auth/auth-selectors"
 
 const UserForm = () => {
-  const data = useSelector(state => state.auth);
-  console.log(data);
+  const { name, email } = useSelector(state => state.auth.user);
+  const [inputValue, setInputValue] = useState('');
+  // const [checked, setChecked] = React.useState(false);
+
+  // console.log(name);
   // const dispatch = useDispatch();
+
+  const handleChange = event => {
+    console.log('Hi');
+  };
+
+  const handleChangeInput = event => {
+    setInputValue(event.target.value);
+    console.log(inputValue, 'INPUT');
+  };
 
   return (
     <div className={css.container}>
@@ -33,12 +54,13 @@ const UserForm = () => {
 
         <Formik
           initialValues={{
-            name: 'Max',
-            email: 'max@gmai.com',
+            name: name,
+            email: email,
             birthday: '',
             phone: '',
             city: '',
           }}
+  
           // validationSchema={SignupSchema}
           onSubmit={values => {
             // same shape as initial values
@@ -48,7 +70,9 @@ const UserForm = () => {
           {({ errors, touched }) => (
             <Form className={css.forma}>
               <img src="" alt="" className={css.avatar} />
-              <div>
+
+              <div className={css.wrapperFile}>
+                <CameraAltOutlinedIcon style={{ color: '#54ADFF' }} />
                 <label htmlFor="editPhoto" className={css.avatarL}>
                   Edit photo
                   <input
@@ -59,50 +83,203 @@ const UserForm = () => {
                     className={css.avatarBtn}
                   />
                 </label>
-                <svg className={css.icon}>
-                  <use href="./images/camera.svg"></use>
-                </svg>
               </div>
+
+              {/* //////////////////////////// */}
 
               <div className={css.row}>
                 <label className={css.label}>Name:</label>
-                <Field name="name" type="name" className={css.input} />
-                {errors.name && touched.name ? <div>{errors.name}</div> : null}
+
+                <div className={css.inputContainer}>
+                  <Field
+                    name="name"
+                    type="name"
+                    className={css.input}
+                    value={inputValue}
+                    onChange={handleChangeInput}
+                  />
+                  {errors.name && touched.name ? (
+                    <div>{errors.name}</div>
+                  ) : null}
+
+                  <div className={css.checkbox}>
+                    <Checkbox
+                      // checked={checked}
+                      onChange={handleChange}
+                      icon={
+                        <BorderColorOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                        />
+                      }
+                      checkedIcon={
+                        <CheckOutlinedIcon
+                          style={{
+                            color: '#00C3AD',
+                            width: '20px',
+                            height: '20px',
+                            border: '1.5px',
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
               </div>
 
+              {/* EMAIL */}
               <div className={css.row}>
                 <label>Email:</label>
-                <Field name="email" type="email" className={css.input} />
-                {errors.email && touched.email ? (
-                  <div>{errors.email}</div>
-                ) : null}
+                <div className={css.inputContainer}>
+                  <Field name="email" type="email" className={css.input} />
+                  {errors.email && touched.email ? (
+                    <div>{errors.email}</div>
+                  ) : null}
+
+                  <div className={css.checkbox}>
+                    <Checkbox
+                      // checked={checked}
+                      onChange={handleChange}
+                      icon={
+                        <BorderColorOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                        />
+                      }
+                      checkedIcon={
+                        <CheckOutlinedIcon
+                          style={{
+                            color: '#00C3AD',
+                            width: '20px',
+                            height: '20px',
+                            border: '1.5px',
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
               </div>
+
+              {/* b */}
 
               <div className={css.row}>
                 <label>Birthday:</label>
-                <Field name="birthday" className={css.input} />
-                {errors.birthday && touched.birthday ? (
-                  <div>{errors.birthday}</div>
-                ) : null}
+                <div className={css.inputContainer}>
+                  <Field name="birthday" className={css.input} />
+                  {errors.birthday && touched.birthday ? (
+                    <div>{errors.birthday}</div>
+                  ) : null}
+
+                  <div className={css.checkbox}>
+                    <Checkbox
+                      // checked={checked}
+                      onChange={handleChange}
+                      icon={
+                        <BorderColorOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                        />
+                      }
+                      checkedIcon={
+                        <CheckOutlinedIcon
+                          style={{
+                            color: '#00C3AD',
+                            width: '20px',
+                            height: '20px',
+                            border: '1.5px',
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
               </div>
+
+              {/* pppp */}
 
               <div className={css.row}>
                 <label>Phone:</label>
-                <Field name="phone" className={css.input} />
-                {errors.phone && touched.phone ? (
-                  <div>{errors.phone}</div>
-                ) : null}
+                <div className={css.inputContainer}>
+                  <Field name="phone" className={css.input} />
+                  {errors.phone && touched.phone ? (
+                    <div>{errors.phone}</div>
+                  ) : null}
+
+                  <div className={css.checkbox}>
+                    <Checkbox
+                      // checked={checked}
+                      onChange={handleChange}
+                      icon={
+                        <BorderColorOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                        />
+                      }
+                      checkedIcon={
+                        <CheckOutlinedIcon
+                          style={{
+                            color: '#00C3AD',
+                            width: '20px',
+                            height: '20px',
+                            border: '1.5px',
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
               </div>
+
+              {/* hhhh */}
 
               <div className={css.row}>
                 <label>City:</label>
-                <Field name="city" className={css.input} />
-                {errors.city && touched.city ? <div>{errors.city}</div> : null}
-              </div>
+                <div className={css.inputContainer}>
+                  <Field name="city" className={css.input} />
+                  {errors.city && touched.city ? (
+                    <div>{errors.city}</div>
+                  ) : null}
 
-              <button type="submit" className={css.Btn}>
-                Submit
-              </button>
+                  <div className={css.checkbox}>
+                    <Checkbox
+                      // checked={checked}
+                      onChange={handleChange}
+                      icon={
+                        <BorderColorOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                        />
+                      }
+                      checkedIcon={
+                        <CheckOutlinedIcon
+                          style={{
+                            color: '#00C3AD',
+                            width: '20px',
+                            height: '20px',
+                            border: '1.5px',
+                          }}
+                        />
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
             </Form>
           )}
         </Formik>
