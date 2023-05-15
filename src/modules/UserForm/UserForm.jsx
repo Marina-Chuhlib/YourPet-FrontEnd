@@ -36,10 +36,12 @@ import Favorite from '@mui/icons-material/Favorite';
 
 const UserForm = () => {
   const { name, email } = useSelector(state => state.auth.user);
+  const { isLoading } = useSelector(state => state.auth);
+
 
   const [formData, setFormData] = useState({
-    name: 'Max',
-    email: 'max@gmail.com',
+    name: name,
+    email: email,
     birthday: '',
     phone: '',
     city: '',
@@ -53,7 +55,7 @@ const UserForm = () => {
     city: false,
   });
 
-  const filledFields = {};
+  // const filledFields = {};
 
   const handleChangeInput = event => {
     const { name, value } = event.target;
@@ -113,6 +115,7 @@ const UserForm = () => {
 
   // console.log(state.name, 'state.name');
   // const dispatch = useDispatch();
+
 
   return (
     <div className={css.container}>
