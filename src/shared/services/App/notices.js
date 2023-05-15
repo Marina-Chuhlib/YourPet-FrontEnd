@@ -15,7 +15,9 @@ export const deleteNotice = async id => {
   return data;
 };
 
-export const getNoticesByCategory = async categoryName => {
-  const { data } = await instance.get(`notices/?category=${categoryName}`);
+export const getNoticesByCategory = async (categoryName, query = '') => {
+  const { data } = await instance.get(
+    `notices/?category=${categoryName}&searchValue=${query}`
+  );
   return data;
 };
