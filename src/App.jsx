@@ -6,6 +6,7 @@ import Loader from 'shared/components/Loader/Loader';
 
 import SharedLayout from 'modules/SharedLayout/SharedLayout';
 import MainPage from 'pages/MainPage/MainPage';
+import OurFriendsPage from "pages/OurFriendsPage/OurFriendsPage"
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import UserPage from 'pages/UserPage/UserPage';
@@ -29,6 +30,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="main" element={<MainPage />} />
+            <Route path="friends" element={<OurFriendsPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="user" element={<UserPage />} />
@@ -52,6 +54,7 @@ export const App = () => {
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+
       </Suspense>
     </>
   );
