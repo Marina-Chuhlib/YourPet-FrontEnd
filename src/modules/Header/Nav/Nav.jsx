@@ -30,21 +30,21 @@ const Nav = () => {
 };
 export default Nav;
 
-{/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        color: 'black',
-                                        fontFamily: 'Manrope',
-                                        fontWeight: 500,
-                                        letterSpacing: '0.04em',
-                                        display: 'block'
-                                    }}
-                                >
-                                    {page}
-                                </Button>
-                            ))}
-                    </Box> */}
+// {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+//                             {pages.map((page) => (
+//                                 <Button
+//                                     key={page}
+//                                     onClick={handleCloseNavMenu}
+//                                     sx={{
+//                                         my: 2,
+//                                         color: 'black',
+//                                         fontFamily: 'Manrope',
+//                                         fontWeight: 500,
+//                                         letterSpacing: '0.04em',
+//                                         display: 'block'
+//                                     }}
+//                                 >
+//                                     {page}
+//                                 </Button>
+//                             ))}
+//                     </Box> */}
