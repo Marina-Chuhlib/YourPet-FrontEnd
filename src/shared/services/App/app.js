@@ -29,4 +29,10 @@ export const login = async data => {
   return result;
 };
 
+export const logout = async()=> {
+    const {data} = await instance.post("/auth/logout");
+    setToken();
+    return data;
+}
+
 export default instance;
