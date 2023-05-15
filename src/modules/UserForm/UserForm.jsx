@@ -9,6 +9,10 @@ import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 import css from './UserForm.module.css';
 
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
@@ -53,46 +57,59 @@ const UserForm = () => {
 
   const handleChangeInput = event => {
     const { name, value } = event.target;
-    setFormData(prevFormData => ({
+    return setFormData(prevFormData => ({
       ...prevFormData,
       [name]: value,
     }));
-    console.log(formData, "'===inputValue'");
   };
 
   const handleEditField = fieldName => {
+    const value = formData[fieldName];
+    console.log(value, 'VALUE');
+
+    if (!value) {
+      alert('Email is REQUIRED');
+      return;
+    }
+
     setEditingFields(prevEditingFields => ({
       ...prevEditingFields,
       [fieldName]: !prevEditingFields[fieldName],
     }));
 
-    const nameValue = editingFields.name;
-    const emailValue = editingFields.email;
-    if (nameValue) {
-      console.log(formData.name, "'= inputValue'", 'DONE');
-    }
-    if (emailValue) {
-      console.log(formData.name, "'= inputValue'", 'DONE');
+    if (editingFields[fieldName] && value !== '') {
+      sendDataToServer(fieldName, value);
+      console.log('send');
     }
   };
 
-  // отправка на сервер
-  // const filledFields = {};
-  // for (const key in formData) {
-  //   if (formData.hasOwnProperty(key) && formData[key] !== '') {
-  //     filledFields[key] = formData[key];
-  //   }
-  // }
+  const sendDataToServer = (fieldName, value) => {
+    console.log(`Sending ${fieldName}=${value} to the server`);
+  };
 
   const fields = [
-    { fieldName: 'name', label: 'Name', type: 'text' },
-    { fieldName: 'email', label: 'Email', type: 'email' },
-    { fieldName: 'birthday', label: 'Birthday', type: 'date' },
-    { fieldName: 'phone', label: 'Phone', type: 'tel' },
-    { fieldName: 'city', label: 'City', type: 'text' },
+    { fieldName: 'name', label: 'Name', type: 'text', placeholder: 'Name' },
+    {
+      fieldName: 'email',
+      label: 'Email',
+      type: 'email',
+      placeholder: 'email@xxx.com',
+      require,
+    },
+    {
+      fieldName: 'birthday',
+      label: 'Birthday',
+      type: 'text',
+      placeholder: '00.00.0000',
+    },
+    {
+      fieldName: 'phone',
+      label: 'Phone',
+      type: 'tel',
+      placeholder: '+38000000000',
+    },
+    { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
-
-  const initialState = {};
 
   // console.log(state.name, 'state.name');
   // const dispatch = useDispatch();
@@ -108,8 +125,10 @@ const UserForm = () => {
               <img src="" alt="" className={css.avatar} />
 
               <div className={css.wrapperFile}>
-                <CameraAltOutlinedIcon style={{ color: '#54ADFF' }} />
-                <label htmlFor="editPhoto" className={css.avatarL}>
+                <label htmlFor="editPhoto" className={css.avatarLabel}>
+                  <CameraAltOutlinedIcon
+                    style={{ color: '#54ADFF', marginRight: '8px' }}
+                  />
                   Edit photo
                   <input
                     type="file"
@@ -123,7 +142,7 @@ const UserForm = () => {
 
               {/* Name*/}
 
-              <div>
+              <div className={css.formWrapper}>
                 {fields.map(field => (
                   <div className={css.row} key={field.fieldName}>
                     <label className={css.label}>{field.label}:</label>
@@ -134,6 +153,8 @@ const UserForm = () => {
                         type={field.type}
                         className={css.input}
                         value={formData[field.fieldName]}
+                        placeholder={field.placeholder}
+                        required={field.email}
                         onChange={handleChangeInput}
                         disabled={!editingFields[field.fieldName]}
                       />
@@ -145,7 +166,6 @@ const UserForm = () => {
                         <Checkbox
                           checked={editingFields[field.fieldName]}
                           onChange={() => handleEditField(field.fieldName)}
-                          //  onChange={handleEdit}
                           icon={
                             <BorderColorOutlinedIcon
                               style={{
@@ -157,6 +177,7 @@ const UserForm = () => {
                           }
                           checkedIcon={
                             <CheckOutlinedIcon
+                              // onChange={sendDataToServer}
                               style={{
                                 color: '#00C3AD',
                                 width: '20px',
@@ -376,6 +397,31 @@ const UserForm = () => {
                   </div>
                 </div>
               </div> */}
+
+              <Button
+                variant="outlined"
+                style={{
+                  border: 'rgba(0, 0, 0, 0)',
+                  color: '#888888',
+                  fontSize: '16px',
+                  padding: '0',
+                  fontFamily: 'Manrope',
+                  textTransform: 'none',
+                  marginBottom: '25px',
+                  marginLeft: '2px',
+                }}
+                startIcon={
+                  <LogoutOutlinedIcon
+                    style={{
+                      color: '#54ADFF',
+                      transform: 'rotate(180deg)',
+                      fontSize: '24px',
+                    }}
+                  />
+                }
+              >
+                Log Out
+              </Button>
             </Form>
           )}
         </Formik>
