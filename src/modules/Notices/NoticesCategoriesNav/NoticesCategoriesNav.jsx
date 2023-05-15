@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -28,12 +27,8 @@ const NoticesCategoriesNav = () => {
   const dispatch = useDispatch();
 
   const handleCategoryClick = (categoryName) => {
-    dispatch(fetchNoticesByCategory(categoryName));
+    dispatch(fetchNoticesByCategory({categoryName, query:""}));
   };
-
-  // useEffect(() => {
-  //   handleCategoryClick('sell'); // Загрузка категории "sell" по умолчанию
-  // }, []);
 
   return (
     <div>
@@ -67,6 +62,3 @@ const NoticesCategoriesNav = () => {
 };
 
 export default NoticesCategoriesNav;
-
-
-
