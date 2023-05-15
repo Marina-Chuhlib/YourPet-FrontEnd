@@ -38,6 +38,7 @@ import {selectIsLoggedIn} from "../../redux/auth/auth-selectors"
 
 import NavBarAuth from './NavBarAuth/NavBarAuth';
 import NavBarUser from './NavBarUser/NavBarUser';
+import Nav from './Nav/Nav';
 
 
 const pages = ['News', 'Find Pets', 'Our Friends'];
@@ -103,7 +104,7 @@ function ResponsiveAppBar() {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="main"
+                            href="/YourPet-FrontEnd/main"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -134,8 +135,9 @@ function ResponsiveAppBar() {
                             }}
                         >
                             <Logo width={116} height={20} />
-                        </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    </Typography>
+                    <Nav />
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Button
                                     key={page}
@@ -152,7 +154,7 @@ function ResponsiveAppBar() {
                                     {page}
                                 </Button>
                             ))}
-                    </Box>
+                    </Box> */}
                     
 
                       {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -164,18 +166,16 @@ function ResponsiveAppBar() {
                         ))}
                         </Box> */}
 {/* settings */}
-            {!isLoggedIn && <NavBarAuth />}
-            {isLoggedIn && <NavBarUser/>}
-                        <Box sx={{ flexGrow: 0 }}>
+                {!isLoggedIn && <NavBarAuth />}
+                {isLoggedIn && <NavBarUser />}
+                {isLoggedIn && <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar src="/static/images/avatar/2.jpg" sx={{
-                    color: "#FFC107",
-                    background: 'transparent',
+                                    <Avatar src="/static/images/avatar/2.jpg" sx={{
+                                        color: "#FFC107",
+                                        background: 'transparent',
                     
-                  }} />
-                
-                  
+                                    }} />
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -200,7 +200,9 @@ function ResponsiveAppBar() {
                                     </MenuItem>
                                 ))}
                             </Menu>
-                        </Box>
+                        </Box>  
+                    }
+                        
             {/* бургер */}
                         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
