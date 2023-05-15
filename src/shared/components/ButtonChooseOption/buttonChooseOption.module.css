@@ -1,0 +1,32 @@
+.buttonContainer {
+  display: block;
+  margin-top: 12px;
+}
+
+.buttonChoose {
+  font-size: 14px;
+  line-height: 1.33;
+  padding: 8px 16px;
+  color: #54adff;
+  background: #cce4fb;
+  border: none;
+  border-radius: 40px;
+  margin-bottom: 12px;
+}
+
+.buttonChoose:focus,
+.buttonChoose:hover {
+  color: #fef9f9;
+  background: #54adff;
+}
+
+.buttonChooseCurrent {
+  color: #fef9f9;
+  background: #54adff;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonConainer {
+    margin-top: 40px;
+  }
+}

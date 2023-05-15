@@ -1,0 +1,231 @@
+/* .container {
+  background-color: #ffffff;
+  width: 280px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media screen and (min-width: 767px) {
+  .container {
+    width: 608px;
+  }
+}
+
+/* .crossSmall {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 767px) {
+  .crossSmall {
+    width: 20px;
+    height: 20px;
+  }
+} */
+
+
+
+.title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+@media screen and (min-width: 767px) {
+  .title {
+    font-size: 36px;
+    line-height: 49px;
+  }
+}
+
+
+
+/* //----------------- First page---------------- */
+
+.wrapForm {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+}
+
+
+.formFirst {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 28px;
+  margin-bottom: 20px;
+  width: 448px;
+}
+
+.formSecond {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.labelFirst {
+  margin-bottom: 16px;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 767px) {
+  .inputWrapper {
+    margin-top: 12px;
+    margin-bottom: 28px;
+  }
+} */
+
+.inputWrapperLast {
+  position: relative;
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 767px) {
+  .inputWrapperLast {
+    margin-top: 12px;
+  }
+}
+
+.input {
+  font-weight: 500;
+  font-size: 0.8rem;
+  line-height: 26px;
+  width: 240px;
+  height: 40px;
+  @media screen and (min-width: 767px) {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .input {
+    width: 448px;
+    height: 48px;
+  }
+}
+
+.input_last {
+  height: 40px;
+}
+
+@media screen and (min-width: 767px) {
+  .input_last {
+    width: 448px;
+    height: 48px;
+  }
+}
+
+.error_text_size {
+  font-size: 0.55rem;
+  @media screen and (min-width: 767px) {
+    font-size: 0.8rem;
+  }
+}
+
+.error {
+  @extend .error_text_size;
+  position: absolute;
+  top: 32%;
+  right: 4%;
+  color: red;
+}
+.error_image {
+  @extend .error_text_size;
+  position: absolute;
+  top: 85%;
+  right: 32%;
+  color: red;
+  @media screen and (min-width: 767px) {
+    top: 82%;
+    right: 21%;
+  }
+}
+.error_textarea {
+  @extend .error_text_size;
+  position: absolute;
+  bottom: 10%;
+  right: 4%;
+  color: red;
+}
+
+/* //---------------- Second page---------------- */
+
+.input_photo {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 767px) {
+  .form {
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+}
+
+.label {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+@media screen and (min-width: 767px) {
+  .label {
+    font-size: 24px;
+    line-height: 26px;
+  }
+}
+
+.wrapTextarea {
+  margin: 0;
+}
+
+
+
+.textarea {
+  padding: 12px;
+  width: 100%;
+  height: 100px;
+  background: var(--bg__color);
+  border: 1px solid var(--input__color);
+  border-radius: 20px;
+  margin-top: 8px;
+  resize: none;
+}
+
+@media screen and (min-width: 767px) {
+  .textarea {
+    width: 100%;
+    height: 116px;
+    margin-top: 12px;
+  }
+}
