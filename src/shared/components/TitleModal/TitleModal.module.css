@@ -1,0 +1,16 @@
+.title {
+  text-align: start;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.37;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+  color: #111111;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.36;
+  }
+}

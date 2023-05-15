@@ -1,0 +1,113 @@
+.statusContainer {
+    /* margin-bottom: 16px; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.textStatus {
+    position: relative;
+  color: #888888;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.66;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.textStatus::after {
+    position: absolute;
+    content: "";
+    background-color: #cce4fb;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+  left: 0;
+  bottom: -32px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .textStatus {
+    font-size: 16px;
+    line-height: 1.66;
+    margin-bottom: 16px;
+  }
+  .textStatus::after {
+    width: 120px;
+  }
+}
+
+/* .statusStart {
+  background-color: #cce4fb;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .statusStart {
+    width: 120px;
+  }
+}
+
+.statusChoose {
+  background-color: #54adff;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .statusChoose {
+    width: 120px;
+  }
+}
+
+.statusDone {
+  background-color: #00c3ad;
+  width: 80px;
+  height: 8px;
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .statusDone {
+    width: 120px;
+  }
+} */
+
+
+
+/* .textChoose {
+  color: #54adff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.66;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+@media screen and (min-width: 768px) {
+  .textChoose {
+    font-size: 16px;
+    line-height: 1.66;
+  }
+}
+
+.textDone {
+  color: #00c3ad;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.66;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+@media screen and (min-width: 768px) {
+  .textDone {
+    font-size: 16px;
+    line-height: 1.66;
+  }
+} */
