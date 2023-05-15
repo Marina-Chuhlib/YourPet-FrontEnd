@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { InputAdornment, IconButton, Input,Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 
-import css from "../NoticesSearch/NoticesSearch.module.css"
+import css from "../NewsSearch/NewsSearch.module.css"
 
-const NoticesSearch = () => {
+
+const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
    const [showHelperText, setShowHelperText] = useState(false);
 
@@ -74,5 +75,5 @@ const NoticesSearch = () => {
   );
 };
 
-export default NoticesSearch;
+export default NewsSearch;
 

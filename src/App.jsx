@@ -12,6 +12,7 @@ import UserPage from 'pages/UserPage/UserPage';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import NoticesCategoriesList from 'modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import NewsPage from 'pages/NewsPage/NewsPage';
 
 // const Layout = lazy(() => import('./modules/Layout/Layout'));
 // const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
@@ -31,6 +32,7 @@ export const App = () => {
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="user" element={<UserPage />} />
+            <Route path="news" element={<NewsPage />} />
             <Route path="notices" element={<NoticesPage />}>
               <Route index element={<NoticesCategoriesList />} />
               <Route
