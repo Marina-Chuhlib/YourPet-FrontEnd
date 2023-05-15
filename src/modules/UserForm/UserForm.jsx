@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { useNavigate } from 'react-router-dom';
+
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
@@ -18,8 +20,7 @@ import css from './UserForm.module.css';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
-import Favorite from '@mui/icons-material/Favorite';
-
+import { logout } from 'redux/auth/auth-operations';
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
 //     .min(2, 'Too Short!')
@@ -38,6 +39,7 @@ const UserForm = () => {
   const { name, email } = useSelector(state => state.auth.user);
   const { isLoading } = useSelector(state => state.auth);
 
+const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     name: name,
@@ -115,7 +117,13 @@ const UserForm = () => {
 
   // console.log(state.name, 'state.name');
   // const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
+    const onLogout = ()=> {
+      dispatch(logout())
+      navigate("/")
+      
+    }
 
   return (
     <div className={css.container}>
@@ -402,6 +410,7 @@ const UserForm = () => {
               </div> */}
 
               <Button
+                onClick={onLogout}
                 variant="outlined"
                 style={{
                   border: 'rgba(0, 0, 0, 0)',
