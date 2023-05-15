@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -42,6 +42,7 @@ const data = {
 };
 
 export const LoginFormDetails = () => {
+    const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -58,7 +59,7 @@ export const LoginFormDetails = () => {
       password: values.password,
     };
     dispatch(login(data));
-    Navigate('/user');
+    navigate('/user');
   };
 
   return (
