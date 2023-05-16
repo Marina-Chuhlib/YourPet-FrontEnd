@@ -9,7 +9,7 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
   const formattedDate = `${day}/${month < 10 ? '0' + month : month}/${year}`;
 
   return (
-    <li key={_id} className={css.item}>
+     <li key={_id} className={css.item}>
       <img src={imgUrl} alt={title} className={css.img} />
       <div className={css.textBox}>
         <h3 className={css.title}>{title}</h3>
@@ -26,7 +26,7 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
           </a>
         </div>
       </div>
-    </li>
+  </li>
   );
 };
 
