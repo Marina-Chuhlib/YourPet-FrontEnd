@@ -5,12 +5,31 @@
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
   padding-bottom: 12px;
+  position: relative;
+  width: 280px;
+  min-height: 578px;
+  margin: auto;
+}
+.item::before {
+  display: block;
+  content: '';
+  width: 280px;
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  border-radius: 40px;
+  height: 8px;
+  position: absolute;
+  top: -12px;
 }
 
 .img {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background: url('../../../images/default-image.jpg');
+  background-position: center;
+  background-size: cover;
   border-radius: 20px;
   margin-bottom: 16px;
+  height: 252px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .textBox {
@@ -38,8 +57,8 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-
   color: #111111;
+  margin-bottom: auto;
 }
 
 .dateBox {
@@ -57,6 +76,10 @@
 
   color: #54adff;
 }
+.link:hover,
+.link:focus {
+  color: #419ef1;
+}
 
 .date {
   font-family: 'Manrope';
@@ -73,13 +96,17 @@
     width: 336px;
     min-height: 556px;
   }
-  .img {
-    height: 252px;
+  .item::before {
+    width: 336px;
+    top: -14px;
   }
 }
 @media (min-width: 1280px) {
   .item {
     width: 395px;
     min-height: 534px;
+  }
+  .item::before {
+    width: 395px;
   }
 }

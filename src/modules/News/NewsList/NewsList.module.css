@@ -1,13 +1,13 @@
 .list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+  gap: 44px;
   margin-top: 44px;
+  margin-bottom: 60px;
 }
 @media (min-width: 768px) {
   .list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 32px;
     justify-content: space-around;
   }
