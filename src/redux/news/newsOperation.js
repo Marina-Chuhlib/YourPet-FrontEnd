@@ -13,3 +13,15 @@ export const fetchAllNews = createAsyncThunk(
     }
   }
 );
+export const fetchFilteredNews = createAsyncThunk(
+  'news/filteredNews',
+  async (query, thunkAPI) => {
+    try {
+      const data = await App.getFilteredNews(query);
+      console.log('filtered', data);
+      return data;
+    } catch ({ response }) {
+      return thunkAPI.rejectWithValue(response.data);
+    }
+  }
+);

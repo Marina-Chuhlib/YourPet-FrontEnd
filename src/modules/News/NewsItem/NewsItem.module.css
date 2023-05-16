@@ -22,7 +22,9 @@
 }
 
 .img {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background: url('../../../images/default-image.jpg');
+  background-position: center;
+  background-size: cover;
   border-radius: 20px;
   margin-bottom: 16px;
   height: 252px;
