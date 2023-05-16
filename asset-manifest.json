@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/YourPet-FrontEnd/static/css/main.b79b3ab8.css",
-    "main.js": "/YourPet-FrontEnd/static/js/main.338799e2.js",
+    "main.js": "/YourPet-FrontEnd/static/js/main.cc014774.js",
     "static/media/logo.svg": "/YourPet-FrontEnd/static/media/logo.6e2f51eeb062dc6472f5e4aa1de019f4.svg",
     "static/media/default-image.jpg": "/YourPet-FrontEnd/static/media/default-image.4a6c934c853eff2e47e1.jpg",
     "index.html": "/YourPet-FrontEnd/index.html",
     "main.b79b3ab8.css.map": "/YourPet-FrontEnd/static/css/main.b79b3ab8.css.map",
-    "main.338799e2.js.map": "/YourPet-FrontEnd/static/js/main.338799e2.js.map"
+    "main.cc014774.js.map": "/YourPet-FrontEnd/static/js/main.cc014774.js.map"
   },
   "entrypoints": [
     "static/css/main.b79b3ab8.css",
-    "static/js/main.338799e2.js"
+    "static/js/main.cc014774.js"
   ]
 }
