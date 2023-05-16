@@ -31,7 +31,7 @@ const NoticeCategoryItem = ({
   sex,
 }) => {
   const user = useSelector(getUser);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   // console.log(user);
 
   function getAge(date) {
