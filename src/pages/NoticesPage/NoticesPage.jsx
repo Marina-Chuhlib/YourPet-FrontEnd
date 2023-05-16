@@ -13,12 +13,12 @@ const NoticesPage = () => {
     dispatch(fetchNoticesByCategory({categoryName:"sell", query:""}));
   },[dispatch]);
   return (
-    <>
+    <div className="container">
       <h2 className={css.title}>Find your favorite pet</h2>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <Outlet />
-    </>
+    </div>
   );
 };
 

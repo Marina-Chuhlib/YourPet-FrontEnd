@@ -14,11 +14,11 @@ const NewsPage = () => {
 })
 
   return (
-    <>
+    <div className="container">
       <h2 className={css.title}>News</h2>
       <NewsSearch />
       <NewsList/>
-    </>
+    </div>
   );
 };
 export default NewsPage;

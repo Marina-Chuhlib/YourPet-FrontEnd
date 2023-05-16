@@ -78,7 +78,7 @@ const handleSearch = (e) => {
             fullWidth
           />
           {showHelperText && (
-            <Typography variant="caption" color="error" marginLeft="20px">
+            <Typography variant="caption" color="error" marginLeft="20px" fontSize="16px">
               Please enter something.
             </Typography>
           )}

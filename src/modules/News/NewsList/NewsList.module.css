@@ -6,9 +6,34 @@
   margin-top: 44px;
   margin-bottom: 60px;
 }
+.helperText {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-top: 44px;
+
+  color: #111111;
+}
+
 @media (min-width: 768px) {
   .list {
-    gap: 32px;
-    justify-content: space-around;
+    margin-top: 62px;
+    gap: 31px;
+    justify-content: space-between;
+  }
+  .helperText {
+    font-size: 28px;
+    margin-top: 62px;
+  }
+}
+@media (min-width: 1280px) {
+  .list {
+    margin-top: 82px;
+  }
+  .helperText {
+    margin-top: 82px;
   }
 }
