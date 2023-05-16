@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 // import { lazy, Suspense } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Loader from 'shared/components/Loader/Loader';
 
 import SharedLayout from 'modules/SharedLayout/SharedLayout';
 import MainPage from 'pages/MainPage/MainPage';
-import OurFriendsPage from "pages/OurFriendsPage/OurFriendsPage"
+import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import UserPage from 'pages/UserPage/UserPage';
@@ -14,6 +14,8 @@ import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import NoticesCategoriesList from 'modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import NewsPage from 'pages/NewsPage/NewsPage';
+
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 // const Layout = lazy(() => import('./modules/Layout/Layout'));
 // const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
@@ -37,24 +39,14 @@ export const App = () => {
             <Route path="news" element={<NewsPage />} />
             <Route path="notices" element={<NoticesPage />}>
               <Route index element={<NoticesCategoriesList />} />
-              <Route
-								path="sell"
-								element={<NoticesCategoriesList />}
-							/>
-              <Route
-								path="lost-found"
-								element={<NoticesCategoriesList />}
-							/>
-							<Route
-								path="for-free"
-								element={<NoticesCategoriesList />}
-							/>
+              <Route path="sell" element={<NoticesCategoriesList />} />
+              <Route path="lost-found" element={<NoticesCategoriesList />} />
+              <Route path="for-free" element={<NoticesCategoriesList />} />
             </Route>
             <Route path="add-pet " element={<AddPetPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
-
       </Suspense>
     </>
   );
