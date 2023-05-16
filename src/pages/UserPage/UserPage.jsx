@@ -7,7 +7,7 @@ import Loader from 'shared/components/Loader/Loader';
 
 const UserPage = () => {
   const { isLoading } = useSelector(state => state.auth);
-  console.log(isLoading)
+  const { name, email } = useSelector(state => state.auth.user);
 
   // useEffect(() => {
   //   document.body.style.backgroundImage = 'none';
@@ -15,8 +15,14 @@ const UserPage = () => {
 
   return (
     <>
-      {isLoading && <Loader/>}
-      <UserForm />
+      {isLoading && <Loader />}
+      {name && email ? (
+        <UserForm name={name} email={email} />
+      ) : (
+        <div>Please login again</div>
+      )}
+
+      {/* {email && <UserForm name={name} email={email} />} */}
     </>
   );
 };

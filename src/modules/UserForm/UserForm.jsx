@@ -1,6 +1,6 @@
 // import React from 'react';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -21,6 +21,7 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
 import { logout } from 'redux/auth/auth-operations';
+
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
 //     .min(2, 'Too Short!')
@@ -33,13 +34,23 @@ import { logout } from 'redux/auth/auth-operations';
 //   email: Yup.string().email('Invalid email').required('Required'),
 // });
 
-// import {selectAuth} from  "../../redux/auth/auth-selectors"
+const UserForm = ({ name, email }) => {
+  // const { isLoading } = useSelector(state => state.auth);
 
-const UserForm = () => {
-  const { name, email } = useSelector(state => state.auth.user);
-  const { isLoading } = useSelector(state => state.auth);
+  let navigate = useNavigate();
 
-const navigate = useNavigate()
+
+
+
+
+    useEffect(() => {
+      console.log("useEffect")
+        //  navigate("/store", { replace: true });
+
+    }, []);
+  
+
+
 
   const [formData, setFormData] = useState({
     name: name,
@@ -117,13 +128,12 @@ const navigate = useNavigate()
 
   // console.log(state.name, 'state.name');
   // const dispatch = useDispatch();
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const onLogout = ()=> {
-      dispatch(logout())
-      navigate("/")
-      
-    }
+  const onLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <div className={css.container}>
