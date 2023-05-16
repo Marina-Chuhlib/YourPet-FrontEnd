@@ -44,8 +44,8 @@ export const App = () => {
               <Route path="for-free" element={<NoticesCategoriesList />} />
             </Route>
             <Route path="add-pet " element={<AddPetPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </>
