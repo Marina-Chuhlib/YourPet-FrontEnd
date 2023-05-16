@@ -1,6 +1,6 @@
 // import React from 'react';
 import * as React from 'react';
-import { useState, useEffect,useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -22,6 +22,8 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
 import { logout } from 'redux/auth/auth-operations';
 
+import { fetchUser, fetchUpdateUser } from 'redux/user/user-operations';
+
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
 //     .min(2, 'Too Short!')
@@ -34,30 +36,36 @@ import { logout } from 'redux/auth/auth-operations';
 //   email: Yup.string().email('Invalid email').required('Required'),
 // });
 
+import { userInfo } from 'redux/user/user-selectors';
+
 const UserForm = ({ name, email }) => {
-  // const { isLoading } = useSelector(state => state.auth);
+  const { user } = useSelector(userInfo);
+  // const avatar =  user.imageURL
+  // console.log(user.imageURL);
+  console.log(user.birthday);
+  // const [isUser, isUseState]= useState(user)
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   console.log('useEffect');
+  //   //  navigate("/store", { replace: true });
+  // }, []);
+
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjFmYTI2ZGI4OGU5ZjU5YjkzYzA1MyIsImlhdCI6MTY4NDI0NTU4MSwiZXhwIjoxNjg0MzI4MzgxfQ.BSa11XHwb0W-Fqs_-2OO2amQw9xTpiXlRL0UAUebvTs';
+
+  useEffect(() => {
+    dispatch(fetchUser(token));
+  }, [dispatch]);
 
   let navigate = useNavigate();
-
-
-
-
-
-    useEffect(() => {
-      console.log("useEffect")
-        //  navigate("/store", { replace: true });
-
-    }, []);
-  
-
-
 
   const [formData, setFormData] = useState({
     name: name,
     email: email,
-    birthday: '',
-    phone: '',
-    city: '',
+    birthday: user.birthday || "",
+    phone: user.phone || "" ,
+    city: user.city || "",
   });
 
   const [editingFields, setEditingFields] = useState({
@@ -82,10 +90,10 @@ const UserForm = ({ name, email }) => {
     const value = formData[fieldName];
     console.log(value, 'VALUE');
 
-    if (!value) {
-      alert('Email is REQUIRED');
-      return;
-    }
+    // if (!value) {
+    //   alert('Email is REQUIRED');
+    //   return;
+    // }
 
     setEditingFields(prevEditingFields => ({
       ...prevEditingFields,
@@ -93,14 +101,22 @@ const UserForm = ({ name, email }) => {
     }));
 
     if (editingFields[fieldName] && value !== '') {
-      sendDataToServer(fieldName, value);
-      console.log('send');
+      try {
+        // sendDataToServer(fieldName, value);
+        dispatch(
+          fetchUpdateUser({ token, fieldToUpdate: fieldName, newValue: value })
+        );
+        console.log(`Sending ${fieldName}=${value} to the server`);
+      } catch (error) {
+        console.log(error.massage);
+      }
     }
   };
 
-  const sendDataToServer = (fieldName, value) => {
-    console.log(`Sending ${fieldName}=${value} to the server`);
-  };
+  // const sendDataToServer = (fieldName, value) => {
+  //   console.log(`Sending ${fieldName}=${value} to the server`);
+
+  // };
 
   const fields = [
     { fieldName: 'name', label: 'Name', type: 'text', placeholder: 'Name' },
@@ -126,329 +142,134 @@ const UserForm = ({ name, email }) => {
     { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
 
-  // console.log(state.name, 'state.name');
-  // const dispatch = useDispatch();
-  const dispatch = useDispatch();
-
   const onLogout = () => {
     dispatch(logout());
     navigate('/');
   };
 
   return (
-    <div className={css.container}>
-      <div className={css.wrapper}>
-        <h2 className={css.title}>My information:</h2>
+    <section>
+      <div className={css.container}>
+        <div className={css.wrapper}>
+          <h2 className={css.title}>My information:</h2>
 
-        <Formik>
-          {({ errors, touched }) => (
-            <Form className={css.forma}>
-              <img src="" alt="" className={css.avatar} />
-
-              <div className={css.wrapperFile}>
-                <label htmlFor="editPhoto" className={css.avatarLabel}>
-                  <CameraAltOutlinedIcon
-                    style={{ color: '#54ADFF', marginRight: '8px' }}
+          <Formik>
+            {({ errors, touched }) => (
+              <Form className={css.forma}>
+                {/* <img src="" alt="avatar" className={css.avatar} /> */}
+                {user ? (
+                  <img
+                    src={user.imageURL}
+                    alt="avatar"
+                    className={css.avatar}
                   />
-                  Edit photo
-                  <input
-                    type="file"
-                    id="editPhoto"
-                    accept="image/*"
-                    name="Edit photo"
-                    className={css.avatarBtn}
-                  />
-                </label>
-              </div>
+                ) : (
+                  <img src="" alt="avatar" className={css.avatar} />
+                )}
 
-              {/* Name*/}
+                <div className={css.wrapperFile}>
+                  <label htmlFor="editPhoto" className={css.avatarLabel}>
+                    <CameraAltOutlinedIcon
+                      style={{ color: '#54ADFF', marginRight: '8px' }}
+                    />
+                    Edit photo
+                    <input
+                      type="file"
+                      id="editPhoto"
+                      accept="image/*"
+                      name="Edit photo"
+                      className={css.avatarBtn}
+                    />
+                  </label>
+                </div>
 
-              <div className={css.formWrapper}>
-                {fields.map(field => (
-                  <div className={css.row} key={field.fieldName}>
-                    <label className={css.label}>{field.label}:</label>
+                {/* Name*/}
 
-                    <div className={css.inputContainer}>
-                      <input
-                        name={field.fieldName}
-                        type={field.type}
-                        className={css.input}
-                        value={formData[field.fieldName]}
-                        placeholder={field.placeholder}
-                        required={field.email}
-                        onChange={handleChangeInput}
-                        disabled={!editingFields[field.fieldName]}
-                      />
-                      {errors[field.fieldName] && touched[field.fieldName] ? (
-                        <div>{errors[field.fieldName]}</div>
-                      ) : null}
+                {user && (
+                  <div className={css.formWrapper}>
+                    {fields.map(field => (
+                      <div className={css.row} key={field.fieldName}>
+                        <label className={css.label}>{field.label}:</label>
 
-                      <div className={css.checkbox}>
-                        <Checkbox
-                          checked={editingFields[field.fieldName]}
-                          onChange={() => handleEditField(field.fieldName)}
-                          icon={
-                            <BorderColorOutlinedIcon
-                              style={{
-                                color: '#54ADFF',
-                                width: '20px',
-                                height: '20px',
-                              }}
+                        <div className={css.inputContainer}>
+                          <input
+                            name={field.fieldName}
+                            type={field.type}
+                            className={css.input}
+                            value={formData[field.fieldName]}
+                            placeholder={field.placeholder}
+                            required={field.email}
+                            onChange={handleChangeInput}
+                            disabled={!editingFields[field.fieldName]}
+                          />
+                          {errors[field.fieldName] &&
+                          touched[field.fieldName] ? (
+                            <div>{errors[field.fieldName]}</div>
+                          ) : null}
+
+                          <div className={css.checkbox}>
+                            <Checkbox
+                              checked={editingFields[field.fieldName]}
+                              onChange={() => handleEditField(field.fieldName)}
+                              icon={
+                                <BorderColorOutlinedIcon
+                                  style={{
+                                    color: '#54ADFF',
+                                    width: '20px',
+                                    height: '20px',
+                                  }}
+                                />
+                              }
+                              checkedIcon={
+                                <CheckOutlinedIcon
+                                  // onChange={sendDataToServer}
+                                  style={{
+                                    color: '#00C3AD',
+                                    width: '20px',
+                                    height: '20px',
+                                    border: '1.5px',
+                                  }}
+                                />
+                              }
                             />
-                          }
-                          checkedIcon={
-                            <CheckOutlinedIcon
-                              // onChange={sendDataToServer}
-                              style={{
-                                color: '#00C3AD',
-                                width: '20px',
-                                height: '20px',
-                                border: '1.5px',
-                              }}
-                            />
-                          }
-                        />
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                )}
 
-              {/* <div className={css.row}>
-                <label className={css.label}>Name:</label>
-
-                <div className={css.inputContainer}>
-                  <Field
-                    name="name"
-                    type="name"
-                    className={css.input}
-                    value={inputValue.name}
-                    onChange={handleChangeInput}
-                    disabled={!isEditing}
-                  />
-                  {errors.name && touched.name ? (
-                    <div>{errors.name}</div>
-                  ) : null}
-
-                  <div className={css.checkbox}>
-                    <Checkbox
-                      checked={isEditing}
-                      onChange={handleEdit}
-                      value={isEditing}
-                      icon={
-                        <BorderColorOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            width: '20px',
-                            height: '20px',
-                          }}
-                        />
-                      }
-                      checkedIcon={
-                        <CheckOutlinedIcon
-                          style={{
-                            color: '#00C3AD',
-                            width: '20px',
-                            height: '20px',
-                            border: '1.5px',
-                          }}
-                        />
-                      }
+                <Button
+                  onClick={onLogout}
+                  variant="outlined"
+                  style={{
+                    border: 'rgba(0, 0, 0, 0)',
+                    color: '#888888',
+                    fontSize: '16px',
+                    padding: '0',
+                    fontFamily: 'Manrope',
+                    textTransform: 'none',
+                    marginBottom: '25px',
+                    marginLeft: '2px',
+                  }}
+                  startIcon={
+                    <LogoutOutlinedIcon
+                      style={{
+                        color: '#54ADFF',
+                        transform: 'rotate(180deg)',
+                        fontSize: '24px',
+                      }}
                     />
-                  </div>
-                </div>
-              </div> */}
-
-              {/* EMAIL */}
-
-              {/* <div className={css.row}>
-                <label>Email:</label>
-                <div className={css.inputContainer}>
-                  <Field
-                    name="email"
-                    type="email"
-                    className={css.input}
-                    value={inputValue.email}
-                    onChange={handleChangeInput}
-                    disabled={!isEditing}
-                  />
-                  {errors.email && touched.email ? (
-                    <div>{errors.email}</div>
-                  ) : null}
-
-                  <div className={css.checkbox}>
-                    <Checkbox
-                      checked={isEditing}
-                      onChange={handleEdit}
-                      value={isEditing}
-                      icon={
-                        <BorderColorOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            width: '20px',
-                            height: '20px',
-                          }}
-                        />
-                      }
-                      checkedIcon={
-                        <CheckOutlinedIcon
-                          style={{
-                            color: '#00C3AD',
-                            width: '20px',
-                            height: '20px',
-                            border: '1.5px',
-                          }}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div> */}
-
-              {/* Birthday */}
-
-              {/* <div className={css.row}>
-                <label>Birthday:</label>
-                <div className={css.inputContainer}>
-                  <Field name="birthday" className={css.input} />
-                  {errors.birthday && touched.birthday ? (
-                    <div>{errors.birthday}</div>
-                  ) : null}
-
-                  <div className={css.checkbox}>
-                    <Checkbox
-                      // checked={checked}
-                      onChange={handleChange}
-                      icon={
-                        <BorderColorOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            width: '20px',
-                            height: '20px',
-                          }}
-                        />
-                      }
-                      checkedIcon={
-                        <CheckOutlinedIcon
-                          style={{
-                            color: '#00C3AD',
-                            width: '20px',
-                            height: '20px',
-                            border: '1.5px',
-                          }}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div> */}
-
-              {/* pppp */}
-
-              {/* <div className={css.row}>
-                <label>Phone:</label>
-                <div className={css.inputContainer}>
-                  <Field name="phone" className={css.input} />
-                  {errors.phone && touched.phone ? (
-                    <div>{errors.phone}</div>
-                  ) : null}
-
-                  <div className={css.checkbox}>
-                    <Checkbox
-                      // checked={checked}
-                      onChange={handleChange}
-                      icon={
-                        <BorderColorOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            width: '20px',
-                            height: '20px',
-                          }}
-                        />
-                      }
-                      checkedIcon={
-                        <CheckOutlinedIcon
-                          style={{
-                            color: '#00C3AD',
-                            width: '20px',
-                            height: '20px',
-                            border: '1.5px',
-                          }}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div> */}
-
-              {/* hhhh */}
-
-              {/* <div className={css.row}>
-                <label>City:</label>
-                <div className={css.inputContainer}>
-                  <Field name="city" className={css.input} />
-                  {errors.city && touched.city ? (
-                    <div>{errors.city}</div>
-                  ) : null}
-
-                  <div className={css.checkbox}>
-                    <Checkbox
-                      // checked={checked}
-                      onChange={handleChange}
-                      icon={
-                        <BorderColorOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            width: '20px',
-                            height: '20px',
-                          }}
-                        />
-                      }
-                      checkedIcon={
-                        <CheckOutlinedIcon
-                          style={{
-                            color: '#00C3AD',
-                            width: '20px',
-                            height: '20px',
-                            border: '1.5px',
-                          }}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div> */}
-
-              <Button
-                onClick={onLogout}
-                variant="outlined"
-                style={{
-                  border: 'rgba(0, 0, 0, 0)',
-                  color: '#888888',
-                  fontSize: '16px',
-                  padding: '0',
-                  fontFamily: 'Manrope',
-                  textTransform: 'none',
-                  marginBottom: '25px',
-                  marginLeft: '2px',
-                }}
-                startIcon={
-                  <LogoutOutlinedIcon
-                    style={{
-                      color: '#54ADFF',
-                      transform: 'rotate(180deg)',
-                      fontSize: '24px',
-                    }}
-                  />
-                }
-              >
-                Log Out
-              </Button>
-            </Form>
-          )}
-        </Formik>
+                  }
+                >
+                  Log Out
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 export default UserForm;
