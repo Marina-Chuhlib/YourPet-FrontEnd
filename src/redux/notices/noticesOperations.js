@@ -49,3 +49,15 @@ export const fetchNoticesByCategory = createAsyncThunk(
     }
   }
 );
+export const fetchNoticesByOwn = createAsyncThunk(
+  'notices/own',
+  async (query, { rejectWithValue }) => {
+    try {
+      const data = await App.getNoticesByOwn(query);
+      console.log(data);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+);

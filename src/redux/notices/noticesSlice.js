@@ -5,6 +5,7 @@ import {
   fetchAddNotice,
   fetchDeleteNotice,
   fetchNoticesByCategory,
+  fetchNoticesByOwn,
 } from './noticesOperations';
 
 const initialState = {
@@ -61,6 +62,18 @@ const noticesSlice = createSlice({
         store.items = [...payload];
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchNoticesByOwn.pending, store => {
+        store.loading = true;
+        store.items = [];
+      })
+      .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.items = [...payload];
+      })
+      .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
       });
