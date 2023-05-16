@@ -40,9 +40,10 @@ import { userInfo } from 'redux/user/user-selectors';
 
 const UserForm = ({ name, email }) => {
   const { user } = useSelector(userInfo);
+  const stateis = useSelector(state=>state.auth)
   // const avatar =  user.imageURL
   // console.log(user.imageURL);
-  console.log(user.birthday);
+  console.log(stateis);
   // const [isUser, isUseState]= useState(user)
   const dispatch = useDispatch();
 
