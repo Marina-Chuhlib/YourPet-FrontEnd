@@ -19,20 +19,39 @@ const setToken = token => {
 
 export const register = async data => {
   const { data: result } = await instance.post('/auth/register', data);
-  setToken(result.token);
+  if (result) {
+    const { email, password } = data;
+    const { data: result } = await instance.post('/auth/login', {
+      email,
+      password,
+    });
+    setToken(result.accessToken);
+    return result;
+  }
   return result;
 };
 
 export const login = async data => {
   const { data: result } = await instance.post('/auth/login', data);
-  setToken(result.token);
+  setToken(result.accessToken);
   return result;
 };
 
-export const logout = async()=> {
-    const {data} = await instance.post("/auth/logout");
-    setToken();
+export const getCurrent = async token => {
+  try {
+    setToken(token);
+    const { data } = await instance.get('/auth/current');
     return data;
-}
+  } catch (error) {
+    setToken();
+    throw error;
+  }
+};
+
+export const logout = async () => {
+  const { data } = await instance.post('/auth/logout');
+  setToken();
+  return data;
+};
 
 export default instance;
