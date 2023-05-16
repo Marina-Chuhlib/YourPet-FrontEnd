@@ -20,7 +20,33 @@ const NoticeCategoryItem = ({
   sex,
 }) => {
   const user = useSelector(getUser);
-  console.log(user);
+  // console.log(user);
+
+  function getAge(date) {
+    const ymdArr = date.split('.').map(Number).reverse();
+    ymdArr[1]--;
+    const bornDate = new Date(...ymdArr);
+
+    const now = new Date();
+
+    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
+
+    now.setDate(now.getDate() - Math.floor(leapYears));
+
+    const nowAsTimestamp = now.getTime();
+    const bornDateAsTimestamp = bornDate.getTime();
+
+    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
+
+    const oneYearInMs = 3.17098e-11;
+
+    const age = Math.floor(ageAsTimestamp * oneYearInMs);
+    // console.log(age);
+    return age;
+  }
+
+  const age = getAge(date);
+
   return (
     <li key={_id} className={css.listItems}>
       <div className={css.imageThumb}>
@@ -47,7 +73,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {date}
+            {age === 1 ? '1 year' : `${age} years`}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (
