@@ -10,7 +10,7 @@ const instance = axios.create({
   baseURL: 'https://yourpet-backend-3yf8.onrender.com/api',
 });
 
-const setToken = token => {
+export const setToken = token => {
   if (token) {
     return (instance.defaults.headers.authorization = `Bearer ${token}`);
   }
@@ -33,7 +33,7 @@ export const register = async data => {
 
 export const login = async data => {
   const { data: result } = await instance.post('/auth/login', data);
-  setToken(result.accessToken);
+  await setToken(result.accessToken);
   return result;
 };
 

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from '../../shared/services/App/app';
+import { setToken } from '../../shared/services/App/app';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -28,19 +29,27 @@ export const login = createAsyncThunk(
 
 export const current = createAsyncThunk(
   'auth/current',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
     try {
-      const { auth } = getState();
-      const data = await api.getCurrent(auth.accessToken);
+      setToken(persistedToken);
+      const { auth } = thunkAPI.getState();
+
+      const data = await api.getCurrent(auth.token);
+      console.log(data, 'data');
       return data;
     } catch ({ response }) {
-      return rejectWithValue(response);
+      return thunkAPI.rejectWithValue(response);
     }
   },
   {
     condition: (_, { getState }) => {
       const { auth } = getState();
-      if (!auth.accessToken) {
+      if (!auth.token) {
         return false;
       }
     },
