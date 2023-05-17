@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   items: [],
+  category: null,
   loading: false,
   error: null,
 };
@@ -57,9 +58,10 @@ const noticesSlice = createSlice({
         store.loading = true;
         store.items = [];
       })
-      .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
-        store.loading = false;
-        store.items = [...payload];
+      .addCase(fetchNoticesByCategory.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.items = [...payload.data];
+        state.category = payload.category;
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
         store.loading = false;
