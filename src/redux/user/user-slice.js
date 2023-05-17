@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchUser, fetchUpdateUser } from './user-operations';
+import {
+  fetchUser,
+  fetchUpdateUser,
+  fetchUpdateAvatar,
+} from './user-operations';
 
 const initialState = {
   user: {
@@ -43,6 +47,19 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchUpdateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchUpdateAvatar.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUpdateAvatar.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = payload;
+        state.error = null;
+      })
+      .addCase(fetchUpdateAvatar.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

@@ -25,3 +25,15 @@ export const fetchUpdateUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchUpdateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async ({ token, formData }, { rejectWithValue }) => {
+    try {
+      const result = await api.updateAvatar(token, formData);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

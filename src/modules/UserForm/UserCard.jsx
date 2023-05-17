@@ -9,22 +9,20 @@ import { useEffect } from 'react';
 import { fetchUser } from 'redux/user/user-operations';
 import { userInfo } from 'redux/user/user-selectors';
 
-import css from "./UserCard.module.css"
+import css from './UserCard.module.css';
 
 const UserCard = () => {
   const { isLoading, token } = useSelector(state => state.auth);
   const { user } = useSelector(state => state.user.user);
   const { pets } = useSelector(state => state.user.user);
-  console.log(user);
+
+  console.log(user,"USER");
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser(token));
   }, []);
 
-  //   console.log(user, 'USER CARD');
-
-  // name={name} email={email}
   return (
     <section className={css.container}>
       {isLoading && <Loader />}

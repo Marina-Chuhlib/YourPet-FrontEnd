@@ -19,15 +19,23 @@ export const updateUserInf = async (fieldToUpdate, newValue, token) => {
     },
   };
 
-  console.log(token);
-  console.log(fieldToUpdate);
-  console.log(newValue);
-
   const data = {
     [fieldToUpdate]: newValue,
   };
 
   const { data: result } = await instance.patch('/user', data, config);
   console.log(result, 'app');
+  return result;
+};
+
+export const updateAvatar = async (token, formData) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  const { data: result } = await instance.patch('/user', formData, config);
   return result;
 };

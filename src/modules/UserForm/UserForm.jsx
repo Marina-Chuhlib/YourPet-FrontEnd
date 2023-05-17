@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 
 import { useNavigate } from 'react-router-dom';
 
+import Loader from 'shared/components/Loader/Loader';
+
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
@@ -22,7 +24,8 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
 import { logout } from 'redux/auth/auth-operations';
 
-import { fetchUpdateUser } from 'redux/user/user-operations';
+import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
+import { updateAvatar } from 'shared/services/App/User/user';
 
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
@@ -37,14 +40,44 @@ import { fetchUpdateUser } from 'redux/user/user-operations';
 // });
 
 import { selectAuth } from 'redux/auth/auth-selectors';
+import { selectIsLoading } from 'redux/auth/auth-selectors';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
+  const isLoading = useSelector(selectIsLoading);
+  // console.log(isLoading);
+  const filePicker = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploaded, setUploaded] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // console.log(user);
+
+  // avatar
+
+  const handleChangeAvatar = e => {
+    console.log(e.target.files);
+    setSelectedFile(e.target.files[0]);
+    console.log('Avatar');
+  };
+
+  const addAvatarBtn = () => {
+    filePicker.current.click();
+  };
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append('imageURL', selectedFile);
+    // const { user } = await updateAvatar();
+
+    dispatch(fetchUpdateAvatar({ token, formData }));
+    // const {payload} = await dispatch(fetchUpdateAvatar({ token, formData }));
+    // const urlAvatar = payload.user.imageURL;
+    // setUploaded(urlAvatar)
+  };
+  // =====
 
   const [formData, setFormData] = useState({
     name: user.name,
@@ -97,11 +130,6 @@ const UserForm = ({ user }) => {
     }
   };
 
-  // const sendDataToServer = (fieldName, value) => {
-  //   console.log(`Sending ${fieldName}=${value} to the server`);
-
-  // };
-
   const fields = [
     { fieldName: 'name', label: 'Name', type: 'text', placeholder: 'Name' },
     {
@@ -130,10 +158,6 @@ const UserForm = ({ user }) => {
     navigate('/');
   };
 
-  // avatar
-
-  // =====
-
   return (
     <>
       <div>
@@ -154,7 +178,16 @@ const UserForm = ({ user }) => {
                   <img src="" alt="avatar" className={css.avatar} />
                 )}
 
+                {/* ===avatar  */}
+
                 <div className={css.wrapperFile}>
+                  <button type="button" onClick={addAvatarBtn}>
+                    Edit photo
+                  </button>
+                  <button type="button" onClick={handleUpload}>
+                    Send{' '}
+                  </button>
+
                   <label htmlFor="fileElem" className={css.avatarLabel}>
                     <CameraAltOutlinedIcon
                       style={{ color: '#54ADFF', marginRight: '8px' }}
@@ -163,10 +196,11 @@ const UserForm = ({ user }) => {
                     <input
                       type="file"
                       id="fileElem"
-                      multiple
                       accept="image/*"
                       name="Edit photo"
+                      ref={filePicker}
                       className={css.avatarBtn}
+                      onChange={handleChangeAvatar}
                     />
                     <a href="#" id="fileSelect"></a>
                   </label>
@@ -174,6 +208,8 @@ const UserForm = ({ user }) => {
                     <p>No files selected!</p>
                   </div> */}
                 </div>
+
+                {/* ===== */}
 
                 {user && (
                   <div className={css.formWrapper}>
