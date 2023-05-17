@@ -8,8 +8,6 @@ import noticesReducer from './notices/noticesSlice';
 import newsSlice from './news/newsSlice';
 import friendsReducer from './friends/friends-slice';
 
-import searchReducer from './search/searchSlice';
-
 import userSlice from './user/user-slice';
 
 const persistConfig = {
@@ -26,7 +24,6 @@ const rootReducer = combineReducers({
   notices: noticesReducer,
   friends: friendsReducer,
   news: newsSlice,
-  search: searchReducer,
   user: userSlice,
 });
 
