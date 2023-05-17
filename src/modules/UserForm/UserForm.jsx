@@ -105,7 +105,6 @@ const UserForm = ({ user }) => {
 
   const handleEditField = fieldName => {
     const value = formData[fieldName];
-    console.log(value, 'VALUE');
 
     // if (!value) {
     //   alert('Email is REQUIRED');
@@ -204,10 +203,6 @@ const UserForm = ({ user }) => {
                     />
                     <a href="#" id="fileSelect"></a>
                   </label>
-                  {/* <div id="fileList">
-                    <p>No files selected!</p>
-                  </div> */}
-                </div>
 
                 {/* ===== */}
 
