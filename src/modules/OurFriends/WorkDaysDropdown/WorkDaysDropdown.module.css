@@ -1,0 +1,53 @@
+.customTypography {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .customTypography {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .customTypography {
+    font-size: 16px;
+  }
+}
+
+.timeBox {
+  position: relative;
+}
+
+.timeList {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 120px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border: 1px solid #54adff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.timeItem {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeItem:not(:last-child) {
+  margin-bottom: 4px;
+}
