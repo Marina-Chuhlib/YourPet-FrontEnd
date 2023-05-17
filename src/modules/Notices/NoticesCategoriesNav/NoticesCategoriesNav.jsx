@@ -5,6 +5,8 @@ import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
 
 import css from "../NoticesCategoriesNav/NoticesCategoriesNav.module.css"
+// import { selectSearch } from 'redux/search/searchSelectors';
+// import { setKeyword } from 'redux/search/searchSlice';
 
 const getClassNameLink = ({ isActive }) => {
   const className = isActive ? `${css.navLink} ${css.active}` : css.navLink;
@@ -50,7 +52,6 @@ const NoticesCategoriesNav = () => {
               <NavLink
                 to={element.to}
                 className={getClassNameLink}
-                onClick={() => handleCategoryClick(element.to)}
               >
                 {element.text}
               </NavLink>

@@ -1,56 +1,48 @@
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation,useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 
-import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
-
 import css from '../NoticesSearch/NoticesSearch.module.css';
+import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
+import { selectCategory } from 'redux/notices/noticesSelectors';
+
 
 const NoticesSearch = () => {
-  const [keyword, setKeyword] = useState('');
-  const [showHelperText, setShowHelperText] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const category = location.pathname.split('/')[2];
-
-  useEffect(() => {
-    if (formSubmitted) {
-      dispatch(fetchNoticesByCategory({ categoryName: category, query: keyword }));
-      setFormSubmitted(false);
-      setKeyword("");
-    }
-  }, [dispatch, category, keyword, formSubmitted]);
-
-const handleSearch = (e) => {
-  e.preventDefault();
-  if (keyword.trim() === '') {
-    setShowHelperText(true);
-  } else {
-    console.log(`Выполняется поиск в категории ${category} по ключевому слову ${keyword}` );
-    setFormSubmitted(true);
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('searchValue', keyword);
-    navigate(`${location.pathname}?${searchParams.toString()}`);
-  }
-};
+  const [tempKeyword, setTempKeyword] = useState('');
+  const [showHelperText, setShowHelperText] = useState(false);
+  const category = useSelector(selectCategory);
 
   const handleClear = () => {
-    setKeyword('');
+    setTempKeyword('');
     setShowHelperText(false);
+  };
+
+  const handleKeywordChange = (e) => {
+    setTempKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (tempKeyword.trim() === '') {
+      setShowHelperText(true);
+    } else {
+      console.log(`Выполняется поиск в категории ${category} по ключевому слову ${tempKeyword}`);
+      dispatch(fetchNoticesByCategory({ categoryName: category, query: tempKeyword.trim() }));
+      setTempKeyword('');
+      setShowHelperText(false);
+    }
   };
 
   return (
     <>
       <div className={css.inputContainer}>
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSubmit}>
           <Input
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            value={tempKeyword}
+            onChange={handleKeywordChange}
             placeholder="Search"
             disableUnderline
             style={{
@@ -68,7 +60,7 @@ const handleSearch = (e) => {
                 <IconButton type="submit" style={{ color: '#54ADFF' }}>
                   <Search />
                 </IconButton>
-                {keyword && (
+                {tempKeyword && (
                   <IconButton onClick={handleClear} style={{ color: '#FFC107' }}>
                     <Clear />
                   </IconButton>
@@ -89,3 +81,4 @@ const handleSearch = (e) => {
 };
 
 export default NoticesSearch;
+
