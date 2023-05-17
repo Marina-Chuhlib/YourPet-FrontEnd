@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { fetchUser } from 'redux/user/user-operations';
-import { userInfo } from 'redux/user/user-selectors';
+// import { userInfo } from 'redux/user/user-selectors';
 
 import css from './UserCard.module.css';
 
@@ -16,12 +16,15 @@ const UserCard = () => {
   const { user } = useSelector(state => state.user.user);
   const { pets } = useSelector(state => state.user.user);
 
-  console.log(user,"USER");
+  console.log(user, 'USER');
+  console.log(token, 'token');
+
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchUser(token));
-  }, []);
+    dispatch(fetchUser());
+  }, [dispatch]);
 
   return (
     <section className={css.container}>

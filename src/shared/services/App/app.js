@@ -40,6 +40,7 @@ export const login = async data => {
 export const getCurrent = async token => {
   try {
     setToken(token);
+    console.log(token);
     const { data } = await instance.get('/auth/current');
     return data;
   } catch (error) {

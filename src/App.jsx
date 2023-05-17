@@ -26,8 +26,19 @@ import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 // const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 // const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { current } from 'redux/auth/auth-operations';
+
 
 export const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
   return (
     <>
       <Suspense fallback={<Loader />}>
