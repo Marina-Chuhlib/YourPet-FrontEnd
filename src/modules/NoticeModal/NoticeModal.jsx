@@ -15,6 +15,7 @@ const NoticeModal = ({
   email,
   phone,
   comments,
+  title,
 }) => {
   return (
     <>
@@ -22,12 +23,7 @@ const NoticeModal = ({
         <div className={css.tabletBox}>
           <div className={css.imgThumb}>
             <p className={css.categoryInfo}>{category}</p>
-            <img
-              className={css.photo}
-              src={file}
-              alt="Pet's avatar"
-              width="280"
-            />
+            <img className={css.photo} src={file} alt={title} width="280" />
           </div>
           <table>
             <caption className={css.title}>Сute dog looking for a home</caption>

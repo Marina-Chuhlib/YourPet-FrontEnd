@@ -8,6 +8,7 @@ import MaleIcon from 'icons/MaleIcon';
 
 import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 
 // import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 // import Modal from 'shared/components/ModalWindow/Modal';
@@ -26,6 +27,7 @@ const NoticeCategoryItem = ({
   sex,
 }) => {
   const user = useSelector(getUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   // console.log(user);
 
   function getAge(date) {
@@ -66,10 +68,12 @@ const NoticeCategoryItem = ({
                 <HeartIcon color="#54ADFF" favorite={user.favorite} />
               )}
             />
-            <Button
-              className={css.topBtn}
-              SVGComponent={() => <TrashIcon color="#54ADFF" />}
-            />
+            {isLoggedIn && (
+              <Button
+                className={css.topBtn}
+                SVGComponent={() => <TrashIcon color="#54ADFF" />}
+              />
+            )}
           </div>
         </div>
         <div className={css.infoCardBlock}>
