@@ -26,9 +26,7 @@ const rootReducer = combineReducers({
   notices: noticesReducer,
   friends: friendsReducer,
   news: newsSlice,
-
   search: searchReducer,
-
   user: userSlice,
 });
 
