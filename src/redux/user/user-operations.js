@@ -2,17 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from '../../shared/services/App/User/user';
 
-export const fetchUser = createAsyncThunk(
-  'user/fetch',
-  async (token, thunkAPI) => {
-    try {
-      const data = await api.getUser(token);
-      return data;
-    } catch ({ response }) {
-      return thunkAPI.rejectWithValue(response.data);
-    }
+export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
+  try {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    console.log(persistedToken, 'persistedToken');
+    const data = await api.getUser(persistedToken);
+    return data;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data);
   }
-);
+});
 
 export const fetchUpdateUser = createAsyncThunk(
   'user/update',

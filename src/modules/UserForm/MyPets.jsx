@@ -41,7 +41,7 @@ const MyPets = () => {
       <div className={css.petCardWrapper}>
         <ul>
           <li>
-            <img src="" alt="picture" width="240" height="240" className={css.picture} />
+            {/* <img src="" alt="picture" width="240" height="240" className={css.picture} /> */}
             <p>Name:</p>
             <p>Date of birth:</p>
             <p>Breed:</p>

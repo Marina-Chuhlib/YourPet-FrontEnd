@@ -1,20 +1,17 @@
 // import React from 'react';
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form } from 'formik';
+
 
 import { useNavigate } from 'react-router-dom';
 
-import Loader from 'shared/components/Loader/Loader';
 
-import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import css from './UserForm.module.css';
@@ -25,30 +22,17 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import { logout } from 'redux/auth/auth-operations';
 
 import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
-import { updateAvatar } from 'shared/services/App/User/user';
-
-// const SignupSchema = Yup.object().shape({
-//   firstName: Yup.string()
-//     .min(2, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-//   lastName: Yup.string()
-//     .min(2, 'Too Short!')
-//     .max(50, 'Too Long!')
-//     .required('Required'),
-//   email: Yup.string().email('Invalid email').required('Required'),
-// });
 
 import { selectAuth } from 'redux/auth/auth-selectors';
-import { selectIsLoading } from 'redux/auth/auth-selectors';
+// import { selectIsLoading } from 'redux/auth/auth-selectors';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   // console.log(isLoading);
   const filePicker = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploaded, setUploaded] = useState();
+  // const [uploaded, setUploaded] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -201,7 +185,6 @@ const UserForm = ({ user }) => {
                       className={css.avatarBtn}
                       onChange={handleChangeAvatar}
                     />
-                    <a href="#" id="fileSelect"></a>
                   </label>
 
                 {/* ===== */}
@@ -282,10 +265,12 @@ const UserForm = ({ user }) => {
                   }
                 >
                   Log Out
-                </Button>
-              </Form>
-            )}
+                  </Button>
+               </div>
+              </Form>  
+            )}     
           </Formik>
+  
         </div>
       </div>
     </>
