@@ -40,10 +40,10 @@ import { userInfo } from 'redux/user/user-selectors';
 
 const UserForm = ({ name, email }) => {
   const { user } = useSelector(userInfo);
-  const stateis = useSelector(state=>state.auth)
+  // const stateis = useSelector(state=>state.auth)
   // const avatar =  user.imageURL
   // console.log(user.imageURL);
-  console.log(stateis);
+  // console.log(stateis);
   // const [isUser, isUseState]= useState(user)
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ const UserForm = ({ name, email }) => {
   // }, []);
 
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjFmYTI2ZGI4OGU5ZjU5YjkzYzA1MyIsImlhdCI6MTY4NDI0NTU4MSwiZXhwIjoxNjg0MzI4MzgxfQ.BSa11XHwb0W-Fqs_-2OO2amQw9xTpiXlRL0UAUebvTs';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjNjOTVhYmNkNTFhYjE4NDk1ZjVjZiIsImlhdCI6MTY4NDI2MTg0MiwiZXhwIjoxNjg0MzQ0NjQyfQ.nyQ-9dDdxua8r7WTX6zcaxoVjQSqqOZdHQb-Aucl95A';
 
   useEffect(() => {
     dispatch(fetchUser(token));
@@ -64,9 +64,12 @@ const UserForm = ({ name, email }) => {
   const [formData, setFormData] = useState({
     name: name,
     email: email,
-    birthday: user.birthday || "",
-    phone: user.phone || "" ,
-    city: user.city || "",
+    birthday: '',
+    phone: '',
+    city: '',
+    // birthday: user.birthday || "",
+    // phone: user.phone || "" ,
+    // city: user.city || "",
   });
 
   const [editingFields, setEditingFields] = useState({
