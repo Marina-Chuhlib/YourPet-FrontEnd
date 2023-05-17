@@ -22,7 +22,7 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
 import { logout } from 'redux/auth/auth-operations';
 
-import { fetchUser, fetchUpdateUser } from 'redux/user/user-operations';
+import { fetchUpdateUser } from 'redux/user/user-operations';
 
 // const SignupSchema = Yup.object().shape({
 //   firstName: Yup.string()
@@ -36,40 +36,22 @@ import { fetchUser, fetchUpdateUser } from 'redux/user/user-operations';
 //   email: Yup.string().email('Invalid email').required('Required'),
 // });
 
-import { userInfo } from 'redux/user/user-selectors';
+import { selectAuth } from 'redux/auth/auth-selectors';
 
-const UserForm = ({ name, email }) => {
-  const { user } = useSelector(userInfo);
-  // const stateis = useSelector(state=>state.auth)
-  // const avatar =  user.imageURL
-  // console.log(user.imageURL);
-  // console.log(stateis);
-  // const [isUser, isUseState]= useState(user)
+const UserForm = ({ user }) => {
+  const { token } = useSelector(selectAuth);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log('useEffect');
-  //   //  navigate("/store", { replace: true });
-  // }, []);
-
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjNjOTVhYmNkNTFhYjE4NDk1ZjVjZiIsImlhdCI6MTY4NDI2MTg0MiwiZXhwIjoxNjg0MzQ0NjQyfQ.nyQ-9dDdxua8r7WTX6zcaxoVjQSqqOZdHQb-Aucl95A';
-
-  useEffect(() => {
-    dispatch(fetchUser(token));
-  }, [dispatch]);
-
-  let navigate = useNavigate();
+  console.log(user);
 
   const [formData, setFormData] = useState({
-    name: name,
-    email: email,
-    birthday: '',
-    phone: '',
-    city: '',
-    // birthday: user.birthday || "",
-    // phone: user.phone || "" ,
-    // city: user.city || "",
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city,
   });
 
   const [editingFields, setEditingFields] = useState({
@@ -79,8 +61,6 @@ const UserForm = ({ name, email }) => {
     phone: false,
     city: false,
   });
-
-  // const filledFields = {};
 
   const handleChangeInput = event => {
     const { name, value } = event.target;
@@ -129,7 +109,6 @@ const UserForm = ({ name, email }) => {
       label: 'Email',
       type: 'email',
       placeholder: 'email@xxx.com',
-      require,
     },
     {
       fieldName: 'birthday',
@@ -151,9 +130,16 @@ const UserForm = ({ name, email }) => {
     navigate('/');
   };
 
+  // avatar
+  const fileSelect = document.getElementById('fileSelect'),
+    fileElem = document.getElementById('fileElem'),
+    fileList = document.getElementById('fileList');
+
+  // =====
+
   return (
-    <section>
-      <div className={css.container}>
+    <>
+      <div>
         <div className={css.wrapper}>
           <h2 className={css.title}>My information:</h2>
 
@@ -176,18 +162,23 @@ const UserForm = ({ name, email }) => {
                     <CameraAltOutlinedIcon
                       style={{ color: '#54ADFF', marginRight: '8px' }}
                     />
-                    Edit photo
+
                     <input
                       type="file"
-                      id="editPhoto"
+                      id="fileElem"
+                      multiple
                       accept="image/*"
                       name="Edit photo"
                       className={css.avatarBtn}
                     />
+                    <a href="#" id="fileSelect">
+                      Edit photo
+                    </a>
                   </label>
+                  <div id="fileList">
+                    <p>No files selected!</p>
+                  </div>
                 </div>
-
-                {/* Name*/}
 
                 {user && (
                   <div className={css.formWrapper}>
@@ -226,7 +217,6 @@ const UserForm = ({ name, email }) => {
                               }
                               checkedIcon={
                                 <CheckOutlinedIcon
-                                  // onChange={sendDataToServer}
                                   style={{
                                     color: '#00C3AD',
                                     width: '20px',
@@ -253,7 +243,6 @@ const UserForm = ({ name, email }) => {
                     padding: '0',
                     fontFamily: 'Manrope',
                     textTransform: 'none',
-                    marginBottom: '25px',
                     marginLeft: '2px',
                   }}
                   startIcon={
@@ -273,7 +262,7 @@ const UserForm = ({ name, email }) => {
           </Formik>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 export default UserForm;

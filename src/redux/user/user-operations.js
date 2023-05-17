@@ -7,7 +7,6 @@ export const fetchUser = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       const data = await api.getUser(token);
-      console.log(data.user);
       return data;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response.data);
@@ -20,7 +19,6 @@ export const fetchUpdateUser = createAsyncThunk(
   async ({ token, fieldToUpdate, newValue }, { rejectWithValue }) => {
     try {
       const result = await api.updateUserInf(fieldToUpdate, newValue, token);
-      console.log(token, 'operations');
       return result;
     } catch ({ response }) {
       return rejectWithValue(response.data);
