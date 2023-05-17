@@ -54,14 +54,14 @@ export const RegisterFormDetails = () => {
     setShowConfirmPassword(show => !show);
 
   const dispatch = useDispatch();
-  const handleFormSubmit = values => {
+  const handleFormSubmit =async values => {
     // console.log(values);
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(register(data));
+   await dispatch(register(data));
     navigate('/user');
   };
 

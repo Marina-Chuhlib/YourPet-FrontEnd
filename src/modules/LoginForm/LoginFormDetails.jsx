@@ -51,14 +51,14 @@ export const LoginFormDetails = () => {
 //     setShowConfirmPassword(show => !show);
 
   const dispatch = useDispatch();
-  const handleFormSubmit = values => {
+  const handleFormSubmit = async values => {
     // console.log(values);
     const data = {
       //name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(login(data));
+   await dispatch(login(data));
     navigate('/user');
   };
 
