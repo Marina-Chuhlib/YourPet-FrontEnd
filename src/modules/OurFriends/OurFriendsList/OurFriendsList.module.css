@@ -1,0 +1,67 @@
+.helperText {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin-top: 44px;
+
+  color: #111111;
+}
+
+@media (min-width: 768px) {
+  .helperText {
+    font-size: 28px;
+    margin-top: 62px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .helperText {
+    margin-top: 82px;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
+  }
+}
+
+.cardList {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .cardList {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .cardList {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+}
