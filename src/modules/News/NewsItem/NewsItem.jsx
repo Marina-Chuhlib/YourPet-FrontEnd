@@ -1,15 +1,18 @@
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import css from '../NewsItem/NewsItem.module.css';
 
 const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
-    
-  const originalDate = new Date(date);
-  const day = originalDate.getDate();
-  const month = originalDate.getMonth() + 1; 
-  const year = originalDate.getFullYear();
-  const formattedDate = `${day}/${month < 10 ? '0' + month : month}/${year}`;
+  const formattedDate = useMemo(() => {
+    const originalDate = new Date(date);
+    const day = originalDate.getDate();
+    const month = originalDate.getMonth() + 1;
+    const year = originalDate.getFullYear();
+    return `${day}/${month < 10 ? '0' + month : month}/${year}`;
+  }, [date]);
 
   return (
-     <li key={_id} className={css.item}>
+    <li key={_id} className={css.item}>
       <img src={imgUrl} alt={title} className={css.img} />
       <div className={css.textBox}>
         <h3 className={css.title}>{title}</h3>
@@ -26,9 +29,17 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
           </a>
         </div>
       </div>
-  </li>
+    </li>
   );
 };
 
-export default NewsItem;
+NewsItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+};
 
+export default NewsItem;
