@@ -1,0 +1,73 @@
+.cardItem {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  min-height: 239px;
+  /* min-width: 280px; */
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .cardItem {
+    min-height: 275px;
+    min-width: 336px;
+    border-radius: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .cardItem {
+    max-width: 395px;
+  }
+}
+
+.customTypography {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .customTypography {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .customTypography {
+    font-size: 16px;
+  }
+}
+
+.customCardMedia {
+  margin-right: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .customCardMedia {
+    margin-right: 12px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .customCardMedia {
+    margin-right: 20px;
+  }
+}
+
+.friendLink {
+  text-align: center;
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  color: #54adff;
+  transition: transform 0.3s ease;
+}
+
+.friendLink:hover {
+  transform: scale(1.2);
+}

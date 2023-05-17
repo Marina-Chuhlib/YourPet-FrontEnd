@@ -1,22 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchFriends } from 'redux/friends/friends-operations';
-import { getAllFriends } from 'redux/friends/friends-selectors';
+import OurFriendsList from 'modules/OurFriends/OurFriendsList/OurFriendsList';
+import css from './OurFriendsPage.module.css';
 
 const OurFriendsPage = () => {
   const dispatch = useDispatch();
-  const friends = useSelector(getAllFriends);
-
-  console.log(friends);
 
   useEffect(() => {
     dispatch(fetchFriends());
   }, [dispatch]);
 
   return (
-    <>
-      <h2>Our Friends</h2>
-    </>
+    <div>
+      <h2 className={css.title}>Our friends</h2>
+      <OurFriendsList />
+    </div>
   );
 };
 
