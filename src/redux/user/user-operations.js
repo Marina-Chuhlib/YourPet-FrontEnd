@@ -20,34 +20,8 @@ export const fetchUpdateUser = createAsyncThunk(
     try {
       const result = await api.updateUserInf(fieldToUpdate, newValue, token);
       return result;
-    } catch ({ response }) {
-      return rejectWithValue(response.data);
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
-
-{
-  //      condition: (userId, { getState, extra }) => {
-  //   const { users } = getState()
-  //   const fetchStatus = users.requests[userId]
-  //   if (fetchStatus === 'fulfilled' || fetchStatus === 'loading') {
-  //     // Already fetched or in progress, don't need to re-fetch
-  //     return false
-  //   }
-  // ===========
-  // condition: ({}, { getState }) => {
-  //   const { user } = getState();
-  // //   const normalizedTitle = title.toLowerCase();
-  // //   const normalizedAuthor = author.toLowerCase();
-  //   const result = books.items.find(({ title, author }) => {
-  //     return (
-  //       title.toLowerCase() === normalizedTitle &&
-  //       author.toLowerCase() === normalizedAuthor
-  //     );
-  //   });
-  //   if (result) {
-  //     alert(`${title}. Author: ${author} is already ixist`);
-  //     return false;
-  //   }
-  // },
-}

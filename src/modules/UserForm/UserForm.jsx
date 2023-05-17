@@ -44,7 +44,7 @@ const UserForm = ({ user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(user);
+  // console.log(user);
 
   const [formData, setFormData] = useState({
     name: user.name,
@@ -131,9 +131,6 @@ const UserForm = ({ user }) => {
   };
 
   // avatar
-  const fileSelect = document.getElementById('fileSelect'),
-    fileElem = document.getElementById('fileElem'),
-    fileList = document.getElementById('fileList');
 
   // =====
 
@@ -158,11 +155,11 @@ const UserForm = ({ user }) => {
                 )}
 
                 <div className={css.wrapperFile}>
-                  <label htmlFor="editPhoto" className={css.avatarLabel}>
+                  <label htmlFor="fileElem" className={css.avatarLabel}>
                     <CameraAltOutlinedIcon
                       style={{ color: '#54ADFF', marginRight: '8px' }}
                     />
-
+                    Edit photo
                     <input
                       type="file"
                       id="fileElem"
@@ -171,13 +168,11 @@ const UserForm = ({ user }) => {
                       name="Edit photo"
                       className={css.avatarBtn}
                     />
-                    <a href="#" id="fileSelect">
-                      Edit photo
-                    </a>
+                    <a href="#" id="fileSelect"></a>
                   </label>
-                  <div id="fileList">
+                  {/* <div id="fileList">
                     <p>No files selected!</p>
-                  </div>
+                  </div> */}
                 </div>
 
                 {user && (
