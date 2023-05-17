@@ -27,3 +27,40 @@
   background: #54adff;
   color: #fef9f9;
 }
+
+.btn {
+  display: none;
+}
+@media (min-width: 768px) {
+  .btn {
+    width: 129px;
+    height: 40px;
+    margin-top: 40px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #fef9f9;
+    border: 0;
+    cursor: pointer;
+    padding: 9px 16px;
+    background: #54adff;
+    border-radius: 40px;
+  }
+}
+.btn:hover,
+.btn:focus {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
