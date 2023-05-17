@@ -49,7 +49,7 @@ export const current = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const { auth } = getState();
-      if (!auth.accessToken) {
+      if (!auth.token) {
         return false;
       }
     },

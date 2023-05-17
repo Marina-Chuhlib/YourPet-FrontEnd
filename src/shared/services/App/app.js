@@ -40,9 +40,7 @@ export const login = async data => {
 export const getCurrent = async token => {
   try {
     setToken(token);
-
     const { data } = await instance.get('/auth/current');
-    console.log(data, 'data APP');
     return data;
   } catch (error) {
     setToken();
