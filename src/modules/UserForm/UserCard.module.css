@@ -1,0 +1,8 @@
+@media screen and (min-width: 280px) {
+  .container {
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

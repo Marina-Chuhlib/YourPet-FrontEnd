@@ -1,12 +1,7 @@
-import UserForm from '../../modules/UserForm/UserForm';
+import UserCard from 'modules/UserForm/UserCard';
 
 const UserPage = () => {
-
-  return (
-    <>
-      <UserForm/>
-    </>
-  );
+  return <UserCard />;
 };
 
 export default UserPage;

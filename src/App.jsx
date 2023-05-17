@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Loader from 'shared/components/Loader/Loader';
 
 import SharedLayout from 'modules/SharedLayout/SharedLayout';
+
 import MainPage from 'pages/MainPage/MainPage';
 import OurFriendsPage from 'pages/OurFriendsPage/OurFriendsPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
@@ -24,6 +25,7 @@ import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 // const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 // const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 // const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
+
 
 export const App = () => {
   return (

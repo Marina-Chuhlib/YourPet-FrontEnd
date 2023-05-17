@@ -7,7 +7,10 @@ import petsReducer from './pets/petsSlice';
 import noticesReducer from './notices/noticesSlice';
 import newsSlice from './news/newsSlice';
 import friendsReducer from './friends/friends-slice';
+
 import searchReducer from './search/searchSlice';
+
+import userSlice from './user/user-slice';
 
 const persistConfig = {
   key: 'root',
@@ -24,6 +27,7 @@ const rootReducer = combineReducers({
   friends: friendsReducer,
   news: newsSlice,
   search: searchReducer,
+  user: userSlice,
 });
 
 export default rootReducer;
