@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import Header from 'modules/Header/Header';
 
+
 const SharedLayout = () => {
+
   return (
     <>
       <header>

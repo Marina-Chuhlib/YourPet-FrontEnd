@@ -5,10 +5,13 @@ import {
   fetchAddNotice,
   fetchDeleteNotice,
   fetchNoticesByCategory,
+  fetchNoticesByOwn,
+  fetchAllFavoriteNotices,
 } from './noticesOperations';
 
 const initialState = {
   items: [],
+  category: null,
   loading: false,
   error: null,
 };
@@ -23,7 +26,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = payload;
+        store.items = payload.data.notices;
       })
       .addCase(fetchAllNotices.rejected, (store, { payload }) => {
         store.loading = false;
@@ -54,12 +57,40 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByCategory.pending, store => {
         store.loading = true;
+        store.items = [];
       })
       .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload];
+        store.items = [...payload.data.notices];
+        store.category = payload.category;
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchNoticesByOwn.pending, store => {
+        store.loading = true;
+        store.items = [];
+        store.category = null;
+      })
+      .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.items = [...payload.data.notices];
+      })
+      .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchAllFavoriteNotices.pending, store => {
+        store.loading = true;
+        store.items = [];
+        store.category = null;
+      })
+      .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.items = [...payload.data.notices];
+      })
+      .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
       });

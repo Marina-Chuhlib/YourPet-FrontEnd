@@ -21,3 +21,13 @@ export const getNoticesByCategory = async (categoryName, query = '') => {
   );
   return data;
 };
+
+export const getNoticesByOwn = async (query = '') => {
+  const { data } = await instance.get(`notices/user/own?searchValue=${query}`);
+  return data;
+};
+
+export const getAllFavoriteNotices = async (query = '') => {
+  const { data } = await instance.get(`notices/favorite/all?searchValue=${query}`);
+  return data;
+};
