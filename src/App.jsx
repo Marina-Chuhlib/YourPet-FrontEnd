@@ -48,7 +48,7 @@ export const App = () => {
 								element={<NoticesCategoriesList />}
 							/>
             </Route>
-            <Route path="add-pet " element={<AddPetPage />} />
+            <Route path="add-pet" element={<AddPetPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

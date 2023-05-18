@@ -1,62 +1,66 @@
 .buttonContainer {
   display: flex;
-
+flex-direction: column;
+align-items: center;
+align-self: flex-end;
   gap: 20px;
-  margin-top: 40px;
-  margin-left: 20px;
+  margin-top: auto;
+   margin-left: 12px;
   margin-right: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
+  flex: 1 1 45%;
 }
 
 @media screen and (min-width: 768px) {
   .buttonContainer {
-    flex-direction: column-reverse;
-justify-content: flex-end;
+    flex-direction: row-reverse;
+    /* justify-content: end; */
+    /* align-items: end; */
     margin-bottom: 20px;
-    margin-left: 60px;
-    margin-right: 32px;
   }
 }
 
-
 .buttonPrev {
-margin-left: 12px;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.38;
-    color: #54adff;
-    background-color: #fff;
-    border: none;
-    text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.38;
+  color: #54adff;
+  background-color: #fff;
+  border: none;
+  text-decoration: none;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonNext {
-margin-right: 12px;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.38;
-    color: #FEF9F9;
-    background-color: #54adff;
-    border: none;
-    border-radius: 40px;
-    text-decoration: none;
-    text-align: center;
-    width: 248px;
-    height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.38;
+  color: #fef9f9;
+  background-color: #54adff;
+  border: none;
+  border-radius: 40px;
+  text-decoration: none;
+  align-items: center;
+  width: 248px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 .buttonNext:hover,
 .buttonNext:focus {
-background-color: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  background-color: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .pawIcon {
-    margin-bottom: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #FEF9F9;
+  margin-left: 12px;
+  color: #fef9f9;
 }
 
 .arrowIcon {
-    color: #54adff;
+  margin-right: 12px;
 }

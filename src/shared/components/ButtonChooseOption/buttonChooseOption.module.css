@@ -1,6 +1,10 @@
 .buttonContainer {
-  display: block;
-  margin-top: 12px;
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+flex: 1;
+margin-bottom: 80px;
+  /* margin-top: 12px; */
 }
 
 .buttonChoose {
@@ -12,6 +16,7 @@
   border: none;
   border-radius: 40px;
   margin-bottom: 12px;
+  width: fit-content;
 }
 
 .buttonChoose:focus,
@@ -28,5 +33,6 @@
 @media screen and (min-width: 768px) {
   .buttonConainer {
     margin-top: 40px;
+    margin-bottom: 120px;
   }
 }

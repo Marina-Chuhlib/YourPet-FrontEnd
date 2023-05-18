@@ -1,11 +1,11 @@
 
-import { AddPetChooseModal } from "./AddPetChooseModal";
-
+import { AddPetChooseForm } from "./AddPetChooseForm";
+// import {AddPetFirstPage} from './AddPetFirstPage'
 
 const AddPetForm = () => {
   return (
     <>
-      <AddPetChooseModal />
+      <AddPetChooseForm />
     </>
   );
 };
