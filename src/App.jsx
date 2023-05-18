@@ -30,9 +30,7 @@ const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 // import { useEffect } from 'react';
 // import { current } from 'redux/auth/auth-operations';
 
-
 export const App = () => {
-
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -44,6 +42,7 @@ export const App = () => {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
             <Route path="main" element={<MainPage />} />
             <Route path="friends" element={<OurFriendsPage />} />
             <Route path="register" element={<RegisterPage />} />
