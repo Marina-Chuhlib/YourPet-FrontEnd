@@ -1,33 +1,29 @@
-import NewsList from 'modules/News/NewsList/NewsList';
-import NewsSearch from 'modules/News/NewsSearch/NewsSearch';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllNews } from 'redux/news/newsOperation';
-
-import css from '../NewsPage/NewsPage.module.css';
-
 import {
   selectAllNewsTotalPages,
   selectAllNewsPage,
 } from 'redux/news/newsSelectors';
+
+import NewsList from 'modules/News/NewsList/NewsList';
+import NewsSearch from 'modules/News/NewsSearch/NewsSearch';
 import PaginationLine from 'shared/components/Pagination/Pagination';
-import { useSelector } from 'react-redux';
+
+import css from '../NewsPage/NewsPage.module.css';
 
 const NewsPage = () => {
   const dispatch = useDispatch();
-
   const [currentPage, setCurrentPage] = useState(1);
   const page = useSelector(selectAllNewsPage);
   const totalPages = useSelector(selectAllNewsTotalPages);
-  console.log('page', page);
-  console.log('totalPages', totalPages);
 
   useEffect(() => {
     dispatch(fetchAllNews(currentPage));
-  });
+  }, [currentPage, dispatch]);
 
-  const handlePageChange = () => {
-    setCurrentPage(page);
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
   };
 
   return (
@@ -37,10 +33,11 @@ const NewsPage = () => {
       <NewsList />
       <PaginationLine
         totalPages={totalPages}
-        // currentPage={currentPage}
+        currentPage={currentPage}
         onChange={handlePageChange}
       />
     </div>
   );
 };
+
 export default NewsPage;
