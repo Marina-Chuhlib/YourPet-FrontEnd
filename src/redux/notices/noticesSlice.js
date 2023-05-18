@@ -26,7 +26,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = payload;
+        store.items = payload.data.notices;
       })
       .addCase(fetchAllNotices.rejected, (store, { payload }) => {
         store.loading = false;
@@ -61,7 +61,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data];
+        store.items = [...payload.data.notices];
         store.category = payload.category;
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
@@ -75,7 +75,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload];
+        store.items = [...payload.data.notices];
       })
       .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
         store.loading = false;
@@ -88,7 +88,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload];
+        store.items = [...payload.data.notices];
       })
       .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;

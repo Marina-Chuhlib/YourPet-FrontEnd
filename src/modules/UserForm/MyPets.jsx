@@ -1,12 +1,54 @@
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { fetchUser } from 'redux/user/user-operations';
+
 import css from './MyPets.module.css';
 
-const MyPets = () => {
+import icon from '../../icons/trash.svg';
+
+const MyPets = ({ pets }) => {
+  console.log(pets);
+   const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(fetchUser());
+      console.log("PETS ")
+  }, [dispatch]);
+
+  const handleClick = () => {
+    navigate('/add-pet');
+  };
+
+  const elements = pets.map(
+    ({ _id, name, birthday, breed, imageURL, comments }) => (
+      <li key={_id} className={css.item}>
+        <img src={imageURL} alt="" className={css.picture} />
+        <div className={css.infoWrapper}>
+          <div className={css.delBtnWrapper}>
+            <p className={css.info}><span className={css.tit}>Name:</span>    {name}</p>
+            <button type="button" className={css.delBtn}>
+              <img src={icon} alt="My SVG" />
+            </button>
+          </div>
+
+          <p className={css.info}><span className={css.tit}>Date of birth:</span> {birthday}</p>
+          <p className={css.info}><span className={css.tit}> Breed:</span>  {breed}</p>
+          <p className={css.info}><span className={css.tit}>Comments:</span>  {comments}</p>
+        </div>
+      </li>
+    )
+  );
+
   return (
-    <div>
-      <dir className={css.wrapper}>
+    <div className={css.wrapper}>
+      <dir className={css.wrapperTitle}>
         <h3 className={css.title}>My Pets:</h3>
         {/* <button></button> */}
         <Button
@@ -33,22 +75,15 @@ const MyPets = () => {
             textTransform: 'none',
             height: '40px',
           }}
+
+          onClick={handleClick}
         >
           Add Pet
         </Button>
       </dir>
 
       <div className={css.petCardWrapper}>
-        <ul>
-          <li>
-            {/* <img src="" alt="picture" width="240" height="240" className={css.picture} /> */}
-            <p>Name:</p>
-            <p>Date of birth:</p>
-            <p>Breed:</p>
-            <p>Comments:</p>
-          </li>
-          <li></li>
-        </ul>
+        <ul className={css.list}>{elements}</ul>
       </div>
     </div>
   );
