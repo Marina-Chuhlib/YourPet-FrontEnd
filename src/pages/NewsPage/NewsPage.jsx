@@ -28,9 +28,7 @@ const NewsPage = () => {
   });
 
   const handlePageChange = () => {
-    // const page = useSelector(selectAllNewsPage);
     setCurrentPage(page);
-    // Здесь ты можешь обновить данные в соответствии с новой страницей
   };
 
   return (
