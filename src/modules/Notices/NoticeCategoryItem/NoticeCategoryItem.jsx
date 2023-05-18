@@ -31,9 +31,7 @@ const NoticeCategoryItem = ({
   sex,
 }) => {
   const user = useSelector(getUser);
-
-  // console.log(user);
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   function getAge(date) {
     const ymdArr = date.split('.').map(Number).reverse();
     ymdArr[1]--;
