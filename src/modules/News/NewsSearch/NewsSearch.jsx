@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
+import {
+  selectAllNews,
+  selectAllNewsTotalPages,
+  selectAllNewsPage,
+} from '../../../redux/news/newsSelectors';
+import PaginationLine from 'shared/components/Pagination/Pagination';
+import { useSelector } from 'react-redux';
 
 import css from '../NewsSearch/NewsSearch.module.css';
 import { useDispatch } from 'react-redux';
@@ -10,15 +17,22 @@ const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
   const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const page = useSelector(selectAllNewsPage);
+  const totalPages = useSelector(selectAllNewsTotalPages);
+  // console.log('page', page);
+  // console.log('totalPages', totalPages);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (submitted) {
-      dispatch(fetchFilteredNews( keyword ));
+      dispatch(fetchFilteredNews(keyword, currentPage));
       setSubmitted(false);
-       setKeyword('');
+      setKeyword('');
     }
-  }, [submitted, keyword, dispatch]);
+  }, [submitted, keyword, currentPage, dispatch]);
 
   const handleSearch = e => {
     e.preventDefault();
@@ -28,6 +42,12 @@ const NewsSearch = () => {
       setSubmitted(true);
       console.log('Выполняется поиск по ключевому слову:', keyword);
     }
+  };
+
+  const handlePageChange = () => {
+    // const page = useSelector(selectAllNewsPage);
+    setCurrentPage(page);
+    // Здесь ты можешь обновить данные в соответствии с новой страницей
   };
 
   const handleChange = event => {
@@ -68,7 +88,10 @@ const NewsSearch = () => {
                   <Search />
                 </IconButton>
                 {keyword && (
-                  <IconButton onClick={handleClear} style={{ color: '#FFC107' }}>
+                  <IconButton
+                    onClick={handleClear}
+                    style={{ color: '#FFC107' }}
+                  >
                     <Clear />
                   </IconButton>
                 )}
@@ -77,12 +100,23 @@ const NewsSearch = () => {
             fullWidth
           />
           {showHelperText && (
-            <Typography variant="caption" color="error" marginLeft="40px" fontSize="16px">
+            <Typography
+              variant="caption"
+              color="error"
+              marginLeft="40px"
+              fontSize="16px"
+            >
               Please enter something.
             </Typography>
           )}
         </form>
       </div>
+
+      <PaginationLine
+        totalPages={totalPages}
+        // currentPage={currentPage}
+        onChange={handlePageChange}
+      />
     </>
   );
 };
