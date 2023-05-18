@@ -9,7 +9,7 @@ import { TextField, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 
-import css from './RegisterFormDetails.module.css';
+import css from './registerFormDetails.module.css';
 
 import { register } from 'redux/auth/auth-operations';
 
@@ -111,6 +111,9 @@ export const RegisterFormDetails = () => {
                 size="small"
                 fullWidth
                 sx={{
+                  '.MuiInputBase-root.MuiOutlinedInput-root': {
+                    borderRadius: '40px',
+                  },
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
                       borderRadius: 40,
