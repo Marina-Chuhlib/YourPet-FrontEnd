@@ -5,13 +5,24 @@ import LocationIcon from 'icons/LocationIcon';
 import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
+
 import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+
+// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+// import Modal from 'shared/components/ModalWindow/Modal';
+// import NoticeModal from 'modules/NoticeModal/NoticeModal';
+
+// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+// import Modal from 'shared/components/ModalWindow/Modal';
+// import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
   _id,
+  openModal,
   file,
   category,
   title,
@@ -20,6 +31,7 @@ const NoticeCategoryItem = ({
   sex,
 }) => {
   const user = useSelector(getUser);
+const isLoggedIn = useSelector(selectIsLoggedIn);
   // console.log(user);
 
   function getAge(date) {
@@ -60,10 +72,12 @@ const NoticeCategoryItem = ({
                 <HeartIcon color="#54ADFF" favorite={user.favorite} />
               )}
             />
-            <Button
-              className={css.topBtn}
-              SVGComponent={() => <TrashIcon color="#54ADFF" />}
-            />
+            {isLoggedIn && (
+              <Button
+                className={css.topBtn}
+                SVGComponent={() => <TrashIcon color="#54ADFF" />}
+              />
+            )}
           </div>
         </div>
         <div className={css.infoCardBlock}>
@@ -88,7 +102,9 @@ const NoticeCategoryItem = ({
       </div>
       <div className={css.noticeDesc}>
         <h3 className={css.noticeTitle}>{title}</h3>
-        <Button className={css.learnBtn}>Learn more</Button>
+        <Button className={css.learnBtn} onClick={openModal}>
+          Learn more
+        </Button>
       </div>
     </li>
   );

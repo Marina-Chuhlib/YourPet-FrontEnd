@@ -1,12 +1,9 @@
-/* .noticesListContainer {
+.noticesListContainer {
   margin: 0 auto;
-} */
+}
 .noticeList {
+  margin-top: 24px;
   margin-bottom: 36px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
 }
 
 .addPetBtn {
@@ -47,8 +44,10 @@
 @media screen and (min-width: 768px) {
   .noticesListContainer {
     width: 704px;
+    margin-top: 40px;
   }
-  .noticesList {
+  /* тут перекриває модалку */
+  .noticeList {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
@@ -59,9 +58,10 @@
 @media screen and (min-width: 1280px) {
   .noticesListContainer {
     width: 1248px;
+    margin-top: 42px;
   }
 
-  .noticesList {
+  .noticeList {
     gap: 32px;
   }
 }
