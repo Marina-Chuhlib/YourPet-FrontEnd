@@ -26,7 +26,6 @@ const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 // const AddPetPage = lazy(() => import('./pages/AddPetPage/AddPetPage'));
 
-
 export const App = () => {
   return (
     <>
