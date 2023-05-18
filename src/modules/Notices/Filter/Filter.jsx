@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem, Checkbox, Grid } from '@mui/material';
-
+import { Menu, MenuItem, Checkbox, Grid, Icon } from '@mui/material';
+// import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import css from '../Filter/Filter.module.css';
 import FilterIcon from 'icons/FilterIcon';
 
 const Filter = () => {
+  const [isHovered, setIsHovered] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [ageFilters, setAgeFilters] = useState([]);
   const [genderFilters, setGenderFilters] = useState([]);
@@ -53,31 +55,54 @@ const Filter = () => {
     }
   };
 
+  const iconColor = isHovered ? '#fef9f9' : '#54adff';
+
   return (
     <div>
-      <Button
-        variant="outlined"
+      <button
         onClick={handleButtonClick}
         className={css.filterButton}
-        endIcon={<FilterIcon color="#54ADFF" className={css.filterIcon} />}
-        style={{
-          borderRadius: '40px',
-          borderWidth: '2px',
-          borderColor: '#54ADFF',
-          color: '#54ADFF',
-          textTransform: 'none',
-        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        Filter
-      </Button>
+        Filter <FilterIcon color={iconColor} className={css.filterIcon} />
+      </button>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={() => handleMenuToggle('age')}>
-          <Grid container direction="column">
-            <Grid item>By age</Grid>
+        <MenuItem
+          onClick={() => handleMenuToggle('age')}
+          style={{
+            padding: '0',
+            color: '#54ADFF',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            lineHeight: '130%',
+          }}
+        >
+          <Grid
+            container
+            direction="column"
+            style={{
+              backgroundColor: '#CCE4FB',
+              borderRadius: '20px',
+              padding: '8px 22px 8px 8px',
+              marginBottom: '8px',
+            }}
+          >
+            <Grid
+              item
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '10px',
+              }}
+            >
+              <Icon component={KeyboardArrowDownOutlinedIcon} />
+              By age
+            </Grid>
             {isAgeMenuOpen && (
               <Grid container item direction="column">
                 <Grid item onClick={event => event.stopPropagation()}>
@@ -111,9 +136,36 @@ const Filter = () => {
             )}
           </Grid>
         </MenuItem>
-        <MenuItem onClick={() => handleMenuToggle('gender')}>
-          <Grid container direction="column">
-            <Grid item>By gender</Grid>
+        <MenuItem
+          onClick={() => handleMenuToggle('gender')}
+          style={{
+            padding: '0',
+            color: '#54ADFF',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            lineHeight: '130%',
+          }}
+        >
+          <Grid
+            container
+            direction="column"
+            style={{
+              backgroundColor: '#CCE4FB',
+              borderRadius: '20px',
+              padding: '8px 22px 8px 8px',
+            }}
+          >
+            <Grid
+              item
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '10px',
+              }}
+            >
+              <Icon component={KeyboardArrowDownOutlinedIcon} />
+              By gender
+            </Grid>
             {isGenderMenuOpen && (
               <Grid container item direction="column">
                 <Grid item onClick={event => event.stopPropagation()}>

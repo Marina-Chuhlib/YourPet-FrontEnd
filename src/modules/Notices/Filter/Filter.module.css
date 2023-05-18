@@ -1,17 +1,21 @@
 .filterButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 152px;
   height: 40px;
   border-width: 2px;
   border-color: #54adff;
   border-radius: 40px;
   font-family: Manrope;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
   color: #54adff;
   background: transparent;
-  text-transform: none;
+  cursor: pointer;
 }
 
 .filterButton:hover,
@@ -23,15 +27,9 @@
 
 .filterIcon {
   font-size: 16px;
-  margin-right: 8px;
-  color: #54adff;
   transition: color 0.3s ease;
 }
-
-.filterButton:hover .filterIcon {
-  color: #fef9f9;
-}
-
-.filterButton:focus .filterIcon {
+.filterIcon:hover,
+.filterIcon:focus {
   color: #fef9f9;
 }
