@@ -31,7 +31,7 @@
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid rgb(16, 175, 16);
+  /* border: 1px solid rgb(16, 175, 16); */
 }
 
 .avatarLabel {
@@ -164,7 +164,7 @@
   }
 
   .avatarWrapper {
-    border: 1px solid rgb(179, 54, 77);
+    /* border: 1px solid rgb(179, 54, 77); */
   }
   .forma {
     display: flex;
@@ -213,5 +213,15 @@
 
   .title {
     margin-bottom: 24px;
+    font-size: 28px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  .input {
+    font-size: 16px;
+    line-height: 22px;
   }
 }

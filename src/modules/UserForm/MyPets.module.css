@@ -181,4 +181,32 @@
     width: 821px;
     margin: 0;
   }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .item {
+    width: 821px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .picture {
+    margin-right: 32px;
+    width: 161px;
+    height: 161px;
+  }
+
+  .infoWrapper {
+    width: 580px;
+    height: fit-content;
+  }
+
+  .tit {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 600;
+  }
 }
