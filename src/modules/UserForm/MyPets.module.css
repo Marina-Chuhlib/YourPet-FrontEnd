@@ -1,9 +1,19 @@
 .wrapper {
+  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
   margin: 0;
   padding: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
+
+.wrapperTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
 .title {
   margin: 0;
   padding: 0;
@@ -16,14 +26,14 @@
 }
 
 .petCardWrapper {
-  gap: 15px;
-  margin-bottom: 21px;
-  padding: 20px 8px 25px 8px;
-
+  /* gap: 15px;
+  margin-bottom: 21px; */
+  /* padding: 20px 8px 25px 8px; */
+  /* 
   background-color: #ffffff;
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
+  border-radius: 40px; */
 }
 
 .addBtn {
@@ -48,9 +58,127 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.list {
+  margin-top: 24px;
+}
+
+.item {
+  padding: 20px 20px 40px 20px;
+  background-color: #ffffff;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+}
+
 .picture {
   border-radius: 20px;
-  border: 1px solid rgb(151, 146, 146);
+  /* border: 1px solid rgb(151, 146, 146); */
+  width: 240px;
+  height: 240px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 20px;
+  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19); */
+}
+
+.infoWrapper {
+  /* border: 1px solid rgb(151, 146, 146); */
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.delBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.delBtn:hover {
+  border-radius: 30px;
+  color: #3982c2;
+  background-color: rgba(136, 198, 253, 0.144);
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.38);
+}
+
+.info:not(:last-child) {
+  /* margin-bottom: 12px; */
+}
+
+.infoValue {
+  display: flex;
+}
+.tit {
+  line-height: 19px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 280px) {
+  .wrapper {
+    max-width: 330px;
+    display: block;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 27px;
+  }
+
+  .item:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 704px;
+  }
+
+  .item {
+    /* border: 1px solid rgb(127, 29, 29); */
+
+    padding: 20px 20px 21px 20px;
+    background-color: #ffffff;
+
+    display: flex;
+  }
+
+  .infoWrapper {
+    /* border: 1px solid rgb(151, 146, 146); */
+    gap: 16px;
+    width: 515px;
+    height: fit-content;
+  }
+
+  .picture {
+    margin: 0;
+    margin-right: 20px;
+    width: 128px;
+    height: 128px;
+  }
+
+  .wrapperTitle {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    width: 821px;
+    margin: 0;
+  }
 }

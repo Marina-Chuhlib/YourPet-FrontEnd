@@ -148,42 +148,44 @@ const UserForm = ({ user }) => {
           <Formik>
             {({ errors, touched }) => (
               <Form className={css.forma}>
-                {/* <img src="" alt="avatar" className={css.avatar} /> */}
-                {user ? (
-                  <img
-                    src={user.imageURL}
-                    alt="avatar"
-                    className={css.avatar}
-                  />
-                ) : (
-                  <img src="" alt="avatar" className={css.avatar} />
-                )}
-
-                {/* ===avatar  */}
-
-                <div className={css.wrapperFile}>
-                  <button type="button" onClick={addAvatarBtn}>
-                    Edit photo
-                  </button>
-                  <button type="button" onClick={handleUpload}>
-                    Send{' '}
-                  </button>
-
-                  <label htmlFor="fileElem" className={css.avatarLabel}>
-                    <CameraAltOutlinedIcon
-                      style={{ color: '#54ADFF', marginRight: '8px' }}
+                <div className={css.avatarWrapper}>
+                  {user ? (
+                    <img
+                      src={user.imageURL}
+                      alt="avatar"
+                      className={css.avatar}
                     />
-                    Edit photo
-                    <input
-                      type="file"
-                      id="fileElem"
-                      accept="image/*"
-                      name="Edit photo"
-                      ref={filePicker}
-                      className={css.avatarBtn}
-                      onChange={handleChangeAvatar}
-                    />
-                  </label>
+                  ) : (
+                    <img src="" alt="avatar" className={css.avatar} />
+                  )}
+
+                  {/* ===avatar  */}
+
+                  <div className={css.wrapperFile}>
+                    <button type="button" onClick={addAvatarBtn}>
+                      Edit photo
+                    </button>
+                    <button type="button" onClick={handleUpload}>
+                      Send{' '}
+                    </button>
+
+                    <label htmlFor="fileElem" className={css.avatarLabel}>
+                      <CameraAltOutlinedIcon
+                        style={{ color: '#54ADFF', marginRight: '8px' }}
+                      />
+                      Edit photo
+                      <input
+                        type="file"
+                        id="fileElem"
+                        accept="image/*"
+                        name="Edit photo"
+                        ref={filePicker}
+                        className={css.avatarBtn}
+                        onChange={handleChangeAvatar}
+                      />
+                    </label>
+                </div>
+                       </div>
 
                   {/* ===== */}
 
@@ -239,10 +241,8 @@ const UserForm = ({ user }) => {
                           </div>
                         </div>
                       ))}
-                    </div>
-                  )}
-
-                  <Button
+                    
+                          <Button
                     onClick={onLogout}
                     variant="outlined"
                     style={{
@@ -266,7 +266,11 @@ const UserForm = ({ user }) => {
                   >
                     Log Out
                   </Button>
-                </div>
+         
+                    </div>
+                  )}
+
+            
               </Form>
             )}
           </Formik>
