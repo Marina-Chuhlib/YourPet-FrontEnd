@@ -25,11 +25,31 @@
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
 }
 
-.filterIcon {
-  font-size: 16px;
-  transition: color 0.3s ease;
+.filterButtonMobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cce4fb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: transparent;
+  padding: 0;
+  margin-left: auto;
 }
-.filterIcon:hover,
-.filterIcon:focus {
-  color: #fef9f9;
+.filterButtonMobile:hover,
+.filterButtonMobile:focus {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+}
+.title {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  color: #54adff;
 }

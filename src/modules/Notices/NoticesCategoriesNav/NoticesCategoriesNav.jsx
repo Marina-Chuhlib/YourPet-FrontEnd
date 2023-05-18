@@ -68,12 +68,14 @@ const NoticesCategoriesNav = () => {
           </>
         )}
       </ul>
-      <Filter/>
-      <NavLink to="add-pet">
-        <button className={css.btn} >
-          Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
-        </button>
-      </NavLink>
+      <div className={css.btnContainer}>
+        <Filter />
+        <NavLink to="add-pet">
+          <button className={css.btn}>
+            Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 };

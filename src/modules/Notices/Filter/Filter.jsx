@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Menu, MenuItem, Checkbox, Grid, Icon } from '@mui/material';
-// import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import css from '../Filter/Filter.module.css';
 import FilterIcon from 'icons/FilterIcon';
@@ -11,7 +11,8 @@ const Filter = () => {
   const [ageFilters, setAgeFilters] = useState([]);
   const [genderFilters, setGenderFilters] = useState([]);
   const [isAgeMenuOpen, setAgeMenuOpen] = useState(false);
-  const [isGenderMenuOpen, setGenderMenuOpen] = useState(false);
+    const [isGenderMenuOpen, setGenderMenuOpen] = useState(false);
+     const [isMobile, setIsMobile] = useState(false);
 
   const handleButtonClick = event => {
     setAnchorEl(event.currentTarget);
@@ -53,25 +54,48 @@ const Filter = () => {
       default:
         break;
     }
-  };
+    };
+     useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const iconColor = isHovered ? '#fef9f9' : '#54adff';
 
   return (
     <div>
-      <button
-        onClick={handleButtonClick}
-        className={css.filterButton}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        Filter <FilterIcon color={iconColor} className={css.filterIcon} />
-      </button>
+       {isMobile ? (
+        <button
+          onClick={handleButtonClick}
+          className={css.filterButtonMobile}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <FilterIcon color={iconColor} />
+        </button>
+      ) : (
+        <button
+          onClick={handleButtonClick}
+          className={css.filterButton}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Filter <FilterIcon color={iconColor} />
+        </button>
+      )}
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
+        <p className={css.title}>Filters</p>
         <MenuItem
           onClick={() => handleMenuToggle('age')}
           style={{
@@ -90,17 +114,26 @@ const Filter = () => {
               borderRadius: '20px',
               padding: '8px 22px 8px 8px',
               marginBottom: '8px',
+              width: '136px',
+              marginRight: '8px',
+              marginLeft: '8px',
             }}
           >
             <Grid
               item
               style={{
                 display: 'flex',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 gap: '10px',
               }}
             >
-              <Icon component={KeyboardArrowDownOutlinedIcon} />
+              <Icon
+                component={
+                  isAgeMenuOpen
+                    ? KeyboardArrowUpOutlinedIcon
+                    : KeyboardArrowDownOutlinedIcon
+                }
+              />
               By age
             </Grid>
             {isAgeMenuOpen && (
@@ -153,17 +186,26 @@ const Filter = () => {
               backgroundColor: '#CCE4FB',
               borderRadius: '20px',
               padding: '8px 22px 8px 8px',
+              width: '136px',
+              marginRight: '8px',
+              marginLeft: '8px',
             }}
           >
             <Grid
               item
               style={{
                 display: 'flex',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 gap: '10px',
               }}
             >
-              <Icon component={KeyboardArrowDownOutlinedIcon} />
+              <Icon
+                component={
+                  isGenderMenuOpen
+                    ? KeyboardArrowUpOutlinedIcon
+                    : KeyboardArrowDownOutlinedIcon
+                }
+              />
               By gender
             </Grid>
             {isGenderMenuOpen && (
