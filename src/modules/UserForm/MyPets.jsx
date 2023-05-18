@@ -8,10 +8,7 @@ import css from './MyPets.module.css';
 import icon from '../../icons/trash.svg';
 
 const MyPets = ({ pets }) => {
-  console.log(pets.length);
-  if (pets.length > 0) {
-    console.log('hello');
-  }
+  // console.log(pets);
 
   const navigate = useNavigate();
 
@@ -51,7 +48,6 @@ const MyPets = ({ pets }) => {
     <div className={css.wrapper}>
       <dir className={css.wrapperTitle}>
         <h3 className={css.title}>My Pets:</h3>
-        {/* <button></button> */}
         <Button
           variant="contained"
           endIcon={
@@ -63,7 +59,6 @@ const MyPets = ({ pets }) => {
             />
           }
           style={{
-            // border: 'rgba(0, 0, 0, 0)',
             borderRadius: '20px',
             backgroundColor: '#54adff',
             color: '#FEF9F9',

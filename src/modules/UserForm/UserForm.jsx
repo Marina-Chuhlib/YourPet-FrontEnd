@@ -22,6 +22,7 @@ import { logout } from 'redux/auth/auth-operations';
 import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
 
 import { selectAuth } from 'redux/auth/auth-selectors';
+
 import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
 // import { selectIsLoading } from 'redux/auth/auth-selectors';
 import {
@@ -29,10 +30,11 @@ import {
   selectIsLoading,
   selectlogoutSuccessful,
 } from 'redux/auth/auth-selectors';
+import Loader from 'shared/components/Loader/Loader';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
-  // const isLoading = useSelector(selectIsLoading);
+  const { isLoading } = useSelector(state => state.user);
   // console.log(isLoading);
   const filePicker = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -168,21 +170,18 @@ const UserForm = ({ user }) => {
     <>
     {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
       <div>
+        {isLoading && <Loader />}
         <div className={css.wrapper}>
           <h2 className={css.title}>My information:</h2>
           <Formik>
             {({ errors, touched }) => (
               <Form className={css.forma}>
                 <div className={css.avatarWrapper}>
-                  {user ? (
-                    <img
-                      src={user.imageURL}
-                      alt="avatar"
-                      className={css.avatar}
-                    />
-                  ) : (
-                    <img src="" alt="avatar" className={css.avatar} />
-                  )}
+                  <img
+                    src={user.imageURL}
+                    alt="avatar"
+                    className={css.avatar}
+                  />
 
                   {/* ===avatar  */}
 
@@ -191,7 +190,7 @@ const UserForm = ({ user }) => {
                       Edit photo
                     </button>
                     <button type="button" onClick={handleUpload}>
-                      Send{' '}
+                      Send
                     </button>
 
                     <label htmlFor="fileElem" className={css.avatarLabel}>
@@ -209,93 +208,88 @@ const UserForm = ({ user }) => {
                         onChange={handleChangeAvatar}
                       />
                     </label>
+                  </div>
                 </div>
-                       </div>
 
-                  {/* ===== */}
+                {/* ===== */}
 
-                  {user && (
-                    <div className={css.formWrapper}>
-                      {fields.map(field => (
-                        <div className={css.row} key={field.fieldName}>
-                          <label className={css.label}>{field.label}:</label>
+                {user && (
+                  <div className={css.formWrapper}>
+                    {fields.map(field => (
+                      <div className={css.row} key={field.fieldName}>
+                        <label className={css.label}>{field.label}:</label>
 
-                          <div className={css.inputContainer}>
-                            <input
-                              name={field.fieldName}
-                              type={field.type}
-                              className={css.input}
-                              value={formData[field.fieldName]}
-                              placeholder={field.placeholder}
-                              required={field.email}
-                              onChange={handleChangeInput}
-                              disabled={!editingFields[field.fieldName]}
+                        <div className={css.inputContainer}>
+                          <input
+                            name={field.fieldName}
+                            type={field.type}
+                            className={css.input}
+                            value={formData[field.fieldName]}
+                            placeholder={field.placeholder}
+                            required={field.email}
+                            onChange={handleChangeInput}
+                            disabled={!editingFields[field.fieldName]}
+                          />
+                          {errors[field.fieldName] &&
+                          touched[field.fieldName] ? (
+                            <div>{errors[field.fieldName]}</div>
+                          ) : null}
+
+                          <div className={css.checkbox}>
+                            <Checkbox
+                              checked={editingFields[field.fieldName]}
+                              onChange={() => handleEditField(field.fieldName)}
+                              icon={
+                                <BorderColorOutlinedIcon
+                                  style={{
+                                    color: '#54ADFF',
+                                    width: '20px',
+                                    height: '20px',
+                                  }}
+                                />
+                              }
+                              checkedIcon={
+                                <CheckOutlinedIcon
+                                  style={{
+                                    color: '#00C3AD',
+                                    width: '20px',
+                                    height: '20px',
+                                    border: '1.5px',
+                                  }}
+                                />
+                              }
                             />
-                            {errors[field.fieldName] &&
-                            touched[field.fieldName] ? (
-                              <div>{errors[field.fieldName]}</div>
-                            ) : null}
-
-                            <div className={css.checkbox}>
-                              <Checkbox
-                                checked={editingFields[field.fieldName]}
-                                onChange={() =>
-                                  handleEditField(field.fieldName)
-                                }
-                                icon={
-                                  <BorderColorOutlinedIcon
-                                    style={{
-                                      color: '#54ADFF',
-                                      width: '20px',
-                                      height: '20px',
-                                    }}
-                                  />
-                                }
-                                checkedIcon={
-                                  <CheckOutlinedIcon
-                                    style={{
-                                      color: '#00C3AD',
-                                      width: '20px',
-                                      height: '20px',
-                                      border: '1.5px',
-                                    }}
-                                  />
-                                }
-                              />
-                            </div>
                           </div>
                         </div>
-                      ))}
-                    
-                          <Button
-                    onClick={onLogout}
-                    variant="outlined"
-                    style={{
-                      border: 'rgba(0, 0, 0, 0)',
-                      color: '#888888',
-                      fontSize: '16px',
-                      padding: '0',
-                      fontFamily: 'Manrope',
-                      textTransform: 'none',
-                      marginRight: 'auto',
-                    }}
-                    startIcon={
-                      <LogoutOutlinedIcon
-                        style={{
-                          color: '#54ADFF',
-                          transform: 'rotate(180deg)',
-                          fontSize: '24px',
-                        }}
-                      />
-                    }
-                  >
-                    Log Out
-                  </Button>
-         
-                    </div>
-                  )}
+                      </div>
+                    ))}
 
-            
+                    <Button
+                      onClick={onLogout}
+                      variant="outlined"
+                      style={{
+                        border: 'rgba(0, 0, 0, 0)',
+                        color: '#888888',
+                        fontSize: '16px',
+                        padding: '0',
+                        fontFamily: 'Manrope',
+                        textTransform: 'none',
+                        marginRight: 'auto',
+                      }}
+                      startIcon={
+                        <LogoutOutlinedIcon
+                          style={{
+                            color: '#54ADFF',
+                            transform: 'rotate(180deg)',
+                            fontSize: '24px',
+                          }}
+                        />
+                      }
+                    >
+                      Log Out
+                    </Button>
+                  </div>
+                )}
               </Form>
             )}
           </Formik>
