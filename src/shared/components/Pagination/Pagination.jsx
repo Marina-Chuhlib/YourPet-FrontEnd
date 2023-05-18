@@ -20,9 +20,6 @@ const PaginationLine = ({ totalPages, onChange }) => {
   const handlePageChange = (event, page) => {
     onChange(page);
   };
-  // const handlePageChange = (event, page) => {
-  //   onPageChange(page);
-  // };
 
   return (
     <Stack spacing={2}>
