@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
-  selectAllNews,
   selectAllNewsTotalPages,
   selectAllNewsPage,
 } from '../../../redux/news/newsSelectors';

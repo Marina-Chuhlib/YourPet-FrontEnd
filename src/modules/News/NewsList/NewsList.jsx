@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
-import {
-  selectAllNews,
-  selectAllNewsTotalPages,
-  selectAllNewsPage,
-} from 'redux/news/newsSelectors';
+// import {
+//   selectAllNews,
+//   selectAllNewsTotalPages,
+//   selectAllNewsPage,
+// } from 'redux/news/newsSelectors';
+import { selectAllNews } from 'redux/news/newsSelectors';
 import NewsItem from '../NewsItem/NewsItem';
-import PaginationLine from 'shared/components/Pagination/Pagination';
-import { useState, useEffect } from 'react';
+// import PaginationLine from 'shared/components/Pagination/Pagination';
+// import { useState, useEffect } from 'react';
 
 import css from '../NewsList/NewsList.module.css';
 

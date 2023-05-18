@@ -7,7 +7,6 @@ import { fetchAllNews } from 'redux/news/newsOperation';
 import css from '../NewsPage/NewsPage.module.css';
 
 import {
-  selectAllNews,
   selectAllNewsTotalPages,
   selectAllNewsPage,
 } from 'redux/news/newsSelectors';
