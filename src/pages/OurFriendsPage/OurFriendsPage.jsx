@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { fetchFriends } from 'redux/friends/friends-operations';
-import { getAllFriends } from 'redux/friends/friends-selectors';
+import { loading } from 'redux/friends/friends-selectors';
+
+import OurFriendsList from 'modules/OurFriends/OurFriendsList/OurFriendsList';
+import Loader from 'shared/components/Loader/Loader';
+
+import css from './OurFriendsPage.module.css';
 
 const OurFriendsPage = () => {
-  const dispatch = useDispatch();
-  const friends = useSelector(getAllFriends);
+  const isLoading = useSelector(loading);
 
-  console.log(friends);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchFriends());
@@ -15,7 +20,9 @@ const OurFriendsPage = () => {
 
   return (
     <>
-      <h2>Our Friends</h2>
+      <h2 className={css.title}>Our friends</h2>
+      {isLoading && <Loader />}
+      <OurFriendsList />
     </>
   );
 };

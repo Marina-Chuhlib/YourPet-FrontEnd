@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; bring in normalize.css styles */
 
 :root {
   --primary-font: 'Manrope', sans-serif;
@@ -10,7 +10,7 @@
   --white-color: ##ffffff;
   --blue-light-color: #cce4fb;
   --fon-color: #fef9f9;
-  --overlay-color: #2b2b2b;
+  --overlay-color: rgba(43, 43, 43, 0.6);
   --green-color: #00c3ad;
   --red-color: #f43f5e;
 }

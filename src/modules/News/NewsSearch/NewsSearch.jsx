@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
@@ -10,8 +10,11 @@ import PaginationLine from 'shared/components/Pagination/Pagination';
 import { useSelector } from 'react-redux';
 
 import css from '../NewsSearch/NewsSearch.module.css';
+
 import { useDispatch } from 'react-redux';
 import { fetchFilteredNews } from 'redux/news/newsOperation';
+
+import css from '../NewsSearch/NewsSearch.module.css';
 
 const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
@@ -25,6 +28,7 @@ const NewsSearch = () => {
   // console.log('totalPages', totalPages);
 
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     if (submitted) {
@@ -51,17 +55,41 @@ const NewsSearch = () => {
   };
 
   const handleChange = event => {
+
+  const handleSearch = useCallback(
+    e => {
+      e.preventDefault();
+      if (keyword.trim() === '') {
+        setShowHelperText(true);
+      } else {
+        setSubmitted(true);
+        // console.log('Выполняется поиск по ключевому слову:', keyword);
+      }
+    },
+    [keyword]
+  );
+
+  const handleChange = useCallback(event => {
+
     const value = event.target.value;
     setKeyword(value);
     setShowHelperText(false);
     setSubmitted(false);
-  };
+  }, []);
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setKeyword('');
     setShowHelperText(false);
     setSubmitted(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (submitted) {
+      dispatch(fetchFilteredNews(keyword));
+      setSubmitted(false);
+      setKeyword('');
+    }
+  }, [submitted, keyword, dispatch]);
 
   return (
     <>
