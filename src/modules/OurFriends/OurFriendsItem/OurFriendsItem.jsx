@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import WorkDaysDropdown from '../WorkDaysDropdown/WorkDaysDropdown';
 
 import { CardHeader, Box, CardMedia, Typography } from '@mui/material';
@@ -17,6 +19,7 @@ const OurFriendsItem = ({
   return (
     <li key={_id} className={css.cardItem}>
       <CardHeader
+        sx={{ padding: 0 }}
         title={
           <a
             href={url}
@@ -121,6 +124,18 @@ const OurFriendsItem = ({
       </Box>
     </li>
   );
+};
+
+OurFriendsItem.propTypes = {
+  _id: PropTypes.objectOf(PropTypes.string.isRequired),
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  workDays: PropTypes.arrayOf(PropTypes.object),
+  address: PropTypes.string,
+  addressUrl: PropTypes.string,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string,
 };
 
 export default OurFriendsItem;
