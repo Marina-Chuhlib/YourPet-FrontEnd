@@ -26,7 +26,7 @@ export default function MobileMenu({ children, onClick, isMobile }) {
   return createPortal(
     <div className={styles.mobileMenu}>
       <div className={styles.head}>
-        <Logo isMobile={isMobile} />
+        {/* <Logo isMobile={isMobile} /> */}
         <CrossIcon className={styles.closeButton} onClick={onClick} />
       </div>
       {children}
