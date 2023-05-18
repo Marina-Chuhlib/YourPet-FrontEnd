@@ -1,8 +1,24 @@
 @media screen and (min-width: 280px) {
   .container {
-    /* border: 1px solid black; */
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 704px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1248px;
+    display: flex;
+    justify-content: space-around;
+    margin: 62px 16px 21px 16px;
   }
 }
