@@ -84,6 +84,9 @@ export const RegisterFormDetails = () => {
                 size="small"
                 fullWidth
                 sx={{
+                  '.MuiInputBase-root.MuiOutlinedInput-root': {
+                    borderRadius: '40px',
+                  },
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
                       borderRadius: 40,
