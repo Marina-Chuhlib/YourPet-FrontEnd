@@ -19,8 +19,8 @@ const NewsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const page = useSelector(selectAllNewsPage);
   const totalPages = useSelector(selectAllNewsTotalPages);
-  // console.log('page', page);
-  // console.log('totalPages', totalPages);
+  console.log('page', page);
+  console.log('totalPages', totalPages);
 
   useEffect(() => {
     dispatch(fetchAllNews(currentPage));
