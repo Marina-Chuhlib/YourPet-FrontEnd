@@ -57,7 +57,7 @@ export const App = () => {
               <Route path="favorite" element={<NoticesCategoriesList />} />
               <Route path="own" element={<NoticesCategoriesList />} />
             </Route>
-            <Route path="add-pet " element={<AddPetPage />} />
+            <Route path="add-pet" element={<AddPetPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
