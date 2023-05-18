@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
@@ -10,27 +9,26 @@ import { TextField, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { blue } from '@mui/material/colors';
 
-import css from './registerFormDetails.module.css';
+import css from './RegisterFormDetails.module.css';
 
 import { register } from 'redux/auth/auth-operations';
 
-const registerSchema = yup.object({
+const registerSchema = yup.object().shape({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().required('Password is required'),
-  // .matches(/^[^ ]{7,32}$/, 'Password should not contain space')
-  // .matches(
-  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{7,})/,
-  //   'Password is not valid as per password policy'
-  // )
-  // .max(32),
-  confirmPassword: yup.string().required('Confirm password is required'),
-  // .when('password', {
-  //   is: val => (val && val.length > 0 ? true : false),
-  //   then: yup
-  //     .string()
-  //     .oneOf([yup.ref('password')], 'Both password need to be the same'),
-  // }),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters')
+    .max(16, 'Password must be at most 16 characters')
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
+      'Password must contain at least one uppercase letter, one lowercase letter, and one digit'
+    ),
+  confirmPassword: yup
+    .string()
+    .required('Confirm password is required')
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 const data = {
@@ -41,9 +39,6 @@ const data = {
 };
 
 export const RegisterFormDetails = () => {
-
-
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -54,14 +49,14 @@ export const RegisterFormDetails = () => {
     setShowConfirmPassword(show => !show);
 
   const dispatch = useDispatch();
-  const handleFormSubmit =async values => {
+  const handleFormSubmit = async values => {
     // console.log(values);
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-   await dispatch(register(data));
+    await dispatch(register(data));
     navigate('/user');
   };
 
