@@ -13,18 +13,17 @@ import icon from '../../icons/trash.svg';
 
 const MyPets = ({ pets }) => {
   console.log(pets);
-   const navigate = useNavigate();
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      dispatch(fetchUser());
-      console.log("PETS ")
-  }, [dispatch]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     navigate('/add-pet');
   };
+
+  // if (!pets) {
+  //   dispatch(fetchUser());
+  //   return
+  // }
 
   const elements = pets.map(
     ({ _id, name, birthday, breed, imageURL, comments }) => (
@@ -32,15 +31,23 @@ const MyPets = ({ pets }) => {
         <img src={imageURL} alt="" className={css.picture} />
         <div className={css.infoWrapper}>
           <div className={css.delBtnWrapper}>
-            <p className={css.info}><span className={css.tit}>Name:</span>    {name}</p>
+            <p className={css.info}>
+              <span className={css.tit}>Name:</span> {name}
+            </p>
             <button type="button" className={css.delBtn}>
               <img src={icon} alt="My SVG" />
             </button>
           </div>
 
-          <p className={css.info}><span className={css.tit}>Date of birth:</span> {birthday}</p>
-          <p className={css.info}><span className={css.tit}> Breed:</span>  {breed}</p>
-          <p className={css.info}><span className={css.tit}>Comments:</span>  {comments}</p>
+          <p className={css.info}>
+            <span className={css.tit}>Date of birth:</span> {birthday}
+          </p>
+          <p className={css.info}>
+            <span className={css.tit}> Breed:</span> {breed}
+          </p>
+          <p className={css.info}>
+            <span className={css.tit}>Comments:</span> {comments}
+          </p>
         </div>
       </li>
     )
@@ -75,7 +82,6 @@ const MyPets = ({ pets }) => {
             textTransform: 'none',
             height: '40px',
           }}
-
           onClick={handleClick}
         >
           Add Pet

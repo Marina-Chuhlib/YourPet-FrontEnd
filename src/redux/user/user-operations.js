@@ -4,7 +4,7 @@ import * as api from '../../shared/services/App/User/user';
 
 export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {
-    const state = thunkAPI.getState();
+    const state = await thunkAPI.getState();
     const persistedToken = state.auth.token;
     console.log(persistedToken, 'persistedToken');
     const data = await api.getUser(persistedToken);
