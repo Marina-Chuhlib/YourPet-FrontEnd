@@ -23,7 +23,7 @@ const MyPets = ({ pets }) => {
   }, [dispatch]);
 
   const handleClick = () => {
-    navigate('/add-pet ');
+    navigate('/add-pet');
   };
 
   const elements = pets.map(
