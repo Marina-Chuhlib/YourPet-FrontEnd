@@ -1,29 +1,23 @@
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import { fetchUser } from 'redux/user/user-operations';
 
 import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
 const MyPets = ({ pets }) => {
-  console.log(pets);
+  console.log(pets.length);
+  if (pets.length > 0) {
+    console.log('hello');
+  }
+
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleClick = () => {
     navigate('/add-pet');
   };
-
-  // if (!pets) {
-  //   dispatch(fetchUser());
-  //   return
-  // }
 
   const elements = pets.map(
     ({ _id, name, birthday, breed, imageURL, comments }) => (
@@ -89,7 +83,11 @@ const MyPets = ({ pets }) => {
       </dir>
 
       <div className={css.petCardWrapper}>
-        <ul className={css.list}>{elements}</ul>
+        {pets.length > 0 ? (
+          <ul className={css.list}>{elements}</ul>
+        ) : (
+          <p className={css.text}>No favorite list animals</p>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {
     const state = await thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken, 'persistedToken');
     const data = await api.getUser(persistedToken);
     return data;
   } catch ({ response }) {
