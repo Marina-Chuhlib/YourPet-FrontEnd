@@ -2,11 +2,7 @@ import { Stack, Pagination, PaginationItem } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // import { useState, useEffect } from 'react';
-import {
-  selectAllNews,
-  selectAllNewsTotalPages,
-  selectAllNewsPage,
-} from '../../../redux/news/newsSelectors';
+import { selectAllNewsPage } from '../../../redux/news/newsSelectors';
 import { useSelector } from 'react-redux';
 
 const PaginationLine = ({ totalPages, onChange }) => {
