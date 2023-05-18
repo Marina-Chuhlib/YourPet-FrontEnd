@@ -1,10 +1,17 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { fetchFriends } from 'redux/friends/friends-operations';
+import { loading } from 'redux/friends/friends-selectors';
+
 import OurFriendsList from 'modules/OurFriends/OurFriendsList/OurFriendsList';
+import Loader from 'shared/components/Loader/Loader';
+
 import css from './OurFriendsPage.module.css';
 
 const OurFriendsPage = () => {
+  const isLoading = useSelector(loading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,10 +19,11 @@ const OurFriendsPage = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       <h2 className={css.title}>Our friends</h2>
+      {isLoading && <Loader />}
       <OurFriendsList />
-    </div>
+    </>
   );
 };
 

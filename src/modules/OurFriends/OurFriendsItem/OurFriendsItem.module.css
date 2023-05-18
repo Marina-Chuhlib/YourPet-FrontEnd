@@ -20,6 +20,7 @@
 
 @media screen and (min-width: 1280px) {
   .cardItem {
+    height: 287px;
     max-width: 395px;
   }
 }
@@ -58,6 +59,7 @@
 }
 
 .friendLink {
+  margin-bottom: 16px;
   text-align: center;
   font-family: 'Manrope';
   font-weight: 700;

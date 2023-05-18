@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Typography } from '@mui/material';
 import css from './WorkDaysDropdown.module.css';
@@ -63,6 +64,16 @@ const WorkDaysDropdown = ({ workDays }) => {
       )}
     </div>
   );
+};
+
+WorkDaysDropdown.propTypes = {
+  workDays: PropTypes.arrayOf(
+    PropTypes.shape({
+      isOpen: PropTypes.bool.isRequired,
+      from: PropTypes.string,
+      to: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default WorkDaysDropdown;
