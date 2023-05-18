@@ -11,7 +11,7 @@ import { fetchUser } from 'redux/user/user-operations';
 import css from './UserCard.module.css';
 
 const UserCard = () => {
-  const { isLoading, token } = useSelector(state => state.auth);
+  const { isLoading } = useSelector(state => state.auth);
   const { user } = useSelector(state => state.user.user);
   const {pets} = useSelector(state => state.user.user);
 
@@ -19,7 +19,6 @@ const UserCard = () => {
 
   useEffect(() => {
     dispatch(fetchUser());
-    console.log('useEffect UserCard');
   }, [dispatch]);
 
 

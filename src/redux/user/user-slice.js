@@ -43,7 +43,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUpdateUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user = payload;
+        state.user.user = payload;
         state.error = null;
       })
       .addCase(fetchUpdateUser.rejected, (state, { payload }) => {
@@ -56,7 +56,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUpdateAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user = payload;
+        state.user.user = payload.user;
         state.error = null;
       })
       .addCase(fetchUpdateAvatar.rejected, (state, { payload }) => {
