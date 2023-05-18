@@ -6,6 +6,8 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  totalPages: 0,
+  page: 0,
 };
 
 const newsSlice = createSlice({
@@ -17,6 +19,9 @@ const newsSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAllNews.fulfilled, (state, { payload }) => {
+        // console.log('payload', payload);
+        state.totalPages = payload.totalPages;
+        state.page = payload.page;
         state.loading = false;
         state.items = payload.news;
       })
@@ -29,6 +34,9 @@ const newsSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchFilteredNews.fulfilled, (state, { payload }) => {
+        // console.log('filter', payload);
+        state.totalPages = payload.totalPages;
+        state.page = payload.page;
         state.loading = false;
         state.items = payload.news;
       })
