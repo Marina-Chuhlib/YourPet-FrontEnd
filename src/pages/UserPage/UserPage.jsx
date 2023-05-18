@@ -33,6 +33,7 @@ const UserPage = () => {
 
 
 
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -43,6 +44,8 @@ const UserPage = () => {
       <UserCard />;
     </>
   );
+
+  return <UserCard />;
 };
 
 export default UserPage;
