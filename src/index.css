@@ -54,6 +54,9 @@ button,
 select {
   font: inherit;
 }
+button {
+  cursor: pointer;
+}
 
 body {
   margin: 0;

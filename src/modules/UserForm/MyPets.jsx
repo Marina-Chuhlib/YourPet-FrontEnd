@@ -1,29 +1,27 @@
-import Button from '@mui/material/Button';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchUser } from 'redux/user/user-operations';
+import { fetchDeleteUserPet } from 'redux/user/user-operations';
+
+import Button from '@mui/material/Button';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
+
 const MyPets = ({ pets }) => {
-  console.log(pets);
-   const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      dispatch(fetchUser());
-      console.log("PETS ")
-  }, [dispatch]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate('/add-pet');
+  };
+
+  const handleDelatePet = _id => {
+    dispatch(fetchDeleteUserPet(_id));
   };
 
   const elements = pets.map(
@@ -32,15 +30,27 @@ const MyPets = ({ pets }) => {
         <img src={imageURL} alt="" className={css.picture} />
         <div className={css.infoWrapper}>
           <div className={css.delBtnWrapper}>
-            <p className={css.info}><span className={css.tit}>Name:</span>    {name}</p>
-            <button type="button" className={css.delBtn}>
+            <p className={css.info}>
+              <span className={css.tit}>Name:</span> {name}
+            </p>
+            <button
+              type="button"
+              className={css.delBtn}
+              onClick={() => handleDelatePet(_id)}
+            >
               <img src={icon} alt="My SVG" />
             </button>
           </div>
 
-          <p className={css.info}><span className={css.tit}>Date of birth:</span> {birthday}</p>
-          <p className={css.info}><span className={css.tit}> Breed:</span>  {breed}</p>
-          <p className={css.info}><span className={css.tit}>Comments:</span>  {comments}</p>
+          <p className={css.info}>
+            <span className={css.tit}>Date of birth:</span> {birthday}
+          </p>
+          <p className={css.info}>
+            <span className={css.tit}> Breed:</span> {breed}
+          </p>
+          <p className={css.info}>
+            <span className={css.tit}>Comments:</span> {comments}
+          </p>
         </div>
       </li>
     )
@@ -50,7 +60,6 @@ const MyPets = ({ pets }) => {
     <div className={css.wrapper}>
       <dir className={css.wrapperTitle}>
         <h3 className={css.title}>My Pets:</h3>
-        {/* <button></button> */}
         <Button
           variant="contained"
           endIcon={
@@ -62,7 +71,6 @@ const MyPets = ({ pets }) => {
             />
           }
           style={{
-            // border: 'rgba(0, 0, 0, 0)',
             borderRadius: '20px',
             backgroundColor: '#54adff',
             color: '#FEF9F9',
@@ -75,7 +83,6 @@ const MyPets = ({ pets }) => {
             textTransform: 'none',
             height: '40px',
           }}
-
           onClick={handleClick}
         >
           Add Pet
@@ -83,7 +90,11 @@ const MyPets = ({ pets }) => {
       </dir>
 
       <div className={css.petCardWrapper}>
-        <ul className={css.list}>{elements}</ul>
+        {pets.length > 0 ? (
+          <ul className={css.list}>{elements}</ul>
+        ) : (
+          <p className={css.text}>No favorite list animals</p>
+        )}
       </div>
     </div>
   );
