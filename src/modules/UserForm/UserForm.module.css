@@ -1,8 +1,6 @@
 .wrapper {
   margin-right: auto;
   margin-left: auto;
-
-  /* border: 2px solid rgb(19, 16, 175); */
 }
 
 .title {
@@ -15,6 +13,10 @@
   color: #111111;
 }
 
+.avatarWrapper {
+  height: fit-content;
+}
+
 .avatar {
   width: 185px;
   height: 185px;
@@ -25,13 +27,13 @@
   background-image: url('../../images/bg-avatar.jpg');
   background-size: cover;
   background-position: center;
+  background-size: cover;
 }
 
 .wrapperFile {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  /* border: 1px solid rgb(16, 175, 16); */
 }
 
 .avatarLabel {
@@ -46,31 +48,17 @@
   font-size: 12px;
   line-height: 22px;
   cursor: pointer;
-
-  /* border: 1px solid rgb(46, 66, 221); */
 }
-
-/* .avatarLabel:hover {
-  background-color: #2094c6;
-} */
 
 .avatarBtn {
   display: none;
 }
-
-/* .Btn {
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-} */
 
 .formWrapper {
   margin-bottom: 21px;
 }
 
 .forma {
-  /* display: flex; */
-  /* flex-direction: column; */
   gap: 15px;
   margin-bottom: 21px;
   padding: 20px 8px 25px 8px;
@@ -81,24 +69,12 @@
   border-radius: 40px;
 }
 
-/* .formWrapper {
-  border: 1px solid rgb(28, 132, 64);
-  background-color: aqua;
-
-  min-width: auto;
-  width: 500px;
-  margin-right: auto;
-  margin-left: auto;
-} */
-
 .row {
-  /* border: 1px solid rgb(143, 53, 53); */
   display: flex;
-
   justify-content: space-between;
-  /* justify-content: space-around; */
   align-items: center;
 }
+
 .row:not(:last-child) {
   margin-bottom: 12px;
 }
@@ -133,17 +109,8 @@
   position: absolute;
   top: -8px;
   right: 2px;
-
-  /* padding: 5px; */
   cursor: pointer;
-
-  /* border: 1px solid #54adff; */
 }
-
-/* .editIcon {
-  position: absolute;
-  right: 12px;
-} */
 
 @media screen and (min-width: 280px) {
   .wrapper {
@@ -153,6 +120,9 @@
   .title {
     font-size: 20px;
     line-height: 27px;
+  }
+  .avatarWrapper {
+    margin-bottom: 20px;
   }
 }
 
@@ -164,7 +134,7 @@
   }
 
   .avatarWrapper {
-    /* border: 1px solid rgb(179, 54, 77); */
+    margin-bottom: 0;
   }
   .forma {
     display: flex;
@@ -195,25 +165,20 @@
   .wrapper {
     max-width: 395px;
     margin-right: 32px;
-
-    /* margin-bottom: 40px; */
   }
 
   .forma {
     display: block;
     padding: 20px 24px 20px 16px;
-    /* display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    margin-bottom: 0;
-    padding-left: 20px;
-    padding-right: 76px;
-    padding-bottom: 21px; */
   }
 
   .title {
     margin-bottom: 24px;
     font-size: 28px;
+  }
+
+  .avatarWrapper {
+    margin-bottom: 25px;
   }
 
   .label {

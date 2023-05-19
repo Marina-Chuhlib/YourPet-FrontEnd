@@ -1,5 +1,4 @@
 .wrapper {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
   margin: 0;
@@ -25,17 +24,6 @@
   color: #111111;
 }
 
-.petCardWrapper {
-  /* gap: 15px;
-  margin-bottom: 21px; */
-  /* padding: 20px 8px 25px 8px; */
-  /* 
-  background-color: #ffffff;
-
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px; */
-}
-
 .addBtn {
   margin-right: 12px;
   font-size: 16px;
@@ -56,6 +44,13 @@
 .addBtn:focus {
   background-color: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.text {
+  font-size: 16px;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 28px;
 }
 
 .list {
@@ -79,18 +74,13 @@
 
 .picture {
   border-radius: 20px;
-  /* border: 1px solid rgb(151, 146, 146); */
-  width: 240px;
   height: 240px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 20px;
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19); */
 }
 
 .infoWrapper {
-  /* border: 1px solid rgb(151, 146, 146); */
-
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -113,10 +103,6 @@
   color: #3982c2;
   background-color: rgba(136, 198, 253, 0.144);
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.38);
-}
-
-.info:not(:last-child) {
-  /* margin-bottom: 12px; */
 }
 
 .infoValue {
@@ -149,8 +135,6 @@
   }
 
   .item {
-    /* border: 1px solid rgb(127, 29, 29); */
-
     padding: 20px 20px 21px 20px;
     background-color: #ffffff;
 
@@ -158,7 +142,6 @@
   }
 
   .infoWrapper {
-    /* border: 1px solid rgb(151, 146, 146); */
     gap: 16px;
     width: 515px;
     height: fit-content;
@@ -178,7 +161,7 @@
 
 @media screen and (min-width: 1280px) {
   .wrapper {
-    width: 821px;
+    min-width: 821px;
     margin: 0;
   }
 
@@ -187,7 +170,6 @@
   }
 
   .item {
-    width: 821px;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -205,7 +187,7 @@
   }
 
   .tit {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 18px;
     font-weight: 600;
   }

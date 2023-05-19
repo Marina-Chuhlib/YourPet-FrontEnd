@@ -4,9 +4,8 @@ import * as api from '../../shared/services/App/User/user';
 
 export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {
-    const state = thunkAPI.getState();
+    const state = await thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken, 'persistedToken');
     const data = await api.getUser(persistedToken);
     return data;
   } catch ({ response }) {
@@ -34,6 +33,18 @@ export const fetchUpdateAvatar = createAsyncThunk(
       return result;
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchDeleteUserPet = createAsyncThunk(
+  'user/deleteUserPet',
+  async (id, { rejectWithValue }) => {
+    try {
+      await api.deleteUserPet(id);
+      return id;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
     }
   }
 );
