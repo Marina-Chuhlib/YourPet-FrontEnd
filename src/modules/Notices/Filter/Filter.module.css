@@ -1,0 +1,55 @@
+.filterButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 152px;
+  height: 40px;
+  border-width: 2px;
+  border-color: #54adff;
+  border-radius: 40px;
+  font-family: Manrope;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: #54adff;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filterButton:hover,
+.filterButton:focus {
+  border-color: transparent;
+  color: #fef9f9;
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+}
+
+.filterButtonMobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cce4fb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: transparent;
+  padding: 0;
+  margin-left: auto;
+}
+.filterButtonMobile:hover,
+.filterButtonMobile:focus {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+}
+.title {
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  color: #54adff;
+}

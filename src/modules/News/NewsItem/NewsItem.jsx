@@ -34,7 +34,7 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
 };
 
 NewsItem.propTypes = {
-  _id: PropTypes.string.isRequired,
+  _id: PropTypes.objectOf(PropTypes.string.isRequired),
   text: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

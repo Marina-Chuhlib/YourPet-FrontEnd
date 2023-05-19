@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
-import {
-  selectAllNews,
-  selectAllNewsTotalPages,
-  selectAllNewsPage,
-} from '../../../redux/news/newsSelectors';
-import PaginationLine from 'shared/components/Pagination/Pagination';
-import { useSelector } from 'react-redux';
+// import {
+//   selectAllNewsTotalPages,
+//   selectAllNewsPage,
+// } from '../../../redux/news/newsSelectors';
+// import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
 import { fetchFilteredNews } from 'redux/news/newsOperation';
@@ -19,9 +17,9 @@ const NewsSearch = () => {
   const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const page = useSelector(selectAllNewsPage);
-  const totalPages = useSelector(selectAllNewsTotalPages);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const page = useSelector(selectAllNewsPage);
+  // const totalPages = useSelector(selectAllNewsTotalPages);
   // console.log('page', page);
   // console.log('totalPages', totalPages);
 
@@ -29,11 +27,11 @@ const NewsSearch = () => {
 
   useEffect(() => {
     if (submitted) {
-      dispatch(fetchFilteredNews(keyword, currentPage));
+      dispatch(fetchFilteredNews(keyword));
       setSubmitted(false);
       setKeyword('');
     }
-  }, [submitted, keyword, currentPage, dispatch]);
+  }, [submitted, keyword,  dispatch]);
 
   const handleSearch = e => {
     e.preventDefault();
@@ -45,9 +43,9 @@ const NewsSearch = () => {
     }
   };
 
-  const handlePageChange = () => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = () => {
+  //   setCurrentPage(page);
+  // };
 
   const handleChange = event => {
     const value = event.target.value;
@@ -110,14 +108,10 @@ const NewsSearch = () => {
           )}
         </form>
       </div>
-
-      <PaginationLine
-        totalPages={totalPages}
-        // currentPage={currentPage}
-        onChange={handlePageChange}
-      />
     </>
   );
 };
 
 export default NewsSearch;
+
+

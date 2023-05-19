@@ -10,6 +10,7 @@ import {
 
 import css from '../NoticesCategoriesNav/NoticesCategoriesNav.module.css';
 import PlusIcon from 'icons/PlusIcon';
+import Filter from '../Filter/Filter';
 
 const link = [
   { to: 'sell', text: 'Sell' },
@@ -67,11 +68,14 @@ const NoticesCategoriesNav = () => {
           </>
         )}
       </ul>
-      <NavLink to="add-pet">
-        <button className={css.btn} >
-          Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
-        </button>
-      </NavLink>
+      <div className={css.btnContainer}>
+        <Filter />
+        <NavLink to="add-pet">
+          <button className={css.btn}>
+            Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 };
