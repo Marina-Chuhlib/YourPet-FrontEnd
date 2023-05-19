@@ -5,14 +5,14 @@ import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import PlusIcon from 'icons/PlusIcon';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
-import Modal from 'shared/components/ModalWindow/Modal';
-import NoticeModal from 'modules/NoticeModal/NoticeModal';
+// import Modal from 'shared/components/ModalWindow/Modal';
+// import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
 import css from './notices-categories-list.module.css';
 
 const NoticesCategoriesList = () => {
   const allNotices = useSelector(getAllNotices);
-  const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
+  const { openModal } = useToggleModalWindow();
   return (
     <div className={css.noticesListContainer}>
       {document.documentElement.clientWidth < 768 && (
@@ -32,12 +32,7 @@ const NoticesCategoriesList = () => {
           );
         })}
       </ul>
-      {isModalOpen && (
-        <Modal closeModal={closeModal}>
-          <NoticeModal />
-          {/* notices={notices} */}
-        </Modal>
-      )}
+     
     </div>
   );
 };

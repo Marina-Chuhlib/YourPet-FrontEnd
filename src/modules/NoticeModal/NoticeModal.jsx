@@ -26,7 +26,7 @@ const NoticeModal = ({
             <img className={css.photo} src={file} alt={title} width="280" />
           </div>
           <table>
-            <caption className={css.title}>Сute dog looking for a home</caption>
+            <caption className={css.title}>{ title}</caption>
             <tbody>
               <tr>
                 <td className={css.infoTitle}>Name:</td>
