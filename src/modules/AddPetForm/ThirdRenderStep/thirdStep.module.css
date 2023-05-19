@@ -1,0 +1,301 @@
+
+.WrapperLabelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.LabelStep {
+  color: #111111;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.Input {
+  border-radius: 40px;
+  box-shadow: none;
+  outline: none;
+  font-size: 16px;
+  padding: 15px;
+  border: 2px solid #54adff;
+  max-width: 395px;
+}
+
+.Input:focus {
+  border-color: #54adff;
+}
+
+.errorComent {
+  position: absolute;
+  bottom: 220px;
+  right: 629px;
+}
+
+.ErrorText {
+  position: absolute;
+  bottom: -25%;
+  right: 67%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f43f5e;
+}
+
+.ErrorTextLow {
+  position: absolute;
+  bottom: -25%;
+  right: 76%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f43f5e;
+}
+/* ThirdForm  My Pet */
+.photoContainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-left: 8px;
+  /* flex-direction: column; */
+}
+
+/* .wrapperAddPhoto {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  gap: 12px;
+} */
+
+.labelAddPhoto {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33px;
+  color: #111111;
+}
+
+.labelPhoto {
+  width: 112px;
+  height: 112px;
+  background-color: #cce4fb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.previewPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plusIcon {
+  width: 30px;
+  height: 30px;
+  margin-left: 42px;
+  margin-top: 42px;
+}
+
+.commentsContainerMyPet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+/* .wrapperTextarea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-bottom: 53px;
+} */
+
+.labelComments {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33px;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.inputComments {
+  width: 242px;
+  height: 80px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 16px;
+  border: 1px solid #54adff;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .photoContainer {
+    gap: 32px;
+  }
+
+  .labelAddPhoto {
+    font-size: 20px;
+  }
+
+  .labelPhoto {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+  .plusIcon {
+    width: 48px;
+    height: 48px;
+    margin-left: 78px;
+    margin-top: 78px;
+  }
+
+  .commentsContainerMyPet {
+    margin-bottom: 4px;
+    margin-right: 8px;
+  }
+
+  .labelComments {
+    font-size: 20px;
+  }
+
+  .inputComments {
+    width: 384px;
+    height: 84px;
+    font-size: 16px;
+  }
+}
+
+/* Thirf form for Sale */
+.sexContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  gap: 12px;
+}
+.labelSex {
+    color: #111111;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.36;
+
+}
+.sexBlock {
+  display: flex;
+  margin-bottom: 16px;
+}
+.sexButton {
+  display: flex;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  color: #888888;
+  font-size: 14px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.sexButtonChoosed {
+  display: flex;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  color: #54adff;
+  font-size: 16px;
+  justify-content: center;
+  flex-direction: row;
+}
+.photoContainerSell {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  /* flex-direction: column; */
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  position: relative;
+}
+.label {
+  color: #111111;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.36;
+}
+
+.input {
+  border-radius: 40px;
+  color: #888888;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid #54adff;
+  max-width: 242px;
+}
+.input:focus {
+  border-color: #00c3ad;
+}
+
+.ErrorText {
+  position: absolute;
+  bottom: -25%;
+  right: 67%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.36px;
+  color: #f43f5e;
+}
+
+@media screen and (min-width: 768px) {
+  
+  
+  
+  
+  .inputContainer {
+    margin-bottom: 24px;
+  }
+
+  .label {
+    font-size: 20px;
+  }
+
+  .input {
+    min-width: 384px;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+
+
+.textareaAdd {
+  width: 393px;
+  height: 182px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 16px;
+  border: 2px solid #54adff;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+}
+
+.LinkAddPEt {
+  margin-top: 23.5px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}

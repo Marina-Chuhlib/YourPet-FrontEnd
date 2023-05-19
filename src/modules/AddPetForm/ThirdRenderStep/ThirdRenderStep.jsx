@@ -1,50 +1,49 @@
 import React from 'react';
-import { SecondFormMyPet } from './SecondFormMyPet';
-import { SecondFormSell } from './SecondFormSell';
+import { ThirdFormMyPet } from './ThirdFormMyPet';
+import { ThirdFormSell } from './ThirdFormSell';
+import { ThirdFormLost } from './ThirdFormLost';
 
-export const SecondRenderStep = ({
-  handleNextData,
+
+export const ThirdRenderStep = ({
+  handleDone,
   handlePrevStep,
   chooseOption,
   formData,
-  currentStatus
+  currentStatus,
 }) => {
+
   return (
     <>
       {chooseOption === 'your pet' || chooseOption === 'in good hands' ? (
-        <SecondFormMyPet
+        <ThirdFormMyPet
           currentStatus={currentStatus}
-          handleNextData={handleNextData}
+          handleNextData={handleDone}
           handlePrevStep={handlePrevStep}
           formData={formData}
         />
       ) : (
         ''
       )}
-      {chooseOption === 'sell' ? (
-        <SecondFormSell
-          title={'Add pet for sale'}
+      {chooseOption === 'sell'  ? (
+        <ThirdFormSell
           currentStatus={currentStatus}
-          handleNextData={handleNextData}
+          handleNextData={handleDone}
           handlePrevStep={handlePrevStep}
           formData={formData}
         />
       ) : (
-        'May be Second Form for sell'
+        ''
       )}
-      {chooseOption === 'lost/found' ? (
-        <SecondFormSell
-          title={'Add lost pet'}
+      {chooseOption === 'lost/found' || chooseOption === 'in good hands' ? (
+        <ThirdFormLost
           currentStatus={currentStatus}
-          handleNextData={handleNextData}
+          handleNextData={handleDone}
           handlePrevStep={handlePrevStep}
           formData={formData}
         />
       ) : (
-        'May be Second Form Lost'
+        ''
       )}
     </>
   );
 };
-
-

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import css from './secondStep.module.css';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
-import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
-import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
-import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
-import { stepOneValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+// import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
+// import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
+// import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
+// import { stepOneValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
 
 export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, currentStatus }) => {
   const [name, setName] = useState(formData.name || '');
@@ -13,46 +13,46 @@ export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, curr
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
-  const handleNextValidation = () => {
-    stepOneValidationSchema
-      .validate({ name, birth, breed }, { abortEarly: false })
-      .then(() => {
-        handleNextData({ name, birth, breed });
-      })
-      .catch(err => {
-        console.log(err);
-        const validationErrors = {};
-        err.inner.forEach(error => {
-          validationErrors[error.path] = error.message;
-        });
-        setErrors(validationErrors);
-      });
-  };
+  // const handleNextValidation = () => {
+  //   stepOneValidationSchema
+  //     .validate({ name, birth, breed }, { abortEarly: false })
+  //     .then(() => {
+  //       handleNextData({ name, birth, breed });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       const validationErrors = {};
+  //       err.inner.forEach(error => {
+  //         validationErrors[error.path] = error.message;
+  //       });
+  //       setErrors(validationErrors);
+  //     });
+  // };
   return (
-    <div className={css.FormWrapper}>
-      <TitleModal title={'Add pet'} />
+    <div>
+      <TitleModal title={'Add my pet'} />
 
       <StatusIndicator currentStatus={currentStatus} />
-      <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="name">
-          Name pet
+      <div className={css.inputContainer}>
+        <label className={css.label} htmlFor="name">
+          Pet's name
         </label>
         <input
-          className={css.Input}
+          className={css.input}
           type="text"
           id="name"
           value={name}
           onChange={e => setName(e.target.value)}
-          placeholder="Type pet name "
+          placeholder="Type name pet"
         />
-        {errors.name && <p className={css.ErrorTextLow}>{errors.name}</p>}
+        {errors.name && <p className={css.ErrorText}>{errors.name}</p>}
       </div>
-      <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="birth">
+      <div className={css.inputContainer}>
+        <label className={css.label} htmlFor="birth">
           Date of birth
         </label>
         <input
-          className={css.Input}
+          className={css.input}
           type="text"
           id="birth"
           value={birth}
@@ -62,12 +62,12 @@ export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, curr
         />
         {errors.birth && <p className={css.ErrorText}>{errors.birthdate}</p>}
       </div>
-      <div className={css.WrapperLabelInput}>
-        <label className={css.LabelStep} htmlFor="breed">
+      <div className={css.inputContainer}>
+        <label className={css.label} htmlFor="breed">
           Breed
         </label>
         <input
-          className={css.Input}
+          className={css.input}
           type="text"
           id="breed"
           value={breed}
@@ -75,16 +75,16 @@ export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, curr
           required
           placeholder="Type breed"
         />
-        {errors.breed && <p className={css.ErrorTextLow}>{errors.breed}</p>}
+        {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
-      <ButtonRoutes>
+
+      {/* <ButtonRoutes>
         <ButtonNext textButton={'Next'} onClick={handleNextValidation} />
         <ButtonPrev
           textButton={'Back'}
           onClick={() => handlePrevStep(formData)}
         />
-      </ButtonRoutes>
-      
+      </ButtonRoutes> */}
     </div>
   );
 };

@@ -10,7 +10,7 @@
   color: #888888;
   font-weight: 500;
   font-size: 10px;
-  line-height: 1.36;
+  line-height: 1.33;
   text-align: left;
   letter-spacing: 0.04em;
   margin-bottom: 12px;
@@ -34,10 +34,10 @@
 
 @media screen and (min-width: 768px) {
   .statusContainer {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
   .textStatus {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.21;
     margin-bottom: 16px;
     min-width: 120px;
@@ -82,10 +82,10 @@
 
 @media screen and (min-width: 768px) {
   .statusContainer {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
   .textStatusCurrent {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.21;
     margin-bottom: 16px;
     min-width: 120px;
@@ -129,10 +129,10 @@
 
 @media screen and (min-width: 768px) {
   .statusContainer {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
   .textStatusDone {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.21;
     margin-bottom: 16px;
     min-width: 120px;

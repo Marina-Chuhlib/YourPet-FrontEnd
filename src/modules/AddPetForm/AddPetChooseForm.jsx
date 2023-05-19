@@ -8,8 +8,10 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 import FormContainer from 'shared/components/FormContainer/FormContainer';
-import instance from 'shared/services/App/app';
+import FormContainerThird from 'shared/components/FormContainer/FormContainerThird';
+// import instance from 'shared/services/App/app';
 import { SecondRenderStep } from './SecondStep/SecondRenderStep'
+import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 
 // import instance from 'api/auth-api'
 // import { AddPetFirstPage } from './AddPetFirstPage';
@@ -65,74 +67,100 @@ export const AddPetChooseForm = () => {
     navigate(-1);
   };
 
-  const addPet = async (endpoint, category, data) => {
-    try {
-      const response = await instance.post(`${endpoint}${category}`, data);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  };
+  // const addPet = async (endpoint, category, data) => {
+  //   try {
+  //     const response = await instance.post(`${endpoint}${category}`, data);
+  //     return response.data;
+  //   } catch (error) {
+  //     return error.message;
+  //   }
+  // };
 
   const handleSubmit = stepData => {
-    // e.preventDefault();
-    const sendDataForm = { ...formData, ...stepData };
-    const { category } = sendDataForm;
+    setStep(step + 1);
+    setCurrentStatus(currentStatus + 1);
 
-    delete sendDataForm.category;
-    console.log("work handleSubmit", sendDataForm);
-    const formDataSend = new FormData();
+        // const sendDataForm = { ...formData, ...stepData };
+    // const { category } = sendDataForm;
 
-    for (const key in sendDataForm) {
-      formData.append(key, sendDataForm[key]);
-    }
-    if (category === "your-pet") {
-      addPet('/pets/', '', formDataSend);
-    } else {
-      addPet('/notices/user-notices', category, formDataSend)
-    }
+    // delete sendDataForm.category;
+    console.log("work handleSubmit", step, currentStatus, chooseOption);
+    // const formDataSend = new FormData();
+
+    // for (const key in sendDataForm) {
+    //   formData.append(key, sendDataForm[key]);
+    // }
+    // if (category === "your-pet") {
+    //   addPet('/pets/', '', formDataSend);
+    // } else {
+    //   addPet('/notices/user-notices', category, formDataSend)
+    // }
 
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };
 
 
-  return (
-    <FormContainer>
-      <TitleModal title={'Add pet'} />
+  const handleDone = () => {
+      console.log("HandleDone work")
+      // validationSchemaThree
+      //   .validate({ photo, comments }, { abortEarly: false })
+      //   .then(() => {
+      //     handleNextData({ photo, comments });
+      //   })
+      //   .catch(err => {
+      //     const validationErrors = {};
+      //     err.inner.forEach(error => {
+      //       validationErrors[error.path] = error.message;
+      //     });
+      //     setErrors(validationErrors);
+      //   });
+    };
 
-      <StatusIndicator currentStatus={currentStatus} />
+  return (
+    <>
       {step === 1 && (
-        <>
+        <FormContainer>
+          <TitleModal title={'Add pet'} />
+
+          <StatusIndicator currentStatus={currentStatus} />
           <ButtonChooseOption
             handleChooseChange={handleChooseChange}
             activeButton={activeButton}
           />
           <ButtonRoutes>
             <ButtonNext textButton={'Next'} handleNextData={handleNextData} />
-            <ButtonPrev textButton={'Cancel'} handleCancel={handleCancel} />
+            <ButtonPrev textButton={'Cancel'} handlePrevStep={handleCancel} />
           </ButtonRoutes>
-        </>
+        </FormContainer>
       )}
+   
       {step === 2 && (
-        <SecondRenderStep formData={formData}>
-          
+        <FormContainer>
+          <SecondRenderStep
+            formData={formData}
+            chooseOption={chooseOption}
+            currentStatus={currentStatus}
+          ></SecondRenderStep>
           <ButtonRoutes>
             <ButtonNext textButton={'Next'} handleNextData={handleSubmit} />
             <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
           </ButtonRoutes>
-        </SecondRenderStep>
+        </FormContainer>
       )}
-      {/* //
-      //{step === 3 && (
-       // <p>Third page</p>
-        // <ThirdRenderStep formData={formData}>
-        //   <ButtonChooseOption chooseOption={chooseOption} />
-        //   <ButtonRoutes>
-        //     <ButtonNext textButton={'Done'} handleNextData={handleSubmit} />
-        //     <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
-        //   </ButtonRoutes>
-        // </ThirdRenderStep>
-      //)} */}
-    </FormContainer>
+
+      {step === 3 && (
+        <FormContainerThird>
+          <ThirdRenderStep
+            formData={formData}
+            chooseOption={chooseOption}
+            currentStatus={currentStatus}
+          ></ThirdRenderStep>
+          <ButtonRoutes>
+            <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+            <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+          </ButtonRoutes>
+        </FormContainerThird>
+      )}
+    </>
   );
 };
