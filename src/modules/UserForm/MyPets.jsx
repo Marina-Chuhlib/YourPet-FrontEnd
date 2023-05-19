@@ -20,11 +20,9 @@ const MyPets = ({ pets }) => {
     navigate('/add-pet');
   };
 
-  const handleDelatePet = (_id) => {
-    console.log(_id, "ID")
+  const handleDelatePet = _id => {
     dispatch(fetchDeleteUserPet(_id));
-    
-  }
+  };
 
   const elements = pets.map(
     ({ _id, name, birthday, breed, imageURL, comments }) => (
@@ -35,7 +33,11 @@ const MyPets = ({ pets }) => {
             <p className={css.info}>
               <span className={css.tit}>Name:</span> {name}
             </p>
-            <button type="button" className={css.delBtn} onClick={()=> handleDelatePet(_id)}>
+            <button
+              type="button"
+              className={css.delBtn}
+              onClick={() => handleDelatePet(_id)}
+            >
               <img src={icon} alt="My SVG" />
             </button>
           </div>
