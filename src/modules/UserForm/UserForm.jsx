@@ -1,6 +1,6 @@
 // import React from 'react';
 import * as React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 
@@ -22,7 +22,13 @@ import { logout } from 'redux/auth/auth-operations';
 import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
 
 import { selectAuth } from 'redux/auth/auth-selectors';
+import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
 // import { selectIsLoading } from 'redux/auth/auth-selectors';
+import {
+  selectIsLoggedIn,
+  selectIsLoading,
+  selectlogoutSuccessful,
+} from 'redux/auth/auth-selectors';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
@@ -134,17 +140,36 @@ const UserForm = ({ user }) => {
     { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
 
-  const onLogout = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectIsLoading);
+  const logoutSuccessful = useSelector(selectlogoutSuccessful);
+
+  useEffect(() => {
+    if (!isLoading && !isLoggedIn && logoutSuccessful) {
+      setIsModalOpen(false);
+    }
+  }, [isLoading, isLoggedIn, logoutSuccessful]);
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
     dispatch(logout());
-    navigate('/');
+  navigate('/');
+  };
+
+  const onLogout = () => {
+    setIsModalOpen(true);
   };
 
   return (
     <>
+    {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
       <div>
         <div className={css.wrapper}>
           <h2 className={css.title}>My information:</h2>
-
           <Formik>
             {({ errors, touched }) => (
               <Form className={css.forma}>

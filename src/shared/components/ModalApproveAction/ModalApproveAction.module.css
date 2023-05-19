@@ -21,7 +21,7 @@ h1 {
   }
   
   @media (min-width: 768px) {
-    .modalCongrats {
+    .modalApprove {
       width: 608px;
     }
   }

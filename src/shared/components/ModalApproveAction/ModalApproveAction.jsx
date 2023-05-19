@@ -1,5 +1,6 @@
 import Modal from '../ModalWindow/Modal';
-
+//import Button from '@mui/material/Button';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import css from './ModalApproveAction.module.css';
 
 const ModalApproveAction = ({ closeModal }) => {
@@ -11,7 +12,7 @@ const ModalApproveAction = ({ closeModal }) => {
           Cancel
         </button>
         <button className={css.modalBtn} onClick={closeModal}>
-          Yes <PetsIcon className={css.modalIcon} />
+          Yes <LogoutOutlinedIcon className={css.modalIcon} />
         </button>
       </Modal>
     </>
