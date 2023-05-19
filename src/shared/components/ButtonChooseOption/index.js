@@ -1,1 +1,2 @@
-export { default } from './ButtonChooseOption.jsx';
+export { ButtonChooseOption } from './ButtonChooseOption.jsx';
+export { ButtonList } from './ButtonList.jsx';
