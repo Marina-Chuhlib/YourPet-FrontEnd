@@ -33,11 +33,13 @@ const NoticeCategoryItem = ({
   sex,
   comments,
   breed,
+  owner,
+  name,
 }) => {
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
-  // console.log(user);
 
   function getAge(date) {
     const ymdArr = date.split('.').map(Number).reverse();
@@ -113,6 +115,7 @@ const NoticeCategoryItem = ({
         {isModalOpen && (
           <Modal closeModal={closeModal}>
             <NoticeModal
+              _id={_id}
               file={file}
               category={category}
               location={location}
@@ -121,6 +124,8 @@ const NoticeCategoryItem = ({
               title={title}
               comments={comments}
               breed={breed}
+              owner={owner}
+              name={name}
             />
           </Modal>
         )}

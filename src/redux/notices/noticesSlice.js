@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchAllNotices,
+  fetchNoticeById,
   fetchAddNotice,
   fetchDeleteNotice,
   fetchNoticesByCategory,
@@ -14,6 +15,8 @@ const initialState = {
   category: null,
   loading: false,
   error: null,
+  item: {},
+  owner: {},
 };
 
 const noticesSlice = createSlice({
@@ -29,6 +32,18 @@ const noticesSlice = createSlice({
         store.items = payload.data.notices;
       })
       .addCase(fetchAllNotices.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchNoticeById.pending, store => {
+        store.loading = true;
+      })
+      .addCase(fetchNoticeById.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.item = payload;
+        store.owner = payload.owner;
+      })
+      .addCase(fetchNoticeById.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
       })
