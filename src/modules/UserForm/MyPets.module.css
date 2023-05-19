@@ -60,7 +60,9 @@
 
 .text {
   font-size: 16px;
+  color: #888888;
   text-align: center;
+  margin-bottom: 28px;
 }
 
 .list {
@@ -91,7 +93,6 @@
   margin-left: auto;
   margin-bottom: 20px;
   /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19); */
-  background-image: url('../../images/bg-mypets.jpg');
 }
 
 .infoWrapper {
@@ -184,7 +185,7 @@
 
 @media screen and (min-width: 1280px) {
   .wrapper {
-    width: 821px;
+    min-width: 821px;
     margin: 0;
   }
 
@@ -193,7 +194,6 @@
   }
 
   .item {
-    width: 821px;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;

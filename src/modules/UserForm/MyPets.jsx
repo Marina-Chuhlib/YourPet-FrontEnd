@@ -9,7 +9,7 @@ import icon from '../../icons/trash.svg';
 
 import { useDispatch } from 'react-redux';
 
-import { fetchDeletePet } from 'redux/pets/petsOperations';
+import { fetchDeleteUserPet } from 'redux/user/user-operations';
 
 const MyPets = ({ pets }) => {
   // console.log(pets);
@@ -22,7 +22,7 @@ const MyPets = ({ pets }) => {
 
   const handleDelatePet = (_id) => {
     console.log(_id, "ID")
-    dispatch(fetchDeletePet(_id));
+    dispatch(fetchDeleteUserPet(_id));
     
   }
 

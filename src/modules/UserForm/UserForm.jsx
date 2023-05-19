@@ -202,6 +202,8 @@ const UserForm = ({ user }) => {
                           color: '#111111',
                           fontSize: '12px',
                           padding: '0',
+                          paddingRight: '5px',
+                          borderRadius: '10px',
                           fontFamily: 'Manrope',
                           textTransform: 'none',
                           marginRight: 'auto',
@@ -210,6 +212,7 @@ const UserForm = ({ user }) => {
                           <DoneOutlinedIcon
                             style={{
                               color: '#54ADFF',
+                              padding: '0px',
                               height: '24px',
                               width: '24px',
                             }}
@@ -273,8 +276,8 @@ const UserForm = ({ user }) => {
                                 <BorderColorOutlinedIcon
                                   style={{
                                     color: '#54ADFF',
-                                    width: '20px',
-                                    height: '20px',
+                                    width: '24px',
+                                    height: '24px',
                                   }}
                                 />
                               }
@@ -282,9 +285,10 @@ const UserForm = ({ user }) => {
                                 <CheckOutlinedIcon
                                   style={{
                                     color: '#00C3AD',
-                                    width: '20px',
-                                    height: '20px',
+                                    width: '24px',
+                                    height: '24px',
                                     border: '1.5px',
+                                  
                                   }}
                                 />
                               }

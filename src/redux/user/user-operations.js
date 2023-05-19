@@ -42,7 +42,6 @@ export const fetchDeleteUserPet = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       await api.deleteUserPet(id);
-      console.log(id, 'oper');
       return id;
     } catch ({ response }) {
       return rejectWithValue(response.data);
