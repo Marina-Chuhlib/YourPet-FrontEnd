@@ -75,7 +75,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = payload;
       })
       .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
         store.loading = false;
@@ -88,7 +88,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = payload;
       })
       .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;
