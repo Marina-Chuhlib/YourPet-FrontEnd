@@ -4,7 +4,7 @@ import { getAllNotices } from 'redux/notices/noticesSelectors';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import PlusIcon from 'icons/PlusIcon';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
-import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+
 // import Modal from 'shared/components/ModalWindow/Modal';
 // import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
@@ -12,7 +12,7 @@ import css from './notices-categories-list.module.css';
 
 const NoticesCategoriesList = () => {
   const allNotices = useSelector(getAllNotices);
-  const { openModal } = useToggleModalWindow();
+
   return (
     <div className={css.noticesListContainer}>
       {document.documentElement.clientWidth < 768 && (
@@ -26,9 +26,9 @@ const NoticesCategoriesList = () => {
         </Button>
       )}
       <ul className={css.noticeList}>
-        {allNotices.map(({ _id, ...props }) => {
+        {allNotices.map(({ _id, owner, ...props }) => {
           return (
-            <NoticeCategoryItem key={_id} openModal={openModal} {...props} />
+            <NoticeCategoryItem key={_id} {...props} _id={_id} owner={owner} />
           );
         })}
       </ul>

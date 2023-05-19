@@ -13,6 +13,19 @@ export const fetchAllNotices = createAsyncThunk(
   }
 );
 
+// для отримання одного оголошення по id
+export const fetchNoticeById = createAsyncThunk(
+  'notices/fetchNoticeById',
+  async (_id, { rejectWithValue }) => {
+    try {
+      const result = await App.getNoticesById(_id);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response.data.message);
+    }
+  }
+);
+
 export const fetchAddNotice = createAsyncThunk(
   'notice/add',
   async (data, { rejectWithValue }) => {
@@ -53,6 +66,7 @@ export const fetchNoticesByOwn = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const data = await App.getNoticesByOwn(query);
+      console.log(data);
       return data.notices;
     } catch ({ response }) {
       return rejectWithValue(response.data);

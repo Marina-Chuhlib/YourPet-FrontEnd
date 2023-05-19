@@ -2,9 +2,14 @@ import instance from './app';
 
 export const getAllNotices = async () => {
   const { data } = await instance.get('/notices');
+  console.log(data);
   return data;
 };
 
+export const getNoticesById = async id => {
+  const { data } = await instance.get(`/notices/${id}`);
+  return data;
+};
 export const addNotice = async data => {
   const { data: result } = await instance.post('/notices', data);
   return result;
