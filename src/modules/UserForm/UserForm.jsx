@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
-import { logout } from 'redux/auth/auth-operations';
-
-import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
+import { logout ,fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
 
 import { selectAuth } from 'redux/auth/auth-selectors';
 
@@ -32,7 +30,7 @@ import css from './UserForm.module.css';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
-  const { isLoading } = useSelector(state => state.user);
+  const { isLoading } = useSelector(state => state.auth);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
