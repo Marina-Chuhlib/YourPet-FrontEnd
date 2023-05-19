@@ -32,7 +32,6 @@ const NoticesCategoriesList = () => {
           );
         })}
       </ul>
-     
     </div>
   );
 };

@@ -4,6 +4,7 @@ import AddToFavorite from './AddToFavorite/AddToFavorite';
 import css from './notice-modal.module.css';
 
 const NoticeModal = ({
+  _id,
   file,
   category,
   name,
@@ -14,7 +15,7 @@ const NoticeModal = ({
   price,
   email,
   phone,
-  comments,
+  comments = 'There is no comments',
   title,
 }) => {
   return (
