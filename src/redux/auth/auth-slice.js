@@ -3,6 +3,7 @@ import { register, login, logout, current } from './auth-operations';
 
 const initialState = {
   user: { name: null, email: null },
+  registrationSuccessful: false,
   isLoading: false,
   token: null,
   isLoggedIn: false,
@@ -22,6 +23,7 @@ const authSlice = createSlice({
         const { user, accessToken } = payload;
         state.isLoading = false;
         state.user = user;
+        state.registrationSuccessful = true;
         state.token = accessToken;
         state.isLoggedIn = true;
         state.error = null;
@@ -54,6 +56,7 @@ const authSlice = createSlice({
       .addCase(current.fulfilled, (state, { payload }) => {
         const { email } = payload;
         state.isLoading = false;
+        state.registrationSuccessful = false;
         state.user.email = email;
         state.isLoggedIn = true;
       })
@@ -69,6 +72,7 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, state => {
         state.isLoading = false;
         state.user = {};
+        state.registrationSuccessful = false;
         state.token = null;
         state.isLoggedIn = false;
       })
