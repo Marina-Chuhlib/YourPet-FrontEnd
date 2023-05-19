@@ -16,5 +16,6 @@ export const getUser = ({ auth }) => auth.user;
 export const selectRegistrationSuccessful = ({ auth }) =>
   auth.registrationSuccessful;
 
-  export const selectlogoutSuccessful = ({ auth }) =>
-  auth.registrationSuccessful;
+export const selectlogoutSuccessful = ({ auth }) => auth.registrationSuccessful;
+
+export const userInfo = state => state.user.user;

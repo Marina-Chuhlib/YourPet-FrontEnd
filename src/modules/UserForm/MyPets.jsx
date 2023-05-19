@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchDeleteUserPet } from 'redux/user/user-operations';
+import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';

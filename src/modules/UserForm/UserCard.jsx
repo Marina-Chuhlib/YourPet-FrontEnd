@@ -6,14 +6,14 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { fetchUser } from 'redux/user/user-operations';
+import { fetchUser } from 'redux/auth/auth-operations';
 
 import css from './UserCard.module.css';
 
 const UserCard = () => {
   const { isLoading } = useSelector(state => state.auth);
-  const { user } = useSelector(state => state.user.user);
-  const {pets} = useSelector(state => state.user.user);
+  const { user } = useSelector(state => state.auth.user);
+  const {pets} = useSelector(state => state.auth.user);
 
   const dispatch = useDispatch();
 
