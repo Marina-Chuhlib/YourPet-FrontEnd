@@ -1,22 +1,8 @@
-// import React from 'react';
 import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form } from 'formik';
-
 import { useNavigate } from 'react-router-dom';
-
-import Checkbox from '@mui/material/Checkbox';
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-
-import Button from '@mui/material/Button';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-
-import css from './UserForm.module.css';
-
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import { Formik, Form } from 'formik';
 
 import { logout } from 'redux/auth/auth-operations';
 
@@ -25,13 +11,24 @@ import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/user/user-operations';
 import { selectAuth } from 'redux/auth/auth-selectors';
 
 import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
-// import { selectIsLoading } from 'redux/auth/auth-selectors';
+
 import {
   selectIsLoggedIn,
-  selectIsLoading,
   selectlogoutSuccessful,
 } from 'redux/auth/auth-selectors';
+
 import Loader from 'shared/components/Loader/Loader';
+
+import Checkbox from '@mui/material/Checkbox';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+
+import Button from '@mui/material/Button';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+
+import css from './UserForm.module.css';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
@@ -40,10 +37,18 @@ const UserForm = ({ user }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const logoutSuccessful = useSelector(selectlogoutSuccessful);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // avatar
+  useEffect(() => {
+    if (!isLoading && !isLoggedIn && logoutSuccessful) {
+      setIsModalOpen(false);
+    }
+  }, [isLoading, isLoggedIn, logoutSuccessful]);
 
   const handleChangeAvatar = e => {
     const file = e.target.files[0];
@@ -58,16 +63,9 @@ const UserForm = ({ user }) => {
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append('imageURL', selectedImage);
-    // formData.append('imageURL', selectedFile);
-    // const { user } = await updateAvatar();
 
     dispatch(fetchUpdateAvatar({ token, formData }));
-
-    // const {payload} = await dispatch(fetchUpdateAvatar({ token, formData }));
-    // const urlAvatar = payload.user.imageURL;
-    // setUploaded(urlAvatar)
   };
-  // =====
 
   const [formData, setFormData] = useState({
     name: user.name,
@@ -95,11 +93,6 @@ const UserForm = ({ user }) => {
 
   const handleEditField = fieldName => {
     const value = formData[fieldName];
-
-    // if (!value) {
-    //   alert('Email is REQUIRED');
-    //   return;
-    // }
 
     setEditingFields(prevEditingFields => ({
       ...prevEditingFields,
@@ -141,24 +134,10 @@ const UserForm = ({ user }) => {
     { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoading = useSelector(selectIsLoading);
-  const logoutSuccessful = useSelector(selectlogoutSuccessful);
-
-  useEffect(() => {
-    if (!isLoading && !isLoggedIn && logoutSuccessful) {
-      setIsModalOpen(false);
-    }
-  }, [isLoading, isLoggedIn, logoutSuccessful]);
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
   const closeModal = () => {
     setIsModalOpen(false);
     dispatch(logout());
-  navigate('/');
+    navigate('/');
   };
 
   const onLogout = () => {
@@ -167,7 +146,7 @@ const UserForm = ({ user }) => {
 
   return (
     <>
-    {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
+      {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
       <div>
         {isLoading && <Loader />}
         <div className={css.wrapper}>
@@ -189,8 +168,6 @@ const UserForm = ({ user }) => {
                       className={css.avatar}
                     />
                   )}
-
-                  {/* ===avatar  */}
 
                   <div className={css.wrapperFile}>
                     {selectedImage && (
@@ -244,8 +221,6 @@ const UserForm = ({ user }) => {
                   </div>
                 </div>
 
-                {/* ===== */}
-
                 {user && (
                   <div className={css.formWrapper}>
                     {fields.map(field => (
@@ -288,7 +263,6 @@ const UserForm = ({ user }) => {
                                     width: '24px',
                                     height: '24px',
                                     border: '1.5px',
-                                  
                                   }}
                                 />
                               }

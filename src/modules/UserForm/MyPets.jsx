@@ -1,18 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { fetchDeleteUserPet } from 'redux/user/user-operations';
+
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-
-import { useNavigate } from 'react-router-dom';
 
 import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
-import { useDispatch } from 'react-redux';
-
-import { fetchDeleteUserPet } from 'redux/user/user-operations';
 
 const MyPets = ({ pets }) => {
-  // console.log(pets);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
