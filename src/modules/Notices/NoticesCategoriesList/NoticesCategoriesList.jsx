@@ -32,12 +32,7 @@ const NoticesCategoriesList = () => {
           );
         })}
       </ul>
-      {isModalOpen && (
-        <Modal closeModal={closeModal}>
-          <NoticeModal />
-          {/* notices={notices} */}
-        </Modal>
-      )}
+     
     </div>
   );
 };

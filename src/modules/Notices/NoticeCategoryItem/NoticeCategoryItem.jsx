@@ -9,6 +9,9 @@ import MaleIcon from 'icons/MaleIcon';
 import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+import Modal from 'shared/components/ModalWindow/Modal';
+import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
 // import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 // import Modal from 'shared/components/ModalWindow/Modal';
@@ -22,16 +25,18 @@ import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
   _id,
-  openModal,
   file,
   category,
   title,
   location,
   date,
   sex,
+  comments,
+  breed,
 }) => {
   const user = useSelector(getUser);
-const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
   // console.log(user);
 
   function getAge(date) {
@@ -105,6 +110,20 @@ const isLoggedIn = useSelector(selectIsLoggedIn);
         <Button className={css.learnBtn} onClick={openModal}>
           Learn more
         </Button>
+        {isModalOpen && (
+          <Modal closeModal={closeModal}>
+            <NoticeModal
+              file={file}
+              category={category}
+              location={location}
+              date={date}
+              sex={sex}
+              title={title}
+              comments={comments}
+              breed={breed}
+            />
+          </Modal>
+        )}
       </div>
     </li>
   );
