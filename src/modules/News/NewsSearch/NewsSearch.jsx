@@ -17,7 +17,7 @@ const NewsSearch = () => {
   const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   // const page = useSelector(selectAllNewsPage);
   // const totalPages = useSelector(selectAllNewsTotalPages);
   // console.log('page', page);
@@ -27,11 +27,11 @@ const NewsSearch = () => {
 
   useEffect(() => {
     if (submitted) {
-      dispatch(fetchFilteredNews(keyword, currentPage));
+      dispatch(fetchFilteredNews(keyword));
       setSubmitted(false);
       setKeyword('');
     }
-  }, [submitted, keyword, currentPage, dispatch]);
+  }, [submitted, keyword,  dispatch]);
 
   const handleSearch = e => {
     e.preventDefault();
