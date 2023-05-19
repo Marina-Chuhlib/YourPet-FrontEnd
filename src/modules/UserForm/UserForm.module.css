@@ -15,6 +15,11 @@
   color: #111111;
 }
 
+.avatarWrapper {
+  border: 1px solid rgb(16, 175, 16);
+  height: fit-content;
+}
+
 .avatar {
   width: 185px;
   height: 185px;
@@ -25,12 +30,15 @@
   background-image: url('../../images/bg-avatar.jpg');
   background-size: cover;
   background-position: center;
+  /* max-width: 100%; */
+  background-size: cover;
 }
 
 .wrapperFile {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+
   /* border: 1px solid rgb(16, 175, 16); */
 }
 
@@ -154,6 +162,9 @@
     font-size: 20px;
     line-height: 27px;
   }
+  .avatarWrapper {
+    margin-bottom: 20px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -164,7 +175,7 @@
   }
 
   .avatarWrapper {
-    /* border: 1px solid rgb(179, 54, 77); */
+    margin-bottom: 0;
   }
   .forma {
     display: flex;
@@ -214,6 +225,10 @@
   .title {
     margin-bottom: 24px;
     font-size: 28px;
+  }
+
+  .avatarWrapper {
+    margin-bottom: 25px;
   }
 
   .label {

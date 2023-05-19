@@ -4,10 +4,12 @@ import {
   fetchUser,
   fetchUpdateUser,
   fetchUpdateAvatar,
+  fetchDeleteUserPet,
 } from './user-operations';
 
 const initialState = {
   user: {
+    pets: [{}],
     name: '',
     email: '',
     birthday: '',
@@ -62,6 +64,18 @@ const userSlice = createSlice({
       .addCase(fetchUpdateAvatar.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(fetchDeleteUserPet.pending, store => {
+        store.isLoading = true;
+      })
+      .addCase(fetchDeleteUserPet.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        const index = store.pets.findIndex(pet => pet.id === payload);
+        store.items.splice(index, 1);
+      })
+      .addCase(fetchDeleteUserPet.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
       });
   },
 });

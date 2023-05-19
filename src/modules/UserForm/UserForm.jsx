@@ -16,6 +16,7 @@ import css from './UserForm.module.css';
 
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 
 import { logout } from 'redux/auth/auth-operations';
 
@@ -35,22 +36,19 @@ import Loader from 'shared/components/Loader/Loader';
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
   const { isLoading } = useSelector(state => state.user);
-  // console.log(isLoading);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  // const [uploaded, setUploaded] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // console.log(user);
-
   // avatar
 
   const handleChangeAvatar = e => {
-    console.log(e.target.files);
-    setSelectedFile(e.target.files[0]);
-    console.log('Avatar');
+    const file = e.target.files[0];
+    setSelectedImage(file);
+    setPreviewImage(URL.createObjectURL(file));
   };
 
   const addAvatarBtn = () => {
@@ -59,10 +57,12 @@ const UserForm = ({ user }) => {
 
   const handleUpload = async () => {
     const formData = new FormData();
-    formData.append('imageURL', selectedFile);
+    formData.append('imageURL', selectedImage);
+    // formData.append('imageURL', selectedFile);
     // const { user } = await updateAvatar();
 
     dispatch(fetchUpdateAvatar({ token, formData }));
+
     // const {payload} = await dispatch(fetchUpdateAvatar({ token, formData }));
     // const urlAvatar = payload.user.imageURL;
     // setUploaded(urlAvatar)
@@ -108,7 +108,6 @@ const UserForm = ({ user }) => {
 
     if (editingFields[fieldName] && value !== '') {
       try {
-        // sendDataToServer(fieldName, value);
         dispatch(
           fetchUpdateUser({ token, fieldToUpdate: fieldName, newValue: value })
         );
@@ -177,37 +176,68 @@ const UserForm = ({ user }) => {
             {({ errors, touched }) => (
               <Form className={css.forma}>
                 <div className={css.avatarWrapper}>
-                  <img
-                    src={user.imageURL}
-                    alt="avatar"
-                    className={css.avatar}
-                  />
+                  {previewImage ? (
+                    <img
+                      src={previewImage}
+                      alt="Preview"
+                      className={css.avatar}
+                    />
+                  ) : (
+                    <img
+                      src={user.imageURL}
+                      alt="avatar"
+                      className={css.avatar}
+                    />
+                  )}
 
                   {/* ===avatar  */}
 
                   <div className={css.wrapperFile}>
-                    <button type="button" onClick={addAvatarBtn}>
-                      Edit photo
-                    </button>
-                    <button type="button" onClick={handleUpload}>
-                      Send
-                    </button>
+                    {selectedImage && (
+                      <Button
+                        onClick={handleUpload}
+                        variant="outlined"
+                        style={{
+                          border: 'rgba(0, 0, 0, 0)',
+                          color: '#111111',
+                          fontSize: '12px',
+                          padding: '0',
+                          fontFamily: 'Manrope',
+                          textTransform: 'none',
+                          marginRight: 'auto',
+                        }}
+                        startIcon={
+                          <DoneOutlinedIcon
+                            style={{
+                              color: '#54ADFF',
+                              height: '24px',
+                              width: '24px',
+                            }}
+                          />
+                        }
+                      >
+                        Confirm
+                      </Button>
+                    )}
 
-                    <label htmlFor="fileElem" className={css.avatarLabel}>
-                      <CameraAltOutlinedIcon
-                        style={{ color: '#54ADFF', marginRight: '8px' }}
-                      />
-                      Edit photo
-                      <input
-                        type="file"
-                        id="fileElem"
-                        accept="image/*"
-                        name="Edit photo"
-                        ref={filePicker}
-                        className={css.avatarBtn}
-                        onChange={handleChangeAvatar}
-                      />
-                    </label>
+                    {!selectedImage && (
+                      <label htmlFor="fileElem" className={css.avatarLabel}>
+                        <CameraAltOutlinedIcon
+                          style={{ color: '#54ADFF', marginRight: '8px' }}
+                          onClick={addAvatarBtn}
+                        />
+                        Edit photo
+                        <input
+                          type="file"
+                          id="fileElem"
+                          accept="image/*"
+                          name="Edit photo"
+                          ref={filePicker}
+                          className={css.avatarBtn}
+                          onChange={handleChangeAvatar}
+                        />
+                      </label>
+                    )}
                   </div>
                 </div>
 

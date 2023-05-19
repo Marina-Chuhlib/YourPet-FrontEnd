@@ -39,3 +39,9 @@ export const updateAvatar = async (token, formData) => {
   const { data: result } = await instance.patch('/user', formData, config);
   return result;
 };
+
+export const deleteUserPet = async id => {
+  console.log(id);
+  const { data } = await instance.delete(`/user/pets/${id}`);
+  return data;
+};

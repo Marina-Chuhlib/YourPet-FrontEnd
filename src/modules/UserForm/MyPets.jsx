@@ -7,14 +7,24 @@ import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
+import { useDispatch } from 'react-redux';
+
+import { fetchDeletePet } from 'redux/pets/petsOperations';
+
 const MyPets = ({ pets }) => {
   // console.log(pets);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate('/add-pet');
   };
+
+  const handleDelatePet = (_id) => {
+    console.log(_id, "ID")
+    dispatch(fetchDeletePet(_id));
+    
+  }
 
   const elements = pets.map(
     ({ _id, name, birthday, breed, imageURL, comments }) => (
@@ -25,7 +35,7 @@ const MyPets = ({ pets }) => {
             <p className={css.info}>
               <span className={css.tit}>Name:</span> {name}
             </p>
-            <button type="button" className={css.delBtn}>
+            <button type="button" className={css.delBtn} onClick={()=> handleDelatePet(_id)}>
               <img src={icon} alt="My SVG" />
             </button>
           </div>
