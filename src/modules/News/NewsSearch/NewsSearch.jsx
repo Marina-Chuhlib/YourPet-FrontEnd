@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
-import {
-  selectAllNewsTotalPages,
-  selectAllNewsPage,
-} from '../../../redux/news/newsSelectors';
-import { useSelector } from 'react-redux';
+// import {
+//   selectAllNewsTotalPages,
+//   selectAllNewsPage,
+// } from '../../../redux/news/newsSelectors';
+// import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
 import { fetchFilteredNews } from 'redux/news/newsOperation';
@@ -18,7 +18,7 @@ const NewsSearch = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const page = useSelector(selectAllNewsPage);
+  // const page = useSelector(selectAllNewsPage);
   // const totalPages = useSelector(selectAllNewsTotalPages);
   // console.log('page', page);
   // console.log('totalPages', totalPages);
