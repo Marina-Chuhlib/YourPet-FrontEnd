@@ -1,72 +1,80 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  getNoticesById,
+  getNoticesByIdOwner,
+} from '../../redux/notices/noticesSelectors';
+import { fetchNoticeById } from '../../redux/notices/noticesOperations';
 import Contact from './Contact/Contact';
 import AddToFavorite from './AddToFavorite/AddToFavorite';
 
 import css from './notice-modal.module.css';
 
-const NoticeModal = ({
-  file,
-  category,
-  name,
-  location,
-  date,
-  breed,
-  sex,
-  price,
-  email,
-  phone,
-  comments,
-  title,
-}) => {
+const NoticeModal = ({ _id }) => {
+  const dispatch = useDispatch();
+
+  const item = useSelector(getNoticesById);
+  const owner = useSelector(getNoticesByIdOwner);
+
+  useEffect(() => {
+    dispatch(fetchNoticeById(_id));
+  }, [dispatch, _id]);
   return (
     <>
       <div className={css.contentWrapper}>
         <div className={css.tabletBox}>
           <div className={css.imgThumb}>
-            <p className={css.categoryInfo}>{category}</p>
-            <img className={css.photo} src={file} alt={title} width="280" />
+            <p className={css.categoryInfo}>{item.category}</p>
+            <img
+              className={css.photo}
+              src={item.file}
+              alt={item.title}
+              width="280"
+            />
           </div>
           <table>
-            <caption className={css.title}>{ title}</caption>
+            <caption className={css.title}>{item.title}</caption>
             <tbody>
               <tr>
                 <td className={css.infoTitle}>Name:</td>
-                <td className={css.info}>{name}</td>
+                <td className={css.info}>{item.name}</td>
               </tr>
               <tr>
                 <td className={css.infoTitle}>Birthday:</td>
-                <td className={css.info}>{date}</td>
+                <td className={css.info}>{item.date}</td>
               </tr>
               <tr>
                 <td className={css.infoTitle}>Breed:</td>
-                <td className={css.info}>{breed}</td>
+                <td className={css.info}>{item.breed}</td>
               </tr>
               <tr>
                 <td className={css.infoTitle}>Place:</td>
-                <td className={css.info}>{location}</td>
+                <td className={css.info}>{item.location}</td>
               </tr>
               <tr>
                 <td className={css.infoTitle}>The sex:</td>
-                <td className={css.info}>{sex}</td>
+                <td className={css.info}>{item.sex}</td>
               </tr>
-              {price && (
+              {item.price && (
                 <tr>
                   <td className={css.infoTitle}>Price:</td>
-                  <td className={css.info}>{price}</td>
+                  <td className={css.info}>{item.price}</td>
                 </tr>
               )}
               <tr>
                 <td className={css.infoTitle}>Email:</td>
                 <td>
-                  <a href={`mailto:${email}`} className={css.contacts}>
-                    {email}
+                  <a href={`mailto:${owner.email}`} className={css.contacts}>
+                    {owner.email}
                   </a>
                 </td>
               </tr>
               <tr>
                 <td className={css.infoTitle}>Phone:</td>
                 <td>
-                  <a href={`tel:${phone}`} className={css.contacts}>
-                    {phone}
+                  <a href={`tel:${owner.phone}`} className={css.contacts}>
+                    {owner.phone}
                   </a>
                 </td>
               </tr>
@@ -75,10 +83,10 @@ const NoticeModal = ({
         </div>
         <p className={css.commentsInfo}>
           <span className={css.commentsTitle}>Comments: </span>
-          {comments}
+          {item.comments}
         </p>
         <div className={css.btnWrapper}>
-          <Contact phone={phone} />
+          <Contact phone={owner.phone} />
           <AddToFavorite />
         </div>
       </div>
