@@ -37,8 +37,6 @@ const NoticeCategoryItem = ({
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
-  // console.log(user);
-
   function getAge(date) {
     const ymdArr = date.split('.').map(Number).reverse();
     ymdArr[1]--;
