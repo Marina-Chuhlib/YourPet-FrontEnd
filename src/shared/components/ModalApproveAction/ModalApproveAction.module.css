@@ -1,0 +1,85 @@
+h1 {
+    font-family: 'Manrope';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33px;
+    text-align: center;
+    color: #111111;
+    margin-top: 68px;
+  }
+  
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 36px;
+      line-height: 49px;
+      margin-top: 60px;
+    }
+  }
+  
+  .modalApprove {
+    width: 280px;
+  }
+  
+  @media (min-width: 768px) {
+    .modalCongrats {
+      width: 608px;
+    }
+  }
+  
+  .text {
+    font-family: 'Manrope';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #111111;
+  }
+  
+  @media (min-width: 768px) {
+    text {
+      font-size: 24px;
+      line-height: 33px;
+      margin-top: 52px;
+      margin-bottom: 60px;
+    }
+  }
+  
+  .modalBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 28px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 248px;
+    height: 40px;
+    background: #54adff;
+    outline: none;
+    border: transparent;
+    border-radius: 40px;
+    color: #fef9f9;
+    font-family: 'Manrope';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 60px;
+    cursor: pointer;
+  }
+  
+  .modalIcon {
+    fill: #fef9f9;
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+    /* position: absolute; */
+    /* width: 24px;
+    height: 20.97px; */
+    /* left: 5.56px;
+    top: -2.59px; */
+    transform: rotate(25deg);
+  }
+  
