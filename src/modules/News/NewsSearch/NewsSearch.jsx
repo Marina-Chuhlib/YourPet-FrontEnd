@@ -19,7 +19,7 @@ const NewsSearch = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const page = useSelector(selectAllNewsPage);
-  const totalPages = useSelector(selectAllNewsTotalPages);
+  // const totalPages = useSelector(selectAllNewsTotalPages);
   // console.log('page', page);
   // console.log('totalPages', totalPages);
 
@@ -43,9 +43,9 @@ const NewsSearch = () => {
     }
   };
 
-  const handlePageChange = () => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = () => {
+  //   setCurrentPage(page);
+  // };
 
   const handleChange = event => {
     const value = event.target.value;
