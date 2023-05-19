@@ -13,6 +13,14 @@ import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import Modal from 'shared/components/ModalWindow/Modal';
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
+// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+// import Modal from 'shared/components/ModalWindow/Modal';
+// import NoticeModal from 'modules/NoticeModal/NoticeModal';
+
+// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+// import Modal from 'shared/components/ModalWindow/Modal';
+// import NoticeModal from 'modules/NoticeModal/NoticeModal';
+
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
