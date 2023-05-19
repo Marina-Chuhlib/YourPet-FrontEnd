@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllNews } from 'redux/news/newsOperation';
 import {
   selectAllNewsTotalPages,
-  selectAllNewsPage,
+  // selectAllNewsPage,
 } from 'redux/news/newsSelectors';
 
 import NewsList from 'modules/News/NewsList/NewsList';
@@ -15,7 +15,7 @@ import css from '../NewsPage/NewsPage.module.css';
 const NewsPage = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const page = useSelector(selectAllNewsPage);
+  // const page = useSelector(selectAllNewsPage);
   const totalPages = useSelector(selectAllNewsTotalPages);
 
   useEffect(() => {
