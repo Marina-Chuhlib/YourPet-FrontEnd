@@ -53,7 +53,7 @@ export const fetchNoticesByOwn = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const data = await App.getNoticesByOwn(query);
-      return data;
+      return data.notices;
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }
@@ -65,7 +65,7 @@ export const fetchAllFavoriteNotices = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const data = await App.getAllFavoriteNotices(query);
-      return data;
+      return data.notices;
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }
