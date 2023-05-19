@@ -5,7 +5,6 @@ import {
   selectAllNewsTotalPages,
   selectAllNewsPage,
 } from '../../../redux/news/newsSelectors';
-import PaginationLine from 'shared/components/Pagination/Pagination';
 import { useSelector } from 'react-redux';
 
 import { useDispatch } from 'react-redux';
@@ -109,14 +108,10 @@ const NewsSearch = () => {
           )}
         </form>
       </div>
-
-      <PaginationLine
-        totalPages={totalPages}
-        // currentPage={currentPage}
-        onChange={handlePageChange}
-      />
     </>
   );
 };
 
 export default NewsSearch;
+
+

@@ -21,7 +21,7 @@ const newsSlice = createSlice({
       .addCase(fetchAllNews.fulfilled, (state, { payload }) => {
         // console.log('payload', payload);
         state.totalPages = payload.totalPages;
-        state.page = payload.page;
+        state.page = Number(payload.page);
         state.loading = false;
         state.items = payload.news;
       })
@@ -36,7 +36,7 @@ const newsSlice = createSlice({
       .addCase(fetchFilteredNews.fulfilled, (state, { payload }) => {
         // console.log('filter', payload);
         state.totalPages = payload.totalPages;
-        state.page = payload.page;
+        state.page = Number(payload.page);
         state.loading = false;
         state.items = payload.news;
       })
