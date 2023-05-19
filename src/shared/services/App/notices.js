@@ -28,6 +28,8 @@ export const getNoticesByOwn = async (query = '') => {
 };
 
 export const getAllFavoriteNotices = async (query = '') => {
-  const { data } = await instance.get(`notices/favorite/all?searchValue=${query}`);
+  const { data } = await instance.get(
+    `notices/favorite/all?searchValue=${query}`
+  );
   return data;
 };
