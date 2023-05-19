@@ -20,21 +20,27 @@ export const deleteNotice = async id => {
   return data;
 };
 
-export const getNoticesByCategory = async (categoryName, query = '') => {
+export const getNoticesByCategory = async (
+  categoryName,
+  query = '',
+  page = 1
+) => {
   const { data } = await instance.get(
-    `notices/?category=${categoryName}&searchValue=${query}`
+    `notices/?category=${categoryName}&searchValue=${query}&page=${page}`
   );
   return data;
 };
 
-export const getNoticesByOwn = async (query = '') => {
-  const { data } = await instance.get(`notices/user/own?searchValue=${query}`);
+export const getNoticesByOwn = async (query = '', page = 1) => {
+  const { data } = await instance.get(
+    `notices/user/own?searchValue=${query}&page=${page}`
+  );
   return data;
 };
 
-export const getAllFavoriteNotices = async (query = '') => {
+export const getAllFavoriteNotices = async (query = '', page = 1) => {
   const { data } = await instance.get(
-    `notices/favorite/all?searchValue=${query}`
+    `notices/favorite/all?searchValue=${query}&page=${page}`
   );
   return data;
 };

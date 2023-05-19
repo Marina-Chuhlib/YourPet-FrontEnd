@@ -17,6 +17,8 @@ const initialState = {
   error: null,
   item: {},
   owner: {},
+  page: 0,
+  totalPages: 0,
 };
 
 const noticesSlice = createSlice({
@@ -76,8 +78,10 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.notices];
+        store.items = [...payload.data.notices];
         store.category = payload.category;
+        store.page = Number(payload.data.page);
+        store.totalPages = payload.data.totalPages;
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
         store.loading = false;
@@ -90,11 +94,13 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = payload;
+        store.items = [...payload.notices];
+        store.page = Number(payload.notices.page);
+        store.totalPages = payload.notices.totalPages;
       })
       .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
         store.loading = false;
-        store.error = payload;
+        store.error = payload.notices;
       })
       .addCase(fetchAllFavoriteNotices.pending, store => {
         store.loading = true;
@@ -103,7 +109,9 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = payload;
+        store.items = [...payload.notices];
+        store.page = Number(payload.notices.page);
+        store.totalPages = payload.notices.totalPages;
       })
       .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;
