@@ -1,11 +1,14 @@
 .sectionMain {
   padding-top: 60px;
-  width: 100%;
+  background-color: #fef9f9;
 }
 
 @media screen and (min-width: 768px) {
   .sectionMain {
     padding-top: 80px;
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
     background-image: url('../../images/bg-tablet.jpg');
   }
 
@@ -21,6 +24,9 @@
 @media screen and (min-width: 1280px) {
   .sectionMain {
     background-image: url('../../images/bg-desctop.jpg');
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
     padding-top: 0px;
   }
 
@@ -35,104 +41,51 @@
 
 @media screen and (min-width: 1300px) {
   .sectionMain {
-    width: 100vw;
-    align-content: center;
+    position: relative;
+    height: calc(100vh - 96px);
   }
 }
 
-@media screen and (max-width: 767px) {
-  .wrapper {
-    background-image: url('../../images/dogs-mobile@1x.png');
-    background-repeat: no-repeat;
-    background-position: bottom, right -20%;
-    width: 100%;
-    height: 394px;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('../../images/dogs-mobile@2x.png');
-    }
-  }
+.wrapper {
+  height: 394px;
+  width: 320px;
+  margin-left: -20px;
 }
-
-/* @media screen and (min-width: 321px) and (max-width: 767px) {
-  .wrapper {
-    background-image: url('../../images/dogs-full-width.png');
-    width: 474px;
-    height: 394px;
-    background-repeat: no-repeat;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('../../images/dogs-full-width@2x.png');
-    }
-  }
-} */
 
 @media screen and (min-width: 768px) {
   .wrapper {
-    background-image: url('../../images/dogs-tablet@1x.png');
-    background-position: bottom, 22% calc(9vh + 100%);
-    background-repeat: no-repeat;
-    width: 100%;
     height: 818px;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('../../images/dogs-tablet@2x.png');
-    }
+    width: 768px;
+    margin-left: -32px;
   }
 }
-
-/* @media screen and (min-width: 769px) and (max-width: 1280px) {
-  .wrapper {
-    background-image: url('../../images/dog-full-tablet@1x.png');
-    background-position: -50%, -5px;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 818px;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('../../images/dog-full-tablet@2x.png');
-    }
-  }
-} */
 
 @media screen and (min-width: 1280px) {
   .wrapper {
-    background-image: url('../../images/dogs-desktop@1x.png');
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 617px;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('../../images/dogs-desktop@2x.png');
-    }
+    height: 670px;
+    width: 917px;
+    margin-right: -16px;
+    margin-bottom: -117px;
   }
 }
 
-.positionText {
-  position: relative;
+@media screen and (min-width: 1400px) {
+  .wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 260px;
+    height: auto;
+    width: auto;
+    margin-left: -32px;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .positionText {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .text {
@@ -157,13 +110,107 @@
 
 @media screen and (min-width: 1280px) {
   .text {
-    position: absolute;
-    bottom: 25%;
-    left: 0;
-    margin-bottom: 0;
+    margin-bottom: 0px;
+    margin-top: 125px;
     width: 501px;
     font-weight: 800;
     font-size: 68px;
     line-height: 88px;
   }
 }
+
+@media screen and (min-width: 1400px) {
+  .text {
+    margin-top: 200px;
+  }
+}
+
+/* @media screen and (max-width: 767px) {
+  .wrapper {
+    background-image: url('../../images/dogs-mobile1x.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(100vh - 172px);
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: url('../../images/dogs-mobile@2x.png');
+    }
+  }
+} */
+
+/* @media screen and (min-width: 321px) and (max-width: 767px) {
+  .wrapper {
+    background-image: url('../../images/dogs-full-width.png');
+    width: 474px;
+    height: 394px;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: url('../../images/dogs-full-width@2x.png');
+    }
+  }
+} */
+
+/* @media screen and (min-width: 768px) {
+  .wrapper {
+    background-image: url('../../images/dogs-tablet@1x.png');
+    background-position: bottom, 22% calc(9vh + 100%);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 147vh;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: url('../../images/dogs-tablet@2x.png');
+    }
+  }
+} */
+
+/* @media screen and (min-width: 769px) and (max-width: 1280px) {
+  .wrapper {
+    background-image: url('../../images/dog-full-tablet@1x.png');
+    background-position: -50%, -5px;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 818px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: url('../../images/dog-full-tablet@2x.png');
+    }
+  }
+} */
+
+/* @media screen and (min-width: 1280px) {
+  .wrapper {
+    background-image: url('../../images/dogs-desktop@1x.png');
+    background-position: bottom right -16px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: calc(100vh - 96px);
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .wrapper {
+      background-image: url('../../images/dogs-desktop@2x.png');
+    }
+  }
+} */

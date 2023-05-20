@@ -6,13 +6,13 @@ import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
+import * as toasty from 'shared/toastify/toastify';
+
 import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
-
 const MyPets = ({ pets }) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,8 +20,9 @@ const MyPets = ({ pets }) => {
     navigate('/add-pet');
   };
 
-  const handleDelatePet = _id => {
-    dispatch(fetchDeleteUserPet(_id));
+  const handleDelatePet = async( _id )=> {
+    await dispatch(fetchDeleteUserPet(_id));
+    toasty.toastSuccess('Deleted card');
   };
 
   const elements = pets.map(
