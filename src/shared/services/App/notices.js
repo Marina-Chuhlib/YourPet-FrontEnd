@@ -26,21 +26,21 @@ export const getNoticesByCategory = async (
   page = 1
 ) => {
   const { data } = await instance.get(
-    `notices/?category=${categoryName}&searchValue=${query}&page=${page}`
+    `notices/?category=${categoryName}&searchValue=${query}&page=${page}&limit=12`
   );
   return data;
 };
 
 export const getNoticesByOwn = async (query = '', page = 1) => {
   const { data } = await instance.get(
-    `notices/user/own?searchValue=${query}&page=${page}`
+    `notices/user/own?searchValue=${query}&page=${page}&limit=12`
   );
   return data;
 };
 
 export const getAllFavoriteNotices = async (query = '', page = 1) => {
   const { data } = await instance.get(
-    `notices/favorite/all?searchValue=${query}&page=${page}`
+    `notices/favorite/all?searchValue=${query}&page=${page}&limit=12`
   );
   return data;
 };

@@ -52,9 +52,9 @@ export const fetchDeleteNotice = createAsyncThunk(
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/category',
-  async ({ categoryName, query }, { rejectWithValue }) => {
+  async ({ categoryName, query, page }, { rejectWithValue }) => {
     try {
-      const data = await App.getNoticesByCategory(categoryName, query);
+      const data = await App.getNoticesByCategory(categoryName, query, page);
       return { data, category: categoryName };
     } catch ({ response }) {
       return rejectWithValue(response.data);
@@ -63,9 +63,9 @@ export const fetchNoticesByCategory = createAsyncThunk(
 );
 export const fetchNoticesByOwn = createAsyncThunk(
   'notices/own',
-  async (query, { rejectWithValue }) => {
+  async ({ query, page }, { rejectWithValue }) => {
     try {
-      const data = await App.getNoticesByOwn(query);
+      const data = await App.getNoticesByOwn(query, page);
       return data;
     } catch ({ response }) {
       return rejectWithValue(response.data);
@@ -75,9 +75,9 @@ export const fetchNoticesByOwn = createAsyncThunk(
 
 export const fetchAllFavoriteNotices = createAsyncThunk(
   'notices/all-favorite',
-  async (query, { rejectWithValue }) => {
+  async ({ query, page }, { rejectWithValue }) => {
     try {
-      const data = await App.getAllFavoriteNotices(query);
+      const data = await App.getAllFavoriteNotices(query, page);
       return data;
     } catch ({ response }) {
       return rejectWithValue(response.data);
