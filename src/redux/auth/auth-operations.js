@@ -40,7 +40,6 @@ export const current = createAsyncThunk(
       const { auth } = thunkAPI.getState();
 
       const data = await api.getCurrent(auth.token);
-      console.log(data, 'data');
       return data;
     } catch ({ response }) {
       return thunkAPI.rejectWithValue(response);
@@ -62,6 +61,55 @@ export const logout = createAsyncThunk(
     try {
       const data = await api.logout();
       return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+);
+
+// ======
+
+export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
+  try {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    const data = await api.getUser(persistedToken);
+    return data;
+  } catch ({ response }) {
+    return thunkAPI.rejectWithValue(response.data);
+  }
+});
+
+export const fetchUpdateUser = createAsyncThunk(
+  'user/update',
+  async ({ token, fieldToUpdate, newValue }, { rejectWithValue }) => {
+    try {
+      const result = await api.updateUserInf(fieldToUpdate, newValue, token);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUpdateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async ({ token, formData }, { rejectWithValue }) => {
+    try {
+      const result = await api.updateAvatar(token, formData);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchDeleteUserPet = createAsyncThunk(
+  'user/deleteUserPet',
+  async (id, { rejectWithValue }) => {
+    try {
+      await api.deleteUserPet(id);
+      return id;
     } catch ({ response }) {
       return rejectWithValue(response.data);
     }

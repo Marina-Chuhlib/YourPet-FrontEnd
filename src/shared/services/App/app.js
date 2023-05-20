@@ -54,4 +54,34 @@ export const logout = async () => {
   return data;
 };
 
+export const getUser = async token => {
+  try {
+    setToken(token);
+    const { data: result } = await instance.get('/user', token);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateUserInf = async (fieldToUpdate, newValue, token) => {
+  setToken(token);
+  const data = {
+    [fieldToUpdate]: newValue,
+  };
+  const { data: result } = await instance.patch('/user', data, token);
+  return result;
+};
+
+export const updateAvatar = async (token, formData) => {
+  setToken(token);
+  const { data: result } = await instance.patch('/user', formData, token);
+  return result;
+};
+
+export const deleteUserPet = async id => {
+  const { data } = await instance.delete(`/user/pets/${id}`);
+  return data;
+};
+
 export default instance;
