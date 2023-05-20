@@ -63,7 +63,8 @@
   margin-bottom: 21px;
   padding: 20px 8px 25px 8px;
 
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: var(--white-color);
 
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
@@ -95,7 +96,7 @@
 .input {
   padding: 6px 6px 6px 12px;
   min-width: 190px;
-  border: 1px solid #54adff;
+  border: 1px solid var(--blue-color);
   border-radius: 20px;
   font-family: 'Manrope';
   font-style: normal;

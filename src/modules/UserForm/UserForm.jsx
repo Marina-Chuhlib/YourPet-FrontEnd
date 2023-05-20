@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
-import { logout ,fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
+import {
+  logout,
+  fetchUpdateUser,
+  fetchUpdateAvatar,
+} from 'redux/auth/auth-operations';
 
 import { selectAuth } from 'redux/auth/auth-selectors';
 
@@ -27,6 +31,8 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 
 import css from './UserForm.module.css';
+
+import * as toasty from 'shared/toastify/toastify';
 
 const UserForm = ({ user }) => {
   const { token } = useSelector(selectAuth);
@@ -62,7 +68,9 @@ const UserForm = ({ user }) => {
     const formData = new FormData();
     formData.append('imageURL', selectedImage);
 
-    dispatch(fetchUpdateAvatar({ token, formData }));
+    await dispatch(fetchUpdateAvatar({ token, formData }));
+
+    toasty.toastSuccess('Photo added successfully');
   };
 
   const [formData, setFormData] = useState({
