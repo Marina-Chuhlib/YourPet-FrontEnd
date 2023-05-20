@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
-// import {
-//   selectAllNewsTotalPages,
-//   selectAllNewsPage,
-// } from '../../../redux/news/newsSelectors';
-// import { useSelector } from 'react-redux';
+import { selectAllNewsTotalPages } from '../../../redux/news/newsSelectors';
+import { useSelector } from 'react-redux';
+import { fetchAllNews } from 'redux/news/newsOperation';
+import NewsList from '../NewsList/NewsList';
+import PaginationLine from 'shared/components/Pagination/Pagination';
 
 import { useDispatch } from 'react-redux';
 import { fetchFilteredNews } from 'redux/news/newsOperation';
@@ -16,36 +16,37 @@ const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
   const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const page = useSelector(selectAllNewsPage);
-  // const totalPages = useSelector(selectAllNewsTotalPages);
-  // console.log('page', page);
-  // console.log('totalPages', totalPages);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = useSelector(selectAllNewsTotalPages);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchAllNews(currentPage));
+  }, [currentPage, dispatch]);
+
+  useEffect(() => {
     if (submitted) {
-      dispatch(fetchFilteredNews(keyword));
+      dispatch(fetchFilteredNews({ query: keyword, page: currentPage }));
       setSubmitted(false);
       setKeyword('');
     }
-  }, [submitted, keyword,  dispatch]);
+  }, [submitted, keyword, currentPage, dispatch]);
+
+  const handlePageChange = newPage => {
+    setCurrentPage(newPage);
+  };
 
   const handleSearch = e => {
     e.preventDefault();
     if (keyword.trim() === '') {
       setShowHelperText(true);
+      setKeyword('');
     } else {
       setSubmitted(true);
+      setCurrentPage(1);
       console.log('Выполняется поиск по ключевому слову:', keyword);
     }
   };
-
-  // const handlePageChange = () => {
-  //   setCurrentPage(page);
-  // };
 
   const handleChange = event => {
     const value = event.target.value;
@@ -108,10 +109,15 @@ const NewsSearch = () => {
           )}
         </form>
       </div>
+
+      <NewsList />
+      <PaginationLine
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onChange={handlePageChange}
+      />
     </>
   );
 };
 
 export default NewsSearch;
-
-
