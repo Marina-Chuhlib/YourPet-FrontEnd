@@ -4,7 +4,6 @@
   flex-direction: column;
   padding: 16px;
   min-height: 239px;
-  /* min-width: 280px; */
   background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;
@@ -27,7 +26,6 @@
 
 .customTypography {
   font-size: 12px;
-  line-height: 16px;
 }
 
 @media screen and (min-width: 768px) {
