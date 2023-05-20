@@ -1,8 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, current } from './auth-operations';
+import {
+  register,
+  login,
+  logout,
+  current,
+  fetchUser,
+  fetchUpdateUser,
+  fetchUpdateAvatar,
+  fetchDeleteUserPet,
+} from './auth-operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: {
+    name: null,
+    email: null,
+    birthday: '',
+    phone: '',
+    city: '',
+    imageURL: '',
+  },
+  pets: [{}],
+  registrationSuccessful: false,
   isLoading: false,
   token: null,
   isLoggedIn: false,
@@ -22,6 +40,7 @@ const authSlice = createSlice({
         const { user, accessToken } = payload;
         state.isLoading = false;
         state.user = user;
+        state.registrationSuccessful = true;
         state.token = accessToken;
         state.isLoggedIn = true;
         state.error = null;
@@ -54,6 +73,7 @@ const authSlice = createSlice({
       .addCase(current.fulfilled, (state, { payload }) => {
         const { email } = payload;
         state.isLoading = false;
+        state.registrationSuccessful = false;
         state.user.email = email;
         state.isLoggedIn = true;
       })
@@ -69,10 +89,67 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, state => {
         state.isLoading = false;
         state.user = {};
+        state.registrationSuccessful = false;
         state.token = null;
         state.isLoggedIn = false;
       })
       .addCase(logout.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user = payload;
+        state.error = null;
+      })
+      .addCase(fetchUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchUpdateUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUpdateUser.fulfilled, (state, { payload }) => {
+        const { user } = payload;
+        state.isLoading = false;
+        state.registrationSuccessful = false;
+        state.user.user = user;
+        state.error = null;
+      })
+      .addCase(fetchUpdateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchUpdateAvatar.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUpdateAvatar.fulfilled, (state, { payload }) => {
+        const { user } = payload;
+        state.isLoading = false;
+        state.registrationSuccessful = false;
+        state.user.user = user;
+        state.error = null;
+      })
+      .addCase(fetchUpdateAvatar.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchDeleteUserPet.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchDeleteUserPet.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.registrationSuccessful = false;
+        const index = state.user.pets.findIndex(pet => pet._id === payload);
+        state.user.pets.splice(index, 1);
+      })
+      .addCase(fetchDeleteUserPet.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

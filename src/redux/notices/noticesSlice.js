@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchAllNotices,
+  fetchNoticeById,
   fetchAddNotice,
   fetchDeleteNotice,
   fetchNoticesByCategory,
@@ -14,6 +15,8 @@ const initialState = {
   category: null,
   loading: false,
   error: null,
+  item: {},
+  owner: {},
 };
 
 const noticesSlice = createSlice({
@@ -29,6 +32,18 @@ const noticesSlice = createSlice({
         store.items = payload.data.notices;
       })
       .addCase(fetchAllNotices.rejected, (store, { payload }) => {
+        store.loading = false;
+        store.error = payload;
+      })
+      .addCase(fetchNoticeById.pending, store => {
+        store.loading = true;
+      })
+      .addCase(fetchNoticeById.fulfilled, (store, { payload }) => {
+        store.loading = false;
+        store.item = payload;
+        store.owner = payload.owner;
+      })
+      .addCase(fetchNoticeById.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
       })
@@ -61,7 +76,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = [...payload.notices];
         store.category = payload.category;
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
@@ -75,7 +90,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchNoticesByOwn.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = payload;
       })
       .addCase(fetchNoticesByOwn.rejected, (store, { payload }) => {
         store.loading = false;
@@ -88,7 +103,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = payload;
       })
       .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;

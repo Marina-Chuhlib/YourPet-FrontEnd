@@ -17,21 +17,15 @@ import { login } from 'redux/auth/auth-operations';
 const registerSchema = yup.object({
   //name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Enter a valid Email'),
-  password: yup.string().required('Password is required'),
-  // .matches(/^[^ ]{7,32}$/, 'Password should not contain space')
-  // .matches(
-  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{7,})/,
-  //   'Password is not valid as per password policy'
-  // )
-  // .max(32),
-
-  // confirmPassword: yup.string().required('Confirm password is required'),
-  // .when('password', {
-  //   is: val => (val && val.length > 0 ? true : false),
-  //   then: yup
-  //     .string()
-  //     .oneOf([yup.ref('password')], 'Both password need to be the same'),
-  // }),
+  password: yup
+  .string()
+  .required('Password is required')
+  .min(6, 'Password must be at least 6 characters')
+    .max(16, 'Password must be at most 16 characters')
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
+      'Password must contain at least one uppercase letter, one lowercase letter, and one digit'
+    ),
 });
 
 const data = {
@@ -113,6 +107,9 @@ export const LoginFormDetails = () => {
                 size="small"
                 fullWidth
                 sx={{
+                  '.MuiInputBase-root.MuiOutlinedInput-root': {
+                    borderRadius: '40px',
+                  },
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
                       borderRadius: 40,
@@ -140,6 +137,9 @@ export const LoginFormDetails = () => {
                 size="small"
                 fullWidth
                 sx={{
+                  '.MuiInputBase-root.MuiOutlinedInput-root': {
+                    borderRadius: '40px',
+                  },
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
                       borderRadius: 40,
