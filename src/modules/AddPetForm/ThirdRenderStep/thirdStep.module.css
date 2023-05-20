@@ -1,32 +1,4 @@
 
-.WrapperLabelInput {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  position: relative;
-}
-
-.LabelStep {
-  color: #111111;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 26px;
-}
-
-.Input {
-  border-radius: 40px;
-  box-shadow: none;
-  outline: none;
-  font-size: 16px;
-  padding: 15px;
-  border: 2px solid #54adff;
-  max-width: 395px;
-}
-
-.Input:focus {
-  border-color: #54adff;
-}
-
 .errorComent {
   position: absolute;
   bottom: 220px;
@@ -167,13 +139,18 @@
   }
 
   .inputComments {
-    width: 384px;
-    height: 84px;
+    width: 396px;
+    height: 80px;
     font-size: 16px;
   }
 }
 
 /* Thirf form for Sale */
+.wparForm {
+  display: flex;
+  flex-direction: column;
+}
+
 .sexContainer {
   display: flex;
   flex-direction: column;
@@ -185,7 +162,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.36;
-
 }
 .sexBlock {
   display: flex;
@@ -200,6 +176,7 @@
   font-size: 14px;
   justify-content: center;
   flex-direction: row;
+  padding-left: 0;
 }
 
 .sexButtonChoosed {
@@ -257,13 +234,65 @@
   color: #f43f5e;
 }
 
+.labelCommentsSell {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.33px;
+  color: #111111;
+  margin-bottom: 8px;
+  margin-top: 12px;
+}
+
 @media screen and (min-width: 768px) {
   
-  
-  
+  .wparForm {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center; */
+  /* flex-direction: row; */
+  /* gap: 60px; */
+}
+
+.pointBlock {
+  display: flex;
+  flex-direction: row;
+  background-color: green;
+}
+
+.sexContainer {
+  background-color: #fff;
+}
+.labelSex {
+  font-size: 20px;
+}
+.sexBlock {
+  margin-bottom: 58px;
+}
+.sexButton {
+    font-size: 16px;
+    padding-right: 12px;
+}
+
+.photoContainerSell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  background-color: yellow;
+  /* flex-direction: column; */
+}
+
+  .titleSell {
+    /* text-align: center; */
+  }
   
   .inputContainer {
-    margin-bottom: 24px;
+    margin-bottom: 38px;
+    gap: 8px;
   }
 
   .label {
@@ -271,32 +300,32 @@
   }
 
   .input {
-    min-width: 384px;
+    min-width: 396px;
     font-size: 16px;
     padding: 12px;
+  }
+.input:not(:last-child) {
+  margin-bottom: 24px;
+}
+  .labelCommentsSell {
+    font-size: 20px;
   }
 }
 
 
-
-.textareaAdd {
-  width: 393px;
-  height: 182px;
-  padding: 10px;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 12px 16px;
-  border: 2px solid #54adff;
-  border-radius: 20px;
-  resize: none;
-  outline: none;
-}
-
-.LinkAddPEt {
-  margin-top: 23.5px;
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+.sexPhotoBlock {
   display: flex;
-
-  justify-content: center;
-  align-items: center;
-  gap: 48px;
+  flex-direction: column;
+  margin-right: 56px;
+  background-color: blue;
+}
+}
+@media screen and (min-width: 1025px) {
+.sexPhotoBlock {
+  display: flex;
+  flex-direction: column;
+  margin-right: 72px;
+  background-color: tomato;
+}
 }

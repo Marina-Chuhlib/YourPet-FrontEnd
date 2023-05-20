@@ -2,7 +2,8 @@
     margin-bottom: 24px;
   display: flex;
   align-self: flex-start;
-  flex-grow: 0;
+  justify-content: center;
+ 
  }
  /* Default */
 .textStatus {
@@ -35,6 +36,7 @@
 @media screen and (min-width: 768px) {
   .statusContainer {
     margin-bottom: 16px;
+
   }
   .textStatus {
     font-size: 14px;

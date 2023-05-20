@@ -1,6 +1,6 @@
 import css from './thirdStep.module.css';
 
-import PlusIcon from 'icons/PlusIcon';
+import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState } from 'react';
 // import { stepTwoValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
 
@@ -53,7 +53,7 @@ export const ThirdFormLost = ({ formData, currentStatus, title }) => {
                 alt="Pet"
               />
             )}
-            <PlusIcon className={css.plusIcon} color="#54adff" />
+            <Plus className={css.plusIcon} />
           </div>
         </label>
         {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}

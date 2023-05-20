@@ -9,13 +9,14 @@ import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 import FormContainer from 'shared/components/FormContainer/FormContainer';
 import FormContainerThird from 'shared/components/FormContainer/FormContainerThird';
-// import instance from 'shared/services/App/app';
+
 import { SecondRenderStep } from './SecondStep/SecondRenderStep'
 import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
   
 // import instance from 'api/auth-api'
-// import { AddPetFirstPage } from './AddPetFirstPage';
+// import instance from 'shared/services/App/app';
+
 
 export const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
