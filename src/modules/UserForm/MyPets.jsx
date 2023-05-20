@@ -10,9 +10,7 @@ import css from './MyPets.module.css';
 
 import icon from '../../icons/trash.svg';
 
-
 const MyPets = ({ pets }) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

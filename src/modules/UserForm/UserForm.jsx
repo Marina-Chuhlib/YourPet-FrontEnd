@@ -41,6 +41,22 @@ const UserForm = ({ user }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
 
+  const [formData, setFormData] = useState({
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city,
+  });
+
+  const [editingFields, setEditingFields] = useState({
+    name: false,
+    email: false,
+    birthday: false,
+    phone: false,
+    city: false,
+  });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const logoutSuccessful = useSelector(selectlogoutSuccessful);
@@ -71,23 +87,8 @@ const UserForm = ({ user }) => {
     await dispatch(fetchUpdateAvatar({ token, formData }));
 
     toasty.toastSuccess('Photo added successfully');
+    // toasty.toastInfo('Photo added successfully ');
   };
-
-  const [formData, setFormData] = useState({
-    name: user.name,
-    email: user.email,
-    birthday: user.birthday,
-    phone: user.phone,
-    city: user.city,
-  });
-
-  const [editingFields, setEditingFields] = useState({
-    name: false,
-    email: false,
-    birthday: false,
-    phone: false,
-    city: false,
-  });
 
   const handleChangeInput = event => {
     const { name, value } = event.target;
@@ -97,7 +98,7 @@ const UserForm = ({ user }) => {
     }));
   };
 
-  const handleEditField = fieldName => {
+  const handleEditField = async fieldName => {
     const value = formData[fieldName];
 
     setEditingFields(prevEditingFields => ({
@@ -105,14 +106,25 @@ const UserForm = ({ user }) => {
       [fieldName]: !prevEditingFields[fieldName],
     }));
 
+    if (!value && editingFields[fieldName]) {
+      toasty.toastInfo('Fill in the field');
+      return;
+    }
+
     if (editingFields[fieldName] && value !== '') {
       try {
-        dispatch(
+        const result = await dispatch(
           fetchUpdateUser({ token, fieldToUpdate: fieldName, newValue: value })
         );
         console.log(`Sending ${fieldName}=${value} to the server`);
+
+        if (result.meta.requestStatus !== 'fulfilled') {
+          toasty.toastError(`Opps! Incorrect ${fieldName} try,again`);
+          return;
+        }
+        toasty.toastSuccess(' Confirmed ');
       } catch (error) {
-        console.log(error.massage);
+        toasty.toastError(`Error, try again`);
       }
     }
   };
