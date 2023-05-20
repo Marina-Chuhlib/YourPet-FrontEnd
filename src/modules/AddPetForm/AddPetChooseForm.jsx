@@ -12,7 +12,8 @@ import FormContainerThird from 'shared/components/FormContainer/FormContainerThi
 // import instance from 'shared/services/App/app';
 import { SecondRenderStep } from './SecondStep/SecondRenderStep'
 import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
-
+import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
+  
 // import instance from 'api/auth-api'
 // import { AddPetFirstPage } from './AddPetFirstPage';
 
@@ -149,18 +150,36 @@ export const AddPetChooseForm = () => {
       )}
 
       {step === 3 && (
-        <FormContainerThird>
-          <ThirdRenderStep
-            formData={formData}
-            chooseOption={chooseOption}
-            currentStatus={currentStatus}
-          ></ThirdRenderStep>
-          <ButtonRoutes>
-            <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-            <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
-          </ButtonRoutes>
-        </FormContainerThird>
-      )}
-    </>
-  );
+      <>
+          {chooseOption === 'your pet' || chooseOption === 'in good hands' ? (
+            <FormContainer>
+              <ThirdFormMyPet
+                currentStatus={currentStatus}
+                handleNextData={handleDone}
+                handlePrevStep={handlePrevStep}
+                formData={formData}
+              />
+              <ButtonRoutes>
+                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+                <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+              </ButtonRoutes>
+            </FormContainer>
+          ) : (
+            <FormContainerThird>
+              <ThirdRenderStep
+                formData={formData}
+                chooseOption={chooseOption}
+                currentStatus={currentStatus}
+              ></ThirdRenderStep>
+              <ButtonRoutes>
+                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+                <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+              </ButtonRoutes>
+            </FormContainerThird>
+          )}
+          </>)
+      }
+      
+          
+    </>  )
 };
