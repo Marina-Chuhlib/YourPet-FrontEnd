@@ -87,7 +87,6 @@ const UserForm = ({ user }) => {
     await dispatch(fetchUpdateAvatar({ token, formData }));
 
     toasty.toastSuccess('Photo added successfully');
-    // toasty.toastInfo('Photo added successfully ');
   };
 
   const handleChangeInput = event => {
