@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import css from './not-found-route.module.css';
 
-import oopsMobile1x from 'images/oops-mob@1x.png'
-import oopsMobile2x from 'images/oops-mob@2x.png'
-import oopsTab1x from 'images/oops-tab@1x.png'
-import oopsTab2x from 'images/oops-tab@2x.png'
-import oopsDesc1x from 'images/oops-desc@1x.png'
-import oopsDesc2x from 'images/oops-desc@2x.png'
+import oopsMobile1x from 'images/oops-mob@1x.png';
+import oopsMobile2x from 'images/oops-mob@2x.png';
+import oopsTab1x from 'images/oops-tab@1x.png';
+import oopsTab2x from 'images/oops-tab@2x.png';
+import oopsDesc1x from 'images/oops-desc@1x.png';
+import oopsDesc2x from 'images/oops-desc@2x.png';
 
 const NotFoundRoute = () => {
   return (
