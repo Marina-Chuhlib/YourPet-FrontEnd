@@ -30,7 +30,7 @@ export const SecondRenderStep = ({
           formData={formData}
         />
       ) : (
-        'May be Second Form for sell'
+        ''
       )}
       {chooseOption === 'lost/found' ? (
         <SecondFormSell
@@ -41,7 +41,7 @@ export const SecondRenderStep = ({
           formData={formData}
         />
       ) : (
-        'May be Second Form Lost'
+        ''
       )}
     </>
   );

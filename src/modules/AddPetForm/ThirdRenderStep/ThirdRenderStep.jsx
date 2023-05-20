@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThirdFormMyPet } from './ThirdFormMyPet';
+// import { ThirdFormMyPet } from './ThirdFormMyPet';
 import { ThirdFormSell } from './ThirdFormSell';
 import { ThirdFormLost } from './ThirdFormLost';
 
@@ -14,7 +14,7 @@ export const ThirdRenderStep = ({
 
   return (
     <>
-      {chooseOption === 'your pet' || chooseOption === 'in good hands' ? (
+      {/* {chooseOption === 'your pet' || chooseOption === 'in good hands' ? (
         <ThirdFormMyPet
           currentStatus={currentStatus}
           handleNextData={handleDone}
@@ -23,7 +23,7 @@ export const ThirdRenderStep = ({
         />
       ) : (
         ''
-      )}
+      )} */}
       {chooseOption === 'sell'  ? (
         <ThirdFormSell
           currentStatus={currentStatus}

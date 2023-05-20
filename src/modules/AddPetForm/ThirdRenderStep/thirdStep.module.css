@@ -95,6 +95,7 @@
   height: 30px;
   margin-left: 42px;
   margin-top: 42px;
+  stroke: #54adff;
 }
 
 .commentsContainerMyPet {
@@ -152,8 +153,8 @@
   .plusIcon {
     width: 48px;
     height: 48px;
-    margin-left: 78px;
-    margin-top: 78px;
+    margin-left: 68px;
+    margin-top: 68px;
   }
 
   .commentsContainerMyPet {

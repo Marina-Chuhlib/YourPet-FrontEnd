@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
+import {ReactComponent as Plus} from '../../../icons/Plus.svg'
 
 
 export const ThirdFormMyPet = ({
@@ -57,7 +58,7 @@ export const ThirdFormMyPet = ({
                 alt="Pet"
               />
             )}
-            <PlusIcon className={css.plusIcon} color="#54adff" />
+            <Plus className={css.plusIcon}  />
           </div>
         </label>
         {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
