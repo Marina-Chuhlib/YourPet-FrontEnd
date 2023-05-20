@@ -1,4 +1,3 @@
-
 .errorComent {
   position: absolute;
   bottom: 220px;
@@ -31,15 +30,10 @@
   align-items: center;
   margin-bottom: 24px;
   margin-left: 8px;
-  /* flex-direction: column; */
+
 }
 
-/* .wrapperAddPhoto {
-  display: flex;
-  flex-direction: column;
-  margin-top: 48px;
-  gap: 12px;
-} */
+
 
 .labelAddPhoto {
   font-weight: 500;
@@ -79,13 +73,6 @@
   margin-left: 8px;
 }
 
-/* .wrapperTextarea {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  margin-bottom: 53px;
-} */
 
 .labelComments {
   font-weight: 500;
@@ -158,7 +145,7 @@
   gap: 12px;
 }
 .labelSex {
-    color: #111111;
+  color: #111111;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.36;
@@ -195,7 +182,7 @@
   align-items: center;
   margin-bottom: 16px;
   margin-left: 8px;
-  /* flex-direction: column; */
+ 
 }
 .inputContainer {
   display: flex;
@@ -242,54 +229,48 @@
   margin-bottom: 8px;
   margin-top: 12px;
 }
+.inputCommentsLost {
+  width: 242px;
+  height: 80px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 16px;
+  border: 1px solid #54adff;
+  border-radius: 20px;
+  resize: none;
+  outline: none;
+}
 
 @media screen and (min-width: 768px) {
-  
-  .wparForm {
-  /* display: flex; */
-  /* justify-content: center;
-  align-items: center;
-  align-content: center;
-  justify-items: center; */
-  /* flex-direction: row; */
-  /* gap: 60px; */
-}
+  .pointBlock {
+    display: flex;
+    flex-direction: row;
+  }
 
-.pointBlock {
-  display: flex;
-  flex-direction: row;
-  background-color: green;
-}
-
-.sexContainer {
-  background-color: #fff;
-}
-.labelSex {
-  font-size: 20px;
-}
-.sexBlock {
-  margin-bottom: 58px;
-}
-.sexButton {
+  .sexContainer {
+    background-color: #fff;
+  }
+  .labelSex {
+    font-size: 20px;
+  }
+  .sexBlock {
+    margin-bottom: 58px;
+  }
+  .sexButton {
     font-size: 16px;
     padding-right: 12px;
-}
-
-.photoContainerSell {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 16px;
-  margin-left: 8px;
-  background-color: yellow;
-  /* flex-direction: column; */
-}
-
-  .titleSell {
-    /* text-align: center; */
   }
-  
+
+  .photoContainerSell {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-left: 8px;
+  }
+
   .inputContainer {
     margin-bottom: 38px;
     gap: 8px;
@@ -304,28 +285,31 @@
     font-size: 16px;
     padding: 12px;
   }
-.input:not(:last-child) {
-  margin-bottom: 24px;
-}
+  .input:not(:last-child) {
+    margin-bottom: 16px;
+  }
   .labelCommentsSell {
     font-size: 20px;
   }
-}
 
+  .inputCommentsLost {
+    width: 396px;
+    height: 184px;
+    font-size: 16px;
+  }
+}
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-.sexPhotoBlock {
-  display: flex;
-  flex-direction: column;
-  margin-right: 56px;
-  background-color: blue;
-}
+  .sexPhotoBlock {
+    display: flex;
+    flex-direction: column;
+    margin-right: 56px;
+  }
 }
 @media screen and (min-width: 1025px) {
-.sexPhotoBlock {
-  display: flex;
-  flex-direction: column;
-  margin-right: 72px;
-  background-color: tomato;
-}
+  .sexPhotoBlock {
+    display: flex;
+    flex-direction: column;
+    margin-right: 72px;
+  }
 }

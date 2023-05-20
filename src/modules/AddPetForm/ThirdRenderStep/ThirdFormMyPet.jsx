@@ -1,12 +1,10 @@
-import css from './thirdStep.module.css';
-
-import PlusIcon from 'icons/PlusIcon';
 import React, { useState } from 'react';
 // import { stepTwoValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
-import {ReactComponent as Plus} from '../../../icons/Plus.svg'
+import { ReactComponent as Plus } from '../../../icons/Plus.svg'
+import css from './thirdStep.module.css';
 
 
 export const ThirdFormMyPet = ({
