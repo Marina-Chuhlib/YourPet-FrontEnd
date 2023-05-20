@@ -29,9 +29,8 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 1.38;
-  color: #fef9f9;
-  background-color: #54adff;
-  background-color: aqua;
+  color: var(--fon-color);
+  background-color: var(--blue-color);
   border: none;
   border-radius: 40px;
   text-decoration: none;
@@ -59,7 +58,7 @@
 
 .item {
   padding: 20px 20px 40px 20px;
-  background-color: #ffffff;
+  background-color: var(--white-color);
 
   font-family: 'Manrope';
   font-style: normal;
@@ -136,7 +135,7 @@
 
   .item {
     padding: 20px 20px 21px 20px;
-    background-color: #ffffff;
+    background-color: var(--white-color);
 
     display: flex;
   }
