@@ -12,9 +12,7 @@ import css from './UserCard.module.css';
 
 const UserCard = () => {
   const { isLoading } = useSelector(state => state.auth);
-  const { user } = useSelector(state => state.auth);
-  // const { pets } = useSelector(state => state.auth);
-
+  // const { user } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
 
@@ -25,12 +23,10 @@ const UserCard = () => {
   return (
     <section className={css.container}>
       {isLoading && <Loader />}
-      {user && (
         <>
-          <UserForm user={user}></UserForm>
-          <MyPets></MyPets>
+          <UserForm></UserForm>
+          <MyPets />
         </>
-      )}
     </section>
   );
 };
