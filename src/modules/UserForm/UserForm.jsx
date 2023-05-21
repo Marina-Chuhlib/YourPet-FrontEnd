@@ -10,13 +10,14 @@ import {
   fetchUpdateAvatar,
 } from 'redux/auth/auth-operations';
 
-import { selectAuth } from 'redux/auth/auth-selectors';
+import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
 
 import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
 
 import {
   selectIsLoggedIn,
   selectlogoutSuccessful,
+  userInfo,
 } from 'redux/auth/auth-selectors';
 
 import Loader from 'shared/components/Loader/Loader';
@@ -34,9 +35,11 @@ import css from './UserForm.module.css';
 
 import * as toasty from 'shared/toastify/toastify';
 
-const UserForm = ({ user }) => {
+const UserForm = () => {
   const { token } = useSelector(selectAuth);
-  const { isLoading } = useSelector(state => state.auth);
+  const { isLoading } = useSelector(selectIsLoading);
+  const { user } = useSelector(userInfo);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
@@ -115,13 +118,13 @@ const UserForm = ({ user }) => {
         const result = await dispatch(
           fetchUpdateUser({ token, fieldToUpdate: fieldName, newValue: value })
         );
-        console.log(`Sending ${fieldName}=${value} to the server`);
+        // console.log(`Sending ${fieldName}=${value} to the server`);
 
         if (result.meta.requestStatus !== 'fulfilled') {
           toasty.toastError(`Opps! Incorrect ${fieldName} try,again`);
           return;
         }
-        toasty.toastSuccess(' Confirmed ');
+        toasty.toastSuccess('Added successfully');
       } catch (error) {
         toasty.toastError(`Error, try again`);
       }
