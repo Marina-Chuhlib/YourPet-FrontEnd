@@ -142,7 +142,6 @@ const Footer = () => {
         </div>
         {isModalOpen && (
           <Modal closeModal={closeModal}>
-            <h2 className={styles.titleCard}>Developers</h2>
             <div className={styles.developersContainer}>
               {developers.map(developer => (
                 <div key={developer.id} className={styles.developerCard}>
