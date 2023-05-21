@@ -110,7 +110,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = [...payload.notices];
         store.page = Number(payload.page);
         store.totalPages = payload.totalPages;
       })

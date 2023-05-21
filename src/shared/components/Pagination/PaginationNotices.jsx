@@ -1,3 +1,4 @@
+import React from 'react';
 import { Stack, Pagination, PaginationItem } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -7,15 +8,14 @@ const PaginationNotices = ({
   currentCategory,
   ownCurrentPage,
   favoriteCurrentPage,
-    onPageChange,
-  currentPage
+  onPageChange,
 }) => {
-    const currentPageInit =
-        currentCategory === 'own'
-            ? ownCurrentPage
-            : currentCategory === 'favorite'
-                ? favoriteCurrentPage
-                : currentPage;
+  const currentPage =
+    currentCategory === 'own'
+      ? ownCurrentPage
+      : currentCategory === 'favorite'
+      ? favoriteCurrentPage
+      : 1;
 
   const handlePageChange = (event, page) => {
     onPageChange(page);
@@ -26,7 +26,7 @@ const PaginationNotices = ({
       {totalPages > 1 && (
         <Pagination
           count={totalPages}
-          page={currentPageInit}
+          page={currentPage}
           color="primary"
           variant="outlined"
           onChange={handlePageChange}
