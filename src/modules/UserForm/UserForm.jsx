@@ -39,7 +39,7 @@ const UserForm = () => {
   const { token } = useSelector(selectAuth);
   const { isLoading } = useSelector(selectIsLoading);
   const { user } = useSelector(userInfo);
-  console.log(user);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
@@ -124,7 +124,7 @@ const UserForm = () => {
           toasty.toastError(`Opps! Incorrect ${fieldName} try,again`);
           return;
         }
-        toasty.toastSuccess(' Confirmed ');
+        toasty.toastSuccess('Added successfully');
       } catch (error) {
         toasty.toastError(`Error, try again`);
       }

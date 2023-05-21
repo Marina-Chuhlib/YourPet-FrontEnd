@@ -33,7 +33,6 @@ export const register = async data => {
 
 export const login = async data => {
   const { data: result } = await instance.post('/auth/login', data);
-  console.log(data);
   await setToken(result.accessToken);
   return result;
 };
