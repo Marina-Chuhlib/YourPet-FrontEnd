@@ -18,6 +18,7 @@ const initialState = {
     phone: '',
     city: '',
     imageURL: '',
+    favorite: [],
   },
   pets: [{}],
   registrationSuccessful: false,

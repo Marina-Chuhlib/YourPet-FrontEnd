@@ -1,11 +1,16 @@
 .listItems {
   list-style: none;
+  max-width: 440px;
   padding: 0;
   margin: 0;
   margin-bottom: 24px;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 0px 0px 40px 40px;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.listItems:hover,
+.listItems:focus {
+  box-shadow: 7px 13px 14px rgba(116, 177, 232, 0.24);
 }
 .imageThumb {
   position: relative;
@@ -23,6 +28,17 @@
   padding-right: 12px;
   display: flex;
   justify-content: space-between;
+}
+.icons {
+  stroke: #54adff;
+}
+.favoriteIcon {
+  /* composes: icons; */
+  fill: #54adff;
+}
+.infoIcons {
+  /* composes: icons; */
+  margin-right: 4px;
 }
 .categoryInfo {
   display: flex;
@@ -63,6 +79,8 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  justify-content: space-around;
+  width: 280px;
 }
 .noticeInfo {
   display: flex;
@@ -83,9 +101,20 @@
 .noticeinfo:nth-child(even) {
   min-width: 84px;
 }
-.noticeinfo:not(:last-child) {
+/* .noticeinfo:not(:last-child) {
   margin-right: 12px;
+} */
+
+.locationInfo {
+  /* composes: noticeInfo; */
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.locationInfo:hover,
+.locationInfo:focus {
+  background-color: #54adff;
+}
+
 .icon {
   margin-right: 4px;
 }
@@ -93,6 +122,17 @@
   padding: 20px;
   padding-bottom: 24px;
 }
+.locationIcon {
+  margin-right: 4px;
+  stroke: #54adff;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.locationIcon:hover,
+.locationIcon:focus {
+  stroke: #ffffff;
+}
+
 .noticeTitle {
   margin-bottom: 20px;
   font-size: 24px;
