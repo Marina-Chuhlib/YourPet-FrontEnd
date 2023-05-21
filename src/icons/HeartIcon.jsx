@@ -1,8 +1,5 @@
 import * as React from 'react';
 
-// color = stroke
-// color of fill = fill
-
 function HeartIcon(props) {
   return (
     <svg

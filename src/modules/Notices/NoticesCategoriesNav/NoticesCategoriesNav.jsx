@@ -1,16 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
-import {
-  fetchAllFavoriteNotices,
-  fetchNoticesByCategory,
-  fetchNoticesByOwn,
-} from 'redux/notices/noticesOperations';
-
-import css from '../NoticesCategoriesNav/NoticesCategoriesNav.module.css';
-import PlusIcon from 'icons/PlusIcon';
 import Filter from '../Filter/Filter';
+import PlusIcon from 'icons/PlusIcon';
+
+import css from './NoticesCategoriesNav.module.css';
+
 
 const link = [
   { to: 'sell', text: 'Sell' },
@@ -23,13 +20,24 @@ const getClassNameLink = ({ isActive }) => {
   return className;
 };
 
-const NoticesCategoriesNav = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+const NoticesCategoriesNav = ({
+  onPageChange,
+  onOwnClick,
+  onFavoriteClick,
+}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleCategoryClick = categoryName => {
-    dispatch(fetchNoticesByCategory({ categoryName, query: '' }));
+    dispatch(fetchNoticesByCategory({ categoryName, query: '', page: 1 }));
+    onPageChange(1); // Обновляем страницу пагинации
   };
+
+   const handleClick = () => {
+    navigate('/add-pet');
+  };
+
 
   return (
     <div className={css.wrapper}>
@@ -51,7 +59,9 @@ const NoticesCategoriesNav = () => {
               <NavLink
                 to="own"
                 className={getClassNameLink}
-                onClick={() => dispatch(fetchNoticesByOwn())}
+                onClick={() => {
+                  onOwnClick();
+                }}
               >
                 My ads
               </NavLink>
@@ -60,7 +70,9 @@ const NoticesCategoriesNav = () => {
               <NavLink
                 to="favorite"
                 className={getClassNameLink}
-                onClick={() => dispatch(fetchAllFavoriteNotices())}
+                onClick={() => {
+                  onFavoriteClick();
+                }}
               >
                 Favorite ads
               </NavLink>
@@ -68,13 +80,11 @@ const NoticesCategoriesNav = () => {
           </>
         )}
       </ul>
-      <div className={css.btnContainer}>
+       <div className={css.btnContainer}>
         <Filter />
-        <NavLink to="add-pet">
-          <button className={css.btn}>
-            Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
+          <button className={css.btn} onClick={handleClick}>
+          Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn}  />
           </button>
-        </NavLink>
       </div>
     </div>
   );

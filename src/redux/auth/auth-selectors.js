@@ -18,4 +18,4 @@ export const selectRegistrationSuccessful = ({ auth }) =>
 
 export const selectlogoutSuccessful = ({ auth }) => auth.registrationSuccessful;
 
-export const userInfo = state => state.user.user;
+export const userInfo = state => state.user;

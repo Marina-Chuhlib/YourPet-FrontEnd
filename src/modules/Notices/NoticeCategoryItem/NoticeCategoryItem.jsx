@@ -11,6 +11,7 @@ import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import Modal from 'shared/components/ModalWindow/Modal';
+
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
 // import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
@@ -76,7 +77,15 @@ const NoticeCategoryItem = ({
             <Button
               className={css.topBtn}
               SVGComponent={() => (
-                <HeartIcon color="#54ADFF" favorite={user.favorite} />
+                <HeartIcon
+                  className={
+                    css.favorite
+                      ? `${css.icons} ${css.favoriteIcon}`
+                      : css.icons
+                  }
+                  // color="#54ADFF"
+                  favorite={user.favorite}
+                />
               )}
             />
             {isLoggedIn && (
