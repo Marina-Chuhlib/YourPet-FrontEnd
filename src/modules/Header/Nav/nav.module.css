@@ -8,7 +8,7 @@
     .wrapper {
         width: 100%;
         margin-left: 230px;
-        margin-right: 580px;
+        margin-right: 200px;
     }
 
 }
@@ -53,6 +53,7 @@
     letter-spacing: 0.04em;
     text-decoration: none;
     color: #111111;
+    cursor: pointer;
 
 }
 
