@@ -1,9 +1,12 @@
-
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
-import { fetchAllFavoriteNotices, fetchNoticesByCategory, fetchNoticesByOwn } from 'redux/notices/noticesOperations';
+import {
+  fetchAllFavoriteNotices,
+  fetchNoticesByCategory,
+  fetchNoticesByOwn,
+} from 'redux/notices/noticesOperations';
 import { selectCategory } from 'redux/notices/noticesSelectors';
 import { useLocation } from 'react-router-dom';
 
@@ -21,13 +24,13 @@ const NoticesSearch = () => {
     setShowHelperText(false);
   }, []);
 
-  const handleKeywordChange = useCallback((e) => {
+  const handleKeywordChange = useCallback(e => {
     setKeyword(e.target.value);
     setShowHelperText(false);
   }, []);
 
   const handleSubmit = useCallback(
-    (e) => {
+    e => {
       e.preventDefault();
       const trimmedKeyword = keyword.trim();
 
@@ -46,16 +49,17 @@ const NoticesSearch = () => {
             fetchNoticesByCategory({
               categoryName: category,
               query: trimmedKeyword,
+              page: 1,
             })
           );
         }
       } catch (error) {
         console.log(error);
       } finally {
-        handleClear()
+        handleClear();
       }
     },
-    [category, categoryIsLoginUser, dispatch, keyword,handleClear]
+    [category, categoryIsLoginUser, dispatch, keyword, handleClear]
   );
 
   const [showHelperText, setShowHelperText] = useState(false);
@@ -93,7 +97,12 @@ const NoticesSearch = () => {
           fullWidth
         />
         {showHelperText && (
-          <Typography variant="caption" color="error" marginLeft="20px" fontSize="16px">
+          <Typography
+            variant="caption"
+            color="error"
+            marginLeft="20px"
+            fontSize="16px"
+          >
             Please enter something.
           </Typography>
         )}
@@ -103,4 +112,3 @@ const NoticesSearch = () => {
 };
 
 export default React.memo(NoticesSearch);
-

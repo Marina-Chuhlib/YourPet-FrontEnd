@@ -1,14 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
-import {
-  fetchAllFavoriteNotices,
-  fetchNoticesByCategory,
-  fetchNoticesByOwn,
-} from 'redux/notices/noticesOperations';
 
-import css from '../NoticesCategoriesNav/NoticesCategoriesNav.module.css';
+import css from './NoticesCategoriesNav.module.css';
 import PlusIcon from 'icons/PlusIcon';
 import Filter from '../Filter/Filter';
 
@@ -23,12 +19,17 @@ const getClassNameLink = ({ isActive }) => {
   return className;
 };
 
-const NoticesCategoriesNav = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+const NoticesCategoriesNav = ({
+  onPageChange,
+  onOwnClick,
+  onFavoriteClick,
+}) => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleCategoryClick = categoryName => {
-    dispatch(fetchNoticesByCategory({ categoryName, query: '' }));
+    dispatch(fetchNoticesByCategory({ categoryName, query: '', page: 1 }));
+    onPageChange(1); // Обновляем страницу пагинации
   };
 
   return (
@@ -51,7 +52,9 @@ const NoticesCategoriesNav = () => {
               <NavLink
                 to="own"
                 className={getClassNameLink}
-                onClick={() => dispatch(fetchNoticesByOwn())}
+                onClick={() => {
+                  onOwnClick();
+                }}
               >
                 My ads
               </NavLink>
@@ -60,7 +63,9 @@ const NoticesCategoriesNav = () => {
               <NavLink
                 to="favorite"
                 className={getClassNameLink}
-                onClick={() => dispatch(fetchAllFavoriteNotices())}
+                onClick={() => {
+                  onFavoriteClick();
+                }}
               >
                 Favorite ads
               </NavLink>
