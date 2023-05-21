@@ -18,20 +18,11 @@ const UserPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const registrationSuccessful = useSelector(selectRegistrationSuccessful);
 
-  // current();
-
-
-
-
-
   useEffect(() => {
     if (!isLoading && isLoggedIn && registrationSuccessful) {
       setShowModal(true);
     }
   }, [isLoading, isLoggedIn, registrationSuccessful]);
-
-
-
 
   const closeModal = () => {
     setShowModal(false);

@@ -84,3 +84,29 @@ export const fetchAllFavoriteNotices = createAsyncThunk(
     }
   }
 );
+// для додавання оголошення фаворита
+export const fetchAddToFavorite = createAsyncThunk(
+  'notices/add-favorite',
+  async (_id, { rejectWithValue }) => {
+    try {
+      const data = await App.addToFavoriteNotices(_id);
+      console.log(data);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+);
+// для видалення оголошення фаворита
+export const fetchRemoveFromFavorite = createAsyncThunk(
+  'notices/remove-favorite',
+  async (_id, { rejectWithValue }) => {
+    try {
+      const data = await App.removeFromFavoriteNotices(_id);
+      console.log(data);
+      return data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data);
+    }
+  }
+);

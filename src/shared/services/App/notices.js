@@ -44,3 +44,13 @@ export const getAllFavoriteNotices = async (query = '', page = 1) => {
   );
   return data;
 };
+
+export const addToFavoriteNotices = async _id => {
+  const { data } = await instance.patch(`notices/favorite/add/${_id}`);
+  return data;
+};
+
+export const removeFromFavoriteNotices = async _id => {
+  const { data } = await instance.patch(`notices/favorite/remove/${_id}`);
+  return data;
+};
