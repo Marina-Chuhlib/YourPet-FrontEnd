@@ -69,54 +69,69 @@ export const AddPetChooseForm = () => {
     navigate(-1);
   };
 
-  // const addPet = async (endpoint, category, data) => {
-  //   try {
-  //     const response = await instance.post(`${endpoint}${category}`, data);
-  //     return response.data;
-  //   } catch (error) {
-  //     return error.message;
-  //   }
-  // };
+   const addPet = async (endpoint, category, data) => {
+    try {
+       const response = await instance.post(`${endpoint}${category}`, data);
+  console.log(response)
+       return response.data;
+     } catch (error) {
+       return error.message;
+    }
+   };
 
-  const handleSubmit = stepData => {
-    setStep(step + 1);
-    setCurrentStatus(currentStatus + 1);
+  const handleNextValidation = stepData => {
+    const sendDataForm = { ...formData, ...stepData };
+    const { category } = sendDataForm;
 
-        // const sendDataForm = { ...formData, ...stepData };
-    // const { category } = sendDataForm;
+    delete sendDataForm.category;
+    console.log('work handleSubmit', step, currentStatus, chooseOption);
+    const formDataSend = new FormData();
 
-    // delete sendDataForm.category;
-    console.log("work handleSubmit", step, currentStatus, chooseOption);
-    // const formDataSend = new FormData();
-
-    // for (const key in sendDataForm) {
-    //   formData.append(key, sendDataForm[key]);
-    // }
-    // if (category === "your-pet") {
-    //   addPet('/pets/', '', formDataSend);
-    // } else {
-    //   addPet('/notices/user-notices', category, formDataSend)
-    // }
+    for (const key in sendDataForm) {
+      formDataSend.append(key, sendDataForm[key]);
+    }
+    if (category === 'your pet') {
+      validationSchema
+        .validate({ name, birth, breed })
+        .then(() => {
+        handleNextData({ name, birth, breed })
+        })
+      .then(() => addPet('/pets/', '', formDataSend));
+    } else {
+      validationSchema.validate({ name, birth, breed, title }).then(() => {
+        handleNextData({ name, birth, breed, title });
+      }).then(()=> {addPet('/notices/user-notices', category, formDataSend);})
+      
+    }
 
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };
 
 
-  const handleDone = () => {
-      console.log("HandleDone work")
-      // validationSchemaThree
-      //   .validate({ photo, comments }, { abortEarly: false })
-      //   .then(() => {
-      //     handleNextData({ photo, comments });
-      //   })
-      //   .catch(err => {
-      //     const validationErrors = {};
-      //     err.inner.forEach(error => {
-      //       validationErrors[error.path] = error.message;
-      //     });
-      //     setErrors(validationErrors);
-      //   });
-    };
+  // const handleDone = () => {
+  //     console.log("HandleDone work")
+  //     // validationSchemaThree
+  //     //   .validate({ photo, comments }, { abortEarly: false })
+  //     //   .then(() => {
+  //     //     handleNextData({ photo, comments });
+  //     //   })
+  //     //   .catch(err => {
+  //     //     const validationErrors = {};
+  //     //     err.inner.forEach(error => {
+  //     //       validationErrors[error.path] = error.message;
+  //     //     });
+  //     //     setErrors(validationErrors);
+  //     //   });
+   
+   
+  //     // const formData = new FormData();
+  //   // formData.append('imageURL', selectedImage);
+
+  //   // await dispatch(fetchUpdateAvatar({ token, formData }));
+    
+    
+    
+  //   };
 
   return (
     <>
@@ -135,7 +150,7 @@ export const AddPetChooseForm = () => {
           </ButtonRoutes>
         </FormContainer>
       )}
-   
+
       {step === 2 && (
         <FormContainer>
           <SecondRenderStep
@@ -144,14 +159,14 @@ export const AddPetChooseForm = () => {
             currentStatus={currentStatus}
           ></SecondRenderStep>
           <ButtonRoutes>
-            <ButtonNext textButton={'Next'} handleNextData={handleSubmit} />
+            <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
             <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
           </ButtonRoutes>
         </FormContainer>
       )}
 
       {step === 3 && (
-      <>
+        <>
           {chooseOption === 'your pet' || chooseOption === 'in good hands' ? (
             <FormContainer>
               <ThirdFormMyPet
@@ -162,7 +177,10 @@ export const AddPetChooseForm = () => {
               />
               <ButtonRoutes>
                 <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-                <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+                <ButtonPrev
+                  textButton={'Back'}
+                  handlePrevStep={handlePrevStep}
+                />
               </ButtonRoutes>
             </FormContainer>
           ) : (
@@ -174,13 +192,15 @@ export const AddPetChooseForm = () => {
               ></ThirdRenderStep>
               <ButtonRoutes>
                 <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-                <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+                <ButtonPrev
+                  textButton={'Back'}
+                  handlePrevStep={handlePrevStep}
+                />
               </ButtonRoutes>
             </FormContainerThird>
           )}
-          </>)
-      }
-      
-          
-    </>  )
+        </>
+      )}
+    </>
+  );
 };

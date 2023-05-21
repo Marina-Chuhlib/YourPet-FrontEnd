@@ -78,13 +78,7 @@ export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, curr
         {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
 
-      {/* <ButtonRoutes>
-        <ButtonNext textButton={'Next'} onClick={handleNextValidation} />
-        <ButtonPrev
-          textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
-        />
-      </ButtonRoutes> */}
+      
     </div>
   );
 };

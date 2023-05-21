@@ -63,6 +63,10 @@ export const getUser = async token => {
     throw error;
   }
 };
+// export const addContact = async data => {
+//   const { data: result } = await instance.post('/contacts', data);
+//   return result;
+// };
 
 export const updateUserInf = async (fieldToUpdate, newValue, token) => {
   setToken(token);
