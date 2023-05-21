@@ -12,7 +12,7 @@ import FemaleIcon from 'icons/FemaleIcon';
 export const ThirdFormLost = ({ formData, currentStatus }) => {
   const [photo, setPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const [place, setPlace] = useState(formData.place || '');
+  const [location, setLocation] = useState(formData.location || '');
 
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
@@ -110,20 +110,21 @@ export const ThirdFormLost = ({ formData, currentStatus }) => {
           </div>
         </div>
         <div className={css.inputContainer}>
-          <label className={css.label} htmlFor="place">
+          <label className={css.label} htmlFor="location">
             Location
           </label>
           <input
             className={css.input}
             type="text"
-            id="place"
-            value={place}
-            onChange={e => setPlace(e.target.value)}
+            id="location"
+            value={location}
+            onChange={e => setLocation(e.target.value)}
             placeholder="Type of location"
           />
-          {errors.place && <p className={css.ErrorText}>{errors.place}</p>}
+          {errors.location && (
+            <p className={css.ErrorText}>{errors.location}</p>
+          )}
 
-         
           <label className={css.labelCommentsSell} htmlFor="comments">
             Comments
           </label>

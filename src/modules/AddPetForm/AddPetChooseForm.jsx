@@ -14,7 +14,9 @@ import { SecondRenderStep } from './SecondStep/SecondRenderStep';
 import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
 
-import * as Pet from '../../shared/services/FormValidation/addPetValidation';
+// import * as Pet from '../../shared/services/FormValidation/addPetValidation';
+
+import { createRequestData } from './CreateRequestData';
 
 import instance from '../../shared/services/App/app';
 
@@ -86,56 +88,71 @@ export const AddPetChooseForm = ({
     }
   };
 
-  const handleNextValidation = (stepData, {name, birth, breed, title}) => {
-    const sendDataForm = { ...formData, ...stepData };
-    const { category } = sendDataForm;
-    console.log('work handleNextValidation', step, currentStatus, chooseOption);
-    const formDataSend = new FormData();
+//   const handleNextValidation = (stepData, {name, birth, breed, title}) => {
+//     const sendDataForm = { ...formData, ...stepData };
+//     const { category } = sendDataForm;
+//     console.log('work handleNextValidation', step, currentStatus, chooseOption);
+//     const formDataSend = new FormData();
 
-    for (const key in sendDataForm) {
-      formDataSend.append(key, sendDataForm[key]);
-    }
-    if (category === 'your pet') {
-      Pet.validationSchema.validate({ name, birth, breed }).then(() => {
-        handleNextData({ name, birth, breed });
-      });
-    } else {
-      Pet.validationSchema.validate({ name, birth, breed, title }).then(() => {
-        handleNextData({ name, birth, breed, title });
-      });
-    }
-  };
+//     for (const key in sendDataForm) {
+//       formDataSend.append(key, sendDataForm[key]);
+//     }
+//     if (category === 'your pet') {
+//       Pet.validationSchema.validate({ name, birth, breed }).then(() => {
+//         handleNextData({ name, birth, breed });
+//       });
+//     } else {
+//       Pet.validationSchema.validate({ name, birth, breed, title }).then(() => {
+//         handleNextData({ name, birth, breed, title });
+//       });
+//     }
+//   };
 
-  setFormData(prevData => ({ ...prevData, ...stepData }));
+//   setFormData(prevData => ({ ...prevData, ...stepData }));
+// };
+
+// const handleDone = ({photo, comments}) => {
+//   console.log('HandleDone work');
+//   Pet.validationSchemaThird
+//     .validate({ photo, comments }, { abortEarly: false })
+//     .then(() => {
+//       handleData({ photo, comments });
+//     })
+//     .catch(err => {
+//       const validationErrors = {};
+//       err.inner.forEach(error => {
+//         validationErrors[error.path] = error.message;
+//       });
+//       setErrors(validationErrors);
+//     });
+
+//   const handleData = stepData => {
+//     const sendDataForm = { ...formData, ...stepData };
+//     const { category } = sendDataForm;
+//     if (category === 'your pet') {
+//       addPet('/pets/', '', formDataSend);
+//     } else {
+//       addPet('/notices/user-notices', category, formDataSend);
+//     }
+
+//     delete sendDataForm.category;
+//     setFormData(prevData => ({ ...prevData, ...stepData }));
+//   };
+
+  // Варіант через Ініншиіл велью та глобальну функцію
+
+ const [state, setState] = useState(stateInitialValue);
+const handleFinish = async values => {
+  setState(prev => ({ ...prev, ...values }));
+  const data = new FormData();
+  createRequestData(data, state, values);
+
+  state.category === 'my pet'
+    ? dispatch(addPet(data))
+    : dispatch(addNotice(data));
 };
 
-const handleDone = ({photo, comments}) => {
-  console.log('HandleDone work');
-  Pet.validationSchemaThird
-    .validate({ photo, comments }, { abortEarly: false })
-    .then(() => {
-      handleData({ photo, comments });
-    })
-    .catch(err => {
-      const validationErrors = {};
-      err.inner.forEach(error => {
-        validationErrors[error.path] = error.message;
-      });
-      setErrors(validationErrors);
-    });
 
-  const handleData = stepData => {
-    const sendDataForm = { ...formData, ...stepData };
-    const { category } = sendDataForm;
-    if (category === 'your pet') {
-      addPet('/pets/', '', formDataSend);
-    } else {
-      addPet('/notices/user-notices', category, formDataSend);
-    }
-
-    delete sendDataForm.category;
-    setFormData(prevData => ({ ...prevData, ...stepData }));
-  };
 
 
   return (
@@ -166,7 +183,7 @@ const handleDone = ({photo, comments}) => {
           <ButtonRoutes>
             <ButtonNext
               textButton={'Next'}
-              handleNextData={handleNextValidation}
+              handleNextData={handleNextData}
             />
             <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
           </ButtonRoutes>
@@ -199,7 +216,7 @@ const handleDone = ({photo, comments}) => {
                 currentStatus={currentStatus}
               ></ThirdRenderStep>
               <ButtonRoutes>
-                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+                <ButtonNext textButton={'Done'} handleNextData={handleFinish} />
                 <ButtonPrev
                   textButton={'Back'}
                   handlePrevStep={handlePrevStep}

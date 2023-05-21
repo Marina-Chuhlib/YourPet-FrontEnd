@@ -1,0 +1,28 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import * as api from 'api/add-pet';
+import * as userPets from 'api/user-pets';
+
+export const addPet = createAsyncThunk(
+  'pet/add',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.addMyNewPet(data);
+      return result.data;
+    } catch ({ response }) {
+      return rejectWithValue(response.data.message);
+    }
+  }
+);
+
+export const addNotice = createAsyncThunk(
+  'notice/add',
+  async (data, { rejectWithValue }) => {
+    try {
+      const { data: result } = await api.addPetNotice(data);
+      return result;
+    } catch ({ response }) {
+      return rejectWithValue(response.data.message);
+    }
+  }
+);
