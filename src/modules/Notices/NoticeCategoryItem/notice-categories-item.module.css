@@ -29,6 +29,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .icons {
   stroke: #54adff;
 }
@@ -72,7 +73,10 @@
 .topBtn:focus {
   background-color: #9bd0ff;
 }
-
+/* .topBtn.active {
+  fill: #54adff;
+  background: none;
+} */
 .infoCardBlock {
   position: absolute;
   bottom: 12px;

@@ -90,7 +90,7 @@ export const fetchAddToFavorite = createAsyncThunk(
   async (_id, { rejectWithValue }) => {
     try {
       const data = await App.addToFavoriteNotices(_id);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch ({ response }) {
       return rejectWithValue(response.data);
