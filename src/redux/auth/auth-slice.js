@@ -78,10 +78,10 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(current.fulfilled, (state, { payload }) => {
-        const { email, favorite } = payload;
+        const { favorite } = payload;
         state.isLoading = false;
         state.registrationSuccessful = false;
-        state.user.email = email;
+        state.user = payload;
         state.isLoggedIn = true;
         state.favorite = favorite;
       })

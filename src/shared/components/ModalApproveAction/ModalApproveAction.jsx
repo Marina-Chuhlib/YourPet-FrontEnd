@@ -8,12 +8,14 @@ const ModalApproveAction = ({ closeModal }) => {
     <>
       <Modal className={css.modalApprove} closeModal={closeModal}>
         <h1>Already leaving?</h1>
-        <button className={css.modalBtn} onClick={closeModal}>
+        <div className={css.modalBtnContainer}>
+        <button className={`${css.modalBtn} ${css.whiteBtn}`} onClick={closeModal}>
           Cancel
         </button>
         <button className={css.modalBtn} onClick={closeModal}>
           Yes <LogoutOutlinedIcon className={css.modalIcon} />
         </button>
+        </div>
       </Modal>
     </>
   );
