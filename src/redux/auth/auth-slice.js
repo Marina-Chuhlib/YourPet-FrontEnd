@@ -168,10 +168,8 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAddToFavorite.fulfilled, (state, { payload }) => {
-        const { user } = payload;
-        console.log(payload);
-        // console.log(user);
-        state.user.favorite = user.favorite;
+        const { id } = payload;
+        state.user.favorite.push(id);
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -181,8 +179,13 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
-        const { user } = payload;
-        state.user.favorite = user.favorite;
+        // const { user } = payload;
+        state.isLoading = false;
+        const index = state.user.favorite.findIndex(
+          item => item.id === payload.id
+        );
+        state.user.favorite.splice(index, 1);
+        // state.user.favorite = user.favorite;
       })
       .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;

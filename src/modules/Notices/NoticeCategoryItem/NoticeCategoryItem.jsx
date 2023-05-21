@@ -46,23 +46,27 @@ const NoticeCategoryItem = ({
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
+
   const isMyAds = false;
 
   const dispatch = useDispatch();
 
-  const handleFavoriteToggle = () => {
+  const handleFavoriteToggle = async () => {
     if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
-    if (favorites === true) {
+    if (favorites.includes(_id)) {
       try {
-        dispatch(fetchRemoveFromFavorite(_id));
-        return toasty.toastSuccess('remove from favorite');
+        await dispatch(fetchRemoveFromFavorite(_id));
+
+        // toasty.toastSuccess('remove from favorite');
+        return;
       } catch (e) {
         toasty.toastError(e.message);
       }
     } else {
       try {
-        dispatch(fetchAddToFavorite(_id));
-        return toasty.toastSuccess('add to favorite');
+        await dispatch(fetchAddToFavorite(_id));
+        toasty.toastSuccess('add to favorite');
+        return;
       } catch (e) {
         toasty.toastError(e.message);
       }

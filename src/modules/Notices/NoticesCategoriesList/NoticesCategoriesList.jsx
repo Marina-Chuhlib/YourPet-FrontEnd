@@ -5,9 +5,6 @@ import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 import PlusIcon from 'icons/PlusIcon';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 
-// import Modal from 'shared/components/ModalWindow/Modal';
-// import NoticeModal from 'modules/NoticeModal/NoticeModal';
-
 import css from './notices-categories-list.module.css';
 
 const NoticesCategoriesList = () => {
