@@ -8,8 +8,6 @@ import {
   fetchNoticesByCategory,
   fetchNoticesByOwn,
   fetchAllFavoriteNotices,
-  fetchAddToFavorite,
-  // fetchRemoveFromFavorite,
 } from './noticesOperations';
 
 const initialState = {
@@ -119,11 +117,7 @@ const noticesSlice = createSlice({
       .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
         store.loading = false;
         store.error = payload;
-      })
-      .addCase(fetchAddToFavorite.pending, store => {
-        store.loading = true;
       });
-    // .addCase(fetchAddToFavorite.fulfilled);
   },
 });
 

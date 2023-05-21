@@ -10,6 +10,10 @@ import {
   fetchDeleteUserPet,
 } from './auth-operations';
 
+import {
+  fetchAddToFavorite,
+  fetchRemoveFromFavorite,
+} from 'redux/notices/noticesOperations';
 const initialState = {
   user: {
     name: null,
@@ -45,6 +49,7 @@ const authSlice = createSlice({
         state.token = accessToken;
         state.isLoggedIn = true;
         state.error = null;
+        // state.favorite = user.favorite;
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -62,6 +67,7 @@ const authSlice = createSlice({
         state.user = user;
         state.token = accessToken;
         state.isLoggedIn = true;
+        state.user.favorite = user.favorite;
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -72,11 +78,12 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(current.fulfilled, (state, { payload }) => {
-        const { email } = payload;
+        const { email, favorite } = payload;
         state.isLoading = false;
         state.registrationSuccessful = false;
         state.user.email = email;
         state.isLoggedIn = true;
+        state.favorite = favorite;
       })
       .addCase(current.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -93,6 +100,7 @@ const authSlice = createSlice({
         state.registrationSuccessful = false;
         state.token = null;
         state.isLoggedIn = false;
+        state.user.favorite = [];
       })
       .addCase(logout.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -103,8 +111,10 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, { payload }) => {
+        const { user, pets } = payload;
         state.isLoading = false;
-        state.user = payload;
+        state.user = user;
+        state.pets = pets;
         state.error = null;
       })
       .addCase(fetchUser.rejected, (state, { payload }) => {
@@ -119,7 +129,7 @@ const authSlice = createSlice({
         const { user } = payload;
         state.isLoading = false;
         state.registrationSuccessful = false;
-        state.user.user = user;
+        state.user = user;
         state.error = null;
       })
       .addCase(fetchUpdateUser.rejected, (state, { payload }) => {
@@ -134,7 +144,7 @@ const authSlice = createSlice({
         const { user } = payload;
         state.isLoading = false;
         state.registrationSuccessful = false;
-        state.user.user = user;
+        state.user = user;
         state.error = null;
       })
       .addCase(fetchUpdateAvatar.rejected, (state, { payload }) => {
@@ -147,10 +157,32 @@ const authSlice = createSlice({
       .addCase(fetchDeleteUserPet.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.registrationSuccessful = false;
-        const index = state.user.pets.findIndex(pet => pet._id === payload);
-        state.user.pets.splice(index, 1);
+        const index = state.pets.findIndex(pet => pet._id === payload);
+        state.pets.splice(index, 1);
       })
       .addCase(fetchDeleteUserPet.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchAddToFavorite.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAddToFavorite.fulfilled, (state, { payload }) => {
+        const { user } = payload;
+        state.user.favorite = user.favorite;
+      })
+      .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchRemoveFromFavorite.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
+        const { user } = payload;
+        state.user.favorite = user.favorite;
+      })
+      .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
