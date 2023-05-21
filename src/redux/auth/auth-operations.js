@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as toasty from "../../shared/toastify/toastify";
 
 import * as api from '../../shared/services/App/app';
 import { setToken } from '../../shared/services/App/app';
@@ -10,6 +11,9 @@ export const register = createAsyncThunk(
       const result = await api.register(data);
       return result;
     } catch ({ response }) {
+      if (response.status === 409) {
+            toasty.toastError(response.data.message);
+        }
       return rejectWithValue(response);
     }
   }

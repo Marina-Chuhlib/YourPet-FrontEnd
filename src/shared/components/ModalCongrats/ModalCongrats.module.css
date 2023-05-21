@@ -70,15 +70,12 @@ h1 {
   cursor: pointer;
 }
 
+.modalBtn:hover {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  cursor: pointer;
+}
+
 .modalIcon {
   fill: #fef9f9;
-  width: 24px;
-  height: 24px;
   margin-left: 12px;
-  /* position: absolute; */
-  /* width: 24px;
-  height: 20.97px; */
-  /* left: 5.56px;
-  top: -2.59px; */
-  transform: rotate(25deg);
 }
