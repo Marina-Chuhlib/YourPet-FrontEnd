@@ -12,15 +12,14 @@ import css from './UserCard.module.css';
 
 const UserCard = () => {
   const { isLoading } = useSelector(state => state.auth);
-  const { user } = useSelector(state => state.auth.user);
-  const {pets} = useSelector(state => state.auth.user);
+  const { user } = useSelector(state => state.auth);
+  const { pets } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
-
 
   return (
     <section className={css.container}>
