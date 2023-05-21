@@ -83,7 +83,7 @@ const authSlice = createSlice({
         state.registrationSuccessful = false;
         state.user = payload;
         state.isLoggedIn = true;
-        state.favorite = favorite;
+        state.user.favorite = favorite;
       })
       .addCase(current.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -169,6 +169,8 @@ const authSlice = createSlice({
       })
       .addCase(fetchAddToFavorite.fulfilled, (state, { payload }) => {
         const { user } = payload;
+        console.log(payload);
+        // console.log(user);
         state.user.favorite = user.favorite;
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {

@@ -1,16 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from 'icons/ClockIcon';
 import FemaleIcon from 'icons/FemaleIcon';
 import LocationIcon from 'icons/LocationIcon';
 import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
+import * as toasty from '../../../shared/toastify/toastify';
 
 import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import Modal from 'shared/components/ModalWindow/Modal';
+import { getFavorite } from 'redux/auth/auth-selectors';
+import {
+  fetchAddToFavorite,
+  fetchRemoveFromFavorite,
+} from 'redux/notices/noticesOperations';
 
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
@@ -39,6 +45,29 @@ const NoticeCategoryItem = ({
 }) => {
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const favorites = useSelector(getFavorite);
+  const isMyAds = false;
+
+  const dispatch = useDispatch();
+
+  const handleFavoriteToggle = () => {
+    if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
+    if (favorites === true) {
+      try {
+        dispatch(fetchRemoveFromFavorite(_id));
+        return toasty.toastSuccess('remove from favorite');
+      } catch (e) {
+        toasty.toastError(e.message);
+      }
+    } else {
+      try {
+        dispatch(fetchAddToFavorite(_id));
+        return toasty.toastSuccess('add to favorite');
+      } catch (e) {
+        toasty.toastError(e.message);
+      }
+    }
+  };
 
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
@@ -75,6 +104,7 @@ const NoticeCategoryItem = ({
           <p className={css.categoryInfo}>{category}</p>
           <div>
             <Button
+              onClick={handleFavoriteToggle}
               className={css.topBtn}
               SVGComponent={() => (
                 <HeartIcon
@@ -88,7 +118,7 @@ const NoticeCategoryItem = ({
                 />
               )}
             />
-            {isLoggedIn && (
+            {isMyAds && (
               <Button
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
