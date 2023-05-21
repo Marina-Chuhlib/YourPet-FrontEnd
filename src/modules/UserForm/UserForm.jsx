@@ -160,7 +160,7 @@ const UserForm = ({ user }) => {
   const onLogout = () => {
     setIsModalOpen(true);
   };
-
+  
   return (
     <>
       {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
