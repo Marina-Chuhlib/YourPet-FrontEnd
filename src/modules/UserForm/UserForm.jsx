@@ -10,14 +10,14 @@ import {
   fetchUpdateAvatar,
 } from 'redux/auth/auth-operations';
 
-import { selectAuth,selectIsLoading } from 'redux/auth/auth-selectors';
+import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
 
 import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
 
 import {
   selectIsLoggedIn,
   selectlogoutSuccessful,
-  userInfo
+  userInfo,
 } from 'redux/auth/auth-selectors';
 
 import Loader from 'shared/components/Loader/Loader';
@@ -39,7 +39,7 @@ const UserForm = () => {
   const { token } = useSelector(selectAuth);
   const { isLoading } = useSelector(selectIsLoading);
   const { user } = useSelector(userInfo);
-  console.log(user)
+  console.log(user);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const filePicker = useRef(null);
