@@ -47,3 +47,8 @@
 .btnClose:focus {
   transform: scale(1.2);
 }
+
+.modalContent {
+  max-height: 600px;
+  overflow-y: auto;
+}

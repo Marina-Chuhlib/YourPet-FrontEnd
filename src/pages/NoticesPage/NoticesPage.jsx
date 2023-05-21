@@ -11,7 +11,7 @@ import {
   selectNoticesLoading,
   selectNoticesTotalPages,
   // selectCategory,
-  // selectNoticesPage,
+  selectNoticesPage,
 } from '../../redux/notices/noticesSelectors';
 import NoticesSearch from 'modules/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'modules/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -25,7 +25,7 @@ const NoticesPage = () => {
   const notices = useSelector(getAllNotices);
   const loading = useSelector(selectNoticesLoading);
   const totalPages = useSelector(selectNoticesTotalPages);
-  // const currentPage = useSelector(selectNoticesPage);
+  const currentPage = useSelector(selectNoticesPage);
   const location = useLocation();
   const currentCategory = location.pathname.split('/')[2];
   // const currentCategory = useSelector(selectCategory);
@@ -103,6 +103,7 @@ const NoticesPage = () => {
       {notices && <Outlet />}
 
       <PaginationNotices
+        currentPage={currentPage}
         totalPages={totalPages}
         currentCategory={currentCategory}
         ownCurrentPage={ownCurrentPage}
@@ -122,3 +123,5 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
+
+
