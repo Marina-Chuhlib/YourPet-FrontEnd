@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'shared/components/ModalWindow/Modal';
 import styles from './Footer.module.css';
-import { ReactComponent as Logo } from '../Header/logo/logo.svg';
+// import { ReactComponent as Logo } from '../Header/logo/logo.svg';
 
 
 const Footer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    // const [isMobile, setIsMobile] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -108,23 +108,23 @@ const Footer = () => {
     },
     ];
     
-     useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    //  useEffect(() => {
+    // const handleResize = () => {
+    //   setIsMobile(window.innerWidth < 768);
+    // };
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    // window.addEventListener('resize', handleResize);
+    // handleResize();
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-     }, []);
+    // return () => {
+    //   window.removeEventListener('resize', handleResize);
+    // };
+    //  }, []);
     
   return (
     <div className="container">
       <footer className={styles.footer}>
-       {isMobile ? null : <Logo />}
+       {/* {isMobile ? null : <Logo />} */}
         <div className={styles.footerContent}>
           <div className={styles.footerSection}>
             <h2 className={styles.titleFooter}>About Us</h2>
