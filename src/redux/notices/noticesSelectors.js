@@ -5,3 +5,4 @@ export const selectCategory = store => store.notices.category;
 export const selectNoticesTotalPages = store => store.notices.totalPages;
 export const selectNoticesPage = store => store.notices.page;
 export const selectNoticesLoading = store => store.notices.loading;
+export const selectKeyword = store => store.notices.keyword;

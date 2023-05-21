@@ -28,7 +28,7 @@ const Modal = ({ children, closeModal }) => {
         <button className={css.btnClose} onClick={closeModal}>
           <Close></Close>
         </button>
-        {children}
+        <div className={css.modalContent}>{children}</div>
       </div>
     </div>,
     modalRoot
