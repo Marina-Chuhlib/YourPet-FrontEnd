@@ -21,6 +21,8 @@ export const userInfo = state => state.auth;
 
 export const getFavorite = ({ auth }) => auth.user.favorite;
 
+export const getUserId = ({ auth }) => auth.user._id;
+
 export const userMyPets = state => {
   const { pets } = state.auth;
   return pets;

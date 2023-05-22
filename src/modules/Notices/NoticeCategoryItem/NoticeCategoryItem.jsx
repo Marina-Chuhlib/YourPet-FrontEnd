@@ -12,11 +12,13 @@ import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import Modal from 'shared/components/ModalWindow/Modal';
-import { getFavorite } from 'redux/auth/auth-selectors';
+import { getFavorite, getUserId } from 'redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
+  fetchDeleteNotice,
 } from 'redux/notices/noticesOperations';
+// import { getAllFavoriteNotices } from '../../../redux/notices/noticesSelectors';
 
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
@@ -38,8 +40,10 @@ const NoticeCategoryItem = ({
   // const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
+  const userId = useSelector(getUserId);
+  // const favoritesHeart = useSelector(getAllFavoriteNotices);
 
-  const isMyAds = false;
+  // const isMyAds = false;
 
   const dispatch = useDispatch();
 
@@ -49,7 +53,7 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchRemoveFromFavorite(_id));
         toasty.toastSuccess('remove from favorite');
-
+        checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -58,6 +62,7 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
+        checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -92,6 +97,23 @@ const NoticeCategoryItem = ({
 
   const age = getAge(date);
 
+  const checkFavorite = _id => {
+    if (favorites.includes(_id)) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkOwner = owner => {
+    if (owner === userId) {
+      return true;
+    }
+    return false;
+  };
+  const handleDelete = _id => {
+    console.log(_id);
+    dispatch(fetchDeleteNotice(_id));
+  };
   return (
     <li key={_id} className={css.listItems}>
       <div className={css.imageThumb}>
@@ -105,7 +127,7 @@ const NoticeCategoryItem = ({
               SVGComponent={() => (
                 <HeartIcon
                   className={
-                    css.favorite
+                    checkFavorite(_id)
                       ? `${css.icons} ${css.favoriteIcon}`
                       : css.icons
                   }
@@ -113,8 +135,9 @@ const NoticeCategoryItem = ({
                 />
               )}
             />
-            {isMyAds && (
+            {checkOwner(owner) && (
               <Button
+                onClick={() => handleDelete(_id)}
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
               />

@@ -84,6 +84,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNoticesByCategory.pending, store => {
         store.loading = true;
         store.items = [];
+        store.itemsFavorite = [];
       })
       .addCase(fetchNoticesByCategory.fulfilled, (store, { payload }) => {
         store.loading = false;
