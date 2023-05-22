@@ -19,11 +19,17 @@ const initialState = {
   owner: {},
   page: 1,
   totalPages: 1,
+  keyword: '',
 };
 
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    setKeyword: (state, action) => {
+      state.keyword = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchAllNotices.pending, store => {
@@ -83,6 +89,7 @@ const noticesSlice = createSlice({
         store.category = payload.category;
         store.page = Number(payload.data.page);
         store.totalPages = payload.data.totalPages;
+        store.keyword = '';
       })
       .addCase(fetchNoticesByCategory.rejected, (store, { payload }) => {
         store.loading = false;
@@ -110,7 +117,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
         store.loading = false;
-        store.items = [...payload.data.notices];
+        store.items = [...payload.notices];
         store.page = Number(payload.page);
         store.totalPages = payload.totalPages;
       })
@@ -122,3 +129,4 @@ const noticesSlice = createSlice({
 });
 
 export default noticesSlice.reducer;
+export const { setKeyword } = noticesSlice.actions;

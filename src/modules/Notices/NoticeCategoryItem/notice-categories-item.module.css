@@ -1,6 +1,6 @@
 .listItems {
   list-style: none;
-  max-width: 440px;
+  width: 280px;
   padding: 0;
   margin: 0;
   margin-bottom: 24px;
@@ -29,12 +29,13 @@
   display: flex;
   justify-content: space-between;
 }
+
 .icons {
   stroke: #54adff;
 }
 .favoriteIcon {
   /* composes: icons; */
-  fill: #54adff;
+  fill: red;
 }
 .infoIcons {
   /* composes: icons; */
@@ -72,7 +73,10 @@
 .topBtn:focus {
   background-color: #9bd0ff;
 }
-
+/* .topBtn.active {
+  fill: #54adff;
+  background: none;
+} */
 .infoCardBlock {
   position: absolute;
   bottom: 12px;
@@ -176,7 +180,7 @@
 }
 @media screen and (min-widt: 768px) {
   .listItems {
-    max-width: 336px;
+    width: 336px;
     flex-basis: calc((100% - 32px) / 2);
   }
   .noticeDesc {
@@ -194,7 +198,7 @@
 }
 @media screen and (min-width: 1200px) {
   .listItems {
-    max-width: 288px;
+    width: 288px;
     flex-basis: calc((100% - 96px) / 4);
   }
 }

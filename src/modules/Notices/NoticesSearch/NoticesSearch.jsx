@@ -41,9 +41,9 @@ const NoticesSearch = () => {
 
       try {
         if (categoryIsLoginUser === 'own') {
-          dispatch(fetchNoticesByOwn(trimmedKeyword));
+          dispatch(fetchNoticesByOwn(trimmedKeyword, 1));
         } else if (categoryIsLoginUser === 'favorite') {
-          dispatch(fetchAllFavoriteNotices(trimmedKeyword));
+          dispatch(fetchAllFavoriteNotices(trimmedKeyword, 1));
         } else if (category) {
           dispatch(
             fetchNoticesByCategory({
@@ -112,3 +112,5 @@ const NoticesSearch = () => {
 };
 
 export default React.memo(NoticesSearch);
+
+

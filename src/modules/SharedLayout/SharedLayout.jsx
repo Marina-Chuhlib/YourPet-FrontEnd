@@ -5,6 +5,7 @@ import Header from 'modules/Header/Header';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from 'modules/Footer/Footer';
 
 // import { current } from 'redux/auth/auth-operations';
 
@@ -17,9 +18,7 @@ const SharedLayout = () => {
 
   return (
     <>
-      <header>
         <Header />
-      </header>
       <main>
         <div>
           <Outlet />
@@ -29,6 +28,7 @@ const SharedLayout = () => {
           />
         </div>
       </main>
+      <footer><Footer/></footer>
     </>
   );
 };

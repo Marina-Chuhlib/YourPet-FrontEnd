@@ -6,6 +6,7 @@ h1 {
     text-align: center;
     color: #111111;
     margin-top: 68px;
+    margin-bottom: 50px;
   }
   
   @media (min-width: 768px) {
@@ -18,6 +19,7 @@ h1 {
   
   .modalApprove {
     width: 280px;
+    /* height: 354px; */
   }
   
   @media (min-width: 768px) {
@@ -26,6 +28,11 @@ h1 {
     }
   }
   
+  .modalBtnContainer {
+    display: flex;
+    justify-content: center;
+  }
+
   .text {
     font-family: 'Manrope';
     font-weight: 500;
@@ -53,9 +60,9 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 8px 28px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 248px;
+    margin-right: 167 px;
+    margin-left: 7px;
+    width: 129px;
     height: 40px;
     background: #54adff;
     outline: none;
@@ -80,6 +87,13 @@ h1 {
     height: 20.97px; */
     /* left: 5.56px;
     top: -2.59px; */
-    transform: rotate(25deg);
+    transform: rotate(180deg);
+  }
+
+  .whiteBtn {
+    background-color: white;
+    color: #54adff;
+    border: 2px solid #54adff;
+    margin-right: 17px;
   }
   

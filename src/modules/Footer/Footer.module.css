@@ -1,0 +1,204 @@
+.footer {
+  border-top: 2px solid var(--orange-color);
+  margin-top: 20px;
+  background-color: var(--fon-color);
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerContent {
+  margin-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerSection {
+  width: 45%;
+}
+
+.titleFooter {
+  font-size: 24px;
+  color: var(--orange-color);
+}
+
+.titleCard {
+  color: var(--blue-color);
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: var(--dark-color);
+  line-height: 1.5;
+}
+
+.modalOpenButton {
+  background-color: #54adff;
+  color: var(--fon-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: pulse-animation 2s ease-in-out infinite;
+}
+
+.modalOpenButton:hover {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: var(--fon-color);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.titleCard {
+  color: var(--blue-color);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.developersContainer {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.developerCard {
+  background-color: var(--white-color);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  align-items: center;
+}
+
+.developerPhoto {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .developersContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .developerPhoto {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .developersContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .developerPhoto {
+    width: 250px;
+    height: 250px;
+  }
+  .footer {
+    margin-top: 60px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .developersContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.name {
+  color: var(--green-color);
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.text {
+  color: var(--dark-color);
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.socialLinks {
+  margin-top: 10px;
+}
+
+.socialLinks.link {
+  color: var(--blue-color);
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.socialLinks.link:hover {
+  color: var(--red-color);
+}
+
+@media screen and (max-width: 768px) {
+  .footerContent {
+    margin-left: 0;
+  }
+  .text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footerContent {
+    margin: 0;
+    justify-content: center;
+  }
+  .footerSection {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .titleFooter {
+    font-size: 20px;
+  }
+  .titleCard {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .modalOpenButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+  .text {
+    font-size: 16px;
+  }
+}

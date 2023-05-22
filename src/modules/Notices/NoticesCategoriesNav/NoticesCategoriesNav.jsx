@@ -1,13 +1,11 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNoticesByCategory } from 'redux/notices/noticesOperations';
+import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import Filter from '../Filter/Filter';
 import PlusIcon from 'icons/PlusIcon';
 
 import css from './NoticesCategoriesNav.module.css';
-
 
 const link = [
   { to: 'sell', text: 'Sell' },
@@ -21,23 +19,15 @@ const getClassNameLink = ({ isActive }) => {
 };
 
 const NoticesCategoriesNav = ({
-  onPageChange,
   onOwnClick,
   onFavoriteClick,
+  handleCategoryClick,
 }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const handleCategoryClick = categoryName => {
-    dispatch(fetchNoticesByCategory({ categoryName, query: '', page: 1 }));
-    onPageChange(1); // Обновляем страницу пагинации
-  };
-
-   const handleClick = () => {
+  const handleClick = () => {
     navigate('/add-pet');
   };
-
 
   return (
     <div className={css.wrapper}>
@@ -47,7 +37,9 @@ const NoticesCategoriesNav = ({
             <NavLink
               to={element.to}
               className={getClassNameLink}
-              onClick={() => handleCategoryClick(element.to)}
+              onClick={() => {
+                handleCategoryClick(element.to);
+              }}
             >
               {element.text}
             </NavLink>
@@ -80,11 +72,11 @@ const NoticesCategoriesNav = ({
           </>
         )}
       </ul>
-       <div className={css.btnContainer}>
+      <div className={css.btnContainer}>
         <Filter />
-          <button className={css.btn} onClick={handleClick}>
-          Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn}  />
-          </button>
+        <button className={css.btn} onClick={handleClick}>
+          Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
+        </button>
       </div>
     </div>
   );
