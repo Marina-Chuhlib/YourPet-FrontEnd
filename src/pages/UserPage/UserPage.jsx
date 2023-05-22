@@ -31,7 +31,7 @@ const UserPage = () => {
   return (
     <>
       {showModal && <ModalCongrats closeModal={closeModal} />}
-      <UserCard />;
+      <UserCard />
     </>
   );
 };

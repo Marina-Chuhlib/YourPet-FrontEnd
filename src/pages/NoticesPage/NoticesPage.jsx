@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+
 import {
   fetchNoticesByCategory,
   fetchNoticesByOwn,
@@ -13,6 +15,8 @@ import {
   // selectCategory,
   selectNoticesPage,
 } from '../../redux/notices/noticesSelectors';
+// import { getFavorite } from 'redux/auth/auth-selectors';
+
 import NoticesSearch from 'modules/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'modules/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import PaginationNotices from 'shared/components/Pagination/PaginationNotices';
@@ -32,16 +36,17 @@ const NoticesPage = () => {
 
   const [ownCurrentPage, setOwnCurrentPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
-
+  // const favoriteNotice = useSelector(getFavorite);
+  // console.log(favoriteNotice);
   // useEffect(() => {
   //   dispatch(
-  //     fetchNoticesByCategory({
-  //       categoryName: currentCategory,
+  //     fetchAllFavoriteNotices({
   //       query: '',
   //       page: 1,
   //     })
+  //     // categoryName: currentCategory,
   //   );
-  // }, [dispatch, currentCategory]);
+  // }, [dispatch, favoriteNotice]);
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
@@ -123,5 +128,3 @@ const NoticesPage = () => {
 };
 
 export default NoticesPage;
-
-

@@ -86,38 +86,48 @@
   }
 }
 
-.link {
-  width: 248px;
-  margin-left: auto;
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
   margin-right: auto;
-  font-family: inherit;
-  padding: 9px 52px;
-  border: none;
-  background-image: url(../../images/icons/leg.svg);
-  background-size: 10%;
-  background-repeat: no-repeat;
-  background-position: right 60px center;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  margin-left: auto;
+  width: 248px;
+  height: 40px;
+  background: #54adff;
   outline: none;
-  background-color: var(--blue-color);
-  color: #fff;
+  border: transparent;
   border-radius: 40px;
+  color: #fef9f9;
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
   margin-top: 60px;
+  cursor: pointer;
 }
 
-.link:hover {
+.btn:hover,
+.btn:focus {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  cursor: pointer;
+}
+
+.icon {
+  fill: #fef9f9;
+  margin-left: 12px;
 }
 
 @media screen and (min-width: 768px) {
-  .link {
+  .btn {
     margin-top: 70px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .link {
+  .btn {
     margin-top: 18px;
   }
 }
