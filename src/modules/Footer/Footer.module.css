@@ -1,23 +1,47 @@
 .footer {
+  position: relative;
   border-top: 2px solid var(--orange-color);
   margin-top: 20px;
-  background-color: var(--fon-color);
-  padding: 30px 0;
+  background-color: transparent;
+  padding-top: 40px;
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .footerContent {
-  margin-left: 30px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: space-around;
 }
 
 .footerSection {
   width: 45%;
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.logo.mobile {
+  position: absolute;
+  top: 10px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .logo {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
 }
 
 .titleFooter {
@@ -35,6 +59,16 @@
 .link {
   color: var(--dark-color);
   line-height: 1.5;
+}
+
+.iconContainer {
+  border-radius: 50%;
+  transform: none;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconContainer:hover {
+  transform: scale(1.2);
 }
 
 .modalOpenButton {
@@ -90,18 +124,26 @@
 
 .developerCard {
   background-color: var(--white-color);
-  padding: 10px;
-  border-radius: 10px;
+  border-radius: 0px 0px 40px 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   align-items: center;
+  padding-bottom: 15px;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.developerCard:hover,
+.developerCard:focus {
+  box-shadow: 7px 13px 14px rgba(116, 177, 232, 0.24);
 }
 
 .developerPhoto {
-  width: 200px;
+  background: url('../../images/team-photos/default.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 50%;
   margin-bottom: 10px;
 }
 
@@ -110,7 +152,6 @@
     grid-template-columns: repeat(1, 1fr);
   }
   .developerPhoto {
-    width: 200px;
     height: 200px;
   }
 }
@@ -118,15 +159,16 @@
 @media screen and (min-width: 769px) {
   .developersContainer {
     grid-template-columns: repeat(2, 1fr);
+    padding: 30px;
   }
   .developerPhoto {
-    width: 250px;
     height: 250px;
   }
   .footer {
     margin-top: 60px;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .developersContainer {
     grid-template-columns: repeat(3, 1fr);
@@ -134,7 +176,7 @@
 }
 
 .name {
-  color: var(--green-color);
+  color: var(--orange-color);
   font-size: 18px;
   margin-bottom: 5px;
 }
@@ -147,18 +189,10 @@
 
 .socialLinks {
   margin-top: 10px;
-}
-
-.socialLinks.link {
-  color: var(--blue-color);
-  display: inline-block;
-  margin-right: 10px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.socialLinks.link:hover {
-  color: var(--red-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 @media screen and (max-width: 768px) {
@@ -170,7 +204,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .footer {
     flex-direction: column;
     text-align: center;
