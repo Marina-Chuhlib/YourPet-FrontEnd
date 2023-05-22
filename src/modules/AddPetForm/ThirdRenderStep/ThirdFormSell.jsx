@@ -19,7 +19,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
   const [price, setPrice] = useState(formData.price || '');
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
  const handleDone = () => {
    handleNextData({ photo, comments, sex, location, price });
@@ -113,7 +113,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
                 <Plus className={css.plusIcon} />
               </div>
             </label>
-            {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
+            {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
           </div>
         </div>
         <div className={css.inputContainer}>
@@ -128,9 +128,9 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             onChange={e => setLocation(e.target.value)}
             placeholder="Type of location"
           />
-          {errors.location && (
-            <p className={css.ErrorText}>{errors.location}</p>
-          )}
+          {/* {errors.location && (
+            // <p className={css.ErrorText}>{errors.location}</p>
+          )} */}
 
           <label className={css.label} htmlFor="price">
             Price
@@ -144,7 +144,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             required
             placeholder="Type of price"
           />
-          {errors.price && <p className={css.ErrorText}>{errors.price}</p>}
+          {/* {errors.price && <p className={css.ErrorText}>{errors.price}</p>} */}
 
           <label className={css.labelCommentsSell} htmlFor="comments">
             Comments
@@ -156,7 +156,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             placeholder="Type comment"
             onChange={e => setComments(e.target.value)}
           />
-          {errors.comments && <p>{errors.comments}</p>}
+          {/* {errors.comments && <p>{errors.comments}</p>} */}
         </div>
       </div>
       <ButtonRoutes>

@@ -19,7 +19,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
 
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const handleDone = () => {
     handleNextData({ photo, comments, sex, location });
@@ -113,7 +113,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
                 <Plus className={css.plusIcon} />
               </div>
             </label>
-            {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
+            {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
           </div>
         </div>
         <div className={css.inputContainer}>
@@ -128,9 +128,9 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
             onChange={e => setLocation(e.target.value)}
             placeholder="Type of location"
           />
-          {errors.location && (
-            <p className={css.ErrorText}>{errors.location}</p>
-          )}
+          {/* {errors.location && (
+            // <p className={css.ErrorText}>{errors.location}</p>
+          )} */}
 
           <label className={css.labelCommentsSell} htmlFor="comments">
             Comments
@@ -142,7 +142,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
             placeholder="Type comment"
             onChange={e => setComments(e.target.value)}
           />
-          {errors.comments && <p>{errors.comments}</p>}
+          {/* {errors.comments && <p>{errors.comments}</p>} */}
         </div>
       </div>
       <ButtonRoutes>
