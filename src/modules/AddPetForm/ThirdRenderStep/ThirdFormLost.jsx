@@ -8,8 +8,11 @@ import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import MaleIcon from 'icons/MaleIcon';
 import FemaleIcon from 'icons/FemaleIcon';
+import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
+import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
+import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormLost = ({ formData, currentStatus }) => {
+export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handlePrevStep }) => {
   const [photo, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState(formData.location || '');
@@ -17,6 +20,10 @@ export const ThirdFormLost = ({ formData, currentStatus }) => {
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
   const [errors, setErrors] = useState({});
+
+  const handleDone = () => {
+    handleNextData({ photo, comments, sex, location });
+  };
 
   //    const handleDone = () => {
   //     validationSchemaThree
@@ -138,6 +145,10 @@ export const ThirdFormLost = ({ formData, currentStatus }) => {
           {errors.comments && <p>{errors.comments}</p>}
         </div>
       </div>
+      <ButtonRoutes>
+        <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+      </ButtonRoutes>
     </div>
   );
 };

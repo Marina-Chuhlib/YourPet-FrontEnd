@@ -11,12 +11,14 @@ import FormContainer from 'shared/components/FormContainer/FormContainer';
 import FormContainerThird from 'shared/components/FormContainer/FormContainerThird';
 
 import { SecondRenderStep } from './SecondStep/SecondRenderStep';
-import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
+// import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
+import { ThirdFormSell } from './ThirdRenderStep/ThirdFormSell';
+import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
 
 import { useDispatch } from 'react-redux';
 import { addNotice, addPet } from 'redux/pets/pets-operations';
-import { createRequestData } from './CreateRequestData';
+
 
 // import * as Pet from '../../shared/services/FormValidation/addPetValidation';
 
@@ -139,20 +141,7 @@ export const AddPetChooseForm = () => {
 //       setErrors(validationErrors);
 //     });
 
-//   const handleData = stepData => {
-//     const sendDataForm = { ...formData, ...stepData };
-//     const { category } = sendDataForm;
-//     if (category === 'your pet') {
-//       addPet('/pets/', '', formDataSend);
-//     } else {
-//       addPet('/notices/user-notices', category, formDataSend);
-//     }
-
-//     delete sendDataForm.category;
-//     setFormData(prevData => ({ ...prevData, ...stepData }));
-//   };
-
-  // Варіант через Ініншиіл велью та глобальну функцію
+// 
 
  
   
@@ -165,11 +154,7 @@ export const AddPetChooseForm = () => {
         for (const key in sendDataForm) {
           formDataSend.append(key, sendDataForm[key]);
         }
-    
-    // const data = new FormData();
-    // console.log("163", data, state);
-    // createRequestData(data, state, values);
-    // setState(prev => ({ ...prev, ...values }));
+  
     console.log('done work', "formData:", formDataSend, "state:", state);
 
     state.category === 'your pet'
@@ -207,7 +192,7 @@ export const AddPetChooseForm = () => {
             chooseOption={chooseOption}
             currentStatus={currentStatus}
             handleNextData={handleNextData}
-            handlePrevStep={handlePrevStep} 
+            handlePrevStep={handlePrevStep}
           ></SecondRenderStep>
           {/* <ButtonRoutes>
             <ButtonNext
@@ -238,20 +223,31 @@ export const AddPetChooseForm = () => {
               </ButtonRoutes> */}
             </FormContainer>
           ) : (
+            ''
+          )}
+          {chooseOption === 'sell' ? (
             <FormContainerThird>
-              <ThirdRenderStep
-                formData={formData}
-                chooseOption={chooseOption}
+              <ThirdFormSell
                 currentStatus={currentStatus}
-              ></ThirdRenderStep>
-              <ButtonRoutes>
-                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-                <ButtonPrev
-                  textButton={'Back'}
-                  handlePrevStep={handlePrevStep}
-                />
-              </ButtonRoutes>
+                handleNextData={handleDone}
+                handlePrevStep={handlePrevStep}
+                formData={formData}
+              />
             </FormContainerThird>
+          ) : (
+            ''
+          )}
+          {chooseOption === 'lost/found' || chooseOption === 'in good hands' ? (
+            <FormContainerThird>
+              <ThirdFormLost
+                currentStatus={currentStatus}
+                handleNextData={handleDone}
+                handlePrevStep={handlePrevStep}
+                formData={formData}
+              />
+            </FormContainerThird>
+          ) : (
+            ''
           )}
         </>
       )}
