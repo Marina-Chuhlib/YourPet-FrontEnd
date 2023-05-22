@@ -12,7 +12,7 @@ import {
 
 import {
   fetchAddToFavorite,
-  fetchRemoveFromFavorite,
+  // fetchRemoveFromFavorite,
 } from 'redux/notices/noticesOperations';
 const initialState = {
   user: {
@@ -174,23 +174,24 @@ const authSlice = createSlice({
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
-      })
-      .addCase(fetchRemoveFromFavorite.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
-        // const { user } = payload;
-        state.isLoading = false;
-        const index = state.user.favorite.findIndex(
-          item => item.id === payload.id
-        );
-        state.user.favorite.splice(index, 1);
-        // state.user.favorite = user.favorite;
-      })
-      .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
       });
+    // .addCase(fetchRemoveFromFavorite.pending, state => {
+    //   state.isLoading = true;
+    // })
+    // .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
+    //   // const { user } = payload;
+    //   state.isLoading = false;
+    //   const index = state.user.favorite.findIndex(
+    //     item => item.id === payload.id
+    //   );
+    //   state.user.favorite.splice(index, 1);
+
+    //   // state.user.favorite = user.favorite;
+    // })
+    // .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.error = payload;
+    // });
   },
 });
 

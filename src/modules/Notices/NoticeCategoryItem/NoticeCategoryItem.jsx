@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from 'icons/ClockIcon';
 import FemaleIcon from 'icons/FemaleIcon';
@@ -8,7 +7,7 @@ import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
 import * as toasty from '../../../shared/toastify/toastify';
 
-import { getUser } from 'redux/auth/auth-selectors';
+// import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
@@ -35,11 +34,8 @@ const NoticeCategoryItem = ({
   breed,
   owner,
   name,
-  // myFavoriteNotice,
 }) => {
-  // const [isFavorite, setIsFavorite] = useState();
-
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
 
@@ -114,7 +110,6 @@ const NoticeCategoryItem = ({
                       : css.icons
                   }
                   // color="#54ADFF"
-                  favorite={user.favorite}
                 />
               )}
             />
