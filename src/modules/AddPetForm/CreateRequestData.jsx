@@ -1,14 +1,14 @@
 export function createRequestData(state, values) {
-  // console.log(state);
-  const time = state.birth;
-  const birthDay = time.slice(0, 2);
-  const birthMonth = time.slice(3, 5);
-  const birthYear = time.slice(-4);
-  const dateOfBirth = new Date(birthYear, birthMonth - 1, birthDay);
+
+//   const time = state.birth;
+//   const birthDay = time.slice(0, 2);
+//   const birthMonth = time.slice(3, 5);
+//   const birthYear = time.slice(-4);
+//   const birth = new Date(birthYear, birthMonth - 1, birthDay);
   const data = new FormData();
 
   if (state.category === 'your pet') {
-    data.append('birth', birth);
+    data.append('birth', values.birth);
     data.append('file', values.photo);
     data.append('type', state.type);
     data.append('name', state.name);
@@ -20,7 +20,7 @@ export function createRequestData(state, values) {
 
   if (state.category === 'sell') {
     data.append('file', values.photo);
-    data.append('birth', birth);
+    data.append('birth', values.birth);
     data.append('type', state.type);
     data.append('name', state.name);
     data.append('breed', state.breed);
@@ -32,9 +32,9 @@ export function createRequestData(state, values) {
     data.append('price', values.price);
   }
 
-  if (state.category === 'lost-found') {
+  if (state.category === 'lost/found') {
     data.append('file', values.photo);
-    data.append('birth', dateOfBirth);
+    data.append('birth', values.birth);
     data.append('type', state.type);
     data.append('name', state.petName);
     data.append('breed', state.breed);
@@ -45,9 +45,9 @@ export function createRequestData(state, values) {
     data.append('location', values.location);
   }
 
-  if (state.category === 'in good hand') {
+  if (state.category === 'in good hands') {
     data.append('file', values.photo);
-    data.append('birth', birth);
+    data.append('birth', values.birth);
     data.append('type', state.type);
     data.append('name', state.name);
     data.append('breed', state.breed);

@@ -17,7 +17,7 @@ export const SecondFormSell = ({
   const [birth, setBirthday] = useState(formData.birth || '');
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
-
+  console.log("name", name, breed);
   // const handleNextValidation = () => {
   //   stepOneValidationSchema
   //     .validate({ name, birth, breed, addTitle }, { abortEarly: false })
@@ -47,7 +47,7 @@ export const SecondFormSell = ({
           type="text"
           id="addTitle"
           value={addTitle}
-          onChange={e => setName(e.target.value)}
+          onChange={e => setAddTitle(e.target.value)}
           placeholder="Type title of add"
         />
         {errors.name && <p className={css.ErrorText}>{errors.name}</p>}

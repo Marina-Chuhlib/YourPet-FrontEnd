@@ -14,31 +14,44 @@ import { SecondRenderStep } from './SecondStep/SecondRenderStep';
 import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
 
-// import * as Pet from '../../shared/services/FormValidation/addPetValidation';
-
+import { useDispatch } from 'react-redux';
+import { addNotice, addPet } from 'redux/pets/pets-operations';
 import { createRequestData } from './CreateRequestData';
 
-import instance from '../../shared/services/App/app';
+// import * as Pet from '../../shared/services/FormValidation/addPetValidation';
 
-export const AddPetChooseForm = ({
-  name,
-  birth,
-  breed,
-  title,
-  photo,
-  comments,
-}) => {
+
+// import instance from '../../shared/services/App/app';
+
+const stateInitialValue = {
+  category: '',
+  name: '',
+  birth: '',
+  type: '',
+  breed: '',
+  photo: null,
+  comments: '',
+  sex: '',
+  location: '',
+  price: '',
+  title: '',
+};
+
+
+
+export const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [chooseOption, setChooseOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
-
-  const [formData, setFormData] = useState({});
+ const [state, setState] = useState(stateInitialValue);
+  const [formData, setFormData] = useState({ ...stateInitialValue });
 
   useEffect(() => {
     console.log('new state FORM DATA:', formData);
   }, [formData]);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChooseChange = (option, number) => {
@@ -49,15 +62,15 @@ export const AddPetChooseForm = ({
   };
 
   const handleNextData = stepData => {
-    console.log('NextData');
+    console.log('NextData', stepData);
     if (chooseOption && currentStatus < 3) {
       setStep(step + 1);
       setCurrentStatus(currentStatus + 1);
     } else {
       alert('Please type all info');
     }
-
     setFormData(prevData => {
+      console.log("prevData", prevData)
       return { ...prevData, ...stepData };
     });
   };
@@ -78,15 +91,15 @@ export const AddPetChooseForm = ({
     navigate(-1);
   };
 
-  const addPet = async (endpoint, category, data) => {
-    try {
-      const response = await instance.post(`${endpoint}${category}`, data);
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  };
+  // const addPet = async (endpoint, category, data) => {
+  //   try {
+  //     const response = await instance.post(`${endpoint}${category}`, data);
+  //     console.log(response);
+  //     return response.data;
+  //   } catch (error) {
+  //     return error.message;
+  //   }
+  // };
 
 //   const handleNextValidation = (stepData, {name, birth, breed, title}) => {
 //     const sendDataForm = { ...formData, ...stepData };
@@ -141,13 +154,18 @@ export const AddPetChooseForm = ({
 
   // Варіант через Ініншиіл велью та глобальну функцію
 
- const [state, setState] = useState(stateInitialValue);
-const handleFinish = async values => {
+ 
+  
+  const handleDone = async values => {
+  
   setState(prev => ({ ...prev, ...values }));
-  const data = new FormData();
-  createRequestData(data, state, values);
+    const data = new FormData();
+    console.log("163", data, state);
+    createRequestData(data, state, values);
+    setState(prev => ({ ...prev, ...values }));
+  // console.log('done work', data, values, state);
 
-  state.category === 'my pet'
+  state.category === 'your pet'
     ? dispatch(addPet(data))
     : dispatch(addNotice(data));
 };
@@ -216,7 +234,7 @@ const handleFinish = async values => {
                 currentStatus={currentStatus}
               ></ThirdRenderStep>
               <ButtonRoutes>
-                <ButtonNext textButton={'Done'} handleNextData={handleFinish} />
+                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
                 <ButtonPrev
                   textButton={'Back'}
                   handlePrevStep={handlePrevStep}

@@ -1,11 +1,11 @@
 
-import AddPetForm from "modules/AddPetForm/AddPetForm";
+import { AddPetChooseForm } from 'modules/AddPetForm/AddPetChooseForm';
 
 const AddPetPage = () => {
 
   return (
     <>
-      <AddPetForm/>
+      <AddPetChooseForm />
     </>
   );
 };
