@@ -16,7 +16,7 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
 }) => {
   const [photo, setPhoto] = useState('');
   const [comments, setComments] = useState('');
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const handleDone = () => {
     
@@ -69,7 +69,7 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
             <Plus className={css.plusIcon} />
           </div>
         </label>
-        {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
+        {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
       </div>
       <div className={css.commentsContainerMyPet}>
         <label className={css.labelComments} htmlFor="comments">
@@ -82,7 +82,7 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
           placeholder="Type comment"
           onChange={e => setComments(e.target.value)}
         />
-        {errors.comments && <p>{errors.comments}</p>}
+        {/* {errors.comments && <p>{errors.comments}</p>} */}
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />

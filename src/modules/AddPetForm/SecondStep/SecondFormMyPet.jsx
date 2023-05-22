@@ -16,7 +16,7 @@ export const SecondFormMyPet = ({
   const [name, setName] = useState(formData.name || '');
   const [birth, setBirthday] = useState(formData.birth || '');
   const [breed, setBreed] = useState(formData.breed || '');
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
   const handleNextValidation = () => {
     console.log('work NextValidation', "name: ", name, "birth: ", birth);
@@ -56,7 +56,7 @@ export const SecondFormMyPet = ({
           onChange={e => setName(e.target.value)}
           placeholder="Type name pet"
         />
-        {errors.name && <p className={css.ErrorText}>{errors.name}</p>}
+        {/* {errors.name && <p className={css.ErrorText}>{errors.name}</p>} */}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="birth">
@@ -71,7 +71,7 @@ export const SecondFormMyPet = ({
           required
           placeholder="Type date of birth"
         />
-        {errors.birth && <p className={css.ErrorText}>{errors.birthdate}</p>}
+        {/* {errors.birth && <p className={css.ErrorText}>{errors.birthdate}</p>} */}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="breed">
@@ -86,7 +86,7 @@ export const SecondFormMyPet = ({
           required
           placeholder="Type breed"
         />
-        {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
+        {/* {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>} */}
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
