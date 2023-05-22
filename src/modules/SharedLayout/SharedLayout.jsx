@@ -18,9 +18,7 @@ const SharedLayout = () => {
 
   return (
     <>
-      <header>
         <Header />
-      </header>
       <main>
         <div>
           <Outlet />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import {selectIsLoggedIn} from "../../../redux/auth/auth-selectors"
+import { selectIsLoggedIn } from '../../../redux/auth/auth-selectors';
 import Nav from '../Nav/Nav';
 import NavBarUser from '../NavBarUser/NavBarUser';
 import NavBarAuth from '../NavBarAuth/NavBarAuth';
@@ -9,7 +9,7 @@ import HamburgerIcon from '../../../icons/HamburgerIcon';
 import styles from './navigation.module.css';
 
 export default function Navigation({ isDesktop, isTablet, isMobile }) {
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,11 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
       {isDesktop && (
         <>
           <Nav />
-          {isLoggedIn ? <NavBarUser /> : <NavBarAuth />}
+          {isLoggedIn ? (
+            <NavBarUser style={{ marginLeft: 300 }} />
+          ) : (
+            <NavBarAuth />
+          )}
         </>
       )}
 
