@@ -34,9 +34,8 @@ const NoticeModal = ({ _id }) => {
     if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
     if (favorites.includes(_id)) {
       try {
-        await dispatch(fetchRemoveFromFavorite(_id));
-
-        // toasty.toastSuccess('remove from favorite');
+        dispatch(fetchRemoveFromFavorite(_id));
+        toasty.toastSuccess('remove from favorite');
         return;
       } catch (e) {
         toasty.toastError(e.message);

@@ -7,6 +7,7 @@ import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
 import * as toasty from '../../../shared/toastify/toastify';
+import moment from 'moment';
 
 import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
@@ -71,30 +72,37 @@ const NoticeCategoryItem = ({
 
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
-  function getAge(date) {
-    const ymdArr = date.split('.').map(Number).reverse();
-    ymdArr[1]--;
-    const bornDate = new Date(...ymdArr);
+  const getDate = bd => {
+    const birthDate = moment(bd, 'DD-MM-YYYY');
+    const currentDate = moment();
 
-    const now = new Date();
+    const yearsDiff = currentDate.diff(birthDate, 'years');
+    const monthsDiff = currentDate.diff(birthDate, 'month') % 12;
+    const totalMonths = yearsDiff * 12 + monthsDiff;
+    const daysDiff = currentDate.diff(birthDate, 'days') % 31;
 
-    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
+    if (totalMonths === 1) {
+      return `${totalMonths} month`;
+    }
 
-    now.setDate(now.getDate() - Math.floor(leapYears));
+    if (totalMonths !== 0 && totalMonths < 12) {
+      return `${totalMonths} months`;
+    }
 
-    const nowAsTimestamp = now.getTime();
-    const bornDateAsTimestamp = bornDate.getTime();
+    if (totalMonths >= 12 && totalMonths < 24) {
+      return `1 year`;
+    }
 
-    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
+    if (totalMonths === 0 && daysDiff === 1) {
+      return `1 day`;
+    }
 
-    const oneYearInMs = 3.17098e-11;
+    if (totalMonths === 0 && daysDiff > 1) {
+      return `${daysDiff} days`;
+    }
 
-    const age = Math.floor(ageAsTimestamp * oneYearInMs);
-    // console.log(age);
-    return age;
-  }
-
-  const age = getAge(date);
+    return `${yearsDiff} years`;
+  };
 
   return (
     <li key={_id} className={css.listItems}>
@@ -133,7 +141,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {age === 1 ? '1 year' : `${age} years`}
+            {getDate(date)}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (
