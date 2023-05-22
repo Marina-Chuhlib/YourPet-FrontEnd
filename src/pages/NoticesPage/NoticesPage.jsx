@@ -39,22 +39,14 @@ const NoticesPage = () => {
   // const favoriteNotice = useSelector(getFavorite);
   // console.log(favoriteNotice);
   // useEffect(() => {
-  //   if (currentCategory === 'own') {
-  //     dispatch(fetchNoticesByOwn({ query: '', page: 1 }));
-  //     return;
-  //   } else if (currentCategory === 'favorite') {
-  //     dispatch(fetchAllFavoriteNotices({ query: '', page: 1 }));
-  //     return;
-  //   } else {
-  //     dispatch(
-  //       fetchNoticesByCategory({
-  //         categoryName: currentCategory,
-  //         query: '',
-  //         page: 1,
-  //       })
-  //     );
-  //   }
-  // }, [dispatch, currentCategory]);
+  //   dispatch(
+  //     fetchAllFavoriteNotices({
+  //       query: '',
+  //       page: 1,
+  //     })
+  //     // categoryName: currentCategory,
+  //   );
+  // }, [dispatch, favoriteNotice]);
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
