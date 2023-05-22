@@ -16,7 +16,7 @@ import { ThirdFormSell } from './ThirdRenderStep/ThirdFormSell';
 import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
 
 import { useDispatch } from 'react-redux';
-import { addNotice, addPet } from 'redux/pets/pets-operations';
+import { addPetNotice, addMyNewPet } from 'redux/pets/pets-operations';
 
 // import * as Pet from '../../shared/services/FormValidation/addPetValidation';
 
@@ -25,7 +25,7 @@ import { addNotice, addPet } from 'redux/pets/pets-operations';
 const stateInitialValue = {
   category: '',
   name: '',
-  birth: '',
+  birthday: '',
   type: '',
   breed: '',
   photo: null,
@@ -150,8 +150,8 @@ export const AddPetChooseForm = () => {
     console.log('done work', 'formData:', formDataSend);
 
     formDataSend.category === 'your pet'
-      ? dispatch(addPet(formDataSend))
-      : dispatch(addNotice(formDataSend));
+      ? dispatch(addMyNewPet(formDataSend))
+      : dispatch(addPetNotice(formDataSend));
 
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };
