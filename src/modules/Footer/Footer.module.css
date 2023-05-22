@@ -1,6 +1,6 @@
 .footer {
   border-top: 2px solid var(--orange-color);
-  margin-top: 20px;
+  /* margin-top: 20px; */
   background-color: var(--fon-color);
   padding: 30px 0;
   display: flex;
@@ -123,9 +123,9 @@
     width: 250px;
     height: 250px;
   }
-  .footer {
+  /* .footer {
     margin-top: 60px;
-  }
+  } */
 }
 @media screen and (min-width: 1200px) {
   .developersContainer {
@@ -181,7 +181,7 @@
   }
   .footerSection {
     width: 100%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   .titleFooter {
     font-size: 20px;

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PawPrintIcon from 'icons/PawPrintIcon';
 import css from './not-found-route.module.css';
 
 import oopsMobile1x from 'images/oops-mob@1x.png';
@@ -30,8 +31,11 @@ const NotFoundRoute = () => {
             />
           </picture>
         </div>
-        <Link to="/" className={css.link}>
-          To main page
+        <Link to="/">
+           <button className={css.btn}>
+          To main page <PawPrintIcon className={css.icon} />
+        </button>
+          
         </Link>
       </div>
     </section>
