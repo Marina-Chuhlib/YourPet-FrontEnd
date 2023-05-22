@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'shared/components/ModalWindow/Modal';
 import styles from './Footer.module.css';
 // import { ReactComponent as Logo } from '../Header/logo/logo.svg';
