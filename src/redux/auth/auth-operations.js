@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as toasty from "../../shared/toastify/toastify";
+import * as toasty from '../../shared/toastify/toastify';
 
 import * as api from '../../shared/services/App/app';
 import { setToken } from '../../shared/services/App/app';
@@ -12,8 +12,8 @@ export const register = createAsyncThunk(
       return result;
     } catch ({ response }) {
       if (response.status === 409) {
-            toasty.toastError(response.data.message);
-        }
+        toasty.toastError(response.data.message);
+      }
       return rejectWithValue(response);
     }
   }
@@ -70,8 +70,6 @@ export const logout = createAsyncThunk(
     }
   }
 );
-
-// ======
 
 export const fetchUser = createAsyncThunk('user/fetch', async (_, thunkAPI) => {
   try {

@@ -9,13 +9,14 @@ const PaginationNotices = ({
   ownCurrentPage,
   favoriteCurrentPage,
   onPageChange,
+  currentPage
 }) => {
-  const currentPage =
+  const currentPageInit =
     currentCategory === 'own'
       ? ownCurrentPage
       : currentCategory === 'favorite'
       ? favoriteCurrentPage
-      : 1;
+      : currentPage;
 
   const handlePageChange = (event, page) => {
     onPageChange(page);
@@ -26,7 +27,7 @@ const PaginationNotices = ({
       {totalPages > 1 && (
         <Pagination
           count={totalPages}
-          page={currentPage}
+          page={currentPageInit}
           color="primary"
           variant="outlined"
           onChange={handlePageChange}
