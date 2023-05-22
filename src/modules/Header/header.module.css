@@ -19,7 +19,7 @@
 
   border: 1px solid black;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 280px) {
   .container {
     padding: 20px 20px 0 20px;
     margin-right: auto;

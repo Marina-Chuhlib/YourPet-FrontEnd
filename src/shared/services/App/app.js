@@ -96,6 +96,7 @@ export const updateAvatar = async (token, formData) => {
 };
 
 export const deleteUserPet = async id => {
+  console.log(id);
   const { data } = await instance.delete(`/user/pets/${id}`);
   return data;
 };

@@ -1,7 +1,10 @@
 // import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
+import ModalApproveActionDeleteCard from 'shared/components/ModalApproveAction/ModalApproveActionDeleteCard';
+
+// import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
 import * as toasty from 'shared/toastify/toastify';
 
@@ -11,15 +14,25 @@ import icon from '../../icons/trash.svg';
 const PetsItem = ({
   pet: { imageURL, name, _id, birthday, breed, comments },
 }) => {
-  const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDelatePet = async _id => {
-    await dispatch(fetchDeleteUserPet(_id));
+  // const dispatch = useDispatch();
+
+  const handleDelatePet = _id => {
+    setIsModalOpen(true);
     toasty.toastSuccess('Deleted card');
+    // dispatch(fetchDeleteUserPet(_id));
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
+      {isModalOpen && (
+        <ModalApproveActionDeleteCard closeModal={closeModal} _id={_id} />
+      )}
       <img src={imageURL} alt="" className={css.picture} />
       <div className={css.infoWrapper}>
         <div className={css.delBtnWrapper}>

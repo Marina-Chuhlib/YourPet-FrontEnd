@@ -22,10 +22,10 @@ const UserCard = () => {
   return (
     <section className={css.container}>
       {isLoading && <Loader />}
-        <>
-          <UserForm></UserForm>
-          <MyPets />
-        </>
+      <>
+        <UserForm />
+        <MyPets />
+      </>
     </section>
   );
 };

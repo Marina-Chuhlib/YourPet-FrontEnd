@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
-import {
-  fetchUpdateUser,
-  fetchUpdateAvatar,
-} from 'redux/auth/auth-operations';
+import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
 
 import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
 
@@ -166,7 +163,7 @@ const UserForm = () => {
   const onLogout = () => {
     setIsModalOpen(true);
   };
-  
+
   return (
     <>
       {isModalOpen && <ModalApproveAction closeModal={closeModal} />}

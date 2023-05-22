@@ -19,6 +19,6 @@ const SharedLayout = () => {
         <Footer />
       </footer>
     </>
-  );
+  )
 };
 export default SharedLayout;
