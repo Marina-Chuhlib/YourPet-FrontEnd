@@ -6,22 +6,20 @@ import ModalApproveActionDeleteCard from 'shared/components/ModalApproveAction/M
 
 // import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
-import * as toasty from 'shared/toastify/toastify';
+
 
 import css from './MyPets.module.css';
 import icon from '../../icons/trash.svg';
+
 
 const PetsItem = ({
   pet: { imageURL, name, _id, birthday, breed, comments },
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const dispatch = useDispatch();
-
-  const handleDelatePet = _id => {
+  const handleDeletePet = () => {
     setIsModalOpen(true);
-    toasty.toastSuccess('Deleted card');
-    // dispatch(fetchDeleteUserPet(_id));
+  
   };
 
   const closeModal = () => {
@@ -31,7 +29,7 @@ const PetsItem = ({
   return (
     <>
       {isModalOpen && (
-        <ModalApproveActionDeleteCard closeModal={closeModal} _id={_id} />
+        <ModalApproveActionDeleteCard closeModal={closeModal} _id={_id} name={name} />
       )}
       <img src={imageURL} alt="" className={css.picture} />
       <div className={css.infoWrapper}>
@@ -42,7 +40,7 @@ const PetsItem = ({
           <button
             type="button"
             className={css.delBtn}
-            onClick={() => handleDelatePet(_id)}
+            onClick={handleDeletePet}
           >
             <img src={icon} alt="My SVG" />
           </button>
@@ -62,15 +60,5 @@ const PetsItem = ({
   );
 };
 
-// PetsItem.propTypes = {
-//   pet: PropTypes.shape({
-//     _id: PropTypes.objectOf(PropTypes.string.isRequired),
-//     imageUrl: PropTypes.string,
-//     name: PropTypes.string.isRequired,
-//     breed: PropTypes.string,
-//     birthday: PropTypes.string,
-//     comments: PropTypes.string,
-//   }),
-// };
 
 export default PetsItem;

@@ -33,7 +33,7 @@ import * as toasty from 'shared/toastify/toastify';
 
 const UserForm = () => {
   const { token } = useSelector(selectAuth);
-  const { isLoading } = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const { user } = useSelector(userInfo);
 
   const [selectedImage, setSelectedImage] = useState(null);
