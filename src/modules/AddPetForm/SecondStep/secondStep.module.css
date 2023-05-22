@@ -1,32 +1,28 @@
-.FormWrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 16px;
-  gap: 25px;
-}
-.WrapperLabelInput {
+
+.inputContainer {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 16px;
   position: relative;
 }
-.LabelStep {
+.label {
   color: #111111;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 1.36;
 }
 
-.Input {
-  border-radius: 20px;
-  box-shadow: none;
-  outline: none;
-  font-size: 16px;
-  padding: 15px;
-  border: 2px solid #54adff;
+.input {
+  border-radius: 40px;
+  color: #888888;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #54adff;
+  max-width: 260px;
 }
-.Input:focus {
-  border-color: #54adff;
+.input:focus {
+  border-color: #00C3AD;
 }
 
 .ErrorText {
@@ -34,18 +30,24 @@
   bottom: -25%;
   right: 67%;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 10px;
+  line-height: 1.36px;
   color: #f43f5e;
 }
-.ErrorTextLow {
-  position: absolute;
-  bottom: -25%;
-  right: 76%;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: #f43f5e;
+
+@media screen and (min-width: 768px) {
+  .inputContainer {
+    margin-bottom: 24px;
+  }
+
+  .label {
+    font-size: 20px;
+  }
+
+  .input {
+    min-width: 400px;
+    font-size: 16px;
+  }
 }
 .LinkAddPEt {
   margin-top: 23.5px;

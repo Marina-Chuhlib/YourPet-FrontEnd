@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 //import Button from '@mui/material/Button';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import css from './ModalApproveAction.module.css';
-import { current } from 'redux/auth/auth-operations';
+import { logout } from 'redux/auth/auth-operations';
 
 const ModalApproveAction = ({ closeModal }) => {
     const navigate = useNavigate();
@@ -12,15 +12,15 @@ const ModalApproveAction = ({ closeModal }) => {
 
     const handleModalClose = () => {
         closeModal();
-        dispatch(current());
-        navigate('/user'); 
+        navigate('/user');
       };
+
       const handleLogout = () => {
-    closeModal();
-    // closeModal();
-    // dispatch(logout());
-    // navigate('/');
+        closeModal();
+        dispatch(logout());
+        navigate('/');
   };
+
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>

@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
 import {
-  logout,
   fetchUpdateUser,
   fetchUpdateAvatar,
 } from 'redux/auth/auth-operations';
@@ -154,10 +153,14 @@ const UserForm = () => {
     { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
 
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  //   dispatch(logout());
+  //   navigate('/');
+  // };
   const closeModal = () => {
     setIsModalOpen(false);
-    dispatch(logout());
-    navigate('/');
+    navigate('/user');
   };
 
   const onLogout = () => {
