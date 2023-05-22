@@ -11,7 +11,6 @@ import FormContainer from 'shared/components/FormContainer/FormContainer';
 import FormContainerThird from 'shared/components/FormContainer/FormContainerThird';
 
 import { SecondRenderStep } from './SecondStep/SecondRenderStep';
-// import { ThirdRenderStep } from './ThirdRenderStep/ThirdRenderStep';
 import { ThirdFormMyPet } from './ThirdRenderStep/ThirdFormMyPet';
 import { ThirdFormSell } from './ThirdRenderStep/ThirdFormSell';
 import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
@@ -19,9 +18,7 @@ import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
 import { useDispatch } from 'react-redux';
 import { addNotice, addPet } from 'redux/pets/pets-operations';
 
-
 // import * as Pet from '../../shared/services/FormValidation/addPetValidation';
-
 
 // import instance from '../../shared/services/App/app';
 
@@ -39,14 +36,12 @@ const stateInitialValue = {
   title: '',
 };
 
-
-
 export const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [chooseOption, setChooseOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
- const [state, setState] = useState(stateInitialValue);
+  // const [state, setState] = useState(stateInitialValue);
   const [formData, setFormData] = useState({ ...stateInitialValue });
 
   useEffect(() => {
@@ -72,7 +67,7 @@ export const AddPetChooseForm = () => {
       alert('Please type all info');
     }
     setFormData(prevData => {
-      console.log("prevData", prevData)
+      console.log('prevData', prevData);
       return { ...prevData, ...stepData };
     });
   };
@@ -103,69 +98,62 @@ export const AddPetChooseForm = () => {
   //   }
   // };
 
-//   const handleNextValidation = (stepData, {name, birth, breed, title}) => {
-//     const sendDataForm = { ...formData, ...stepData };
-//     const { category } = sendDataForm;
-//     console.log('work handleNextValidation', step, currentStatus, chooseOption);
-//     const formDataSend = new FormData();
+  //   const handleNextValidation = (stepData, {name, birth, breed, title}) => {
+  //     const sendDataForm = { ...formData, ...stepData };
+  //     const { category } = sendDataForm;
+  //     console.log('work handleNextValidation', step, currentStatus, chooseOption);
+  //     const formDataSend = new FormData();
 
-//     for (const key in sendDataForm) {
-//       formDataSend.append(key, sendDataForm[key]);
-//     }
-//     if (category === 'your pet') {
-//       Pet.validationSchema.validate({ name, birth, breed }).then(() => {
-//         handleNextData({ name, birth, breed });
-//       });
-//     } else {
-//       Pet.validationSchema.validate({ name, birth, breed, title }).then(() => {
-//         handleNextData({ name, birth, breed, title });
-//       });
-//     }
-//   };
+  //     for (const key in sendDataForm) {
+  //       formDataSend.append(key, sendDataForm[key]);
+  //     }
+  //     if (category === 'your pet') {
+  //       Pet.validationSchema.validate({ name, birth, breed }).then(() => {
+  //         handleNextData({ name, birth, breed });
+  //       });
+  //     } else {
+  //       Pet.validationSchema.validate({ name, birth, breed, title }).then(() => {
+  //         handleNextData({ name, birth, breed, title });
+  //       });
+  //     }
+  //   };
 
-//   setFormData(prevData => ({ ...prevData, ...stepData }));
-// };
+  //   setFormData(prevData => ({ ...prevData, ...stepData }));
+  // };
 
-// const handleDone = ({photo, comments}) => {
-//   console.log('HandleDone work');
-//   Pet.validationSchemaThird
-//     .validate({ photo, comments }, { abortEarly: false })
-//     .then(() => {
-//       handleData({ photo, comments });
-//     })
-//     .catch(err => {
-//       const validationErrors = {};
-//       err.inner.forEach(error => {
-//         validationErrors[error.path] = error.message;
-//       });
-//       setErrors(validationErrors);
-//     });
+  // const handleDone = ({photo, comments}) => {
+  //   console.log('HandleDone work');
+  //   Pet.validationSchemaThird
+  //     .validate({ photo, comments }, { abortEarly: false })
+  //     .then(() => {
+  //       handleData({ photo, comments });
+  //     })
+  //     .catch(err => {
+  //       const validationErrors = {};
+  //       err.inner.forEach(error => {
+  //         validationErrors[error.path] = error.message;
+  //       });
+  //       setErrors(validationErrors);
+  //     });
 
-// 
+  //
 
- 
-  
   const handleDone = stepData => {
     const sendDataForm = { ...formData, ...stepData };
-    const { category } = sendDataForm;
-    delete sendDataForm.category;
     const formDataSend = new FormData();
-   
-        for (const key in sendDataForm) {
-          formDataSend.append(key, sendDataForm[key]);
-        }
-  
-    console.log('done work', "formData:", formDataSend, "state:", state);
 
-    state.category === 'your pet'
+    for (const key in sendDataForm) {
+      formDataSend.append(key, sendDataForm[key]);
+    }
+
+    console.log('done work', 'formData:', formDataSend);
+
+    formDataSend.category === 'your pet'
       ? dispatch(addPet(formDataSend))
       : dispatch(addNotice(formDataSend));
-    
+
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };
-
-
-
 
   return (
     <>
@@ -194,13 +182,6 @@ export const AddPetChooseForm = () => {
             handleNextData={handleNextData}
             handlePrevStep={handlePrevStep}
           ></SecondRenderStep>
-          {/* <ButtonRoutes>
-            <ButtonNext
-              textButton={'Next'}
-              handleNextData={handleNextData}
-            />
-            <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
-          </ButtonRoutes> */}
         </FormContainer>
       )}
 
@@ -214,13 +195,6 @@ export const AddPetChooseForm = () => {
                 handlePrevStep={handlePrevStep}
                 formData={formData}
               />
-              {/* <ButtonRoutes>
-                <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-                <ButtonPrev
-                  textButton={'Back'}
-                  handlePrevStep={handlePrevStep}
-                />
-              </ButtonRoutes> */}
             </FormContainer>
           ) : (
             ''
