@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
-import {
-  fetchUpdateUser,
-  fetchUpdateAvatar,
-} from 'redux/auth/auth-operations';
+import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
 
 import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
 
@@ -36,7 +33,7 @@ import * as toasty from 'shared/toastify/toastify';
 
 const UserForm = () => {
   const { token } = useSelector(selectAuth);
-  const { isLoading } = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const { user } = useSelector(userInfo);
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -166,7 +163,7 @@ const UserForm = () => {
   const onLogout = () => {
     setIsModalOpen(true);
   };
-  
+
   return (
     <>
       {isModalOpen && <ModalApproveAction closeModal={closeModal} />}

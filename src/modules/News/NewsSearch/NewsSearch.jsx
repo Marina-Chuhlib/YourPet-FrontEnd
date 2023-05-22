@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
-import { selectAllNewsTotalPages } from '../../../redux/news/newsSelectors';
+import {
+  selectAllNewsTotalPages,
+  selectAllNewsPage,
+} from '../../../redux/news/newsSelectors';
 import { useSelector } from 'react-redux';
 import { fetchAllNews } from 'redux/news/newsOperation';
 import NewsList from '../NewsList/NewsList';
@@ -16,24 +19,34 @@ const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
   const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentNewsPage, setCurrentNewsPage] = useState(1);
+  const [currentFilterPage, setCurrentFilterPage] = useState(1);
   const totalPages = useSelector(selectAllNewsTotalPages);
+  const currentPage = useSelector(selectAllNewsPage);
+  const currentPageInt = Number(currentPage);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllNews(currentPage));
-  }, [currentPage, dispatch]);
+    dispatch(fetchAllNews(currentNewsPage));
+    setCurrentFilterPage(1);
+  }, [currentNewsPage, dispatch]);
 
   useEffect(() => {
     if (submitted) {
-      dispatch(fetchFilteredNews({ query: keyword, page: currentPage }));
-      setSubmitted(false);
-      setKeyword('');
-    }
-  }, [submitted, keyword, currentPage, dispatch]);
+      dispatch(fetchFilteredNews({ query: keyword, page: currentFilterPage }));
 
-  const handlePageChange = newPage => {
-    setCurrentPage(newPage);
+      // setSubmitted(false);
+      // setKeyword('');
+    }
+  }, [submitted, keyword, currentFilterPage, dispatch]);
+
+  const handleNewsPageChange = currentNewsPage => {
+    setCurrentNewsPage(currentNewsPage);
+    // setCurrentFilterPage(1);
+  };
+
+  const handleFilterPageChange = currentFilterPage => {
+    setCurrentFilterPage(currentFilterPage);
   };
 
   const handleSearch = e => {
@@ -43,8 +56,6 @@ const NewsSearch = () => {
       setKeyword('');
     } else {
       setSubmitted(true);
-      setCurrentPage(1);
-      console.log('Выполняется поиск по ключевому слову:', keyword);
     }
   };
 
@@ -113,8 +124,13 @@ const NewsSearch = () => {
       <NewsList />
       <PaginationLine
         totalPages={totalPages}
-        currentPage={currentPage}
-        onChange={handlePageChange}
+        currentPage={currentPageInt}
+        onChange={page => {
+          if (!submitted) {
+            handleNewsPageChange(page);
+          }
+          handleFilterPageChange(page);
+        }}
       />
     </>
   );

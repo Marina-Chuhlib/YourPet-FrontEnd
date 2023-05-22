@@ -1,13 +1,21 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'shared/components/ModalWindow/Modal';
 import styles from './Footer.module.css';
-// import { ReactComponent as Logo } from '../Header/logo/logo.svg';
+import Logo from '../Header/Logo/Logo'
 
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Footer = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [isMobile, setIsMobile] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+ const navigate = useNavigate();
+
+  const navigateToMain = () => {
+    navigate('/main');
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -20,116 +28,123 @@ const Footer = () => {
   const developers = [
     {
       id: 1,
-      name: 'John Doe',
-      position: 'Frontend Developer',
-      github: 'https://github.com/johndoe',
-      linkedin: 'https://linkedin.com/in/johndoe',
-      photo: '/path/to/photo1.jpg',
+      name: 'Maryna Chuhlib',
+      position:'Team-Lead, Frontend Developer',
+      github: 'https://github.com/Marina-Chuhlib',
+      linkedin: 'https://www.linkedin.com/in/marina-chukhlib/',
+      photo: require("../../images/team-photos/Maryna Chuhlib.jpg"),
     },
     {
       id: 2,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Mariia Lutsenko',
+      position:'Team-Lead, Backend Developer',
+      github: 'https://github.com/Mariya-Lutsenko',
+      linkedin: 'https://www.linkedin.com/in/mariya-lutsenko',
+      photo: require("../../images/team-photos/Mariia Lutsenko.jpg"),
     },
     {
       id: 3,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Olena Holubonkova',
+      position: 'Scrum-Master, Frontend Developer',
+      github: 'https://github.com/OlenaTeplodar',
+      linkedin: 'https://www.linkedin.com/in/olena-holubonkova/',
+      photo: require("../../images/team-photos/Olena Holubonkova.jpg"),
     },
     {
       id: 4,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Oksana Riaboshapka',
+      position: 'Frontend Developer',
+      github: 'https://github.com/Oksana1594',
+      linkedin: 'https://www.linkedin.com/in/oksana-ryaboshapka/',
+      photo: require("../../images/team-photos/Oksana Riaboshapka.jpg"),
     },
     {
       id: 5,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Iryna Hubish',
+      position: 'Frontend Developer',
+      github: 'https://github.com/IraGubish2022',
+      linkedin: 'https://www.linkedin.com/in/iryna-hubish',
+      photo: require("../../images/team-photos/Iryna Hubish.jpg"),
     },
     {
       id: 6,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Tetiana Hela',
+      position: 'Frontend Developer',
+      github: 'https://github.com/Tatiana-Hela',
+      linkedin: 'https://www.linkedin.com/in/tetiana-hela',
+      photo: require("../../images/team-photos/Tetiana Hela.jpg"),
     },
     {
       id: 7,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Olena Bondarenko',
+      position: 'Frontend Developer',
+      github: 'https://github.com/OllBond',
+      linkedin: 'https://www.linkedin.com/in/olena-bondarenko-ollbond/',
+      photo: require("../../images/team-photos/Olena Bondarenko.jpg"),
     },
     {
       id: 8,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Serhii Zhydkov',
+      position: 'Full-stack Developer',
+      github: 'https://github.com/serhii95zhydkov',
+      linkedin: 'https://www.linkedin.com/in/serhii-zhydkov',
+      photo: require("../../images/team-photos/Serhii Zhydkov.jpg"),
     },
     {
       id: 9,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
+      name: 'Dmytro Shatnyi',
+      position: 'Frontend Developer',
+      github: 'https://github.com/shatniydmitriy',
       linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      photo: require("../../images/team-photos/Dmytro Shatnyi.jpg"),
     },
     {
       id: 10,
-      name: 'Jane Smith',
-      position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
-      linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      name: 'Olena Kudryk',
+      position: 'Full-stack Developer',
+      github: 'https://github.com/YelenaKudryk',
+      linkedin: 'https://www.linkedin.com/in/yelena-kudryk/',
+      photo: require("../../images/team-photos/Olena Kudryk.jpg"),
     },
     {
       id: 11,
-      name: 'Jane Smith',
+      name: 'Maryna Aponasko',
       position: 'Backend Developer',
-      github: 'https://github.com/janesmith',
+      github: 'https://github.com/MarynaAponasko',
       linkedin: 'https://linkedin.com/in/janesmith',
-      photo: '/path/to/photo11.jpg',
+      photo: require("../../images/team-photos/Maryna Aponasko.jpg"),
     },
-    ];
-    
-    //  useEffect(() => {
-    // const handleResize = () => {
-    //   setIsMobile(window.innerWidth < 768);
-    // };
+  ];
 
-    // window.addEventListener('resize', handleResize);
-    // handleResize();
+   useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
 
-    // return () => {
-    //   window.removeEventListener('resize', handleResize);
-    // };
-    //  }, []);
-    
+  window.addEventListener('resize', handleResize);
+  handleResize();
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+   }, []);
+
   return (
     <div className="container">
       <footer className={styles.footer}>
-       {/* {isMobile ? null : <Logo />} */}
+        <div
+      className={`${styles.logo} ${isMobile ? styles.mobile : ''}`}
+      onClick={navigateToMain}
+    >
+       <Logo isMobile={isMobile} />
+    </div>
         <div className={styles.footerContent}>
           <div className={styles.footerSection}>
             <h2 className={styles.titleFooter}>About Us</h2>
             <p className={styles.text}>
-              YourPet - a platform for pet owners and animal enthusiasts.Discover, connect, and care for animals together on YourPet.
+              YourPet - a platform for pet owners and animal
+              enthusiasts.Discover, connect, and care for animals together on
+              YourPet.
             </p>
           </div>
           <div className={styles.footerSection}>
@@ -154,20 +169,20 @@ const Footer = () => {
                   <p>{developer.position}</p>
                   <div className={styles.socialLinks}>
                     <a
-                      className={styles.link}
+                      className={`${styles.link} ${styles.iconContainer}`}
                       href={developer.github}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      GitHub
+                      <GitHubIcon style={{ fontSize: '24px' }} />
                     </a>
                     <a
-                      className={styles.link}
+                      className={`${styles.link} ${styles.iconContainer}`}
                       href={developer.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      LinkedIn
+                      <LinkedInIcon style={{ fontSize: '24px', color:"#0e76a8" }} />
                     </a>
                   </div>
                 </div>

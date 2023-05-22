@@ -1,4 +1,5 @@
 import Loader from 'shared/components/Loader/Loader';
+import { selectIsLoading } from 'redux/auth/auth-selectors';
 import UserForm from './UserForm';
 import MyPets from './MyPets';
 
@@ -11,8 +12,7 @@ import { fetchUser } from 'redux/auth/auth-operations';
 import css from './UserCard.module.css';
 
 const UserCard = () => {
-  const { isLoading } = useSelector(state => state.auth);
-
+  const  isLoading  = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,10 +22,10 @@ const UserCard = () => {
   return (
     <section className={css.container}>
       {isLoading && <Loader />}
-        <>
-          <UserForm></UserForm>
-          <MyPets />
-        </>
+      <>
+        <UserForm />
+        <MyPets />
+      </>
     </section>
   );
 };
