@@ -1,5 +1,3 @@
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from 'modules/Header/Header';
 
@@ -7,28 +5,19 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from 'modules/Footer/Footer';
 
-// import { current } from 'redux/auth/auth-operations';
-
 const SharedLayout = () => {
-  //   const dispatch = useDispatch()
-
-  //   useEffect(() => {
-  //   dispatch(current());
-  // }, [dispatch]);
-
   return (
     <>
-        <Header />
+      <Header />
       <main>
         <div>
           <Outlet />
-          <ToastContainer
-            autoClose={1700}
-            position="top-right"
-          />
+          <ToastContainer autoClose={1700} position="top-right" />
         </div>
       </main>
-      <footer><Footer/></footer>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

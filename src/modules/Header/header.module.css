@@ -16,10 +16,14 @@
   /* // padding: 20px; */
 
   background-color: #fef9f9;
+
+  border: 1px solid black;
 }
 @media screen and (max-width: 320px) {
   .container {
     padding: 20px 20px 0 20px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
