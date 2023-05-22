@@ -2,16 +2,27 @@ import React, { useState } from 'react';
 import css from './secondStep.module.css';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
-// import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
-// import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
-// import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
+import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
+import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
+import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 // import { stepOneValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
 
-export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, currentStatus }) => {
+export const SecondFormMyPet = ({
+  handleNextData,
+  handlePrevStep,
+  formData,
+  currentStatus,
+}) => {
   const [name, setName] = useState(formData.name || '');
   const [birth, setBirthday] = useState(formData.birth || '');
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
+
+  const handleNextValidation = () => {
+    console.log('work NextValidation', "name: ", name, "birth: ", birth);
+    handleNextData({ name, birth, breed });
+ 
+  };
 
   // const handleNextValidation = () => {
   //   stepOneValidationSchema
@@ -77,8 +88,10 @@ export const SecondFormMyPet = ({ handleNextData, handlePrevStep, formData, curr
         />
         {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
-
-      
+      <ButtonRoutes>
+        <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+      </ButtonRoutes>
     </div>
   );
 };

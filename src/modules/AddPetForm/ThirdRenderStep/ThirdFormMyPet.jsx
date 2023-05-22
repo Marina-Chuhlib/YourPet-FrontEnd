@@ -6,8 +6,11 @@ import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import { ReactComponent as Plus } from '../../../icons/Plus.svg'
 import css from './thirdStep.module.css';
 
+import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
+import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
+import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormMyPet = ({
+export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
   formData,
     currentStatus
 }) => {
@@ -15,20 +18,27 @@ export const ThirdFormMyPet = ({
   const [comments, setComments] = useState('');
   const [errors, setErrors] = useState({});
 
-//   const handleDone = () => {
-//     stepTwoValidationSchema
-//       .validate({ photo, comments }, { abortEarly: false })
-//       .then(() => {
-//         handleNextData({ photo, comments });
-//       })
-//       .catch(err => {
-//         const validationErrors = {};
-//         err.inner.forEach(error => {
-//           validationErrors[error.path] = error.message;
-//         });
-//         setErrors(validationErrors);
-//       });
-//   };
+  const handleDone = () => {
+    
+        handleNextData({ photo, comments });
+      
+      };
+  
+
+  // const handleDone = () => {
+  //   stepTwoValidationSchema
+  //     .validate({ photo, comments }, { abortEarly: false })
+  //     .then(() => {
+  //       handleNextData({ photo, comments });
+  //     })
+  //     .catch(err => {
+  //       const validationErrors = {};
+  //       err.inner.forEach(error => {
+  //         validationErrors[error.path] = error.message;
+  //       });
+  //       setErrors(validationErrors);
+  //     });
+  // };
   const handleFileChange = e => {
     setPhoto(e.target.files[0]);
   };
@@ -56,7 +66,7 @@ export const ThirdFormMyPet = ({
                 alt="Pet"
               />
             )}
-            <Plus className={css.plusIcon}  />
+            <Plus className={css.plusIcon} />
           </div>
         </label>
         {errors.photo && <p className={css.errorComent}>{errors.photo}</p>}
@@ -74,7 +84,10 @@ export const ThirdFormMyPet = ({
         />
         {errors.comments && <p>{errors.comments}</p>}
       </div>
-     
+      <ButtonRoutes>
+        <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+      </ButtonRoutes>
     </div>
   );
 };

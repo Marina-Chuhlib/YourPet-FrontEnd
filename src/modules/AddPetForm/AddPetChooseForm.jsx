@@ -156,19 +156,28 @@ export const AddPetChooseForm = () => {
 
  
   
-  const handleDone = async values => {
-  
-  setState(prev => ({ ...prev, ...values }));
-    const data = new FormData();
-    console.log("163", data, state);
-    createRequestData(data, state, values);
-    setState(prev => ({ ...prev, ...values }));
-  // console.log('done work', data, values, state);
+  const handleDone = stepData => {
+    const sendDataForm = { ...formData, ...stepData };
+    const { category } = sendDataForm;
+    delete sendDataForm.category;
+    const formDataSend = new FormData();
+   
+        for (const key in sendDataForm) {
+          formDataSend.append(key, sendDataForm[key]);
+        }
+    
+    // const data = new FormData();
+    // console.log("163", data, state);
+    // createRequestData(data, state, values);
+    // setState(prev => ({ ...prev, ...values }));
+    console.log('done work', "formData:", formDataSend, "state:", state);
 
-  state.category === 'your pet'
-    ? dispatch(addPet(data))
-    : dispatch(addNotice(data));
-};
+    state.category === 'your pet'
+      ? dispatch(addPet(formDataSend))
+      : dispatch(addNotice(formDataSend));
+    
+    setFormData(prevData => ({ ...prevData, ...stepData }));
+  };
 
 
 
@@ -197,14 +206,16 @@ export const AddPetChooseForm = () => {
             formData={formData}
             chooseOption={chooseOption}
             currentStatus={currentStatus}
+            handleNextData={handleNextData}
+            handlePrevStep={handlePrevStep} 
           ></SecondRenderStep>
-          <ButtonRoutes>
+          {/* <ButtonRoutes>
             <ButtonNext
               textButton={'Next'}
               handleNextData={handleNextData}
             />
             <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
-          </ButtonRoutes>
+          </ButtonRoutes> */}
         </FormContainer>
       )}
 
@@ -218,13 +229,13 @@ export const AddPetChooseForm = () => {
                 handlePrevStep={handlePrevStep}
                 formData={formData}
               />
-              <ButtonRoutes>
+              {/* <ButtonRoutes>
                 <ButtonNext textButton={'Done'} handleNextData={handleDone} />
                 <ButtonPrev
                   textButton={'Back'}
                   handlePrevStep={handlePrevStep}
                 />
-              </ButtonRoutes>
+              </ButtonRoutes> */}
             </FormContainer>
           ) : (
             <FormContainerThird>
