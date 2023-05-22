@@ -41,6 +41,7 @@ export const AddPetChooseForm = () => {
   const [currentStatus, setCurrentStatus] = useState(1);
   const [chooseOption, setChooseOption] = useState('');
   const [activeButton, setActiveButton] = useState(null);
+
   // const [state, setState] = useState(stateInitialValue);
   const [formData, setFormData] = useState({ ...stateInitialValue });
 
