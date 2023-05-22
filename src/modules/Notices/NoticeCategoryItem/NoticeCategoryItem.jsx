@@ -1,3 +1,4 @@
+// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from 'icons/ClockIcon';
 import FemaleIcon from 'icons/FemaleIcon';
@@ -20,14 +21,6 @@ import {
 
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
-// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
-// import Modal from 'shared/components/ModalWindow/Modal';
-// import NoticeModal from 'modules/NoticeModal/NoticeModal';
-
-// import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
-// import Modal from 'shared/components/ModalWindow/Modal';
-// import NoticeModal from 'modules/NoticeModal/NoticeModal';
-
 import css from './notice-categories-item.module.css';
 
 const NoticeCategoryItem = ({
@@ -42,7 +35,10 @@ const NoticeCategoryItem = ({
   breed,
   owner,
   name,
+  // myFavoriteNotice,
 }) => {
+  // const [isFavorite, setIsFavorite] = useState();
+
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
@@ -55,16 +51,16 @@ const NoticeCategoryItem = ({
     if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
     if (favorites.includes(_id)) {
       try {
-        await dispatch(fetchRemoveFromFavorite(_id));
+        dispatch(fetchRemoveFromFavorite(_id));
+        toasty.toastSuccess('remove from favorite');
 
-        // toasty.toastSuccess('remove from favorite');
         return;
       } catch (e) {
         toasty.toastError(e.message);
       }
     } else {
       try {
-        await dispatch(fetchAddToFavorite(_id));
+        dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
         return;
       } catch (e) {
