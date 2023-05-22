@@ -5,6 +5,7 @@ import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import Filter from '../Filter/Filter';
 import PlusIcon from 'icons/PlusIcon';
 
+
 import css from './NoticesCategoriesNav.module.css';
 
 const link = [
