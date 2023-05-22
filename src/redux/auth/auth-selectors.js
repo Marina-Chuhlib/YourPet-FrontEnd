@@ -21,3 +21,8 @@ export const selectlogoutSuccessful = ({ auth }) => auth.registrationSuccessful;
 export const userInfo = state => state.user;
 
 export const getFavorite = ({ auth }) => auth.user.favorite;
+
+export const userMyPets = state => {
+  const { pets } = state.auth;
+  return pets;
+};
