@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const stepOneValidationSchema = Yup.object({
+export const validationSchema = Yup.object({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(16, 'Too Long!')
@@ -31,12 +31,13 @@ export const stepOneValidationSchema = Yup.object({
     .max(16, 'Too Long!')
     .label('Breed or type your pet')
     .required('Breed is required'),
+  title: Yup.string().min(2, 'Too Short!').max(26, 'Too Long!'),
 });
 
-export const stepTwoValidationSchema = Yup.object({
+export const validationSchemaThird = Yup.object({
   comments: Yup.string()
     .min(8, 'Too Short!')
     .max(120, 'Too Long!')
     .label('Comment'),
-  petImage: Yup.mixed().label('Pet image').required('Pet image is required'),
+  photo: Yup.mixed().label('Pet image').required('Pet image is required'),
 });

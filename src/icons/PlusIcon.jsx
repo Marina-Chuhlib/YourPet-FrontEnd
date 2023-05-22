@@ -3,8 +3,8 @@ import * as React from 'react';
 function PlusIcon(props) {
   return (
     <svg
-      width={24}
-      height={24}
+      width={30}
+      height={30}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
@@ -14,7 +14,7 @@ function PlusIcon(props) {
         stroke={props.color}
         strokeWidth={2}
         strokeLinecap="round"
-      />
+          />
     </svg>
   );
 }

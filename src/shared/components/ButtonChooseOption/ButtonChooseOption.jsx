@@ -45,10 +45,10 @@ const ButtonChooseOption = ({ handleChooseChange }) => {
           type="button"
           className={css.buttonChoose}
           onClick={() => {
-            handleChooseChange('in goode hands', 4);
+            handleChooseChange('in good hands', 4);
           }}
         >
-          in goode hands
+          in good hands
         </button>
       </li>
     </ul>
