@@ -95,7 +95,7 @@ const Footer = () => {
       name: 'Dmytro Shatnyi',
       position: 'Frontend Developer',
       github: 'https://github.com/shatniydmitriy',
-      linkedin: 'https://linkedin.com/in/janesmith',
+      linkedin: 'https://www.linkedin.com/in/dmytro-shatnyi-6401a3269',
       photo: require("../../images/team-photos/Dmytro Shatnyi.jpg"),
     },
     {
@@ -111,7 +111,7 @@ const Footer = () => {
       name: 'Maryna Aponasko',
       position: 'Backend Developer',
       github: 'https://github.com/MarynaAponasko',
-      linkedin: 'https://linkedin.com/in/janesmith',
+      linkedin: 'http://linkedin.com/in/aponasko',
       photo: require("../../images/team-photos/Maryna Aponasko.jpg"),
     },
   ];
