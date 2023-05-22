@@ -17,9 +17,11 @@
 
   background-color: #fef9f9;
 }
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 280px) {
   .container {
     padding: 20px 20px 0 20px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
