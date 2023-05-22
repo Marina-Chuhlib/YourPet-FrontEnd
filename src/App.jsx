@@ -9,15 +9,17 @@ import Loader from 'shared/components/Loader/Loader';
 
 import SharedLayout from 'modules/SharedLayout/SharedLayout';
 
+import NoticesCategoriesList from "./modules/Notices/NoticesCategoriesList/NoticesCategoriesList";
+
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
-const NoticesCategoriesList = lazy(() =>
-  import('modules/Notices/NoticesCategoriesList/NoticesCategoriesList')
-);
+// const NoticesCategoriesList = lazy(() =>
+//   import('./modules/Notices/NoticesCategoriesList/NoticesCategoriesList')
+// );
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );
