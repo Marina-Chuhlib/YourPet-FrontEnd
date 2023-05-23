@@ -46,7 +46,7 @@
     width: 704px;
     margin-top: 40px;
   }
-  /* тут перекриває модалку */
+
   .noticeList {
     display: flex;
     flex-wrap: wrap;
