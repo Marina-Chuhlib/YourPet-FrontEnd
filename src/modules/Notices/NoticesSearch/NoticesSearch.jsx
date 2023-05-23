@@ -55,11 +55,9 @@ const NoticesSearch = () => {
         }
       } catch (error) {
         console.log(error);
-      } finally {
-        handleClear();
-      }
+      } 
     },
-    [category, categoryIsLoginUser, dispatch, keyword, handleClear]
+    [category, categoryIsLoginUser, dispatch, keyword]
   );
 
   const [showHelperText, setShowHelperText] = useState(false);
