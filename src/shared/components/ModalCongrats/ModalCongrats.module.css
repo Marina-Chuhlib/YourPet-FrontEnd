@@ -1,4 +1,4 @@
-h1 {
+.title {
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 24px;
@@ -9,7 +9,7 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  h1 {
+  .title {
     font-size: 36px;
     line-height: 49px;
     margin-top: 60px;
