@@ -8,6 +8,7 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 import HamburgerIcon from '../../../icons/HamburgerIcon';
 import styles from './navigation.module.css';
 
+
 export default function Navigation({ isDesktop, isTablet, isMobile }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -18,7 +19,8 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
     }
   }, [isDesktop]);
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = e => {
+    e.preventDefault();
     setShowMobileMenu(showMobileMenu => !showMobileMenu);
   };
 
@@ -27,11 +29,7 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
       {isDesktop && (
         <>
           <Nav />
-          {isLoggedIn ? (
-            <NavBarUser style={{ marginLeft: 300 }} />
-          ) : (
-            <NavBarAuth />
-          )}
+          {isLoggedIn ? <NavBarUser /> : <NavBarAuth />}
         </>
       )}
 
@@ -56,3 +54,5 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
     </div>
   );
 }
+
+

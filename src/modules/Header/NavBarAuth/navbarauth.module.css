@@ -42,6 +42,7 @@
   color: #ffc107;
   background-color: transparent;
 }
+
 @media screen and (min-width: 768px) {
   .link {
     width: 145px;
@@ -55,6 +56,7 @@
 }
 
 .icon {
+
   fill: #ffc107;
   margin-left: 8px;
 }
