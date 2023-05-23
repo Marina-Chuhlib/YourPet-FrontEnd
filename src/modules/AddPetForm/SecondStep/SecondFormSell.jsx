@@ -10,18 +10,19 @@ import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 export const SecondFormSell = ({
   formData,
     currentStatus,
-  title, handleNextData, handlePrevStep
+   handleNextData, handlePrevStep, chooseOption
 }) => {
-    const [addTitle, setAddTitle] = useState(formData.addTitle || '');
+    const [title, setAddTitle] = useState(formData.title || '');
   const [name, setName] = useState(formData.name || '');
-  const [birth, setBirthday] = useState(formData.birth || '');
+  const [date, setDate] = useState(formData.date || '');
   const [breed, setBreed] = useState(formData.breed || '');
   // const [errors, setErrors] = useState({});
   console.log("name", name, breed);
 
-const handleNextValidation = () => {
-  console.log('work NextValidation', 'name: ', name, 'birth: ', birth);
-  handleNextData({ name, birth, breed, addTitle });
+  const handleNextValidation = () => {
+    
+  console.log('work NextValidation', 'name: ', name, 'birth: ', date);
+  handleNextData({ name, date, breed, title });
 };
 
 
@@ -42,9 +43,12 @@ const handleNextValidation = () => {
   // };
   return (
     <div>
-      <TitleModal title={title} />
+      <TitleModal title={'Add pet for sell'} />
 
-      <StatusIndicator currentStatus={currentStatus} />
+      <StatusIndicator
+        currentStatus={currentStatus}
+        chooseOption={chooseOption}
+      />
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="addTitle">
           Title of add
@@ -53,7 +57,7 @@ const handleNextValidation = () => {
           className={css.input}
           type="text"
           id="addTitle"
-          value={addTitle}
+          value={title}
           onChange={e => setAddTitle(e.target.value)}
           placeholder="Type title of add"
         />
@@ -74,15 +78,15 @@ const handleNextValidation = () => {
         {/* {errors.name && <p className={css.ErrorText}>{errors.name}</p>} */}
       </div>
       <div className={css.inputContainer}>
-        <label className={css.label} htmlFor="birth">
+        <label className={css.label} htmlFor="date">
           Date of birth
         </label>
         <input
           className={css.input}
           type="text"
-          id="birth"
-          value={birth}
-          onChange={e => setBirthday(e.target.value)}
+          id="date"
+          value={date}
+          onChange={e => setDate(e.target.value)}
           required
           placeholder="Type date of birth"
         />
@@ -105,7 +109,10 @@ const handleNextValidation = () => {
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );

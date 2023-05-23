@@ -1,24 +1,25 @@
 import { useSelector, useDispatch } from 'react-redux';
+import * as toasty from '../../../shared/toastify/toastify';
+
 import ClockIcon from 'icons/ClockIcon';
 import FemaleIcon from 'icons/FemaleIcon';
 import LocationIcon from 'icons/LocationIcon';
 import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
-import * as toasty from '../../../shared/toastify/toastify';
 
-// import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
+import useToggleModalDeleteCardNotice from 'shared/hooks/useToggleModalDeleteCardNotice';
 import Modal from 'shared/components/ModalWindow/Modal';
+import ModalDeleteCardNotice from 'shared/components/ModalDeleteCardNotice/ModalDeleteCardNotice';
 import { getFavorite, getUserId } from 'redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
   fetchDeleteNotice,
 } from 'redux/notices/noticesOperations';
-// import { getAllFavoriteNotices } from '../../../redux/notices/noticesSelectors';
 
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
@@ -37,13 +38,9 @@ const NoticeCategoryItem = ({
   owner,
   name,
 }) => {
-  // const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
   const userId = useSelector(getUserId);
-  // const favoritesHeart = useSelector(getAllFavoriteNotices);
-
-  // const isMyAds = false;
 
   const dispatch = useDispatch();
 
@@ -53,7 +50,7 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchRemoveFromFavorite(_id));
         toasty.toastSuccess('remove from favorite');
-        checkFavorite(_id);
+        // checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -62,15 +59,16 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
-        checkFavorite(_id);
+        // checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
       }
     }
   };
-
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
+  const { isModalOpenApprove, openModalApprove, closeModalApprove } =
+    useToggleModalDeleteCardNotice();
 
   function getAge(date) {
     const ymdArr = date.split('.').map(Number).reverse();
@@ -91,7 +89,6 @@ const NoticeCategoryItem = ({
     const oneYearInMs = 3.17098e-11;
 
     const age = Math.floor(ageAsTimestamp * oneYearInMs);
-    // console.log(age);
     return age;
   }
 
@@ -113,6 +110,7 @@ const NoticeCategoryItem = ({
   const handleDelete = _id => {
     console.log(_id);
     dispatch(fetchDeleteNotice(_id));
+    toasty.toastSuccess('Deleted successful');
   };
   return (
     <li key={_id} className={css.listItems}>
@@ -131,15 +129,22 @@ const NoticeCategoryItem = ({
                       ? `${css.icons} ${css.favoriteIcon}`
                       : css.icons
                   }
-                  // color="#54ADFF"
                 />
               )}
             />
             {checkOwner(owner) && (
               <Button
-                onClick={() => handleDelete(_id)}
+                // onClick={() => handleDelete(_id)}
+                onClick={openModalApprove}
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
+              />
+            )}
+            {isModalOpenApprove && (
+              <ModalDeleteCardNotice
+                closeModal={closeModalApprove}
+                handleDelete={handleDelete}
+                _id={_id}
               />
             )}
           </div>
@@ -183,6 +188,7 @@ const NoticeCategoryItem = ({
               breed={breed}
               owner={owner}
               name={name}
+              handleFavoriteToggle={handleFavoriteToggle}
             />
           </Modal>
         )}

@@ -14,8 +14,18 @@ import css from './registerFormDetails.module.css';
 import { register } from 'redux/auth/auth-operations';
 
 const registerSchema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
+  name: yup
+    .string()
+    .required('Name is required')
+    .matches(/^[a-zA-Z\s]*$/),
+  email: yup
+    .string()
+    .email('Invalid email')
+    .required('Email is required')
+    .matches(
+      /^(?=.{10,63}$)(([0-9A-Za-z]{1}[-0-9A-z.]{1,}[0-9A-Za-z]{1})@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/,
+      'Invalid email'
+    ),
   password: yup
     .string()
     .required('Password is required')
@@ -50,7 +60,6 @@ export const RegisterFormDetails = () => {
 
   const dispatch = useDispatch();
   const handleFormSubmit = async values => {
-    // console.log(values);
     const data = {
       name: values.name,
       email: values.email,
@@ -92,6 +101,13 @@ export const RegisterFormDetails = () => {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
                     },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
+                    },
                   },
                 }}
                 onChange={handleChange}
@@ -122,6 +138,13 @@ export const RegisterFormDetails = () => {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
                     },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
+                    },
                   },
                 }}
                 onChange={handleChange}
@@ -148,6 +171,13 @@ export const RegisterFormDetails = () => {
                     '& fieldset': {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
                     },
                   },
                 }}
@@ -192,6 +222,13 @@ export const RegisterFormDetails = () => {
                     '& fieldset': {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
                     },
                   },
                 }}

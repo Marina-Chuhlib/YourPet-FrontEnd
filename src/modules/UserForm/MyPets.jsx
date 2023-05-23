@@ -8,7 +8,6 @@ import Loader from 'shared/components/Loader/Loader';
 
 import PetsItem from './PetsItem';
 
-import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import css from './MyPets.module.css';
@@ -28,34 +27,33 @@ const MyPets = () => {
       {isLoading && <Loader />}
       <dir className={css.wrapperTitle}>
         <h3 className={css.title}>My Pets:</h3>
-        <Button
-          variant="contained"
-          endIcon={
-            <AddOutlinedIcon
-              style={{
-                textAlign: 'center',
-                fontSize: '16px',
-              }}
-            />
-          }
-          style={{
-            borderRadius: '20px',
-            backgroundColor: '#54adff',
-            color: '#FEF9F9',
-            textAlign: 'center',
-            fontSize: '16px',
-            paddingTop: '8px',
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            fontFamily: 'Manrope',
-            textTransform: 'none',
-            height: '40px',
-          }}
-          onClick={handleClick}
-        >
+        <button type="button" onClick={handleClick} className={css.addPetBtn}>
           Add Pet
-        </Button>
+          <AddOutlinedIcon
+            style={{
+              textAlign: 'center',
+              fill: '#ffffff',
+              width: '24px',
+              height: '24px',
+              marginLeft: '8px',
+            }}
+          />
+        </button>
       </dir>
+
+      {isLoading && pets.length > 0 && (
+        <div className={css.petCardWrapper}>
+          <ul className={css.list}>
+            {pets.map((pet, index) => {
+              return (
+                <li key={index} className={css.item}>
+                  <PetsItem pet={pet} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
 
       {!isLoading && (
         <div className={css.petCardWrapper}>

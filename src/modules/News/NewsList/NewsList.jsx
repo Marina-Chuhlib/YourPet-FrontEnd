@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
-import { selectAllNews } from 'redux/news/newsSelectors';
+import { selectAllNews, selectIsLoadingNews } from 'redux/news/newsSelectors';
 import NewsItem from '../NewsItem/NewsItem';
 
 import css from '../NewsList/NewsList.module.css';
 
 const NewsList = () => {
   const allNews = useSelector(selectAllNews);
+  const isLoading = useSelector(selectIsLoadingNews)
 
   return (
     <>
-      {allNews.length === 0 ? (
+      {allNews.length === 0 && !isLoading ? (
         <p className={css.helperText}>
           There are no results matching your search.
         </p>

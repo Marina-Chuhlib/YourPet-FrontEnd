@@ -12,8 +12,8 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handlePrevStep }) => {
-  const [photo, setPhoto] = useState('');
+export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handlePrevStep, chooseOption }) => {
+  const [file, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState(formData.location || '');
 
@@ -22,7 +22,8 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
   // const [errors, setErrors] = useState({});
 
   const handleDone = () => {
-    handleNextData({ photo, comments, sex, location });
+    const category = 'lost-found';
+    handleNextData({ file, comments, sex, location,  category });
   };
 
   //    const handleDone = () => {
@@ -55,7 +56,10 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
     <div className={css.wparForm}>
       <TitleModal title={'Add lost pet'} />
 
-      <StatusIndicator currentStatus={currentStatus} />
+      <StatusIndicator
+        currentStatus={currentStatus}
+        chooseOption={chooseOption}
+      />
       <div className={css.pointBlock}>
         <div className={css.sexPhotoBlock}>
           <div className={css.sexContainer}>
@@ -103,10 +107,10 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
             </div>
             <label htmlFor="photo">
               <div className={css.labelPhoto}>
-                {photo && (
+                {file && (
                   <img
                     className={css.previewPhoto}
-                    src={URL.createObjectURL(photo)}
+                    src={URL.createObjectURL(file)}
                     alt="Pet"
                   />
                 )}
@@ -147,8 +151,12 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );
 };
+   

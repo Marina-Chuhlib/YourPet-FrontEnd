@@ -1,77 +1,81 @@
 .list {
-    list-style: none;
-    margin: 40px 0 40px;
-    padding: 0;
-    text-decoration: none;
-
-   
-}
- @media screen and (min-width: 768px) {
-     .list {
-        display: flex;
-        margin: 0;
-     }
- }
-
-.item:not(:last-child) {
-    margin: 0 auto 12px;
-
-    
+  list-style: none;
+  margin: 40px 0 40px;
+  padding: 0;
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
-    .item:not(:last-child) {
-        margin: 0 20px 0 0;
-    }
-    
+  .list {
+    display: flex;
+    margin: 0;
+  }
+}
+
+.item:not(:last-child) {
+  margin: 0 auto 12px;
+}
+@media screen and (min-width: 768px) {
+  .item:not(:last-child) {
+    margin: 0 20px 0 0;
+  }
 }
 
 .link {
-    display: flex;
-    box-sizing: border-box;
+  display: flex;
+  box-sizing: border-box;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 165px;
+  height: 40px;
+  margin: 0 auto;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.375;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  border: 2px solid #ffc107;
+  border-radius: 40px;
+  color: #ffc107;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .link {
+    width: 145px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login {
     width: 165px;
-    height: 40px;
-    margin: 0 auto;
-
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.375;
-
-    text-decoration: none;
-    cursor: pointer;
-
-    border: 2px solid #FFC107;
-    border-radius: 40px;
-    color: #FFC107;
-    background-color: transparent;
-
-    
-}
-
-@media screen and (min-width: 768px) {
-    .link {
-        width: 145px;
-    }
-}
-
-.login {
-    color: #fff;
-    background-color: #FFC107;
-
-    
-}
-
-
-@media screen and (min-width: 768px) {
-    .login {
-        width: 165px;
-    }
+  }
 }
 
 .icon {
-    fill: #fff;
-    margin-left: 5px;
+
+  fill: #ffc107;
+  margin-left: 8px;
 }
 
+.link:hover,
+.link:focus {
+  color: #fff;
+  background-color: #ffc107;
+}
+
+.link:hover .icon {
+  fill: #fff;
+}
+
+.link:global(.active) {
+  color: #fff;
+  background-color: #ffc107;
+}
+
+.link:global(.active) .icon {
+  fill: #fff;
+}

@@ -1,33 +1,33 @@
 import Modal from '../ModalWindow/Modal';
 
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import css from './ModalApproveAction.module.css';
+import css from './modalDeleteCardNotice.css';
 
-import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
+// import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
-import * as toasty from '../../../shared/toastify/toastify';
+// import * as toasty from '../../../shared/toastify/toastify';
 
-const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
-  const dispatch = useDispatch();
+const ModalDeleteCardNotice = ({ closeModal, _id, name, handleDelete }) => {
+  // const dispatch = useDispatch();
 
   const handleModalClose = () => {
     closeModal();
   };
 
-  const handleConfirm = () => {
-    dispatch(fetchDeleteUserPet(_id));
-    toasty.toastSuccess('Deleted successful');
-    closeModal();
-  };
+  // const handleConfirm = () => {
+  //   dispatch(fetchDeleteUserPet(_id));
+  //   toasty.toastSuccess('Deleted successful');
+  //   closeModal();
+  // };
 
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>
-        <h1>Delete card?</h1>
-        <p className={css.text}>
+        <h1>Delete adverstiment?</h1>
+        <p>
           Are you sure you want to delete {name}'s card? You don't undo this
           action.
         </p>
@@ -38,7 +38,7 @@ const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
           >
             Cancel
           </button>
-          <button className={css.modalBtn} onClick={handleConfirm}>
+          <button className={css.modalBtn} onClick={() => handleDelete(_id)}>
             Yes
             <DeleteForeverOutlinedIcon
               sx={{ fontSize: 30 }}
@@ -51,4 +51,4 @@ const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
   );
 };
 
-export default ModalApproveActionDeleteCard;
+export default ModalDeleteCardNotice;
