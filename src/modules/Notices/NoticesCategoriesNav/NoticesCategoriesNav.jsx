@@ -11,7 +11,7 @@ import css from './NoticesCategoriesNav.module.css';
 const link = [
   { to: 'sell', text: 'sell' },
   { to: 'lost-found', text: 'lost/found' },
-  { to: 'for-free', text: 'for-free' },
+  { to: 'for-free', text: 'in good hands' },
 ];
 
 const getClassNameLink = ({ isActive }) => {
