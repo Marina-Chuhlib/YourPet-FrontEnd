@@ -8,29 +8,13 @@ import Loader from 'shared/components/Loader/Loader';
 
 import PetsItem from './PetsItem';
 
-import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import css from './MyPets.module.css';
 
-// import React from 'react';
-// import { Button } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/styles';
-
-// const useStyles = makeStyles({
-//   button: {
-//     background: '#54adff',
-//     '&:hover': {
-//       background: 'linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%)',
-//     },
-//   },
-// });
-
 const MyPets = () => {
   const isLoading = useSelector(selectIsLoading);
   const pets = useSelector(userMyPets);
-
-  // const classes = useStyles();
 
   const navigate = useNavigate();
 
