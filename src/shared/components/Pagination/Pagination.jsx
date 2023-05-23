@@ -4,6 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function PaginationLine({ totalPages, onChange, currentPage }) {
   const handlePageChange = (event, page) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     onChange(page);
   };
 
