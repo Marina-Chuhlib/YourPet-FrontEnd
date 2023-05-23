@@ -44,7 +44,7 @@ export const ThirdFormMyPet = ({
   };
   return (
     <div>
-      <TitleModal title={'Add my pet'} />
+      <TitleModal titleForm={'Add my pet'} />
 
       <StatusIndicator
         currentStatus={currentStatus}

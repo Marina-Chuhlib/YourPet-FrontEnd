@@ -186,7 +186,7 @@ export const AddPetChooseForm = () => {
       {isLoading && <Loader />}
       {step === 1 && (
         <FormContainer>
-          <TitleModal title={'Add pet'} />
+          <TitleModal titleForm={'Add pet'} />
 
           <StatusIndicator currentStatus={currentStatus} />
           <ButtonChooseOption

@@ -55,7 +55,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
 
   return (
     <div className={css.wparForm}>
-      <TitleModal title={'Add pet for sell'} />
+      <TitleModal titleForm={'Add pet for sell'} />
 
       <StatusIndicator
         currentStatus={currentStatus}

@@ -2,7 +2,8 @@
     margin-bottom: 24px;
   display: flex;
   align-self: flex-start;
-  justify-content: center;
+  /* justify-content: center; */
+  padding: 0px;
  
  }
  /* Default */
@@ -16,6 +17,7 @@
   letter-spacing: 0.04em;
   margin-bottom: 12px;
   width: 80px;
+  padding: 0px;
 }
 .textStatus:not(:last-child) {
   margin-right: 12px;
@@ -36,6 +38,7 @@
 @media screen and (min-width: 768px) {
   .statusContainer {
     margin-bottom: 16px;
+    justify-content: center;
 
   }
   .textStatus {
@@ -112,6 +115,7 @@
   letter-spacing: 0.04em;
   margin-bottom: 12px;
   width: 80px;
+  padding: 0px;
 }
 .textStatusDone:not(:last-child) {
   margin-right: 12px;
@@ -132,12 +136,14 @@
 @media screen and (min-width: 768px) {
   .statusContainer {
     margin-bottom: 16px;
+    padding: 0px;
   }
   .textStatusDone {
     font-size: 14px;
     line-height: 1.21;
     margin-bottom: 16px;
     min-width: 120px;
+    padding: 0px;
   }
   .textStatusDone::after {
     width: 120px;

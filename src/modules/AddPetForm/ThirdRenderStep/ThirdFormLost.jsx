@@ -54,7 +54,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
 
   return (
     <div className={css.wparForm}>
-      <TitleModal title={'Add lost pet'} />
+      <TitleModal titleForm={'Add lost pet'} />
 
       <StatusIndicator
         currentStatus={currentStatus}

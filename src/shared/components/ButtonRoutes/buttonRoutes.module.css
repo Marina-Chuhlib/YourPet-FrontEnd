@@ -14,7 +14,8 @@ align-self: flex-end;
 @media screen and (min-width: 768px) {
   .buttonContainer {
     flex-direction: row-reverse;
-    /*     justify-content: end; */
+        justify-content: center;
+        align-self: center;
     /* align-items: end; */
     margin-bottom: 20px;
   }
