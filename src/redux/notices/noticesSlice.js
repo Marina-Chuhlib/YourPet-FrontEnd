@@ -7,7 +7,7 @@ import {
   fetchDeleteNotice,
   fetchNoticesByCategory,
   fetchNoticesByOwn,
-  fetchAllFavoriteNotices,
+  // fetchAllFavoriteNotices,
   fetchRemoveFromFavorite,
 } from './noticesOperations';
 
@@ -21,7 +21,7 @@ const initialState = {
   page: 1,
   totalPages: 1,
   keyword: '',
-  itemsFavorite: [],
+  // itemsFavorite: [],
 };
 
 const noticesSlice = createSlice({
@@ -113,21 +113,21 @@ const noticesSlice = createSlice({
         store.loading = false;
         store.error = payload.notices;
       })
-      .addCase(fetchAllFavoriteNotices.pending, store => {
-        store.loading = true;
-        store.itemsFavorite = [];
-        store.category = '';
-      })
-      .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
-        store.loading = false;
-        store.itemsFavorite = [...payload.notices];
-        store.page = Number(payload.page);
-        store.totalPages = payload.totalPages;
-      })
-      .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
-        store.loading = false;
-        store.error = payload;
-      })
+      // .addCase(fetchAllFavoriteNotices.pending, store => {
+      //   store.loading = true;
+      //   store.itemsFavorite = [];
+      //   store.category = '';
+      // })
+      // .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
+      //   store.loading = false;
+      //   store.itemsFavorite = [...payload.notices];
+      //   store.page = Number(payload.page);
+      //   store.totalPages = payload.totalPages;
+      // })
+      // .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
+      //   store.loading = false;
+      //   store.error = payload;
+      // })
       .addCase(fetchRemoveFromFavorite.pending, store => {
         store.loading = true;
       })

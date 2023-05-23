@@ -2,8 +2,9 @@ import { useSelector } from 'react-redux';
 
 import {
   getAllNotices,
-  getAllFavoriteNotices,
+  // getAllFavoriteNotices,
 } from 'redux/notices/noticesSelectors';
+import { getAllFavoriteNotices } from '../../../redux/auth/auth-selectors';
 import { useLocation } from 'react-router-dom';
 
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
@@ -15,6 +16,7 @@ import css from './notices-categories-list.module.css';
 const NoticesCategoriesList = () => {
   const allNotices = useSelector(getAllNotices);
   const allFavoriteNotices = useSelector(getAllFavoriteNotices);
+
   const location = useLocation();
   const currentCategory = location.pathname.split('/')[2];
   return (
@@ -31,9 +33,15 @@ const NoticesCategoriesList = () => {
       )}
       {currentCategory === 'favorite' ? (
         <ul className={css.noticeList}>
-          {allFavoriteNotices.map(({ _id, owner, ...props }) => (
-            <NoticeCategoryItem key={_id} {...props} _id={_id} owner={owner} />
-          ))}
+          {allFavoriteNotices.length > 0 &&
+            allFavoriteNotices.map(({ _id, owner, ...props }) => (
+              <NoticeCategoryItem
+                key={_id}
+                {...props}
+                _id={_id}
+                owner={owner}
+              />
+            ))}
         </ul>
       ) : (
         <ul className={css.noticeList}>
