@@ -58,12 +58,14 @@ const NoticeModal = ({ _id, handleFavoriteToggle }) => {
                 <td className={css.infoTitle}>The sex:</td>
                 <td className={css.info}>{item.sex}</td>
               </tr>
-              {item.price && (
-                <tr>
-                  <td className={css.infoTitle}>Price:</td>
+              <tr>
+                <td className={css.infoTitle}>Price:</td>
+                {item.price ? (
                   <td className={css.info}>{item.price} $</td>
-                </tr>
-              )}
+                ) : (
+                  <td className={css.info}>free </td>
+                )}
+              </tr>
               <tr>
                 <td className={css.infoTitle}>Email:</td>
                 <td>

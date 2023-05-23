@@ -9,9 +9,9 @@ import PlusIcon from 'icons/PlusIcon';
 import css from './NoticesCategoriesNav.module.css';
 
 const link = [
-  { to: 'sell', text: 'Sell' },
-  { to: 'lost-found', text: 'Lost/Found' },
-  { to: 'for-free', text: 'In good hands' },
+  { to: 'sell', text: 'sell' },
+  { to: 'lost-found', text: 'lost/found' },
+  { to: 'for-free', text: 'for-free' },
 ];
 
 const getClassNameLink = ({ isActive }) => {
@@ -62,7 +62,7 @@ const NoticesCategoriesNav = ({
                   onOwnClick();
                 }}
               >
-                My ads
+                my ads
               </NavLink>
             </li>
             <li key="favorite">
@@ -73,7 +73,7 @@ const NoticesCategoriesNav = ({
                   onFavoriteClick();
                 }}
               >
-                Favorite ads
+                favorite ads
               </NavLink>
             </li>
           </>
