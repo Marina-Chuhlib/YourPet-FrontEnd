@@ -166,10 +166,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev
-          textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
-        />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

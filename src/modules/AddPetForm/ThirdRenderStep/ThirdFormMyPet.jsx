@@ -91,7 +91,8 @@ export const ThirdFormMyPet = ({
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
         <ButtonPrev
           textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
+          // onClick={() => { console.log('click on Prev Step'); handlePrevStep(formData) }}
+          handlePrevStep={handlePrevStep}
         />
       </ButtonRoutes>
     </div>

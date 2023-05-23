@@ -109,10 +109,7 @@ export const SecondFormSell = ({
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev
-          textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
-        />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

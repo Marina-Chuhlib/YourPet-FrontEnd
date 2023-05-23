@@ -94,7 +94,11 @@ export const SecondFormMyPet = ({
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
         <ButtonPrev
           textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
+          handlePrevStep={handlePrevStep}
+          // onClick={() => {
+          //   console.log('click on Prev Step');
+          //   handlePrevStep(formData);
+          // }}
         />
       </ButtonRoutes>
     </div>
