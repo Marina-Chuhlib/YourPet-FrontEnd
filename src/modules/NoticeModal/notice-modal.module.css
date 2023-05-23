@@ -73,13 +73,11 @@ table tr:not(:last-child) {
 }
 
 .contacts {
-  /* composes: info; */
   color: #ffc107;
   text-decoration: underline;
 }
 
 .commentsTitle {
-  /* composes: infoTitle; */
   letter-spacing: 0.04em;
 }
 
