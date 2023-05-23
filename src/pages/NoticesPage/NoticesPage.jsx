@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   fetchNoticesByCategory,
   fetchNoticesByOwn,
@@ -13,12 +14,15 @@ import {
   // selectCategory,
   selectNoticesPage,
 } from '../../redux/notices/noticesSelectors';
+// import { getFavorite } from 'redux/auth/auth-selectors';
+
 import NoticesSearch from 'modules/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'modules/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import PaginationNotices from 'shared/components/Pagination/PaginationNotices';
 
 import css from '../NoticesPage/NoticesPage.module.css';
 import Loader from 'shared/components/Loader/Loader';
+import ScrollButton from 'shared/components/ScrollButton/ScrollButton';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -32,16 +36,40 @@ const NoticesPage = () => {
 
   const [ownCurrentPage, setOwnCurrentPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
-
+  // const favoriteNotice = useSelector(getFavorite);
+  // console.log(favoriteNotice);
   // useEffect(() => {
-  //   dispatch(
-  //     fetchNoticesByCategory({
-  //       categoryName: currentCategory,
-  //       query: '',
-  //       page: 1,
-  //     })
-  //   );
+  //   if (currentCategory === 'own') {
+  //     dispatch(fetchNoticesByOwn({ query: '', page: 1 }));
+  //     return;
+  //   } else if (currentCategory === 'favorite') {
+  //     dispatch(fetchAllFavoriteNotices({ query: '', page: 1 }));
+  //     return;
+  //   } else {
+  //     dispatch(
+  //       fetchNoticesByCategory({
+  //         categoryName: currentCategory,
+  //         query: '',
+  //         page: 1,
+  //       })
+  //     );
+  //   }
   // }, [dispatch, currentCategory]);
+
+  useEffect(() => {
+    if (currentCategory !== 'sell') {
+      return;
+    }
+    if (currentCategory === 'sell') {
+      dispatch(
+        fetchNoticesByCategory({
+          categoryName: 'sell',
+          query: '',
+          page: 1,
+        })
+      );
+    }
+  }, [dispatch, currentCategory]);
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
@@ -118,10 +146,9 @@ const NoticesPage = () => {
           }
         }}
       />
+      <ScrollButton />
     </div>
   );
 };
 
 export default NoticesPage;
-
-

@@ -1,35 +1,9 @@
-// import styles from "./navbar-user.module.css"
-// import { useSelector, useDispatch } from "react-redux";
-// import UserAvatarIcon from './UserAvatarIcon/UserAvatarIcon';
-
-// import { logout } from "../../../redux/auth/auth-operations"
-
-// import { getUser } from "redux/auth/auth-selectors";
-// import { useNavigate } from "react-router-dom";
-
-// const NavBarUser = () => {
-//     const { name } = useSelector(getUser)
-
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
-//     const onLogout = async()=> {
-//         await dispatch(logout());
-//         navigate("/main")
-//     }
-
-//     return (
-//         <div>
-//             {name},<button type="button" onClick={onLogout}>Logout</button>
-//         </div>
-
-// export default NavBarUser;
-
 import { NavLink } from 'react-router-dom';
-//  import { useSelector } from "react-redux";
+
 import UserAvatarIcon from './UserAvatarIcon/UserAvatarIcon';
 import UserDefaultIcon from '../../../icons/UserDefaultIcon';
 
-// import { getUser } from "../../../redux/auth/auth-selectors";
+
 import { getUser } from 'redux/auth/auth-selectors';
 
 import styles from './navBarUser.module.css';

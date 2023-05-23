@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 
-import {
-  fetchUpdateUser,
-  fetchUpdateAvatar,
-} from 'redux/auth/auth-operations';
+import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
 
 import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
 
@@ -29,6 +26,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import css from './UserForm.module.css';
 
@@ -36,11 +34,12 @@ import * as toasty from 'shared/toastify/toastify';
 
 const UserForm = () => {
   const { token } = useSelector(selectAuth);
-  const { isLoading } = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const { user } = useSelector(userInfo);
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const filePicker = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -73,9 +72,16 @@ const UserForm = () => {
   }, [isLoading, isLoggedIn, logoutSuccessful]);
 
   const handleChangeAvatar = e => {
+    setIsPhotoUploaded(false);
     const file = e.target.files[0];
     setSelectedImage(file);
     setPreviewImage(URL.createObjectURL(file));
+  };
+
+  const handleDeleteAvatar = () => {
+    setPreviewImage(null);
+    setIsPhotoUploaded(true);
+    console.log('delete');
   };
 
   const addAvatarBtn = () => {
@@ -87,8 +93,9 @@ const UserForm = () => {
     formData.append('imageURL', selectedImage);
 
     await dispatch(fetchUpdateAvatar({ token, formData }));
-
     toasty.toastSuccess('Photo added successfully');
+
+    setIsPhotoUploaded(true);
   };
 
   const handleChangeInput = event => {
@@ -153,11 +160,6 @@ const UserForm = () => {
     { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
   ];
 
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  //   dispatch(logout());
-  //   navigate('/');
-  // };
   const closeModal = () => {
     setIsModalOpen(false);
     navigate('/user');
@@ -166,7 +168,7 @@ const UserForm = () => {
   const onLogout = () => {
     setIsModalOpen(true);
   };
-  
+
   return (
     <>
       {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
@@ -193,37 +195,62 @@ const UserForm = () => {
                   )}
 
                   <div className={css.wrapperFile}>
-                    {selectedImage && (
-                      <Button
-                        onClick={handleUpload}
-                        variant="outlined"
-                        style={{
-                          border: 'rgba(0, 0, 0, 0)',
-                          color: '#111111',
-                          fontSize: '12px',
-                          padding: '0',
-                          paddingRight: '5px',
-                          borderRadius: '10px',
-                          fontFamily: 'Manrope',
-                          textTransform: 'none',
-                          marginRight: 'auto',
-                        }}
-                        startIcon={
+                    {selectedImage && !isPhotoUploaded && (
+                      <>
+                        <Button
+                          onClick={handleUpload}
+                          variant="outlined"
+                          style={{
+                            border: 'rgba(0, 0, 0, 0)',
+                            color: '#111111',
+                            fontSize: '12px',
+                            padding: '0',
+                            paddingRight: '5px',
+                            borderRadius: '10px',
+                            fontFamily: 'Manrope',
+                            textTransform: 'none',
+                            marginRight: '12px',
+                          }}
+                        >
                           <DoneOutlinedIcon
                             style={{
                               color: '#54ADFF',
                               padding: '0px',
                               height: '24px',
                               width: '24px',
+                              marginRight: '0',
                             }}
                           />
-                        }
-                      >
-                        Confirm
-                      </Button>
+                          Confirm
+                        </Button>
+                        <Button
+                          onClick={handleDeleteAvatar}
+                          style={{
+                            border: 'rgba(0, 0, 0, 0)',
+                            color: '#111111',
+                            fontSize: '12px',
+                            padding: '0',
+                            paddingRight: '5px',
+                            borderRadius: '10px',
+                            fontFamily: 'Manrope',
+                            textTransform: 'none',
+                            marginRight: 'auto',
+                          }}
+                        >
+                          <ClearOutlinedIcon
+                            style={{
+                              color: '#ffc107',
+                              padding: '0px',
+                              height: '24px',
+                              width: '24px',
+                            }}
+                          />
+                          Delete
+                        </Button>
+                      </>
                     )}
 
-                    {!selectedImage && (
+                    {!selectedImage && !isPhotoUploaded && (
                       <label htmlFor="fileElem" className={css.avatarLabel}>
                         <CameraAltOutlinedIcon
                           style={{ color: '#54ADFF', marginRight: '8px' }}
@@ -235,6 +262,25 @@ const UserForm = () => {
                           id="fileElem"
                           accept="image/*"
                           name="Edit photo"
+                          ref={filePicker}
+                          className={css.avatarBtn}
+                          onChange={handleChangeAvatar}
+                        />
+                      </label>
+                    )}
+
+                    {isPhotoUploaded && (
+                      <label htmlFor="fileElem" className={css.avatarLabel}>
+                        <CameraAltOutlinedIcon
+                          style={{ color: '#54ADFF', marginRight: '8px' }}
+                          onClick={addAvatarBtn}
+                        />
+                        Add photo
+                        <input
+                          type="file"
+                          id="fileElem"
+                          accept="image/*"
+                          name="Add photo"
                           ref={filePicker}
                           className={css.avatarBtn}
                           onChange={handleChangeAvatar}

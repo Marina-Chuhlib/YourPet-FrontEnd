@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from 'icons/ClockIcon';
 import FemaleIcon from 'icons/FemaleIcon';
@@ -7,18 +6,19 @@ import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
 import * as toasty from '../../../shared/toastify/toastify';
-import moment from 'moment';
 
-import { getUser } from 'redux/auth/auth-selectors';
+// import { getUser } from 'redux/auth/auth-selectors';
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import Modal from 'shared/components/ModalWindow/Modal';
-import { getFavorite } from 'redux/auth/auth-selectors';
+import { getFavorite, getUserId } from 'redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
   fetchRemoveFromFavorite,
+  fetchDeleteNotice,
 } from 'redux/notices/noticesOperations';
+// import { getAllFavoriteNotices } from '../../../redux/notices/noticesSelectors';
 
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
@@ -36,15 +36,14 @@ const NoticeCategoryItem = ({
   breed,
   owner,
   name,
-  // myFavoriteNotice,
 }) => {
-  // const [isFavorite, setIsFavorite] = useState();
-
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
+  const userId = useSelector(getUserId);
+  // const favoritesHeart = useSelector(getAllFavoriteNotices);
 
-  const isMyAds = false;
+  // const isMyAds = false;
 
   const dispatch = useDispatch();
 
@@ -54,7 +53,7 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchRemoveFromFavorite(_id));
         toasty.toastSuccess('remove from favorite');
-
+        checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -63,6 +62,7 @@ const NoticeCategoryItem = ({
       try {
         dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
+        checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -72,38 +72,48 @@ const NoticeCategoryItem = ({
 
   const { isModalOpen, openModal, closeModal } = useToggleModalWindow();
 
-  const getDate = bd => {
-    const birthDate = moment(bd, 'DD-MM-YYYY');
-    const currentDate = moment();
+  function getAge(date) {
+    const ymdArr = date.split('.').map(Number).reverse();
+    ymdArr[1]--;
+    const bornDate = new Date(...ymdArr);
 
-    const yearsDiff = currentDate.diff(birthDate, 'years');
-    const monthsDiff = currentDate.diff(birthDate, 'month') % 12;
-    const totalMonths = yearsDiff * 12 + monthsDiff;
-    const daysDiff = currentDate.diff(birthDate, 'days') % 31;
+    const now = new Date();
 
-    if (totalMonths === 1) {
-      return `${totalMonths} month`;
+    const leapYears = (now.getFullYear() - ymdArr[0]) / 4;
+
+    now.setDate(now.getDate() - Math.floor(leapYears));
+
+    const nowAsTimestamp = now.getTime();
+    const bornDateAsTimestamp = bornDate.getTime();
+
+    const ageAsTimestamp = nowAsTimestamp - bornDateAsTimestamp;
+
+    const oneYearInMs = 3.17098e-11;
+
+    const age = Math.floor(ageAsTimestamp * oneYearInMs);
+    // console.log(age);
+    return age;
+  }
+
+  const age = getAge(date);
+
+  const checkFavorite = _id => {
+    if (favorites.includes(_id)) {
+      return true;
     }
-
-    if (totalMonths !== 0 && totalMonths < 12) {
-      return `${totalMonths} months`;
-    }
-
-    if (totalMonths >= 12 && totalMonths < 24) {
-      return `1 year`;
-    }
-
-    if (totalMonths === 0 && daysDiff === 1) {
-      return `1 day`;
-    }
-
-    if (totalMonths === 0 && daysDiff > 1) {
-      return `${daysDiff} days`;
-    }
-
-    return `${yearsDiff} years`;
+    return false;
   };
 
+  const checkOwner = owner => {
+    if (owner === userId) {
+      return true;
+    }
+    return false;
+  };
+  const handleDelete = _id => {
+    console.log(_id);
+    dispatch(fetchDeleteNotice(_id));
+  };
   return (
     <li key={_id} className={css.listItems}>
       <div className={css.imageThumb}>
@@ -117,17 +127,17 @@ const NoticeCategoryItem = ({
               SVGComponent={() => (
                 <HeartIcon
                   className={
-                    css.favorite
+                    checkFavorite(_id)
                       ? `${css.icons} ${css.favoriteIcon}`
                       : css.icons
                   }
                   // color="#54ADFF"
-                  favorite={user.favorite}
                 />
               )}
             />
-            {isMyAds && (
+            {checkOwner(owner) && (
               <Button
+                onClick={() => handleDelete(_id)}
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
               />
@@ -141,7 +151,7 @@ const NoticeCategoryItem = ({
           </p>
           <p className={css.noticeInfo}>
             <ClockIcon className={css.icon} color="#54ADFF" />
-            {getDate(date)}
+            {age === 1 ? '1 year' : `${age} years`}
           </p>
           <p className={css.noticeInfo}>
             {sex.toLowerCase() === 'male' && (

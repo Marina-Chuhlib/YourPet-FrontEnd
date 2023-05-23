@@ -8,6 +8,7 @@ import OurFriendsList from 'modules/OurFriends/OurFriendsList/OurFriendsList';
 import Loader from 'shared/components/Loader/Loader';
 
 import css from './OurFriendsPage.module.css';
+import ScrollButton from 'shared/components/ScrollButton/ScrollButton';
 
 const OurFriendsPage = () => {
   const isLoading = useSelector(loading);
@@ -23,6 +24,7 @@ const OurFriendsPage = () => {
       <h2 className={css.title}>Our friends</h2>
       {isLoading && <Loader />}
       <OurFriendsList />
+      <ScrollButton/>
     </>
   );
 };

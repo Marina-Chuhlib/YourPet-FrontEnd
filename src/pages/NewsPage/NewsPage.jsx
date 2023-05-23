@@ -12,8 +12,14 @@ import NewsSearch from 'modules/News/NewsSearch/NewsSearch';
 // import PaginationLine from 'shared/components/Pagination/Pagination';
 
 import css from '../NewsPage/NewsPage.module.css';
+import { useSelector } from 'react-redux';
+import { selectIsLoadingNews } from 'redux/news/newsSelectors';
+import Loader from 'shared/components/Loader/Loader';
+import ScrollButton from 'shared/components/ScrollButton/ScrollButton';
+
 
 const NewsPage = () => {
+  const isLoading = useSelector(selectIsLoadingNews)
   // const dispatch = useDispatch();
   // const [currentPage, setCurrentPage] = useState(1);
   // const totalPages = useSelector(selectAllNewsTotalPages);
@@ -29,6 +35,7 @@ const NewsPage = () => {
   return (
     <div className="container">
       <h2 className={css.title}>News</h2>
+      {isLoading && <Loader/>}
       <NewsSearch />
       {/* <NewsList />
       <PaginationLine
@@ -36,6 +43,7 @@ const NewsPage = () => {
         currentPage={currentPage}
         onChange={handlePageChange}
       /> */}
+      <ScrollButton/>
     </div>
   );
 };
