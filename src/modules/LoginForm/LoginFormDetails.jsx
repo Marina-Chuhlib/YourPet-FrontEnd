@@ -15,12 +15,11 @@ import css from './loginFormDetails.module.css';
 import { login } from 'redux/auth/auth-operations';
 
 const registerSchema = yup.object({
-  //name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email').required('Enter a valid Email'),
   password: yup
-  .string()
-  .required('Password is required')
-  .min(6, 'Password must be at least 6 characters')
+    .string()
+    .required('Password is required')
+    .min(6, 'Password must be at least 6 characters')
     .max(16, 'Password must be at most 16 characters')
     .matches(
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([0-9a-zA-Z]{6,})*$/,
@@ -29,30 +28,24 @@ const registerSchema = yup.object({
 });
 
 const data = {
-  //name: '',
   email: '',
   password: '',
-  //confirmPassword: '',
 };
 
 export const LoginFormDetails = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
- // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
-//   const handleClickShowConfirmPassword = () =>
-//     setShowConfirmPassword(show => !show);
 
   const dispatch = useDispatch();
+
   const handleFormSubmit = async values => {
-    // console.log(values);
     const data = {
-      //name: values.name,
       email: values.email,
       password: values.password,
     };
-   await dispatch(login(data));
+    await dispatch(login(data));
     navigate('/user');
   };
 
@@ -66,33 +59,6 @@ export const LoginFormDetails = () => {
         {({ values, errors, touched, handleSubmit, handleChange }) => (
           <Form className={css.form} onSubmit={handleSubmit}>
             <h2 className={css.title}>Login</h2>
-            {/* <Box
-              sx={{
-                marginBottom: '10px',
-                display: 'flex',
-                alignItems: 'flex-end',
-              }}
-            >
-              <TextField
-                name="name"
-                type="text"
-                label="Name"
-                size="small"
-                fullWidth
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderRadius: 40,
-                      border: `1px solid #54ADFF`,
-                    },
-                  },
-                }}
-                onChange={handleChange}
-                value={values.name}
-                error={touched.name && Boolean(errors.name)}
-                helperText={touched.name && errors.name}
-              />
-            </Box> */}
             <Box
               sx={{
                 marginBottom: '10px',
@@ -170,51 +136,6 @@ export const LoginFormDetails = () => {
                 helperText={touched.password && errors.password}
               />
             </Box>
-            {/* <Box
-              sx={{
-                marginBottom: '10px',
-                display: 'flex',
-                alignItems: 'flex-end',
-              }}
-            >
-              <TextField
-                name="confirmPassword"
-                type={showConfirmPassword ? 'text' : 'password'}
-                label="Confirm password"
-                size="small"
-                fullWidth
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderRadius: 40,
-                      border: `1px solid #54ADFF`,
-                    },
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowConfirmPassword}
-                      edge="end"
-                      size="small"
-                    >
-                      {showConfirmPassword ? (
-                        <Visibility style={{ color: blue[300] }} />
-                      ) : (
-                        <VisibilityOff style={{ color: blue[300] }} />
-                      )}
-                    </IconButton>
-                  ),
-                }}
-                onChange={handleChange}
-                value={values.confirmPassword}
-                error={
-                  touched.confirmPassword && Boolean(errors.confirmPassword)
-                }
-                helperText={touched.confirmPassword && errors.confirmPassword}
-              />
-            </Box> */}
             <div className={css.buttonContainer}>
               <button type="submit" className={css.button}>
                 Login
