@@ -1,20 +1,16 @@
 import React from 'react';
-// import { unstable_HistoryRouter } from 'react-router-dom';
 import css from './buttonRoutes.module.css';
 
 import ArrowLeftIcon from 'icons/ArrowLeftIcon';
 
-const ButtonPrev = ({ textButton, handlePrevStep }) => {
-  // const history = unstable_HistoryRouter();
-  // const handleGoBack = () => {
-  //   history.goBack()
-  // console.log(textButton)
-  // }
-
+const ButtonPrev = ({ textButton, handlePrevStep, formData }) => {
   return (
     <button
-      className={css.buttonPrev} type="button"
-      onClick={handlePrevStep}
+      className={css.buttonPrev}
+      type="button"
+      onClick={() => {
+        handlePrevStep(formData);
+      }}
     >
       <ArrowLeftIcon className={css.arrowIcon} color="#54ADFF" />
       {textButton}

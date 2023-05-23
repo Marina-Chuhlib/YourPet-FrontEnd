@@ -1,7 +1,7 @@
 import css from './TitleModal.module.css';
 
-const TitleModal = ({ customStyle, title }) => {
-  return <h2 className={`${css.title} ${customStyle}`}>{title}</h2>;
+const TitleModal = ({ titleForm }) => {
+  return <h2 className={css.title}>{titleForm}</h2>;
 };
 
 export default TitleModal;

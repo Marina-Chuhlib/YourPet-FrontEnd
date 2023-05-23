@@ -54,7 +54,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
 
   return (
     <div className={css.wparForm}>
-      <TitleModal title={'Add lost pet'} />
+      <TitleModal titleForm={'Add lost pet'} />
 
       <StatusIndicator
         currentStatus={currentStatus}
@@ -151,10 +151,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev
-          textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
-        />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

@@ -10,7 +10,7 @@ import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 export const SecondFormSell = ({
   formData,
     currentStatus,
-   handleNextData, handlePrevStep, chooseOption
+   handleNextData, handlePrevStep, chooseOption, titleForm
 }) => {
     const [title, setAddTitle] = useState(formData.title || '');
   const [name, setName] = useState(formData.name || '');
@@ -43,7 +43,7 @@ export const SecondFormSell = ({
   // };
   return (
     <div>
-      <TitleModal title={'Add pet for sell'} />
+      <TitleModal titleForm={titleForm} />
 
       <StatusIndicator
         currentStatus={currentStatus}
@@ -109,10 +109,7 @@ export const SecondFormSell = ({
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev
-          textButton={'Back'}
-          onClick={() => handlePrevStep(formData)}
-        />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

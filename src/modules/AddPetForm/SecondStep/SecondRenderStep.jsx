@@ -23,7 +23,7 @@ export const SecondRenderStep = ({
       )}
       {chooseOption === 'sell' ? (
         <SecondFormSell
-          title={'Add pet for sale'}
+          titleForm={'Add pet for sale'}
           currentStatus={currentStatus}
           handleNextData={handleNextData}
           handlePrevStep={handlePrevStep}
@@ -34,7 +34,7 @@ export const SecondRenderStep = ({
       )}
       {chooseOption === 'lost-found' ? (
         <SecondFormSell
-          title={'Add lost pet'}
+          titleForm={'Add lost pet'}
           currentStatus={currentStatus}
           handleNextData={handleNextData}
           handlePrevStep={handlePrevStep}
@@ -45,7 +45,7 @@ export const SecondRenderStep = ({
       )}
       {chooseOption === 'for-free' ? (
         <SecondFormSell
-          title={'Pet in good hands'}
+          titleForm={'Pet in good hands'}
           currentStatus={currentStatus}
           handleNextData={handleNextData}
           handlePrevStep={handlePrevStep}
