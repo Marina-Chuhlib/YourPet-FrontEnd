@@ -20,7 +20,7 @@ export const ThirdFormMyPet = ({
   const [imageURL, setImageURL] = useState('');
   const [comments, setComments] = useState('');
   // const [errors, setErrors] = useState({});
-  // const category = chooseOption;
+
   const handleDone = () => {
     handleNextData({ imageURL, comments });
   };

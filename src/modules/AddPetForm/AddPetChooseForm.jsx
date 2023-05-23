@@ -30,11 +30,11 @@ export const AddPetChooseForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // const [state, setState] = useState(stateInitialValue);
+  
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    // console.log('new state FORM DATA:', formData);
+  
   }, [formData]);
 
   const dispatch = useDispatch();
@@ -86,7 +86,7 @@ export const AddPetChooseForm = () => {
   };
 
   const handleCloseModal = () => {
-    console.log('Data wen mofal close', formData);
+    console.log('Data new modal close', formData);
     setShowModal(false);
 
     switch (formData.category) {

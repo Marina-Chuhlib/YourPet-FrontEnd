@@ -12,21 +12,19 @@ export const SecondFormMyPet = ({
   handlePrevStep,
   formData,
   currentStatus,
-  // chooseOption,
+
 }) => {
   const [name, setName] = useState(formData.name || '');
   const [birthday, setBirthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   // const [errors, setErrors] = useState({});
-  // console.log('category', chooseOption);
-  // const category = chooseOption;
+
 
   
   const handleNextValidation = () => {
     console.log('work NextValidation', 'name: ', name, 'birth: ', birthday);
     handleNextData({ name, birthday, breed });
-    // console.log( 'category', category );
-  };
+     };
 
   // const handleNextValidation = () => {
   //   stepOneValidationSchema
