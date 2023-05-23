@@ -4,7 +4,7 @@ import Modal from '../ModalWindow/Modal';
 
 // import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import css from './ModalApproveAction.module.css';
+import css from './modalDeleteCardNotice.css';
 
 // import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
@@ -26,10 +26,11 @@ const ModalDeleteCardNotice = ({ closeModal, _id, name, handleDelete }) => {
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>
-        <h1>
+        <h1>Delete adverstiment?</h1>
+        <p>
           Are you sure you want to delete {name}'s card? You don't undo this
           action.
-        </h1>
+        </p>
         <div className={css.modalBtnContainer}>
           <button
             className={`${css.modalBtn} ${css.whiteBtn}`}

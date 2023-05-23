@@ -13,6 +13,7 @@ import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import useToggleModalWindow from 'shared/hooks/useToggleModalWindow';
 import useToggleModalDeleteCardNotice from 'shared/hooks/useToggleModalDeleteCardNotice';
 import Modal from 'shared/components/ModalWindow/Modal';
+import ModalDeleteCardNotice from 'shared/components/ModalDeleteCardNotice/ModalDeleteCardNotice';
 import { getFavorite, getUserId } from 'redux/auth/auth-selectors';
 import {
   fetchAddToFavorite,
@@ -23,7 +24,6 @@ import {
 import NoticeModal from 'modules/NoticeModal/NoticeModal';
 
 import css from './notice-categories-item.module.css';
-import ModalApproveActionDeleteCard from 'shared/components/ModalApproveAction/ModalApproveActionDeleteCard';
 
 const NoticeCategoryItem = ({
   _id,
@@ -110,6 +110,7 @@ const NoticeCategoryItem = ({
   const handleDelete = _id => {
     console.log(_id);
     dispatch(fetchDeleteNotice(_id));
+    toasty.toastSuccess('Deleted successful');
   };
   return (
     <li key={_id} className={css.listItems}>
@@ -140,7 +141,7 @@ const NoticeCategoryItem = ({
               />
             )}
             {isModalOpenApprove && (
-              <ModalApproveActionDeleteCard
+              <ModalDeleteCardNotice
                 closeModal={closeModalApprove}
                 handleDelete={handleDelete}
                 _id={_id}
