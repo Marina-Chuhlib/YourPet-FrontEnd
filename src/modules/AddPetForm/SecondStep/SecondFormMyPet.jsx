@@ -12,17 +12,19 @@ export const SecondFormMyPet = ({
   handlePrevStep,
   formData,
   currentStatus,
+
 }) => {
   const [name, setName] = useState(formData.name || '');
-  const [birth, setBirthday] = useState(formData.birth || '');
+  const [birthday, setBirthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   // const [errors, setErrors] = useState({});
 
+
+  
   const handleNextValidation = () => {
-    console.log('work NextValidation', "name: ", name, "birth: ", birth);
-    handleNextData({ name, birth, breed });
- 
-  };
+    console.log('work NextValidation', 'name: ', name, 'birth: ', birthday);
+    handleNextData({ name, birthday, breed });
+     };
 
   // const handleNextValidation = () => {
   //   stepOneValidationSchema
@@ -59,19 +61,19 @@ export const SecondFormMyPet = ({
         {/* {errors.name && <p className={css.ErrorText}>{errors.name}</p>} */}
       </div>
       <div className={css.inputContainer}>
-        <label className={css.label} htmlFor="birth">
+        <label className={css.label} htmlFor="birthday">
           Date of birth
         </label>
         <input
           className={css.input}
           type="text"
-          id="birth"
-          value={birth}
+          id="birthday"
+          value={birthday}
           onChange={e => setBirthday(e.target.value)}
           required
           placeholder="Type date of birth"
         />
-        {/* {errors.birth && <p className={css.ErrorText}>{errors.birthdate}</p>} */}
+        {/* {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>} */}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="breed">
@@ -90,7 +92,10 @@ export const SecondFormMyPet = ({
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );

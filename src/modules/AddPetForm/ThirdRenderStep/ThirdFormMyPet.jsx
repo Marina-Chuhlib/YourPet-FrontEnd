@@ -10,20 +10,20 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
+export const ThirdFormMyPet = ({
+  handleNextData,
+  handlePrevStep,
   formData,
-    currentStatus
+  currentStatus,
+  chooseOption,
 }) => {
-  const [photo, setPhoto] = useState('');
+  const [imageURL, setImageURL] = useState('');
   const [comments, setComments] = useState('');
   // const [errors, setErrors] = useState({});
 
   const handleDone = () => {
-    
-        handleNextData({ photo, comments });
-      
-      };
-  
+    handleNextData({ imageURL, comments });
+  };
 
   // const handleDone = () => {
   //   stepTwoValidationSchema
@@ -40,13 +40,16 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
   //     });
   // };
   const handleFileChange = e => {
-    setPhoto(e.target.files[0]);
+    setImageURL(e.target.files[0]);
   };
   return (
     <div>
       <TitleModal title={'Add my pet'} />
 
-      <StatusIndicator currentStatus={currentStatus} />
+      <StatusIndicator
+        currentStatus={currentStatus}
+        chooseOption={chooseOption}
+      />
       <div className={css.photoContainer}>
         <label className={css.labelAddPhoto}>Add photo</label>
         <div>
@@ -59,10 +62,10 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
         </div>
         <label htmlFor="photo">
           <div className={css.labelPhoto}>
-            {photo && (
+            {imageURL && (
               <img
                 className={css.previewPhoto}
-                src={URL.createObjectURL(photo)}
+                src={URL.createObjectURL(imageURL)}
                 alt="Pet"
               />
             )}
@@ -86,7 +89,10 @@ export const ThirdFormMyPet = ({handleNextData, handlePrevStep,
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );

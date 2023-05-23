@@ -12,8 +12,8 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handlePrevStep }) => {
-  const [photo, setPhoto] = useState('');
+export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handlePrevStep, chooseOption }) => {
+  const [file, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState(formData.location || '');
   const [price, setPrice] = useState(formData.price || '');
@@ -21,8 +21,10 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
   const [active, setActive] = useState(null);
   // const [errors, setErrors] = useState({});
 
- const handleDone = () => {
-   handleNextData({ photo, comments, sex, location, price });
+  const handleDone = () => {
+   const category = 'sell';
+   handleNextData({ file, comments, sex, location, price, category });
+   console.log("category??",chooseOption, category)
  };
 
   //    const handleDone = () => {
@@ -43,7 +45,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
 
   const handleFileChange = e => {
     setPhoto(e.target.files[0]);
-  };
+   };
 
   const handleSex = (option, number) => {
     setSex(option);
@@ -55,7 +57,10 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
     <div className={css.wparForm}>
       <TitleModal title={'Add pet for sell'} />
 
-      <StatusIndicator currentStatus={currentStatus} />
+      <StatusIndicator
+        currentStatus={currentStatus}
+        chooseOption={chooseOption}
+      />
       <div className={css.pointBlock}>
         <div className={css.sexPhotoBlock}>
           <div className={css.sexContainer}>
@@ -103,10 +108,10 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             </div>
             <label htmlFor="photo">
               <div className={css.labelPhoto}>
-                {photo && (
+                {file && (
                   <img
                     className={css.previewPhoto}
-                    src={URL.createObjectURL(photo)}
+                    src={URL.createObjectURL(file)}
                     alt="Pet"
                   />
                 )}
@@ -161,7 +166,10 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );
