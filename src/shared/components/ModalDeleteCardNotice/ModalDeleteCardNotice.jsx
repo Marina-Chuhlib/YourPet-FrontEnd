@@ -4,7 +4,7 @@ import Modal from '../ModalWindow/Modal';
 
 // import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import css from './modalDeleteCardNotice.css';
+import css from './modalDeleteCardNotice.module.css';
 
 // import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 

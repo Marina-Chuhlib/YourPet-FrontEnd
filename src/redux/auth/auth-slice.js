@@ -12,7 +12,8 @@ import {
 
 import {
   fetchAddToFavorite,
-  // fetchRemoveFromFavorite,
+  fetchRemoveFromFavorite,
+  fetchAllFavoriteNotices,
 } from 'redux/notices/noticesOperations';
 const initialState = {
   user: {
@@ -23,6 +24,7 @@ const initialState = {
     city: '',
     imageURL: '',
     favorite: [],
+    itemsFavorite: [],
   },
   pets: [{}],
   registrationSuccessful: false,
@@ -172,6 +174,44 @@ const authSlice = createSlice({
         state.user.favorite.push(id);
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchAllFavoriteNotices.pending, state => {
+        state.isLoading = true;
+        state.user.itemsFavorite = [];
+      })
+      .addCase(fetchAllFavoriteNotices.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user.itemsFavorite = [...payload.notices];
+        // store.page = Number(payload.page);
+        // store.totalPages = payload.totalPages;
+      })
+      .addCase(fetchAllFavoriteNotices.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchRemoveFromFavorite.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
+        const { id } = payload;
+        state.isLoading = false;
+        const index = state.user.favorite.findIndex(item => item._id !== id);
+        console.log('index', index);
+        const indexItemFavorite = state.user.itemsFavorite.findIndex(
+          ({ _id }) => {
+            return _id === payload.id;
+          }
+        );
+        if (index === indexItemFavorite) {
+          state.user.favorite.splice(index, 1);
+        }
+        if (indexItemFavorite !== -1) {
+          state.user.itemsFavorite.splice(indexItemFavorite, 1);
+        }
+      })
+      .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });
