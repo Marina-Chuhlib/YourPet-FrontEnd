@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { fetchAllNews } from 'redux/news/newsOperation';
 import NewsList from '../NewsList/NewsList';
 import PaginationLine from 'shared/components/Pagination/Pagination';
-
 import { useDispatch } from 'react-redux';
 import { fetchFilteredNews } from 'redux/news/newsOperation';
 
@@ -27,22 +26,20 @@ const NewsSearch = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllNews(currentNewsPage));
-    setCurrentFilterPage(1);
-  }, [currentNewsPage, dispatch]);
+    if (!submitted) {
+      dispatch(fetchAllNews(currentNewsPage));
+      setCurrentFilterPage(1);
+    }
+  }, [currentNewsPage, submitted, dispatch]);
 
   useEffect(() => {
     if (submitted) {
       dispatch(fetchFilteredNews({ query: keyword, page: currentFilterPage }));
-
-      // setSubmitted(false);
-      // setKeyword('');
     }
   }, [submitted, keyword, currentFilterPage, dispatch]);
 
   const handleNewsPageChange = currentNewsPage => {
     setCurrentNewsPage(currentNewsPage);
-    // setCurrentFilterPage(1);
   };
 
   const handleFilterPageChange = currentFilterPage => {
@@ -70,6 +67,8 @@ const NewsSearch = () => {
     setKeyword('');
     setShowHelperText(false);
     setSubmitted(false);
+    setCurrentNewsPage(1);
+    setCurrentFilterPage(1);
   };
 
   return (

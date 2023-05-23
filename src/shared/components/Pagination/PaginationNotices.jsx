@@ -19,7 +19,7 @@ const PaginationNotices = ({
       : currentPage;
 
   const handlePageChange = (event, page) => {
-     window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     onPageChange(page);
   };
 
@@ -42,15 +42,15 @@ const PaginationNotices = ({
         renderItem={item => (
           <PaginationItem
             sx={{
-                '&.Mui-selected': {
-                  background: '#54ADFF',
-                  color: '#FEF9F9',
-                  border: "none",
-                },
-                background: '#FEF9F9',
-                color: '#CCE4FB',
-                borderColor: '#CCE4FB',
-              }}
+              '&.Mui-selected': {
+                background: '#54ADFF',
+                color: '#FEF9F9',
+                border: 'none',
+              },
+              background: '#FEF9F9',
+              color: '#CCE4FB',
+              borderColor: '#CCE4FB',
+            }}
             icon={
               item.type === 'previous' ? (
                 <ArrowBackIcon />
