@@ -26,10 +26,11 @@ const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>
-        <h1>
+        <h1>Delete card?</h1>
+        <p className={css.text}>
           Are you sure you want to delete {name}'s card? You don't undo this
           action.
-        </h1>
+        </p>
         <div className={css.modalBtnContainer}>
           <button
             className={`${css.modalBtn} ${css.whiteBtn}`}

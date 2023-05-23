@@ -81,6 +81,13 @@ export const LoginFormDetails = () => {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
                     },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
+                    },
                   },
                 }}
                 onChange={handleChange}
@@ -110,6 +117,13 @@ export const LoginFormDetails = () => {
                     '& fieldset': {
                       borderRadius: 40,
                       border: `1px solid #54ADFF`,
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#54ADFF',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#54ADFF',
+                      borderWidth: '2px',
                     },
                   },
                 }}

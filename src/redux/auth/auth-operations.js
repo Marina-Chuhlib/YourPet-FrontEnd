@@ -11,10 +11,13 @@ export const register = createAsyncThunk(
       const result = await api.register(data);
       return result;
     } catch ({ response }) {
-      if (response.status === 409) {
+      if (response.status === 400 || response.status === 409) {
         toasty.toastError(response.data.message);
+        return rejectWithValue(response);
+      } else {
+        toasty.toastError(response.data.message);
+        return rejectWithValue(response);
       }
-      return rejectWithValue(response);
     }
   }
 );
@@ -26,7 +29,14 @@ export const login = createAsyncThunk(
       const result = await api.login(data);
       return result;
     } catch ({ response }) {
-      return rejectWithValue(response);
+      if (response.status === 500 || response.status === 401) {
+        toasty.toastError(
+          (response.data.message = 'Email or password invalid')
+        );
+      } else {
+        toasty.toastError(response.data.message);
+        return rejectWithValue(response);
+      }
     }
   }
 );
