@@ -69,7 +69,7 @@ const NoticesPage = () => {
         })
       );
     }
-  });
+  }, [dispatch, currentCategory]);
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
