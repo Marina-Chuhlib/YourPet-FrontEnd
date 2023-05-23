@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
-import Filter from '../Filter/Filter';
+import * as toasty from '../../../shared/toastify/toastify';
+// import Filter from '../Filter/Filter';
 import PlusIcon from 'icons/PlusIcon';
-
 
 import css from './NoticesCategoriesNav.module.css';
 
@@ -26,8 +26,14 @@ const NoticesCategoriesNav = ({
 }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const handleClick = () => {
-    navigate('/add-pet');
+    if (!isLoggedIn) {
+      toasty.toastError('Only a registered user can add pet!');
+      return;
+    } else {
+      navigate('/add-pet');
+    }
   };
 
   return (
@@ -74,7 +80,7 @@ const NoticesCategoriesNav = ({
         )}
       </ul>
       <div className={css.btnContainer}>
-        <Filter />
+        {/* <Filter /> */}
         <button className={css.btn} onClick={handleClick}>
           Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
         </button>

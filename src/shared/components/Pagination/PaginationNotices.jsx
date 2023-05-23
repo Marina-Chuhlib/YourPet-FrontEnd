@@ -24,14 +24,13 @@ const PaginationNotices = ({
 
   return (
     <Stack spacing={2}>
-      {totalPages > 1 && (
         <Pagination
           count={totalPages}
           page={currentPageInit}
           color="primary"
           variant="outlined"
           onChange={handlePageChange}
-          sx={{ marginX: 'auto' }}
+          sx={{ marginX: 'auto', marginBottom:"20px" }}
           renderItem={item => (
             <PaginationItem
               icon={
@@ -48,7 +47,7 @@ const PaginationNotices = ({
             />
           )}
         />
-      )}
+      
     </Stack>
   );
 };

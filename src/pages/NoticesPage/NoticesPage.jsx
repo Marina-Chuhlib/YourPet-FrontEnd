@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect } from 'react';
 
 import {
   fetchNoticesByCategory,
@@ -23,6 +22,7 @@ import PaginationNotices from 'shared/components/Pagination/PaginationNotices';
 
 import css from '../NoticesPage/NoticesPage.module.css';
 import Loader from 'shared/components/Loader/Loader';
+import ScrollButton from 'shared/components/ScrollButton/ScrollButton';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -55,6 +55,21 @@ const NoticesPage = () => {
   //     );
   //   }
   // }, [dispatch, currentCategory]);
+
+  useEffect(() => {
+    if (currentCategory !== 'sell') {
+      return;
+    }
+    if (currentCategory === 'sell') {
+      dispatch(
+        fetchNoticesByCategory({
+          categoryName: 'sell',
+          query: '',
+          page: 1,
+        })
+      );
+    }
+  });
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
@@ -131,6 +146,7 @@ const NoticesPage = () => {
           }
         }}
       />
+      <ScrollButton />
     </div>
   );
 };
