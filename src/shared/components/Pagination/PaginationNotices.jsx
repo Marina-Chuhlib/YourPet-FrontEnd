@@ -19,6 +19,7 @@ const PaginationNotices = ({
       : currentPage;
 
   const handlePageChange = (event, page) => {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
     onPageChange(page);
   };
 
