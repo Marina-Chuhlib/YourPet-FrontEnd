@@ -15,3 +15,4 @@ export default function Logo({ isMobile }) {
     </div>
   );
 }
+

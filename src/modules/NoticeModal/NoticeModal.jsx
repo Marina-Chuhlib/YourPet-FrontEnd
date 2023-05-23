@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as toasty from '../../shared/toastify/toastify';
 
 import {
   getNoticesById,
@@ -9,47 +8,19 @@ import {
 import { fetchNoticeById } from '../../redux/notices/noticesOperations';
 import Contact from './Contact/Contact';
 import AddToFavorite from './AddToFavorite/AddToFavorite';
-import { selectIsLoggedIn, getFavorite } from 'redux/auth/auth-selectors';
-import {
-  fetchAddToFavorite,
-  fetchRemoveFromFavorite,
-} from '../../redux/notices/noticesOperations';
 
 import css from './notice-modal.module.css';
 
-const NoticeModal = ({ _id }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const favorites = useSelector(getFavorite);
-
+const NoticeModal = ({ _id, handleFavoriteToggle }) => {
   const dispatch = useDispatch();
 
   const item = useSelector(getNoticesById);
   const owner = useSelector(getNoticesByIdOwner);
+  console.log(owner);
 
   useEffect(() => {
     dispatch(fetchNoticeById(_id));
   }, [dispatch, _id]);
-
-  const handleFavoriteToggle = async () => {
-    if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
-    if (favorites.includes(_id)) {
-      try {
-        dispatch(fetchRemoveFromFavorite(_id));
-        toasty.toastSuccess('remove from favorite');
-        return;
-      } catch (e) {
-        toasty.toastError(e.message);
-      }
-    } else {
-      try {
-        dispatch(fetchAddToFavorite(_id));
-        toasty.toastSuccess('add to favorite');
-        return;
-      } catch (e) {
-        toasty.toastError(e.message);
-      }
-    }
-  };
 
   return (
     <>
@@ -90,7 +61,7 @@ const NoticeModal = ({ _id }) => {
               {item.price && (
                 <tr>
                   <td className={css.infoTitle}>Price:</td>
-                  <td className={css.info}>{item.price}</td>
+                  <td className={css.info}>{item.price} $</td>
                 </tr>
               )}
               <tr>
@@ -118,7 +89,7 @@ const NoticeModal = ({ _id }) => {
         </p>
         <div className={css.btnWrapper}>
           <Contact phone={owner.phone} />
-          <AddToFavorite onClick={handleFavoriteToggle} />
+          <AddToFavorite handleFavoriteToggle={handleFavoriteToggle} />
         </div>
       </div>
     </>

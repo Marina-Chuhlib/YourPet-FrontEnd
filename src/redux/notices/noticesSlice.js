@@ -137,7 +137,7 @@ const noticesSlice = createSlice({
         const index = store.itemsFavorite.findIndex(({ _id }) => {
           return _id === payload.id;
         });
-        console.log('index', index);
+        // console.log('index', index);
         if (index !== -1) {
           store.itemsFavorite.splice(index, 1);
         }

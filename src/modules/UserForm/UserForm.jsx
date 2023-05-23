@@ -81,7 +81,6 @@ const UserForm = () => {
   const handleDeleteAvatar = () => {
     setPreviewImage(null);
     setIsPhotoUploaded(true);
-    console.log('delete');
   };
 
   const addAvatarBtn = () => {
@@ -157,7 +156,7 @@ const UserForm = () => {
       type: 'tel',
       placeholder: '+38000000000',
     },
-    { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kiev' },
+    { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kyiv' },
   ];
 
   const closeModal = () => {
