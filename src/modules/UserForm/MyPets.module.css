@@ -24,7 +24,7 @@
   color: #111111;
 }
 
-.addBtn {
+.addPetBtn {
   margin-right: 12px;
   font-size: 16px;
   font-weight: 700;
@@ -35,14 +35,16 @@
   border-radius: 40px;
   text-decoration: none;
   text-align: center;
-  width: 248px;
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
   height: 40px;
 }
 
-.addBtn:hover,
-.addBtn:focus {
-  background-color: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+.addPetBtn:hover,
+.addPetBtn:focus {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
 }
 
 .text {
