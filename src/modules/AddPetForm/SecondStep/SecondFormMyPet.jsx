@@ -12,16 +12,20 @@ export const SecondFormMyPet = ({
   handlePrevStep,
   formData,
   currentStatus,
+  // chooseOption,
 }) => {
   const [name, setName] = useState(formData.name || '');
   const [birthday, setBirthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   // const [errors, setErrors] = useState({});
+  // console.log('category', chooseOption);
+  // const category = chooseOption;
 
+  
   const handleNextValidation = () => {
     console.log('work NextValidation', 'name: ', name, 'birth: ', birthday);
     handleNextData({ name, birthday, breed });
- 
+    // console.log( 'category', category );
   };
 
   // const handleNextValidation = () => {
@@ -90,7 +94,10 @@ export const SecondFormMyPet = ({
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonPrev
+          textButton={'Back'}
+          onClick={() => handlePrevStep(formData)}
+        />
       </ButtonRoutes>
     </div>
   );
