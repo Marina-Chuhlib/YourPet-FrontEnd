@@ -5,7 +5,7 @@
     box-sizing: border-box;
 
     min-width: 320px;
-    max-width: 480px;
+    max-width: 100%;
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -19,7 +19,6 @@
 }
  @media screen and (min-width: 768px) {
     .mobileMenu {
-        max-width: 768px;
         padding: 24px 32px;
     }
      
@@ -42,4 +41,7 @@
 .closeButton {
     cursor: pointer;
     stroke: #FFC107;
+    margin-right: 10px;
 }
+
+

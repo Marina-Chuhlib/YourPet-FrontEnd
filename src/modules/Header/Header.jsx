@@ -23,13 +23,17 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={styles.container}>
-      <Logo isMobile={isMobile} />
-      <Navigation
-        isDesktop={isDesktop}
-        isTablet={isTablet}
-        isMobile={isMobile}
-      />
-    </header>
+    <div className="container">
+      <header className={styles.container}>
+        <Logo isMobile={isMobile} />
+        <Navigation
+          isDesktop={isDesktop}
+          isTablet={isTablet}
+          isMobile={isMobile}
+        />
+      </header>
+    </div>
+    
   );
 }
+

@@ -49,6 +49,7 @@
 
     
 }
+
 @media screen and (min-width: 768px) {
     .link {
         width: 145px;
@@ -61,13 +62,8 @@
 
     
 }
-/* @media screen and (min-width: 1280px) {
-    .wrapper {
-        width: 100%;
-        justify-content: space-between;
-        margin-left: 160px;
-    }
-} */
+
+
 @media screen and (min-width: 768px) {
     .login {
         width: 165px;
@@ -78,3 +74,4 @@
     fill: #fff;
     margin-left: 5px;
 }
+
