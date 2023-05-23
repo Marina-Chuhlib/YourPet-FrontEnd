@@ -15,17 +15,13 @@ h1 {
     line-height: 49px;
     margin-top: 60px;
   }
+  .modalApprove {
+    width: 608px;
+  }
 }
 
 .modalApprove {
   width: 280px;
-  /* height: 354px; */
-}
-
-@media (min-width: 768px) {
-  .modalApprove {
-    width: 608px;
-  }
 }
 
 .modalBtnContainer {
@@ -38,11 +34,15 @@ h1 {
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  margin-top: 24px;
+  /* margin-top: 24px; */
   margin-bottom: 40px;
   text-align: center;
   letter-spacing: 0.04em;
   color: #111111;
+
+  max-width: 393px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media (min-width: 768px) {
@@ -84,16 +84,15 @@ h1 {
 }
 
 .modalIcon {
-  fill: #fef9f9;
   width: 24px;
   height: 24px;
   margin-left: 12px;
-  /* position: absolute; */
-  /* width: 24px;
-    height: 20.97px; */
-  /* left: 5.56px;
-    top: -2.59px; */
+  color: #419ef1;
   transform: rotate(180deg);
+}
+
+.modalBtn:hover .modalIcon {
+  color: #fef9f9;
 }
 
 .whiteBtn {
