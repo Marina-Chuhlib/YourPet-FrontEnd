@@ -7,11 +7,13 @@ import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 import { validationSchemaAdd } from '../../../shared/services/FormValidation/addPetValidation';
 
-
 export const SecondFormSell = ({
   formData,
-    currentStatus,
-   handleNextData, handlePrevStep, chooseOption, titleForm
+  currentStatus,
+  handleNextData,
+  handlePrevStep,
+  chooseOption,
+  titleForm,
 }) => {
   const [title, setAddTitle] = useState(formData.title || '');
   const [name, setName] = useState(formData.name || '');
@@ -20,7 +22,7 @@ export const SecondFormSell = ({
   const [errors, setErrors] = useState({});
 
   // const handleNextValidation = () => {
-    
+
   //   handleNextData({ name, date, breed, title });
   // };
 
@@ -31,7 +33,6 @@ export const SecondFormSell = ({
         handleNextData({ name, date, breed, title });
       })
       .catch(err => {
-        console.log(err);
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -39,7 +40,6 @@ export const SecondFormSell = ({
         setErrors(validationErrors);
       });
   };
-
 
   return (
     <div>

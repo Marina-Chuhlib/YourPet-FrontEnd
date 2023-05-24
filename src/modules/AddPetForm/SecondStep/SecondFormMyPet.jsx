@@ -33,7 +33,7 @@ export const SecondFormMyPet = ({
         handleNextData({ name, birthday, breed });
       })
       .catch(err => {
-        console.log(err);
+    
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;

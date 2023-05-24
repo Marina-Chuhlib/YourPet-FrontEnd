@@ -12,7 +12,14 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 
-export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handlePrevStep, chooseOption }) => {
+export const ThirdFormLost = ({
+  formData,
+  currentStatus,
+  handleNextData,
+  handlePrevStep,
+  chooseOption,
+  titleForm,
+}) => {
   const [file, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState(formData.location || '');
@@ -26,19 +33,19 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
   //   handleNextData({ file, comments, sex, location, category });
   // };
 
-     const handleDone = () => {
-      validationSchemaThirdAddLost
-        .validate({ file, comments, sex, location }, { abortEarly: false })
-        .then(() => {
-                    handleNextData({ file, comments, sex, location });
-        })
-        .catch(err => {
-          const validationErrors = {};
-          err.inner.forEach(error => {
-            validationErrors[error.path] = error.message;
-          });
-          setErrors(validationErrors);
+  const handleDone = () => {
+    validationSchemaThirdAddLost
+      .validate({ file, comments, sex, location }, { abortEarly: false })
+      .then(() => {
+        handleNextData({ file, comments, sex, location });
+      })
+      .catch(err => {
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
         });
+        setErrors(validationErrors);
+      });
   };
 
   const handleFileChange = e => {
@@ -48,12 +55,11 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
   const handleSex = (option, number) => {
     setSex(option);
     setActive(number);
-    console.log(option);
   };
 
   return (
     <div className={css.wparForm}>
-      <TitleModal titleForm={'Add lost pet'} />
+      <TitleModal titleForm={titleForm} />
 
       <StatusIndicator
         currentStatus={currentStatus}
@@ -159,4 +165,3 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
     </div>
   );
 };
-   
