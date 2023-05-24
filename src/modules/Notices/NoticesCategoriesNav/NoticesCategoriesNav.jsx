@@ -19,11 +19,7 @@ const getClassNameLink = ({ isActive }) => {
   return className;
 };
 
-const NoticesCategoriesNav = ({
-  onOwnClick,
-  onFavoriteClick,
-  handleCategoryClick,
-}) => {
+const NoticesCategoriesNav = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -44,9 +40,9 @@ const NoticesCategoriesNav = ({
             <NavLink
               to={element.to}
               className={getClassNameLink}
-              onClick={() => {
-                handleCategoryClick(element.to);
-              }}
+              // onClick={() => {
+              //   handleCategoryClick(element.to);
+              // }}
             >
               {element.text}
             </NavLink>
@@ -58,9 +54,9 @@ const NoticesCategoriesNav = ({
               <NavLink
                 to="own"
                 className={getClassNameLink}
-                onClick={() => {
-                  onOwnClick();
-                }}
+                // onClick={() => {
+                //   onOwnClick();
+                // }}
               >
                 my ads
               </NavLink>
@@ -69,9 +65,9 @@ const NoticesCategoriesNav = ({
               <NavLink
                 to="favorite"
                 className={getClassNameLink}
-                onClick={() => {
-                  onFavoriteClick();
-                }}
+                // onClick={() => {
+                //   onFavoriteClick();
+                // }}
               >
                 favorite ads
               </NavLink>
