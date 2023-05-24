@@ -27,8 +27,8 @@
 
 .ErrorText {
   position: absolute;
-  bottom: -25%;
-  right: 67%;
+  bottom: -20%;
+  left: 5%;
   font-weight: 400;
   font-size: 10px;
   line-height: 1.36px;

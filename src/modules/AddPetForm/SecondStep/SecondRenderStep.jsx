@@ -23,7 +23,7 @@ export const SecondRenderStep = ({
       )}
       {chooseOption === 'sell' ? (
         <SecondFormSell
-          titleForm={'Add pet for sale'}
+          titleForm={'Add pet for sell'}
           currentStatus={currentStatus}
           handleNextData={handleNextData}
           handlePrevStep={handlePrevStep}

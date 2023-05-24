@@ -2,7 +2,7 @@ import css from './thirdStep.module.css';
 
 import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState } from 'react';
-// import { stepTwoValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+import { validationSchemaThirdAddLost } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -19,28 +19,27 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
 
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
-  // const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const handleDone = () => {
-    const category = 'lost-found';
-    handleNextData({ file, comments, sex, location,  category });
-  };
-
-  //    const handleDone = () => {
-  //     validationSchemaThree
-  //       .validate({ photo, comments }, { abortEarly: false })
-  //       .then(() => {
-  //         console.log('це третій крок', formData);
-  //         handleNext({ sex, place,  comments, photo });
-  //       })
-  //       .catch(err => {
-  //         const validationErrors = {};
-  //         err.inner.forEach(error => {
-  //           validationErrors[error.path] = error.message;
-  //         });
-  //         setErrors(validationErrors);
-  //       });
+  // const handleDone = () => {
+  //   const category = 'lost-found';
+  //   handleNextData({ file, comments, sex, location, category });
   // };
+
+     const handleDone = () => {
+      validationSchemaThirdAddLost
+        .validate({ file, comments, sex, location }, { abortEarly: false })
+        .then(() => {
+                    handleNextData({ file, comments, sex, location });
+        })
+        .catch(err => {
+          const validationErrors = {};
+          err.inner.forEach(error => {
+            validationErrors[error.path] = error.message;
+          });
+          setErrors(validationErrors);
+        });
+  };
 
   const handleFileChange = e => {
     setPhoto(e.target.files[0]);
@@ -93,6 +92,7 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
                 </button>
               </li>
             </ul>
+            {errors.sex && <p className={css.errorSex}>{errors.sex}</p>}
           </div>
 
           <div className={css.photoContainerSell}>
@@ -117,7 +117,9 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
                 <Plus className={css.plusIcon} />
               </div>
             </label>
-            {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
+            {errors.file && (
+              <p className={css.ErrorTextLowSell}>{errors.file}</p>
+            )}
           </div>
         </div>
         <div className={css.inputContainer}>
@@ -132,10 +134,9 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
             onChange={e => setLocation(e.target.value)}
             placeholder="Type of location"
           />
-          {/* {errors.location && (
-            // <p className={css.ErrorText}>{errors.location}</p>
-          )} */}
-
+          {errors.location && (
+            <p className={css.ErrorTextLostLocation}>{errors.location}</p>
+          )}
           <label className={css.labelCommentsSell} htmlFor="comments">
             Comments
           </label>
@@ -146,7 +147,9 @@ export const ThirdFormLost = ({ formData, currentStatus, handleNextData, handleP
             placeholder="Type comment"
             onChange={e => setComments(e.target.value)}
           />
-          {/* {errors.comments && <p>{errors.comments}</p>} */}
+          {errors.comments && (
+            <p className={css.errorComentSell}>{errors.comments}</p>
+          )}
         </div>
       </div>
       <ButtonRoutes>

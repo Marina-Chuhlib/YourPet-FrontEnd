@@ -2,7 +2,7 @@ import css from './thirdStep.module.css';
 
 import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState } from 'react';
-// import { stepTwoValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+import { validationSchemaThirdAddSell } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -19,29 +19,30 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
   const [price, setPrice] = useState(formData.price || '');
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
-  // const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const handleDone = () => {
-   const category = 'sell';
-   handleNextData({ file, comments, sex, location, price, category });
-   console.log("category??",chooseOption, category)
- };
+//   const handleDone = () => {
+//    const category = 'sell';
+//    handleNextData({ file, comments, sex, location, price, category });
+//    console.log("category??",chooseOption, category)
+//  };
 
-  //    const handleDone = () => {
-  //     validationSchemaThree
-  //       .validate({ photo, comments }, { abortEarly: false })
-  //       .then(() => {
-  //         console.log('це третій крок', formData);
-  //         handleNext({ sex, place, price, comments, photo });
-  //       })
-  //       .catch(err => {
-  //         const validationErrors = {};
-  //         err.inner.forEach(error => {
-  //           validationErrors[error.path] = error.message;
-  //         });
-  //         setErrors(validationErrors);
-  //       });
-  // };
+     const handleDone = () => {
+      validationSchemaThirdAddSell
+        .validate(
+          { file, comments, sex, location, price },
+          { abortEarly: false }
+        )
+        .then(() => {handleNextData({ file, comments, sex, location, price });
+        })
+        .catch(err => {
+          const validationErrors = {};
+          err.inner.forEach(error => {
+            validationErrors[error.path] = error.message;
+          });
+          setErrors(validationErrors);
+        });
+  };
 
   const handleFileChange = e => {
     setPhoto(e.target.files[0]);
@@ -94,6 +95,9 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
                 </button>
               </li>
             </ul>
+            {errors.sex && (
+              <p className={css.errorSex}>{errors.sex}</p>
+            )}
           </div>
 
           <div className={css.photoContainerSell}>
@@ -118,7 +122,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
                 <Plus className={css.plusIcon} />
               </div>
             </label>
-            {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
+            {errors.file && <p className={css.ErrorTextLowSell}>{errors.file}</p>}
           </div>
         </div>
         <div className={css.inputContainer}>
@@ -133,9 +137,9 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             onChange={e => setLocation(e.target.value)}
             placeholder="Type of location"
           />
-          {/* {errors.location && (
-            // <p className={css.ErrorText}>{errors.location}</p>
-          )} */}
+          {errors.location && (
+            <p className={css.ErrorTextSellLocation}>{errors.location}</p>
+          )}
 
           <label className={css.label} htmlFor="price">
             Price
@@ -149,7 +153,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             required
             placeholder="Type of price"
           />
-          {/* {errors.price && <p className={css.ErrorText}>{errors.price}</p>} */}
+          {errors.price && <p className={css.ErrorTextPrice}>{errors.price}</p>}
 
           <label className={css.labelCommentsSell} htmlFor="comments">
             Comments
@@ -161,7 +165,9 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
             placeholder="Type comment"
             onChange={e => setComments(e.target.value)}
           />
-          {/* {errors.comments && <p>{errors.comments}</p>} */}
+          {errors.comments && (
+            <p className={css.errorComentSell}>{errors.comments}</p>
+          )}
         </div>
       </div>
       <ButtonRoutes>

@@ -5,42 +5,42 @@ import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
-// import { stepOneValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+import { validationSchemaAdd } from '../../../shared/services/FormValidation/addPetValidation';
+
 
 export const SecondFormSell = ({
   formData,
     currentStatus,
    handleNextData, handlePrevStep, chooseOption, titleForm
 }) => {
-    const [title, setAddTitle] = useState(formData.title || '');
+  const [title, setAddTitle] = useState(formData.title || '');
   const [name, setName] = useState(formData.name || '');
   const [date, setDate] = useState(formData.date || '');
   const [breed, setBreed] = useState(formData.breed || '');
-  // const [errors, setErrors] = useState({});
-  console.log("name", name, breed);
-
-  const handleNextValidation = () => {
-    
-  console.log('work NextValidation', 'name: ', name, 'birth: ', date);
-  handleNextData({ name, date, breed, title });
-};
-
+  const [errors, setErrors] = useState({});
 
   // const handleNextValidation = () => {
-  //   stepOneValidationSchema
-  //     .validate({ name, birth, breed, addTitle }, { abortEarly: false })
-  //     .then(() => {
-  //       handleNextData({ name, birth, breed, addTitle });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //       const validationErrors = {};
-  //       err.inner.forEach(error => {
-  //         validationErrors[error.path] = error.message;
-  //       });
-  //       setErrors(validationErrors);
-  //     });
+    
+  //   handleNextData({ name, date, breed, title });
   // };
+
+  const handleNextValidation = () => {
+    validationSchemaAdd
+      .validate({ name, date, breed, title }, { abortEarly: false })
+      .then(() => {
+        handleNextData({ name, date, breed, title });
+      })
+      .catch(err => {
+        console.log(err);
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      });
+  };
+
+
   return (
     <div>
       <TitleModal titleForm={titleForm} />
@@ -61,7 +61,7 @@ export const SecondFormSell = ({
           onChange={e => setAddTitle(e.target.value)}
           placeholder="Type title of add"
         />
-        {/* {errors.name && <p className={css.ErrorText}>{errors.name}</p>} */}
+        {errors.title && <p className={css.ErrorText}>{errors.title}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="name">
@@ -75,7 +75,7 @@ export const SecondFormSell = ({
           onChange={e => setName(e.target.value)}
           placeholder="Type name pet"
         />
-        {/* {errors.name && <p className={css.ErrorText}>{errors.name}</p>} */}
+        {errors.name && <p className={css.ErrorText}>{errors.name}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="date">
@@ -90,7 +90,7 @@ export const SecondFormSell = ({
           required
           placeholder="Type date of birth"
         />
-        {/* {errors.birth && <p className={css.ErrorText}>{errors.birthdate}</p>} */}
+        {errors.date && <p className={css.ErrorText}>{errors.date}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="breed">
@@ -105,7 +105,7 @@ export const SecondFormSell = ({
           required
           placeholder="Type breed"
         />
-        {/* {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>} */}
+        {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
