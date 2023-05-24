@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { stepTwoValidationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+import { validationSchemaThirdMy } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -19,26 +19,26 @@ export const ThirdFormMyPet = ({
 }) => {
   const [imageURL, setImageURL] = useState('');
   const [comments, setComments] = useState('');
-  // const [errors, setErrors] = useState({});
-
-  const handleDone = () => {
-    handleNextData({ imageURL, comments });
-  };
+  const [errors, setErrors] = useState({});
 
   // const handleDone = () => {
-  //   stepTwoValidationSchema
-  //     .validate({ photo, comments }, { abortEarly: false })
-  //     .then(() => {
-  //       handleNextData({ photo, comments });
-  //     })
-  //     .catch(err => {
-  //       const validationErrors = {};
-  //       err.inner.forEach(error => {
-  //         validationErrors[error.path] = error.message;
-  //       });
-  //       setErrors(validationErrors);
-  //     });
+  //   handleNextData({ imageURL, comments });
   // };
+
+  const handleDone = () => {
+    validationSchemaThirdMy
+      .validate({ imageURL, comments }, { abortEarly: false })
+      .then(() => {
+        handleNextData({ imageURL, comments });
+      })
+      .catch(err => {
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      });
+  };
   const handleFileChange = e => {
     setImageURL(e.target.files[0]);
   };
@@ -72,7 +72,9 @@ export const ThirdFormMyPet = ({
             <Plus className={css.plusIcon} />
           </div>
         </label>
-        {/* {errors.photo && <p className={css.errorComent}>{errors.photo}</p>} */}
+        {errors.imageURL && (
+          <p className={css.ErrorTextLow}>{errors.imageURL}</p>
+        )}
       </div>
       <div className={css.commentsContainerMyPet}>
         <label className={css.labelComments} htmlFor="comments">
@@ -85,15 +87,13 @@ export const ThirdFormMyPet = ({
           placeholder="Type comment"
           onChange={e => setComments(e.target.value)}
         />
-        {/* {errors.comments && <p>{errors.comments}</p>} */}
+        {errors.comments && (
+          <p className={css.errorComent}>{errors.comments}</p>
+        )}
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev
-          textButton={'Back'}
-          // onClick={() => { console.log('click on Prev Step'); handlePrevStep(formData) }}
-          handlePrevStep={handlePrevStep}
-        />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

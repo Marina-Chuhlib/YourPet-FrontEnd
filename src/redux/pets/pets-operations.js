@@ -7,6 +7,7 @@ export const addPet = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.addMyNewPet(data);
+      console.log(result.data)
       return result.data;
     } catch ({ response }) {
       return rejectWithValue(response.data.message);
@@ -19,6 +20,7 @@ export const addNotice = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const { data: result } = await api.addPetNotice(data);
+      console.log(result);
       return result;
     } catch ({ response }) {
       return rejectWithValue(response.data.message);

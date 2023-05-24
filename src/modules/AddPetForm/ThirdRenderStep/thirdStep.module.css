@@ -1,7 +1,11 @@
 .errorComent {
   position: absolute;
-  bottom: 220px;
-  right: 629px;
+  bottom: -20%;
+  left: 5%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f43f5e;
 }
 
 .ErrorText {
@@ -16,7 +20,7 @@
 
 .ErrorTextLow {
   position: absolute;
-  bottom: -25%;
+  bottom: -5%;
   right: 76%;
   font-weight: 400;
   font-size: 12px;
@@ -30,7 +34,7 @@
   align-items: center;
   margin-bottom: 24px;
   margin-left: 8px;
-
+position: relative;
 }
 
 
@@ -65,6 +69,7 @@
 }
 
 .commentsContainerMyPet {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -100,8 +105,14 @@
     gap: 32px;
   }
 
+  .ErrorTextLow {
+    bottom: 25%;
+  }
+
   .labelAddPhoto {
     font-size: 20px;
+    display: block;
+    margin-bottom: 2px;
   }
 
   .labelPhoto {
@@ -139,6 +150,7 @@
 }
 
 .sexContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 8px;
@@ -152,7 +164,7 @@
 }
 .sexBlock {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 .sexButton {
   display: flex;
@@ -182,7 +194,8 @@
   align-items: center;
   margin-bottom: 16px;
   margin-left: 8px;
- 
+  margin-top: 8px;
+ position: relative;
 }
 .inputContainer {
   display: flex;
@@ -211,16 +224,62 @@
   border-color: #00c3ad;
 }
 
-.ErrorText {
+
+
+.errorSex {
   position: absolute;
-  bottom: -25%;
-  right: 67%;
+  bottom: 5%;
+  left: 5%;
   font-weight: 400;
   font-size: 10px;
   line-height: 1.36px;
   color: #f43f5e;
 }
 
+.ErrorTextLowSell {
+  position: absolute;
+  font-size: 10px;
+  bottom: -10%;
+  left: 15%;
+  color: #f43f5e;
+}
+.ErrorTextSellLocation {
+  position: absolute;
+  bottom: 72%;
+  left: 10%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.36px;
+  color: #f43f5e;
+}
+.ErrorTextLostLocation {
+  position: absolute;
+  bottom: 60%;
+  left: 10%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.36px;
+  color: #f43f5e;
+}
+.ErrorTextPrice {
+  position: absolute;
+  bottom: 44%;
+  left: 10%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.36px;
+  color: #f43f5e;
+}
+
+.errorComentSell {
+    position: absolute;
+  bottom: -5%;
+  left: 10%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.36px;
+  color: #f43f5e;
+}
 .labelCommentsSell {
   font-weight: 500;
   font-size: 14px;
@@ -250,12 +309,13 @@
 
   .sexContainer {
     background-color: #fff;
+    position: relative;
   }
   .labelSex {
     font-size: 20px;
   }
   .sexBlock {
-    margin-bottom: 58px;
+    margin-bottom: 40px;
   }
   .sexButton {
     font-size: 16px;
@@ -297,6 +357,55 @@
     height: 184px;
     font-size: 16px;
   }
+
+.errorSex {
+  
+  bottom: 25%;
+  left: 5%;
+    font-size: 12px;
+  
+}
+
+.ErrorTextLowSell {
+  position: absolute;
+  font-size: 12px;
+ 
+  left: 8%;
+
+}
+
+.ErrorTextSellLocation {
+  position: absolute;
+  bottom: 70%;
+  left: 5%;
+   font-size: 12px;
+  
+}
+
+.ErrorTextLostLocation {
+  position: absolute;
+  bottom: 70%;
+  left: 5%;
+   font-size: 12px;
+  
+}
+.ErrorTextPrice {
+  position: absolute;
+  bottom: 38%;
+  left: 5%;
+  font-size: 12px;
+  
+}
+
+.errorComentSell {
+    position: absolute;
+  bottom: -5%;
+  left: 5%;
+    font-size: 12px;
+  
+}
+
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

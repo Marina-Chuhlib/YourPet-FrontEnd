@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addNotice, addPet } from 'redux/pets/pets-operations';
 
+import * as toasty from '../../shared/toastify/toastify';
+
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import ButtonChooseOption from 'shared/components/ButtonChooseOption/ButtonChooseOption';
@@ -50,17 +52,16 @@ export const AddPetChooseForm = () => {
   const handleNextDataOption = () => {
     const category = chooseOption;
     handleNextData({ category });
-    console.log("category:", category)
-  }
+    if (category === "") {
+      toasty.toastError('Please, choose the category!');
+    }
+    }
   const handleNextData = stepData => {
-    console.log('StepData', stepData);
     setIsLoading(true);
     if (chooseOption && currentStatus < 3) {
       setStep(step + 1);
       setCurrentStatus(currentStatus + 1);
-    } else {
-      alert('Please type all info');
-    }
+    } 
     setIsLoading(false);
     setFormData(prevData => {
       console.log('prevData', prevData);
@@ -167,8 +168,11 @@ export const AddPetChooseForm = () => {
         formDataSend.append(key, sendDataForm[key]);
       }
       // setIsLoading(true);
- dispatch(addPet(formDataSend));
-      console.log('done work', 'formData:', category);
+ const response = dispatch(addPet(formDataSend));
+      console.log('done work', 'formData:', response);
+      if (!response) {
+        toasty.toastError('Only a registered user can add pet!');
+      }
     } else {
       const formDataSend = new FormData();
 
