@@ -1,5 +1,3 @@
-import css from './thirdStep.module.css';
-
 import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState } from 'react';
 import { validationSchemaThirdAddSell } from '../../../shared/services/FormValidation/addPetValidation';
@@ -11,8 +9,15 @@ import FemaleIcon from 'icons/FemaleIcon';
 import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
+import css from './thirdStep.module.css';
 
-export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handlePrevStep, chooseOption }) => {
+export const ThirdFormSell = ({
+  formData,
+  currentStatus,
+  handleNextData,
+  handlePrevStep,
+  chooseOption,
+}) => {
   const [file, setPhoto] = useState('');
   const [comments, setComments] = useState('');
   const [location, setLocation] = useState(formData.location || '');
@@ -21,37 +26,33 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
   const [active, setActive] = useState(null);
   const [errors, setErrors] = useState({});
 
-//   const handleDone = () => {
-//    const category = 'sell';
-//    handleNextData({ file, comments, sex, location, price, category });
-//    console.log("category??",chooseOption, category)
-//  };
+  //   const handleDone = () => {
+  //    const category = 'sell';
+  //    handleNextData({ file, comments, sex, location, price, category });
+  //  };
 
-     const handleDone = () => {
-      validationSchemaThirdAddSell
-        .validate(
-          { file, comments, sex, location, price },
-          { abortEarly: false }
-        )
-        .then(() => {handleNextData({ file, comments, sex, location, price });
-        })
-        .catch(err => {
-          const validationErrors = {};
-          err.inner.forEach(error => {
-            validationErrors[error.path] = error.message;
-          });
-          setErrors(validationErrors);
+  const handleDone = () => {
+    validationSchemaThirdAddSell
+      .validate({ file, comments, sex, location, price }, { abortEarly: false })
+      .then(() => {
+        handleNextData({ file, comments, sex, location, price });
+      })
+      .catch(err => {
+        const validationErrors = {};
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message;
         });
+        setErrors(validationErrors);
+      });
   };
 
   const handleFileChange = e => {
     setPhoto(e.target.files[0]);
-   };
+  };
 
   const handleSex = (option, number) => {
     setSex(option);
-      setActive(number);
-      console.log(option)
+    setActive(number);
   };
 
   return (
@@ -95,9 +96,7 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
                 </button>
               </li>
             </ul>
-            {errors.sex && (
-              <p className={css.errorSex}>{errors.sex}</p>
-            )}
+            {errors.sex && <p className={css.errorSex}>{errors.sex}</p>}
           </div>
 
           <div className={css.photoContainerSell}>
@@ -122,7 +121,9 @@ export const ThirdFormSell = ({ formData, currentStatus, handleNextData, handleP
                 <Plus className={css.plusIcon} />
               </div>
             </label>
-            {errors.file && <p className={css.ErrorTextLowSell}>{errors.file}</p>}
+            {errors.file && (
+              <p className={css.ErrorTextLowSell}>{errors.file}</p>
+            )}
           </div>
         </div>
         <div className={css.inputContainer}>

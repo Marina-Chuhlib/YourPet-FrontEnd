@@ -1,10 +1,7 @@
-
-
-import css from './buttonChooseOption.module.css';
 import React from 'react';
+import css from './buttonChooseOption.module.css';
 
 const ButtonChooseOption = ({ handleChooseChange }) => {
-
   return (
     <ul className={css.buttonContainer}>
       <li>

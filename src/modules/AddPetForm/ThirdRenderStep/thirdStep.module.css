@@ -34,10 +34,8 @@
   align-items: center;
   margin-bottom: 24px;
   margin-left: 8px;
-position: relative;
+  position: relative;
 }
-
-
 
 .labelAddPhoto {
   font-weight: 500;
@@ -77,7 +75,6 @@ position: relative;
   margin-right: 8px;
   margin-left: 8px;
 }
-
 
 .labelComments {
   font-weight: 500;
@@ -195,7 +192,7 @@ position: relative;
   margin-bottom: 16px;
   margin-left: 8px;
   margin-top: 8px;
- position: relative;
+  position: relative;
 }
 .inputContainer {
   display: flex;
@@ -223,8 +220,6 @@ position: relative;
 .input:focus {
   border-color: #00c3ad;
 }
-
-
 
 .errorSex {
   position: absolute;
@@ -272,7 +267,7 @@ position: relative;
 }
 
 .errorComentSell {
-    position: absolute;
+  position: absolute;
   bottom: -5%;
   left: 10%;
   font-weight: 400;
@@ -358,54 +353,45 @@ position: relative;
     font-size: 16px;
   }
 
-.errorSex {
-  
-  bottom: 25%;
-  left: 5%;
+  .errorSex {
+    bottom: 25%;
+    left: 5%;
     font-size: 12px;
-  
-}
+  }
 
-.ErrorTextLowSell {
-  position: absolute;
-  font-size: 12px;
- 
-  left: 8%;
-
-}
-
-.ErrorTextSellLocation {
-  position: absolute;
-  bottom: 70%;
-  left: 5%;
-   font-size: 12px;
-  
-}
-
-.ErrorTextLostLocation {
-  position: absolute;
-  bottom: 70%;
-  left: 5%;
-   font-size: 12px;
-  
-}
-.ErrorTextPrice {
-  position: absolute;
-  bottom: 38%;
-  left: 5%;
-  font-size: 12px;
-  
-}
-
-.errorComentSell {
+  .ErrorTextLowSell {
     position: absolute;
-  bottom: -5%;
-  left: 5%;
     font-size: 12px;
-  
-}
 
+    left: 8%;
+  }
 
+  .ErrorTextSellLocation {
+    position: absolute;
+    bottom: 70%;
+    left: 5%;
+    font-size: 12px;
+  }
+
+  .ErrorTextLostLocation {
+    position: absolute;
+    bottom: 70%;
+    left: 5%;
+    font-size: 12px;
+  }
+  .ErrorTextPrice {
+    position: absolute;
+    bottom: 38%;
+    left: 5%;
+    font-size: 12px;
+  }
+
+  .errorComentSell {
+    position: absolute;
+    bottom: -5%;
+    left: 5%;
+    font-size: 12px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

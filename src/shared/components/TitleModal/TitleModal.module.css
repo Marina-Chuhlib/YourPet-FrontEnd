@@ -8,13 +8,12 @@
   color: #111111;
   align-self: flex-start;
   /* display: flex; */
-flex-grow: 0;
+  flex-grow: 0;
 }
 
 @media screen and (min-width: 768px) {
   .title {
     font-size: 28px;
-    /* text-align: center; */
     align-self: center;
-      }
+  }
 }

@@ -33,14 +33,6 @@ export const validationSchema = Yup.object({
     .required('Breed is required'),
 });
 
-// export const validationSchema = Yup.object().shape({
-//   name: Yup.string().required('Enter a name'),
-//   birthday: Yup.string().required('Enter a date of birth'),
-//   breed: Yup.string().required('Enter a breed'),
-// });
-
-
-
 export const validationSchemaAdd = Yup.object({
   name: Yup.string()
     .min(2, 'Too Short! 2 characters minimum')
@@ -80,7 +72,7 @@ export const validationSchemaAdd = Yup.object({
 
 export const validationSchemaThirdMy = Yup.object({
   comments: Yup.string()
-    .min(6, 'Too Short! 6 characters minimum')
+    .min(8, 'Too Short! 8 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment')
     .required('Comments is required'),
@@ -102,7 +94,7 @@ export const validationSchemaThirdMy = Yup.object({
 
 export const validationSchemaThirdAddSell = Yup.object({
   comments: Yup.string()
-    .min(6, 'Too Short! 6 characters minimum')
+    .min(8, 'Too Short! 8 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment')
     .required('Comments is required'),
@@ -123,6 +115,7 @@ export const validationSchemaThirdAddSell = Yup.object({
   location: Yup.string()
     .min(4, 'Too Short! 4 characters minimum')
     .max(16, 'Too Long! 16 characters maximum')
+    .matches(/^[A-Z][a-zA-Z]*$/, 'The first letter must be uppercase')
     .label('Location')
     .required('Location is required'),
   sex: Yup.string().required('Choose gender'),
@@ -135,7 +128,7 @@ export const validationSchemaThirdAddSell = Yup.object({
 
 export const validationSchemaThirdAddLost = Yup.object({
   comments: Yup.string()
-    .min(6, 'Too Short! 6 characters minimum')
+    .min(8, 'Too Short! 8 characters minimum')
     .max(120, 'Too Long! 120 characters maximum')
     .label('Comment')
     .required('Comments is required'),
@@ -156,6 +149,7 @@ export const validationSchemaThirdAddLost = Yup.object({
   location: Yup.string()
     .min(4, 'Too Short! 4 characters minimum')
     .max(16, 'Too Long! 16 characters maximum')
+    .matches(/^[A-Z][a-zA-Z]*$/, 'The first letter must be uppercase')
     .label('Location')
     .required('Location is required'),
   sex: Yup.string().required('Choose gender'),

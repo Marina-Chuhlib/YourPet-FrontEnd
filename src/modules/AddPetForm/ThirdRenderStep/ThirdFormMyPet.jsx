@@ -3,7 +3,7 @@ import { validationSchemaThirdMy } from '../../../shared/services/FormValidation
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
-import { ReactComponent as Plus } from '../../../icons/Plus.svg'
+import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import css from './thirdStep.module.css';
 
 import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
@@ -34,11 +34,11 @@ export const ThirdFormMyPet = ({
       .catch(err => {
         const validationErrors = {};
         if (err.inner) {
-err.inner.forEach(error => {
-  validationErrors[error.path] = error.message;
-});
+          err.inner.forEach(error => {
+            validationErrors[error.path] = error.message;
+          });
         }
-        
+
         setErrors(validationErrors);
       });
   };
@@ -101,5 +101,3 @@ err.inner.forEach(error => {
     </div>
   );
 };
-
-

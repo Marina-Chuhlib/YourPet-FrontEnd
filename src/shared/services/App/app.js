@@ -64,25 +64,21 @@ export const getUser = async token => {
   }
 };
 
-
-export  const addMyNewPet = async(data) =>  {
-  
+export const addMyNewPet = async data => {
   const response = await instance.post('/user/pets', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-  console.log("addMyNewPet work", response);
   return response;
-}
+};
 
-export const addPetNotice = async(data) => {
+export const addPetNotice = async data => {
   const response = await instance.post('/notices', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
-setToken();
+  setToken();
   return response;
-}
-
+};
 
 export const updateUserInf = async (fieldToUpdate, newValue, token) => {
   setToken(token);

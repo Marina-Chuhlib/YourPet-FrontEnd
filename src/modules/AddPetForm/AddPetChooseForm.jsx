@@ -38,7 +38,6 @@ export const AddPetChooseForm = () => {
   const navigate = useNavigate();
 
   const handleChooseChange = (option, number) => {
-    console.log('Choose option work', option, number);
     setFormData(prevData => ({ ...prevData, category: option }));
     setChooseOption(option);
     setActiveButton(number);
@@ -59,7 +58,6 @@ export const AddPetChooseForm = () => {
     }
     setIsLoading(false);
     setFormData(prevData => {
-      console.log('prevData', prevData);
       return { ...prevData, ...stepData };
     });
   };
