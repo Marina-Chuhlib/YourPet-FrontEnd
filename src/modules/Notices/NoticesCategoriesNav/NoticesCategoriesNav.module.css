@@ -56,11 +56,11 @@
   display: none;
 } */
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .btn {
     position: fixed;
-    top: 37%;
-    right: 7%;
+    top: 39%;
+    right: 9%;
     width: 80px;
     height: 80px;
     font-family: 'Manrope';
