@@ -142,13 +142,13 @@ const NoticesPage = () => {
   //   );
   // };
 
-  // const handleOwnClick = () => {
-  //   dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
-  // };
+  const handleOwnClick = () => {
+    dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
+  };
 
-  // const handleFavoriteClick = () => {
-  //   dispatch(fetchAllFavoriteNotices({ query: '', page: favoriteCurrentPage }));
-  // };
+  const handleFavoriteClick = () => {
+    dispatch(fetchAllFavoriteNotices({ query: '', page: favoriteCurrentPage }));
+  };
 
   const handleOwnPageChange = page => {
     setOwnCurrentPage(page);
@@ -167,8 +167,8 @@ const NoticesPage = () => {
       <NoticesCategoriesNav
       // handleCategoryClick={handleCategoryClick}
       // onPageChange={onPageChange}
-      // onOwnClick={handleOwnClick}
-      // onFavoriteClick={handleFavoriteClick}
+      onOwnClick={handleOwnClick}
+      onFavoriteClick={handleFavoriteClick}
       />
       {loading && <Loader />}
       {notices && <Outlet />}
