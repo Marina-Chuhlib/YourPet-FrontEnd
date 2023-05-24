@@ -1,22 +1,20 @@
-.titleDelete {
+.modalTitle {
   font-family: 'Manrope';
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  display: flex;
-  align-items: center;
   text-align: center;
-  letter-spacing: 0.04em;
   color: #111111;
-
-  margin-bottom: 14px;
+  margin-top: 68px;
+  margin-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 @media (min-width: 768px) {
-  .titleDelete {
+  .modalTitle {
     font-family: 'Manrope';
-    font-weight: 500;
+    font-weight: 700;
     font-size: 24px;
     line-height: 33px;
     text-align: center;
@@ -26,10 +24,11 @@
   }
 }
 @media (min-width: 768px) {
-  .titleDelete {
+  .modalTitle {
     font-size: 36px;
     line-height: 49px;
     margin-top: 60px;
+    margin-bottom: 40px;
   }
 }
 
@@ -47,9 +46,18 @@
 .modalBtnContainer {
   display: flex;
   justify-content: center;
+  margin-bottom: 60px;
+}
+@media (min-width: 320px) {
+  .modalBtnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+  }
 }
 
-.text {
+.modalText {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -57,9 +65,7 @@
   line-height: 19px;
   text-align: center;
   letter-spacing: -0.01em;
-
   color: #000000;
-
   max-width: 393px;
   margin-right: auto;
   margin-left: auto;
@@ -67,11 +73,10 @@
 }
 
 @media (min-width: 768px) {
-  .text {
+  .modalText {
     font-size: 24px;
     line-height: 33px;
-    margin-top: 52px;
-    margin-bottom: 60px;
+    margin-bottom: 48px;
   }
   .modalBtn {
     display: flex;
@@ -79,7 +84,7 @@
 }
 
 .modalBtn {
-  /* display: flex; */
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -97,8 +102,12 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
-  margin-bottom: 60px;
   cursor: pointer;
+}
+@media (min-width: 320px) {
+  .modalBtn {
+    width: 256px;
+  }
 }
 
 .modalIcon {
@@ -106,12 +115,13 @@
   width: 24px;
   height: 24px;
   margin-left: 12px;
+  font-size: 30px;
   /* position: absolute; */
   /* width: 24px;
     height: 20.97px; */
-  /* left: 5.56px;
-    top: -2.59px; */
-  transform: rotate(180deg);
+  margin-left: 5px;
+  /*top: -2.59px; */
+  transform: rotate(0deg);
 }
 
 .whiteBtn {
@@ -119,4 +129,10 @@
   color: #54adff;
   border: 2px solid #54adff;
   margin-right: 17px;
+}
+@media (min-width: 320px) {
+  .whiteBtn {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }

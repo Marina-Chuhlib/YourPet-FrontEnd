@@ -111,6 +111,7 @@ const NoticeCategoryItem = ({
     console.log(_id);
     dispatch(fetchDeleteNotice(_id));
     toasty.toastSuccess('Deleted successful');
+    closeModal();
   };
   return (
     <li key={_id} className={css.listItems}>
@@ -145,6 +146,7 @@ const NoticeCategoryItem = ({
                 closeModal={closeModalApprove}
                 handleDelete={handleDelete}
                 _id={_id}
+                title={title}
               />
             )}
           </div>
