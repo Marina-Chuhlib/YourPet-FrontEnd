@@ -7,8 +7,6 @@ import {
   fetchDeleteNotice,
   fetchNoticesByCategory,
   fetchNoticesByOwn,
-  // fetchAllFavoriteNotices,
-  fetchRemoveFromFavorite,
 } from './noticesOperations';
 
 const initialState = {
@@ -21,7 +19,6 @@ const initialState = {
   page: 1,
   totalPages: 1,
   keyword: '',
-  // itemsFavorite: [],
 };
 
 const noticesSlice = createSlice({
@@ -113,39 +110,6 @@ const noticesSlice = createSlice({
         store.loading = false;
         store.error = payload.notices;
       })
-      // .addCase(fetchAllFavoriteNotices.pending, store => {
-      //   store.loading = true;
-      //   store.itemsFavorite = [];
-      //   store.category = '';
-      // })
-      // .addCase(fetchAllFavoriteNotices.fulfilled, (store, { payload }) => {
-      //   store.loading = false;
-      //   store.itemsFavorite = [...payload.notices];
-      //   store.page = Number(payload.page);
-      //   store.totalPages = payload.totalPages;
-      // })
-      // .addCase(fetchAllFavoriteNotices.rejected, (store, { payload }) => {
-      //   store.loading = false;
-      //   store.error = payload;
-      // })
-      .addCase(fetchRemoveFromFavorite.pending, store => {
-        store.loading = true;
-      })
-      .addCase(fetchRemoveFromFavorite.fulfilled, (store, { payload }) => {
-        // const { user } = payload;
-        store.loading = false;
-        const index = store.itemsFavorite.findIndex(({ _id }) => {
-          return _id === payload.id;
-        });
-        // console.log('index', index);
-        if (index !== -1) {
-          store.itemsFavorite.splice(index, 1);
-        }
-      })
-      .addCase(fetchRemoveFromFavorite.rejected, (store, { payload }) => {
-        store.loading = false;
-        store.error = payload;
-      });
   },
 });
 
