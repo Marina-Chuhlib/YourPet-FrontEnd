@@ -52,10 +52,42 @@
     top: 0;
   }
 }
-.btn {
+/* .btn {
   display: none;
-}
+} */
 
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .btn {
+    position: fixed;
+    top: 37%;
+    right: 7%;
+    width: 80px;
+    height: 80px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #fef9f9;
+    border: 0;
+    cursor: pointer;
+    padding: 9px 16px;
+    background: #54adff;
+    border-radius: 50%;
+    animation: pulse-animation 2s ease-in-out infinite;
+    z-index: 50;
+  }
+  .iconBtn {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+}
 @media (min-width: 768px) {
   .btn {
     width: 129px;

@@ -1,26 +1,23 @@
-import Modal from '../ModalWindow/Modal';
+import { useDispatch } from 'react-redux';
+import * as toasty from '../../../shared/toastify/toastify';
 
-// import { useDispatch } from 'react-redux';
-// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import Modal from '../ModalWindow/Modal';
+import { fetchDeleteNotice } from '../../../redux/notices/noticesOperations';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import css from './modalDeleteCardNotice.module.css';
 
-// import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
-
-// import * as toasty from '../../../shared/toastify/toastify';
-
 const ModalDeleteCardNotice = ({ closeModal, _id, title, handleDelete }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleModalClose = () => {
     closeModal();
   };
 
-  // const handleConfirm = () => {
-  //   dispatch(fetchDeleteUserPet(_id));
-  //   toasty.toastSuccess('Deleted successful');
-  //   closeModal();
-  // };
+  const handleModalCloseDelete = () => {
+    dispatch(fetchDeleteNotice(_id));
+    toasty.toastSuccess('Deleted successful');
+    closeModal();
+  };
 
   return (
     <>
@@ -37,7 +34,7 @@ const ModalDeleteCardNotice = ({ closeModal, _id, title, handleDelete }) => {
           >
             Cancel
           </button>
-          <button className={css.modalBtn} onClick={() => handleDelete(_id)}>
+          <button className={css.modalBtn} onClick={handleModalCloseDelete}>
             Yes
             <DeleteForeverOutlinedIcon
               className={css.modalIcon}

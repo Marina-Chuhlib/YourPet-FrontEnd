@@ -137,7 +137,6 @@ const NoticeCategoryItem = ({
             />
             {checkOwner(owner) && (
               <Button
-                // onClick={() => handleDelete(_id)}
                 onClick={openModalApprove}
                 className={css.topBtn}
                 SVGComponent={() => <TrashIcon color="#54ADFF" />}
