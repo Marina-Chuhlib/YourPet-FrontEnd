@@ -33,7 +33,7 @@ const NoticesCategoriesList = () => {
       )}
       {currentCategory === 'favorite' ? (
         <ul className={css.noticeList}>
-          {allFavoriteNotices.length > 0 &&
+          {allFavoriteNotices &&
             allFavoriteNotices.map(({ _id, owner, ...props }) => (
               <NoticeCategoryItem
                 key={_id}
