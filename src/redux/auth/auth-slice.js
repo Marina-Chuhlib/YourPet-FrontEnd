@@ -51,7 +51,6 @@ const authSlice = createSlice({
         state.token = accessToken;
         state.isLoggedIn = true;
         state.error = null;
-        // state.favorite = user.favorite;
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -172,6 +171,7 @@ const authSlice = createSlice({
       .addCase(fetchAddToFavorite.fulfilled, (state, { payload }) => {
         const { id } = payload;
         state.user.favorite.push(id);
+        state.user.itemsFavorite = [id];
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -183,7 +183,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchAllFavoriteNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user.itemsFavorite = [...payload.notices];
+        state.user.itemsFavorite = payload.notices;
         // store.page = Number(payload.page);
         // store.totalPages = payload.totalPages;
       })
@@ -192,23 +192,34 @@ const authSlice = createSlice({
         state.error = payload;
       })
       .addCase(fetchRemoveFromFavorite.pending, state => {
-        state.isLoading = true;
+        return {
+          ...state,
+          isLoading: true,
+        };
       })
       .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
-        const { id } = payload;
         state.isLoading = false;
-        const index = state.user.favorite.findIndex(item => item._id !== id);
-        console.log('index', index);
-        const indexItemFavorite = state.user.itemsFavorite.findIndex(
-          ({ _id }) => {
-            return _id === payload.id;
+        const favoriteList = state.user.favorite;
+        if (favoriteList) {
+          const index = favoriteList.findIndex(item => {
+            return item._id !== payload.id;
+          });
+          if (index !== -1) {
+            favoriteList.splice(index, 1);
           }
-        );
-        if (index === indexItemFavorite) {
-          state.user.favorite.splice(index, 1);
-        }
-        if (indexItemFavorite !== -1) {
-          state.user.itemsFavorite.splice(indexItemFavorite, 1);
+
+          const itemsFavoriteList = state.user.itemsFavorite;
+          if (itemsFavoriteList) {
+            const indexItemFavorite = itemsFavoriteList.findIndex(({ _id }) => {
+              return _id === payload.id;
+            });
+            if (index === indexItemFavorite) {
+              favoriteList.splice(index, 1);
+            }
+            if (indexItemFavorite !== -1) {
+              itemsFavoriteList.splice(indexItemFavorite, 1);
+            }
+          }
         }
       })
       .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
