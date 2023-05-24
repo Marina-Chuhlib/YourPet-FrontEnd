@@ -74,11 +74,13 @@ const NoticeModal = ({ _id, handleFavoriteToggle }) => {
                 </td>
               </tr>
               <tr>
-                <td className={css.infoTitle}>Phone:</td>
+                {owner.phone && <td className={css.infoTitle}>Phone:</td>}
                 <td>
-                  <a href={`tel:${owner.phone}`} className={css.contacts}>
-                    {owner.phone}
-                  </a>
+                  {owner.phone && (
+                    <a href={`tel:${owner.phone}`} className={css.contacts}>
+                      {owner.phone}
+                    </a>
+                  )}
                 </td>
               </tr>
             </tbody>

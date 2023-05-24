@@ -1,16 +1,10 @@
-// import PropTypes from 'prop-types';
-// import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import ModalApproveActionDeleteCard from 'shared/components/ModalApproveAction/ModalApproveActionDeleteCard';
 
-// import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
-
-
-
 import css from './MyPets.module.css';
 import icon from '../../icons/trash.svg';
-
 
 const PetsItem = ({
   pet: { imageURL, name, _id, birthday, breed, comments },
@@ -19,7 +13,6 @@ const PetsItem = ({
 
   const handleDeletePet = () => {
     setIsModalOpen(true);
-  
   };
 
   const closeModal = () => {
@@ -29,7 +22,11 @@ const PetsItem = ({
   return (
     <>
       {isModalOpen && (
-        <ModalApproveActionDeleteCard closeModal={closeModal} _id={_id} name={name} />
+        <ModalApproveActionDeleteCard
+          closeModal={closeModal}
+          _id={_id}
+          name={name}
+        />
       )}
       <img src={imageURL} alt="" className={css.picture} />
       <div className={css.infoWrapper}>
@@ -60,5 +57,13 @@ const PetsItem = ({
   );
 };
 
+PetsItem.propTypes = {
+  _id: PropTypes.objectOf(PropTypes.string.isRequired),
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  birthday: PropTypes.string,
+  breed: PropTypes.string,
+  comments: PropTypes.string,
+};
 
 export default PetsItem;

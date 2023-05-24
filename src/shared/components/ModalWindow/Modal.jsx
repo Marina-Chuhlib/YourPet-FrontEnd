@@ -38,6 +38,6 @@ const Modal = ({ children, closeModal }) => {
 export default Modal;
 
 // Modal.propTypes = {
-//   children: PropTypes.element.isRequired,
-//   close: PropTypes.func.isRequired,
+//   children: PropTypes.object,
+//   close: PropTypes.func,
 // };
