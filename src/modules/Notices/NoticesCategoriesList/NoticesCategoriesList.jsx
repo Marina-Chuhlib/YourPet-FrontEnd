@@ -1,15 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import {
-  getAllNotices,
-  // getAllFavoriteNotices,
-} from 'redux/notices/noticesSelectors';
+import { getAllNotices } from 'redux/notices/noticesSelectors';
 import { getAllFavoriteNotices } from '../../../redux/auth/auth-selectors';
 import { useLocation } from 'react-router-dom';
 
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
-import PlusIcon from 'icons/PlusIcon';
-import Button from 'shared/components/ButtonNotices/ButtonNotices';
 
 import css from './notices-categories-list.module.css';
 
@@ -21,16 +16,6 @@ const NoticesCategoriesList = () => {
   const currentCategory = location.pathname.split('/')[2];
   return (
     <div className={css.noticesListContainer}>
-      {document.documentElement.clientWidth < 768 && (
-        <Button
-          className={css.addPetBtn}
-          SVGComponent={() => (
-            <PlusIcon className={css.addPetBtnIcon} color="#FFFFFF" />
-          )}
-        >
-          Add Pet
-        </Button>
-      )}
       {currentCategory === 'favorite' ? (
         <ul className={css.noticeList}>
           {allFavoriteNotices &&

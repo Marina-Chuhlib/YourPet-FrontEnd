@@ -2,19 +2,20 @@ import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import { Formik, Form } from 'formik';
+import * as toasty from 'shared/toastify/toastify';
 
 import { fetchUpdateUser, fetchUpdateAvatar } from 'redux/auth/auth-operations';
-
-import { selectAuth, selectIsLoading } from 'redux/auth/auth-selectors';
-
-import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
-
 import {
+  selectAuth,
+  selectIsLoading,
   selectIsLoggedIn,
   selectlogoutSuccessful,
   userInfo,
 } from 'redux/auth/auth-selectors';
+
+import ModalApproveAction from 'shared/components/ModalApproveAction/ModalApproveAction';
 
 import Loader from 'shared/components/Loader/Loader';
 
@@ -29,8 +30,6 @@ import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import css from './UserForm.module.css';
-
-import * as toasty from 'shared/toastify/toastify';
 
 const UserForm = () => {
   const { token } = useSelector(selectAuth);
@@ -123,7 +122,6 @@ const UserForm = () => {
         const result = await dispatch(
           fetchUpdateUser({ token, fieldToUpdate: fieldName, newValue: value })
         );
-        // console.log(`Sending ${fieldName}=${value} to the server`);
 
         if (result.meta.requestStatus !== 'fulfilled') {
           toasty.toastError(`Opps! Incorrect ${fieldName} try,again`);

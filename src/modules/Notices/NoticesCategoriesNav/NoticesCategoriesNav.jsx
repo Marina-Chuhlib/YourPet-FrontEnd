@@ -19,11 +19,7 @@ const getClassNameLink = ({ isActive }) => {
   return className;
 };
 
-const NoticesCategoriesNav = ({
-  onOwnClick,
-  onFavoriteClick,
-  handleCategoryClick,
-}) => {
+const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -44,9 +40,9 @@ const NoticesCategoriesNav = ({
             <NavLink
               to={element.to}
               className={getClassNameLink}
-              onClick={() => {
-                handleCategoryClick(element.to);
-              }}
+              // onClick={() => {
+              //   handleCategoryClick(element.to);
+              // }}
             >
               {element.text}
             </NavLink>
