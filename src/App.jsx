@@ -11,14 +11,13 @@ import SharedLayout from 'modules/SharedLayout/SharedLayout';
 
 import NoticesCategoriesList from './modules/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import AddPetPage from './pages/AddPetPage/AddPetPage';
-import NoticesPage from 'pages/NoticesPage/NoticesPage';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-// const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );

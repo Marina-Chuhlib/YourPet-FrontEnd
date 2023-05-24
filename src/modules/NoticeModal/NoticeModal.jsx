@@ -16,7 +16,6 @@ const NoticeModal = ({ _id, handleFavoriteToggle }) => {
 
   const item = useSelector(getNoticesById);
   const owner = useSelector(getNoticesByIdOwner);
-  console.log(owner);
 
   useEffect(() => {
     dispatch(fetchNoticeById(_id));
