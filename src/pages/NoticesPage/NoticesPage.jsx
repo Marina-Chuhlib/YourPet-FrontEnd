@@ -56,10 +56,22 @@ const NoticesPage = () => {
   //   }
   // }, [dispatch, currentCategory]);
 
+  // useEffect(() => {
+  //   if (currentCategory !== 'sell') {
+  //     return;
+  //   }
+  //   if (currentCategory === 'sell') {
+  //     dispatch(
+  //       fetchNoticesByCategory({
+  //         categoryName: 'sell',
+  //         query: '',
+  //         page: 1,
+  //       })
+  //     );
+  //   }
+  // }, [dispatch, currentCategory]);
+
   useEffect(() => {
-    if (currentCategory !== 'sell') {
-      return;
-    }
     if (currentCategory === 'sell') {
       dispatch(
         fetchNoticesByCategory({
@@ -68,8 +80,39 @@ const NoticesPage = () => {
           page: 1,
         })
       );
+      return;
     }
-  }, [dispatch, currentCategory]);
+    if (currentCategory === 'for-free') {
+      dispatch(
+        fetchNoticesByCategory({
+          categoryName: 'for-free',
+          query: '',
+          page: 1,
+        })
+      );
+      return;
+    }
+    if (currentCategory === 'lost-found') {
+      dispatch(
+        fetchNoticesByCategory({
+          categoryName: 'lost-found',
+          query: '',
+          page: 1,
+        })
+      );
+      return;
+    }
+    if (currentCategory === 'own') {
+      dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
+      return;
+    }
+    if (currentCategory === 'favorite') {
+      dispatch(
+        fetchAllFavoriteNotices({ query: '', page: favoriteCurrentPage })
+      );
+      return;
+    }
+  }, [currentCategory, dispatch, ownCurrentPage, favoriteCurrentPage]);
 
   const onPageChange = page => {
     if (currentCategory === 'own') {
@@ -89,23 +132,23 @@ const NoticesPage = () => {
     }
   };
 
-  const handleCategoryClick = categoryName => {
-    dispatch(
-      fetchNoticesByCategory({
-        categoryName,
-        query: '',
-        page: 1,
-      })
-    );
-  };
+  // const handleCategoryClick = categoryName => {
+  //   dispatch(
+  //     fetchNoticesByCategory({
+  //       categoryName,
+  //       query: '',
+  //       page: 1,
+  //     })
+  //   );
+  // };
 
-  const handleOwnClick = () => {
-    dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
-  };
+  // const handleOwnClick = () => {
+  //   dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
+  // };
 
-  const handleFavoriteClick = () => {
-    dispatch(fetchAllFavoriteNotices({ query: '', page: favoriteCurrentPage }));
-  };
+  // const handleFavoriteClick = () => {
+  //   dispatch(fetchAllFavoriteNotices({ query: '', page: favoriteCurrentPage }));
+  // };
 
   const handleOwnPageChange = page => {
     setOwnCurrentPage(page);
@@ -122,10 +165,10 @@ const NoticesPage = () => {
       <h2 className={css.title}>Find your favorite pet</h2>
       <NoticesSearch />
       <NoticesCategoriesNav
-        handleCategoryClick={handleCategoryClick}
-        onPageChange={onPageChange}
-        onOwnClick={handleOwnClick}
-        onFavoriteClick={handleFavoriteClick}
+      // handleCategoryClick={handleCategoryClick}
+      // onPageChange={onPageChange}
+      // onOwnClick={handleOwnClick}
+      // onFavoriteClick={handleFavoriteClick}
       />
       {loading && <Loader />}
       {notices && <Outlet />}
