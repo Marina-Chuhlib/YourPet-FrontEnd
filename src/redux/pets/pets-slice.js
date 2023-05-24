@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addPet, addNotice  } from './pets-operations';
+import { addPet, addNotice } from './pets-operations';
 
 const initialState = {
   items: [],
@@ -22,6 +22,7 @@ const petsSlice = createSlice({
       .addCase(addPet.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.items.push(payload);
+        state.user = payload;
         state.result = `fulfilled`;
       })
       .addCase(addPet.rejected, (state, { payload }) => {
@@ -42,8 +43,7 @@ const petsSlice = createSlice({
         state.loading = false;
         state.error = payload;
         state.result = `rejected`;
-      })
-      
+      });
   },
 });
 

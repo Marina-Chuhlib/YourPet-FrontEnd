@@ -12,7 +12,8 @@ import {
 
 import {
   fetchAddToFavorite,
-  // fetchRemoveFromFavorite,
+  fetchRemoveFromFavorite,
+  fetchAllFavoriteNotices,
 } from 'redux/notices/noticesOperations';
 const initialState = {
   user: {
@@ -23,6 +24,7 @@ const initialState = {
     city: '',
     imageURL: '',
     favorite: [],
+    itemsFavorite: [],
   },
   pets: [{}],
   registrationSuccessful: false,
@@ -49,7 +51,6 @@ const authSlice = createSlice({
         state.token = accessToken;
         state.isLoggedIn = true;
         state.error = null;
-        // state.favorite = user.favorite;
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -170,8 +171,58 @@ const authSlice = createSlice({
       .addCase(fetchAddToFavorite.fulfilled, (state, { payload }) => {
         const { id } = payload;
         state.user.favorite.push(id);
+        state.user.itemsFavorite = [id];
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchAllFavoriteNotices.pending, state => {
+        state.isLoading = true;
+        state.user.itemsFavorite = [];
+      })
+      .addCase(fetchAllFavoriteNotices.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.user.itemsFavorite = payload.notices;
+        // store.page = Number(payload.page);
+        // store.totalPages = payload.totalPages;
+      })
+      .addCase(fetchAllFavoriteNotices.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(fetchRemoveFromFavorite.pending, state => {
+        return {
+          ...state,
+          isLoading: true,
+        };
+      })
+      .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        const favoriteList = state.user.favorite;
+        if (favoriteList) {
+          const index = favoriteList.findIndex(item => {
+            return item._id !== payload.id;
+          });
+          if (index !== -1) {
+            favoriteList.splice(index, 1);
+          }
+
+          const itemsFavoriteList = state.user.itemsFavorite;
+          if (itemsFavoriteList) {
+            const indexItemFavorite = itemsFavoriteList.findIndex(({ _id }) => {
+              return _id === payload.id;
+            });
+            if (index === indexItemFavorite) {
+              favoriteList.splice(index, 1);
+            }
+            if (indexItemFavorite !== -1) {
+              itemsFavoriteList.splice(indexItemFavorite, 1);
+            }
+          }
+        }
+      })
+      .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

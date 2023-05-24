@@ -1,16 +1,15 @@
 import Modal from '../ModalWindow/Modal';
 
 // import { useDispatch } from 'react-redux';
-
 // import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import css from './modalDeleteCardNotice.css';
+import css from './modalDeleteCardNotice.module.css';
 
 // import { fetchDeleteUserPet } from 'redux/auth/auth-operations';
 
 // import * as toasty from '../../../shared/toastify/toastify';
 
-const ModalDeleteCardNotice = ({ closeModal, _id, name, handleDelete }) => {
+const ModalDeleteCardNotice = ({ closeModal, _id, title, handleDelete }) => {
   // const dispatch = useDispatch();
 
   const handleModalClose = () => {
@@ -26,9 +25,9 @@ const ModalDeleteCardNotice = ({ closeModal, _id, name, handleDelete }) => {
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>
-        <h1>Delete adverstiment?</h1>
-        <p>
-          Are you sure you want to delete {name}'s card? You don't undo this
+        <h2 className={css.modalTitle}>Delete adverstiment?</h2>
+        <p className={css.modalText}>
+          Are you sure you want to delete <b>"{title}"</b>? You can't undo this
           action.
         </p>
         <div className={css.modalBtnContainer}>
@@ -41,8 +40,9 @@ const ModalDeleteCardNotice = ({ closeModal, _id, name, handleDelete }) => {
           <button className={css.modalBtn} onClick={() => handleDelete(_id)}>
             Yes
             <DeleteForeverOutlinedIcon
-              sx={{ fontSize: 30 }}
-              style={{ marginLeft: '5px' }}
+              className={css.modalIcon}
+              // sx={{ fontSize: 30 }}
+              // style={{ marginLeft: '5px' }}
             />
           </button>
         </div>
