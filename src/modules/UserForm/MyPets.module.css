@@ -106,12 +106,6 @@
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.38);
 }
 
-.iconDelete {
-  /* width: 40px;
-  z-index: 1000000; */
-  fill: aqua;
-}
-
 .infoValue {
   display: flex;
 }

@@ -12,12 +12,9 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import css from './MyPets.module.css';
 
-import { addPetLoading } from 'redux/pets/pets-selectors';
-
 const MyPets = () => {
   const isLoading = useSelector(selectIsLoading);
   const pets = useSelector(userMyPets);
-  const loading = useSelector(addPetLoading);
 
   const navigate = useNavigate();
 
@@ -28,7 +25,6 @@ const MyPets = () => {
   return (
     <div className={css.wrapper}>
       {isLoading && <Loader />}
-      {loading && <Loader />}
       <dir className={css.wrapperTitle}>
         <h3 className={css.title}>My Pets:</h3>
         <button type="button" onClick={handleClick} className={css.addPetBtn}>
