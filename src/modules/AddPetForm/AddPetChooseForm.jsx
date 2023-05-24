@@ -23,8 +23,7 @@ import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
 import Modal from 'shared/components/ModalWindow/Modal';
 import Loader from 'shared/components/Loader/Loader';
 
-
-export const AddPetChooseForm = () => {
+export const AddPetChooseForm = ({ response }) => {
   const [step, setStep] = useState(1);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [chooseOption, setChooseOption] = useState('');
@@ -32,12 +31,9 @@ export const AddPetChooseForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  
   const [formData, setFormData] = useState({});
 
-  useEffect(() => {
-  
-  }, [formData]);
+  useEffect(() => {}, [formData]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,16 +48,16 @@ export const AddPetChooseForm = () => {
   const handleNextDataOption = () => {
     const category = chooseOption;
     handleNextData({ category });
-    if (category === "") {
+    if (category === '') {
       toasty.toastError('Please, choose the category!');
     }
-    }
+  };
   const handleNextData = stepData => {
     setIsLoading(true);
     if (chooseOption && currentStatus < 3) {
       setStep(step + 1);
       setCurrentStatus(currentStatus + 1);
-    } 
+    }
     setIsLoading(false);
     setFormData(prevData => {
       console.log('prevData', prevData);
@@ -105,62 +101,31 @@ export const AddPetChooseForm = () => {
         navigate('/user');
     }
   };
-  // const addPet = async (endpoint, category, data) => {
-  //   try {
-  //     const response = await instance.post(`${endpoint}${category}`, data);
-  //     console.log(response);
-  //     return response.data;
-  //   } catch (error) {
-  //     return error.message;
-  //   }
-  // };
 
-  //   const handleNextValidation = (stepData, {name, birth, breed, title}) => {
-  //     const sendDataForm = { ...formData, ...stepData };
-  //     const { category } = sendDataForm;
-  //     console.log('work handleNextValidation', step, currentStatus, chooseOption);
-  //     const formDataSend = new FormData();
 
-  //     for (const key in sendDataForm) {
-  //       formDataSend.append(key, sendDataForm[key]);
-  //     }
-  //     if (category === 'your pet') {
-  //       Pet.validationSchema.validate({ name, birth, breed }).then(() => {
-  //         handleNextData({ name, birth, breed });
-  //       });
-  //     } else {
-  //       Pet.validationSchema.validate({ name, birth, breed, title }).then(() => {
-  //         handleNextData({ name, birth, breed, title });
-  //       });
-  //     }
-  //   };
 
-  //   setFormData(prevData => ({ ...prevData, ...stepData }));
-  // };
+    const returnToNotice = (data) => {
+    
+      setShowModal(false);
 
-  // const handleDone = ({photo, comments}) => {
-  //   console.log('HandleDone work');
-  //   Pet.validationSchemaThird
-  //     .validate({ photo, comments }, { abortEarly: false })
-  //     .then(() => {
-  //       handleData({ photo, comments });
-  //     })
-  //     .catch(err => {
-  //       const validationErrors = {};
-  //       err.inner.forEach(error => {
-  //         validationErrors[error.path] = error.message;
-  //       });
-  //       setErrors(validationErrors);
-  //     });
+      switch (data) {
+       
+        case 'sell':
+          navigate('/notices/sell');
+          break;
+        case 'lost-found':
+          navigate('/notices/lost-found');
+          break;
 
-  //
+        default:
+          navigate('/notices');
+      }
+    };
 
   const handleDone = stepData => {
     const sendDataForm = { ...formData, ...stepData };
-    console.log(sendDataForm);
     const { category } = sendDataForm;
     if (category === 'your pet') {
-     
       delete sendDataForm.category;
       const formDataSend = new FormData();
 
@@ -168,19 +133,36 @@ export const AddPetChooseForm = () => {
         formDataSend.append(key, sendDataForm[key]);
       }
       // setIsLoading(true);
- const response = dispatch(addPet(formDataSend));
-      console.log('done work', 'formData:', response);
-      if (!response) {
-        toasty.toastError('Only a registered user can add pet!');
-      }
+      dispatch(addPet(formDataSend)).then(response => {
+        console.log('done work', response.payload);
+
+        if (typeof response.payload !== 'object') {
+           toasty.toastError('Oops, something went wrong!');
+          
+        } else {
+         
+          toasty.toastSuccess('Congratulations!!! Your pet is added!');
+          navigate('/user');
+        }
+      });
     } else {
       const formDataSend = new FormData();
 
       for (const key in sendDataForm) {
         formDataSend.append(key, sendDataForm[key]);
       }
-      dispatch(addNotice(formDataSend));
-      console.log('category not your pet', category);
+      dispatch(addNotice(formDataSend)).then(response => {
+        console.log('done work', response.payload);
+
+        if (typeof response.payload !== 'object') {
+          toasty.toastError('Oops, something went wrong!');
+        } else {
+          toasty.toastSuccess(
+            'Congratulations!!! You successfully created an ad!'
+          );
+          returnToNotice(sendDataForm.category);
+        }
+      });
     }
     setFormData(prevData => ({ ...prevData, ...stepData }));
   };

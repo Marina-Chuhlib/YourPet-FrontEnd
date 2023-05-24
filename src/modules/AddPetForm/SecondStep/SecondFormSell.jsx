@@ -20,7 +20,7 @@ export const SecondFormSell = ({
   const [errors, setErrors] = useState({});
 
   // const handleNextValidation = () => {
-  //   console.log('work NextValidation', 'name: ', name, 'birth: ', date);
+    
   //   handleNextData({ name, date, breed, title });
   // };
 

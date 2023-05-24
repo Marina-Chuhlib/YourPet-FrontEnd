@@ -22,7 +22,7 @@ export const SecondFormMyPet = ({
 
   
   // const handleNextValidation = () => {
-  //   console.log('work NextValidation', 'name: ', name, 'birth: ', birthday);
+    
   //   handleNextData({ name, birthday, breed });
   //    };
 
@@ -43,7 +43,7 @@ export const SecondFormMyPet = ({
   };
   return (
     <div>
-      <TitleModal title={'Add my pet'} />
+      <TitleModal titleForm={'Add my pet'} />
 
       <StatusIndicator currentStatus={currentStatus} />
       <div className={css.inputContainer}>

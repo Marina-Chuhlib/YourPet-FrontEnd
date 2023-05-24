@@ -71,7 +71,7 @@ export  const addMyNewPet = async(data) =>  {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-  console.log("addMyNewPet work");
+  console.log("addMyNewPet work", response);
   return response;
 }
 

@@ -10,6 +10,7 @@ export const addPet = createAsyncThunk(
       console.log(result.data)
       return result.data;
     } catch ({ response }) {
+      console.log(response.data);
       return rejectWithValue(response.data.message);
     }
   }

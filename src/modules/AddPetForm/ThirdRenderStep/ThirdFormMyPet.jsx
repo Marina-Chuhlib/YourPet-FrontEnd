@@ -33,9 +33,12 @@ export const ThirdFormMyPet = ({
       })
       .catch(err => {
         const validationErrors = {};
-        err.inner.forEach(error => {
-          validationErrors[error.path] = error.message;
-        });
+        if (err.inner) {
+err.inner.forEach(error => {
+  validationErrors[error.path] = error.message;
+});
+        }
+        
         setErrors(validationErrors);
       });
   };
