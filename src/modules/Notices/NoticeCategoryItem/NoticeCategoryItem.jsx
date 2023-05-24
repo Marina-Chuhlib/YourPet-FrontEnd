@@ -48,18 +48,16 @@ const NoticeCategoryItem = ({
     if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
     if (favorites.includes(_id)) {
       try {
-        dispatch(fetchRemoveFromFavorite(_id));
+        await dispatch(fetchRemoveFromFavorite(_id));
         toasty.toastSuccess('remove from favorite');
-        // checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
       }
     } else {
       try {
-        dispatch(fetchAddToFavorite(_id));
+        await dispatch(fetchAddToFavorite(_id));
         toasty.toastSuccess('add to favorite');
-        // checkFavorite(_id);
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -118,7 +116,11 @@ const NoticeCategoryItem = ({
       <div className={css.imageThumb}>
         <img className={css.photoAnimal} src={file} alt={title} width="280" />
         <div className={css.topBlock}>
-          <p className={css.categoryInfo}>{category}</p>
+          {category === 'for-free' ? (
+            <p className={css.categoryInfo}>in good hands</p>
+          ) : (
+            <p className={css.categoryInfo}>{category}</p>
+          )}
           <div>
             <Button
               onClick={handleFavoriteToggle}
