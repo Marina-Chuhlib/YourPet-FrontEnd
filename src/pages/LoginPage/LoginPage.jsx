@@ -1,4 +1,3 @@
-//import LoginForm from '../../modules/LoginForm/LoginForm';
 import { useEffect } from 'react';
 import LoginForm from 'modules/LoginForm/LoginForm';
 import css from './LoginPage.module.css';
@@ -21,4 +20,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
