@@ -7,7 +7,7 @@ export const SecondRenderStep = ({
   handlePrevStep,
   chooseOption,
   formData,
-  currentStatus
+  currentStatus,
 }) => {
   return (
     <>
@@ -57,5 +57,3 @@ export const SecondRenderStep = ({
     </>
   );
 };
-
-

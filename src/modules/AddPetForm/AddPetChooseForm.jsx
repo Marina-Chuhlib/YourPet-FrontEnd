@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -23,7 +22,7 @@ import { ThirdFormLost } from './ThirdRenderStep/ThirdFormLost';
 import Modal from 'shared/components/ModalWindow/Modal';
 import Loader from 'shared/components/Loader/Loader';
 
-export const AddPetChooseForm = ({ response }) => {
+export const AddPetChooseForm = () => {
   const [step, setStep] = useState(1);
   const [currentStatus, setCurrentStatus] = useState(1);
   const [chooseOption, setChooseOption] = useState('');
@@ -39,7 +38,6 @@ export const AddPetChooseForm = ({ response }) => {
   const navigate = useNavigate();
 
   const handleChooseChange = (option, number) => {
-    console.log('Choose option work', option, number);
     setFormData(prevData => ({ ...prevData, category: option }));
     setChooseOption(option);
     setActiveButton(number);
@@ -60,20 +58,18 @@ export const AddPetChooseForm = ({ response }) => {
     }
     setIsLoading(false);
     setFormData(prevData => {
-      console.log('prevData', prevData);
       return { ...prevData, ...stepData };
     });
   };
 
   const handlePrevStep = stepData => {
-    // setIsLoading(true);
+    setIsLoading(true);
     if (currentStatus > 1) {
       setCurrentStatus(currentStatus - 1);
     }
     setStep(step - 1);
     setIsLoading(false);
     setFormData(prevData => {
-      console.log('work prevStep', prevData, stepData);
       return { ...prevData, ...stepData };
     });
   };
@@ -83,9 +79,8 @@ export const AddPetChooseForm = ({ response }) => {
   };
 
   const handleCloseModal = () => {
-    console.log('Data new modal close', formData);
     setShowModal(false);
-
+    setIsLoading(true);
     switch (formData.category) {
       case 'your pet':
         navigate('/user');
@@ -102,25 +97,22 @@ export const AddPetChooseForm = ({ response }) => {
     }
   };
 
+  const returnToNotice = data => {
+    setIsLoading(true);
+    setShowModal(false);
 
+    switch (data) {
+      case 'sell':
+        navigate('/notices/sell');
+        break;
+      case 'lost-found':
+        navigate('/notices/lost-found');
+        break;
 
-    const returnToNotice = (data) => {
-    
-      setShowModal(false);
-
-      switch (data) {
-       
-        case 'sell':
-          navigate('/notices/sell');
-          break;
-        case 'lost-found':
-          navigate('/notices/lost-found');
-          break;
-
-        default:
-          navigate('/notices');
-      }
-    };
+      default:
+        navigate('/notices');
+    }
+  };
 
   const handleDone = stepData => {
     const sendDataForm = { ...formData, ...stepData };
@@ -132,15 +124,11 @@ export const AddPetChooseForm = ({ response }) => {
       for (const key in sendDataForm) {
         formDataSend.append(key, sendDataForm[key]);
       }
-      // setIsLoading(true);
+      setIsLoading(true);
       dispatch(addPet(formDataSend)).then(response => {
-        console.log('done work', response.payload);
-
         if (typeof response.payload !== 'object') {
-           toasty.toastError('Oops, something went wrong!');
-          
+          toasty.toastError('Oops, something went wrong!');
         } else {
-         
           toasty.toastSuccess('Congratulations!!! Your pet is added!');
           navigate('/user');
         }
@@ -151,9 +139,8 @@ export const AddPetChooseForm = ({ response }) => {
       for (const key in sendDataForm) {
         formDataSend.append(key, sendDataForm[key]);
       }
+      setIsLoading(true);
       dispatch(addNotice(formDataSend)).then(response => {
-        console.log('done work', response.payload);
-
         if (typeof response.payload !== 'object') {
           toasty.toastError('Oops, something went wrong!');
         } else {
@@ -203,7 +190,7 @@ export const AddPetChooseForm = ({ response }) => {
 
       {step === 3 && (
         <>
-          {chooseOption === 'your pet' || chooseOption === 'for-free' ? (
+          {chooseOption === 'your pet' ? (
             <FormContainer>
               <ThirdFormMyPet
                 currentStatus={currentStatus}
@@ -232,6 +219,21 @@ export const AddPetChooseForm = ({ response }) => {
           {chooseOption === 'lost-found' ? (
             <FormContainerThird>
               <ThirdFormLost
+                titleForm={'Add lost pet'}
+                currentStatus={currentStatus}
+                handleNextData={handleDone}
+                handlePrevStep={handlePrevStep}
+                formData={formData}
+                chooseOption={chooseOption}
+              />
+            </FormContainerThird>
+          ) : (
+            ''
+          )}
+          {chooseOption === 'for-free' ? (
+            <FormContainerThird>
+              <ThirdFormLost
+                titleForm={'Pet in good hands'}
                 currentStatus={currentStatus}
                 handleNextData={handleDone}
                 handlePrevStep={handlePrevStep}
