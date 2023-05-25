@@ -128,6 +128,7 @@ export const AddPetChooseForm = () => {
       dispatch(addPet(formDataSend)).then(response => {
         if (typeof response.payload !== 'object') {
           toasty.toastError('Oops, something went wrong!');
+          setIsLoading(false)
         } else {
           toasty.toastSuccess('Congratulations!!! Your pet is added!');
           navigate('/user');
@@ -143,6 +144,7 @@ export const AddPetChooseForm = () => {
       dispatch(addNotice(formDataSend)).then(response => {
         if (typeof response.payload !== 'object') {
           toasty.toastError('Oops, something went wrong!');
+          setIsLoading(false)
         } else {
           toasty.toastSuccess(
             'Congratulations!!! You successfully created an ad!'

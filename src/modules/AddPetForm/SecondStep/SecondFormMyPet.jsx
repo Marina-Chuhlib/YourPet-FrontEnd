@@ -71,7 +71,7 @@ export const SecondFormMyPet = ({
           value={birthday}
           onChange={e => setBirthday(e.target.value)}
           required
-          placeholder="Type date of birth"
+          placeholder="dd.mm.yyyy"
         />
         {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>}
       </div>
