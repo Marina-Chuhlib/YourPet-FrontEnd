@@ -25,7 +25,7 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      toasty.toastError('Only a registered user can add pet!');
+      toasty.toastInfo('You must be logged in');
       return;
     } else {
       navigate('/add-pet');
