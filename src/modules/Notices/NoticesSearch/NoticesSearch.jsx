@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
+import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
   fetchAllFavoriteNotices,
@@ -11,6 +11,7 @@ import { selectCategory } from 'redux/notices/noticesSelectors';
 import { useLocation } from 'react-router-dom';
 
 import css from '../NoticesSearch/NoticesSearch.module.css';
+import { toastInfo } from 'shared/toastify/toastify';
 
 const NoticesSearch = () => {
   const dispatch = useDispatch();
@@ -19,15 +20,50 @@ const NoticesSearch = () => {
   const categoryIsLoginUser = location.pathname.split('/')[2];
   const category = useSelector(selectCategory);
 
-  const handleClear = useCallback(() => {
+  const handleClear = () => {
     setKeyword('');
-    setShowHelperText(false);
-  }, []);
+    try {
+      if (categoryIsLoginUser === 'own') {
+        dispatch(fetchNoticesByOwn({ query: '', page: 1 }));
+      } else if (categoryIsLoginUser === 'favorite') {
+        dispatch(fetchAllFavoriteNotices({ query: '', page: 1 }));
+      } else if (category) {
+        dispatch(
+          fetchNoticesByCategory({
+            categoryName: category,
+            query: '',
+            page: 1,
+          })
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const handleKeywordChange = useCallback(e => {
-    setKeyword(e.target.value);
-    setShowHelperText(false);
-  }, []);
+  const handleKeywordChange = e => {
+    const query = e.target.value;
+    setKeyword(query);
+    if (query === '') {
+      try {
+        if (categoryIsLoginUser === 'own') {
+          dispatch(fetchNoticesByOwn({ query: '', page: 1 }));
+        } else if (categoryIsLoginUser === 'favorite') {
+          dispatch(fetchAllFavoriteNotices({ query: '', page: 1 }));
+        } else if (category) {
+          dispatch(
+            fetchNoticesByCategory({
+              categoryName: category,
+              query: '',
+              page: 1,
+            })
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const handleSubmit = useCallback(
     e => {
@@ -35,10 +71,9 @@ const NoticesSearch = () => {
       const trimmedKeyword = keyword.trim();
 
       if (trimmedKeyword === '') {
-        setShowHelperText(true);
+        toastInfo('Please enter something');
         return;
       }
-
       try {
         if (categoryIsLoginUser === 'own') {
           dispatch(fetchNoticesByOwn(trimmedKeyword, 1));
@@ -55,12 +90,10 @@ const NoticesSearch = () => {
         }
       } catch (error) {
         console.log(error);
-      } 
+      }
     },
     [category, categoryIsLoginUser, dispatch, keyword]
   );
-
-  const [showHelperText, setShowHelperText] = useState(false);
 
   return (
     <div className={css.inputContainer}>
@@ -94,21 +127,9 @@ const NoticesSearch = () => {
           }
           fullWidth
         />
-        {showHelperText && (
-          <Typography
-            variant="caption"
-            color="error"
-            marginLeft="20px"
-            fontSize="16px"
-          >
-            Please enter something.
-          </Typography>
-        )}
       </form>
     </div>
   );
 };
 
 export default React.memo(NoticesSearch);
-
-

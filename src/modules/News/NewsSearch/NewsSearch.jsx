@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { InputAdornment, IconButton, Input, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
   selectAllNewsTotalPages,
   selectAllNewsPage,
 } from '../../../redux/news/newsSelectors';
-import { useSelector } from 'react-redux';
-import { fetchAllNews } from 'redux/news/newsOperation';
+import { fetchAllNews, fetchFilteredNews } from 'redux/news/newsOperation';
 import NewsList from '../NewsList/NewsList';
 import PaginationLine from 'shared/components/Pagination/Pagination';
-import { useDispatch } from 'react-redux';
-import { fetchFilteredNews } from 'redux/news/newsOperation';
+import { toastInfo } from 'shared/toastify/toastify';
 
 import css from '../NewsSearch/NewsSearch.module.css';
 
 const NewsSearch = () => {
   const [keyword, setKeyword] = useState('');
-  const [showHelperText, setShowHelperText] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [currentNewsPage, setCurrentNewsPage] = useState(1);
   const [currentFilterPage, setCurrentFilterPage] = useState(1);
@@ -49,7 +47,7 @@ const NewsSearch = () => {
   const handleSearch = e => {
     e.preventDefault();
     if (keyword.trim() === '') {
-      setShowHelperText(true);
+      toastInfo('Please enter something');
       setKeyword('');
     } else {
       setSubmitted(true);
@@ -59,13 +57,11 @@ const NewsSearch = () => {
   const handleChange = event => {
     const value = event.target.value;
     setKeyword(value);
-    setShowHelperText(false);
     setSubmitted(false);
   };
 
   const handleClear = () => {
     setKeyword('');
-    setShowHelperText(false);
     setSubmitted(false);
     setCurrentNewsPage(1);
     setCurrentFilterPage(1);
@@ -107,16 +103,6 @@ const NewsSearch = () => {
             }
             fullWidth
           />
-          {showHelperText && (
-            <Typography
-              variant="caption"
-              color="error"
-              marginLeft="40px"
-              fontSize="16px"
-            >
-              Please enter something.
-            </Typography>
-          )}
         </form>
       </div>
 

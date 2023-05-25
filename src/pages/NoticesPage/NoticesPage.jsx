@@ -11,10 +11,8 @@ import {
   getAllNotices,
   selectNoticesLoading,
   selectNoticesTotalPages,
-  // selectCategory,
   selectNoticesPage,
 } from '../../redux/notices/noticesSelectors';
-// import { getFavorite } from 'redux/auth/auth-selectors';
 
 import NoticesSearch from 'modules/Notices/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'modules/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -32,44 +30,9 @@ const NoticesPage = () => {
   const currentPage = useSelector(selectNoticesPage);
   const location = useLocation();
   const currentCategory = location.pathname.split('/')[2];
-  // const currentCategory = useSelector(selectCategory);
-
   const [ownCurrentPage, setOwnCurrentPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
-  // const favoriteNotice = useSelector(getFavorite);
-  // console.log(favoriteNotice);
-  // useEffect(() => {
-  //   if (currentCategory === 'own') {
-  //     dispatch(fetchNoticesByOwn({ query: '', page: 1 }));
-  //     return;
-  //   } else if (currentCategory === 'favorite') {
-  //     dispatch(fetchAllFavoriteNotices({ query: '', page: 1 }));
-  //     return;
-  //   } else {
-  //     dispatch(
-  //       fetchNoticesByCategory({
-  //         categoryName: currentCategory,
-  //         query: '',
-  //         page: 1,
-  //       })
-  //     );
-  //   }
-  // }, [dispatch, currentCategory]);
 
-  // useEffect(() => {
-  //   if (currentCategory !== 'sell') {
-  //     return;
-  //   }
-  //   if (currentCategory === 'sell') {
-  //     dispatch(
-  //       fetchNoticesByCategory({
-  //         categoryName: 'sell',
-  //         query: '',
-  //         page: 1,
-  //       })
-  //     );
-  //   }
-  // }, [dispatch, currentCategory]);
 
   useEffect(() => {
     if (currentCategory === 'sell') {
@@ -132,16 +95,6 @@ const NoticesPage = () => {
     }
   };
 
-  // const handleCategoryClick = categoryName => {
-  //   dispatch(
-  //     fetchNoticesByCategory({
-  //       categoryName,
-  //       query: '',
-  //       page: 1,
-  //     })
-  //   );
-  // };
-
   const handleOwnClick = () => {
     dispatch(fetchNoticesByOwn({ query: '', page: ownCurrentPage }));
   };
@@ -165,8 +118,6 @@ const NoticesPage = () => {
       <h2 className={css.title}>Find your favorite pet</h2>
       <NoticesSearch />
       <NoticesCategoriesNav
-      // handleCategoryClick={handleCategoryClick}
-      // onPageChange={onPageChange}
       onOwnClick={handleOwnClick}
       onFavoriteClick={handleFavoriteClick}
       />
