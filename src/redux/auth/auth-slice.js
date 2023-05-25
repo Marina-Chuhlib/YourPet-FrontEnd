@@ -172,6 +172,7 @@ const authSlice = createSlice({
         const { id } = payload;
         state.user.favorite.push(id);
         state.user.itemsFavorite = [id];
+        // state.user.itemsFavorite = state.user.favorite;
       })
       .addCase(fetchAddToFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -200,28 +201,19 @@ const authSlice = createSlice({
       .addCase(fetchRemoveFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         const favoriteList = state.user.favorite;
-        if (favoriteList) {
-          const index = favoriteList.findIndex(item => {
-            return item._id !== payload.id;
-          });
-          if (index !== -1) {
-            favoriteList.splice(index, 1);
-          }
+        const itemsFavoriteList = state.user.itemsFavorite;
 
-          const itemsFavoriteList = state.user.itemsFavorite;
-          if (itemsFavoriteList) {
-            const indexItemFavorite = itemsFavoriteList.findIndex(({ _id }) => {
-              return _id === payload.id;
-            });
-            if (index === indexItemFavorite) {
-              favoriteList.splice(index, 1);
-            }
-            if (indexItemFavorite !== -1) {
-              itemsFavoriteList.splice(indexItemFavorite, 1);
-            }
-          }
+        if (favoriteList) {
+          state.user.favorite = favoriteList.filter(id => id !== payload.id);
+        }
+
+        if (itemsFavoriteList) {
+          state.user.itemsFavorite = itemsFavoriteList.filter(
+            id => id !== payload.id
+          );
         }
       })
+
       .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
