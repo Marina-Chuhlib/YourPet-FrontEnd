@@ -57,7 +57,7 @@ const NewsSearch = () => {
   const handleChange = event => {
     const value = event.target.value;
     setKeyword(value);
-    setSubmitted(false);
+    setCurrentFilterPage(1);
   };
 
   const handleClear = () => {
