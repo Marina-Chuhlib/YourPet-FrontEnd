@@ -272,7 +272,7 @@ const UserForm = () => {
                           style={{ color: '#54ADFF', marginRight: '8px' }}
                           onClick={addAvatarBtn}
                         />
-                        Add photo
+                        Edit photo
                         <input
                           type="file"
                           id="fileElem"
