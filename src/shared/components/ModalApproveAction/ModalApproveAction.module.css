@@ -1,4 +1,4 @@
-h1 {
+.modalTitle {
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 24px;
@@ -10,7 +10,7 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  h1 {
+  .modalTitle {
     font-size: 36px;
     line-height: 49px;
     margin-top: 60px;
@@ -34,12 +34,10 @@ h1 {
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  /* margin-top: 24px; */
   margin-bottom: 40px;
   text-align: center;
   letter-spacing: 0.04em;
   color: #111111;
-
   max-width: 393px;
   margin-right: auto;
   margin-left: auto;
