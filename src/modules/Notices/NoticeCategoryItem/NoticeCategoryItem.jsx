@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import * as toasty from '../../../shared/toastify/toastify';
 
@@ -200,3 +201,17 @@ const NoticeCategoryItem = ({
   );
 };
 export default NoticeCategoryItem;
+
+NoticeCategoryItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  file: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  sex: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};

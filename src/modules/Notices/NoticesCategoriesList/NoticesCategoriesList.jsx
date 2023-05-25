@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import { getAllNotices } from 'redux/notices/noticesSelectors';
@@ -7,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import NoticeCategoryItem from '../NoticeCategoryItem/NoticeCategoryItem';
 
 import css from './notices-categories-list.module.css';
+// import persistReducer from 'redux-persist/es/persistReducer';
 
 const NoticesCategoriesList = () => {
   const allNotices = useSelector(getAllNotices);
@@ -41,5 +43,20 @@ const NoticesCategoriesList = () => {
 export default NoticesCategoriesList;
 
 NoticesCategoriesList.defaultProps = {
-  items: [],
+  allFavoriteNotices: [],
+};
+
+NoticesCategoriesList.propTypes = {
+  allFavoriteNotices: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      owner: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        phone: PropTypes.string,
+        email: PropTypes.string.isRequired,
+      }),
+      props: PropTypes.string.isRequired,
+    })
+  ),
 };
