@@ -208,11 +208,13 @@ const authSlice = createSlice({
         }
 
         if (itemsFavoriteList) {
-          state.user.itemsFavorite = itemsFavoriteList.filter(
-            id => id !== payload.id
-          );
+          const indexItemFavorite = itemsFavoriteList.findIndex(({ _id }) => {
+            return _id === payload.id;
+          });
+          if (indexItemFavorite !== -1) {
+            itemsFavoriteList.splice(indexItemFavorite, 1);
+          }
         }
-        state.user.itemsFavorite.splice(payload.id, 1);
       })
 
       .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
