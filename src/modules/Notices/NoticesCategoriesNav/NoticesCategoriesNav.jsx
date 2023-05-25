@@ -40,9 +40,6 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
             <NavLink
               to={element.to}
               className={getClassNameLink}
-              // onClick={() => {
-              //   handleCategoryClick(element.to);
-              // }}
             >
               {element.text}
             </NavLink>
