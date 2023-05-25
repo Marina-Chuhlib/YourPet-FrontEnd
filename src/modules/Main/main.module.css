@@ -65,12 +65,6 @@
   }
 }
 
-/* @media screen and (min-width: 1400px) {
-  .wrapper {
-    margin-top: 0px;
-  }
-} */
-
 @media screen and (min-width: 1280px) {
   .positionText {
     display: flex;
