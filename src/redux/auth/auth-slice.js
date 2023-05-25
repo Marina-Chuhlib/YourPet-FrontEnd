@@ -212,8 +212,6 @@ const authSlice = createSlice({
             id => id !== payload.id
           );
         }
-
-        state.user.itemsFavorite = payload.notices;
       })
 
       .addCase(fetchRemoveFromFavorite.rejected, (state, { payload }) => {
