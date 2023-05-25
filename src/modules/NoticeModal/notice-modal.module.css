@@ -76,11 +76,12 @@ table tr:not(:last-child) {
   color: #ffc107;
   text-decoration: underline;
 }
-
+.contacts:hover {
+  color: #54adff;
+}
 .commentsTitle {
   letter-spacing: 0.04em;
 }
-
 .commentsInfo {
   font-weight: 500;
   font-size: 14px;
