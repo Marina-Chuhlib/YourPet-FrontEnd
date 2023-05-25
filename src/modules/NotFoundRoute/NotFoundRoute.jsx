@@ -32,10 +32,9 @@ const NotFoundRoute = () => {
           </picture>
         </div>
         <Link to="/">
-           <button className={css.btn}>
-          To main page <PawPrintIcon className={css.icon} />
-        </button>
-          
+          <button className={css.btn}>
+            To main page <PawPrintIcon className={css.icon} />
+          </button>
         </Link>
       </div>
     </section>
