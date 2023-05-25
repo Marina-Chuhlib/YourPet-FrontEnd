@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { userMyPets } from 'redux/auth/auth-selectors';
-import { selectIsLoading } from 'redux/auth/auth-selectors';
+import { userMyPets,selectIsLoading  } from 'redux/auth/auth-selectors';
 
 import Loader from 'shared/components/Loader/Loader';
 
