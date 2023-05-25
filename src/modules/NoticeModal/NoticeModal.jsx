@@ -11,7 +11,7 @@ import AddToFavorite from './AddToFavorite/AddToFavorite';
 
 import css from './notice-modal.module.css';
 
-const NoticeModal = ({ _id, handleFavoriteToggle }) => {
+const NoticeModal = ({ handleFavoriteToggle, _id }) => {
   const dispatch = useDispatch();
 
   const item = useSelector(getNoticesById);
@@ -92,7 +92,7 @@ const NoticeModal = ({ _id, handleFavoriteToggle }) => {
         </p>
         <div className={css.btnWrapper}>
           <Contact phone={owner.phone} />
-          <AddToFavorite handleFavoriteToggle={handleFavoriteToggle} />
+          <AddToFavorite handleFavoriteToggle={handleFavoriteToggle} _id={_id} />
         </div>
       </div>
     </>

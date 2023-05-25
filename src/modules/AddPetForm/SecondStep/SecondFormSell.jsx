@@ -88,7 +88,7 @@ export const SecondFormSell = ({
           value={date}
           onChange={e => setDate(e.target.value)}
           required
-          placeholder="Type date of birth"
+          placeholder="dd.mm.yyyy"
         />
         {errors.date && <p className={css.ErrorText}>{errors.date}</p>}
       </div>
