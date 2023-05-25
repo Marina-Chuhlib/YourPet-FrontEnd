@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import css from './contact.module.css';
 const Contact = ({ phone }) => {
@@ -10,3 +12,7 @@ const Contact = ({ phone }) => {
   );
 };
 export default Contact;
+
+Contact.propTypes = {
+  phone: PropTypes.string,
+};
