@@ -9,15 +9,15 @@ import AuthLayout from 'modules/AuthLayote/AuthLayote';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <AuthLayout>
-        <BrowserRouter basename="/YourPet-FrontEnd">
-          <App />
-        </BrowserRouter>
-      </AuthLayout>
-    </PersistGate>
-  </Provider>
-  // {/* </React.StrictMode> */}
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AuthLayout>
+          <BrowserRouter basename="/YourPet-FrontEnd">
+            <App />
+          </BrowserRouter>
+        </AuthLayout>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
