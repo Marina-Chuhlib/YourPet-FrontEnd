@@ -29,7 +29,7 @@ const Footer = () => {
     {
       id: 1,
       name: 'Maryna Chuhlib',
-      position:'Team-Lead, Frontend Developer',
+      position:'Team-Lead, Full-stack Developer',
       github: 'https://github.com/Marina-Chuhlib',
       linkedin: 'https://www.linkedin.com/in/marina-chukhlib/',
       photo: require("../../images/team-photos/Maryna Chuhlib.jpg"),
@@ -37,7 +37,7 @@ const Footer = () => {
     {
       id: 2,
       name: 'Mariia Lutsenko',
-      position:'Team-Lead, Backend Developer',
+      position:'Team-Lead, Full-stack Developer',
       github: 'https://github.com/Mariya-Lutsenko',
       linkedin: 'https://www.linkedin.com/in/mariya-lutsenko',
       photo: require("../../images/team-photos/Mariia Lutsenko.jpg"),
@@ -45,7 +45,7 @@ const Footer = () => {
     {
       id: 3,
       name: 'Olena Holubonkova',
-      position: 'Scrum-Master, Frontend Developer',
+      position: 'Scrum-Master, Full-stack Developer',
       github: 'https://github.com/OlenaTeplodar',
       linkedin: 'https://www.linkedin.com/in/olena-holubonkova/',
       photo: require("../../images/team-photos/Olena Holubonkova.jpg"),
@@ -53,7 +53,7 @@ const Footer = () => {
     {
       id: 4,
       name: 'Oksana Riaboshapka',
-      position: 'Frontend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/Oksana1594',
       linkedin: 'https://www.linkedin.com/in/oksana-ryaboshapka/',
       photo: require("../../images/team-photos/Oksana Riaboshapka.jpg"),
@@ -61,7 +61,7 @@ const Footer = () => {
     {
       id: 5,
       name: 'Iryna Hubish',
-      position: 'Frontend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/IraGubish2022',
       linkedin: 'https://www.linkedin.com/in/iryna-hubish',
       photo: require("../../images/team-photos/Iryna Hubish.jpg"),
@@ -69,7 +69,7 @@ const Footer = () => {
     {
       id: 6,
       name: 'Tetiana Hela',
-      position: 'Frontend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/Tatiana-Hela',
       linkedin: 'https://www.linkedin.com/in/tetiana-hela',
       photo: require("../../images/team-photos/Tetiana Hela.jpg"),
@@ -77,7 +77,7 @@ const Footer = () => {
     {
       id: 7,
       name: 'Olena Bondarenko',
-      position: 'Frontend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/OllBond',
       linkedin: 'https://www.linkedin.com/in/olena-bondarenko-ollbond/',
       photo: require("../../images/team-photos/Olena Bondarenko.jpg"),
@@ -93,7 +93,7 @@ const Footer = () => {
     {
       id: 9,
       name: 'Dmytro Shatnyi',
-      position: 'Frontend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/shatniydmitriy',
       linkedin: 'https://www.linkedin.com/in/dmytro-shatnyi-6401a3269',
       photo: require("../../images/team-photos/Dmytro Shatnyi.jpg"),
@@ -109,7 +109,7 @@ const Footer = () => {
     {
       id: 11,
       name: 'Maryna Aponasko',
-      position: 'Backend Developer',
+      position: 'Full-stack Developer',
       github: 'https://github.com/MarynaAponasko',
       linkedin: 'http://linkedin.com/in/aponasko',
       photo: require("../../images/team-photos/Maryna Aponasko.jpg"),
