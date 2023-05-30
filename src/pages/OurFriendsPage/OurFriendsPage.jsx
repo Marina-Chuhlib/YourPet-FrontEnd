@@ -20,12 +20,12 @@ const OurFriendsPage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className='container'>
       <h2 className={css.title}>Our friends</h2>
       {isLoading && <Loader />}
       <OurFriendsList />
       <ScrollButton/>
-    </>
+    </div>
   );
 };
 
