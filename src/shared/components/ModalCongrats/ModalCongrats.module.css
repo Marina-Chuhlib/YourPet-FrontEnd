@@ -79,3 +79,22 @@
   fill: #fef9f9;
   margin-left: 12px;
 }
+
+.myСomponent.dark .title {
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .text {
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .modalBtn {
+  background-color: #417075;
+  color: #d9d2d2;
+  border: 1px solid #d9d2d2;
+}
+
+.myСomponent.dark .modalBtn:hover {
+  background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
+  color: #d9d2d2;
+}

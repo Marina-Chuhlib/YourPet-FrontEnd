@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import * as toasty from '../../../shared/toastify/toastify';
 
 import ClockIcon from 'icons/ClockIcon';
@@ -42,6 +44,7 @@ const NoticeCategoryItem = ({
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favorites = useSelector(getFavorite);
   const userId = useSelector(getUserId);
+  const { theme } = useContext(ThemeContext);
 
   const dispatch = useDispatch();
 
@@ -114,88 +117,94 @@ const NoticeCategoryItem = ({
   };
   return (
     <li key={_id} className={css.listItems}>
-      <div className={css.imageThumb}>
-        <img className={css.photoAnimal} src={file} alt={title} width="280" />
-        <div className={css.topBlock}>
-          {category === 'for-free' ? (
-            <p className={css.categoryInfo}>in good hands</p>
-          ) : (
-            <p className={css.categoryInfo}>{category}</p>
-          )}
-          <div>
-            <Button
-              onClick={handleFavoriteToggle}
-              className={css.topBtn}
-              SVGComponent={() => (
-                <HeartIcon
-                  className={
-                    checkFavorite(_id)
-                      ? `${css.icons} ${css.favoriteIcon}`
-                      : css.icons
-                  }
+      <div
+        className={`${css.myСomponent} ${
+          theme === 'light' ? css.light : css.dark
+        }`}
+      >
+        <div className={css.imageThumb}>
+          <img className={css.photoAnimal} src={file} alt={title} width="280" />
+          <div className={css.topBlock}>
+            {category === 'for-free' ? (
+              <p className={css.categoryInfo}>in good hands</p>
+            ) : (
+              <p className={css.categoryInfo}>{category}</p>
+            )}
+            <div>
+              <Button
+                onClick={handleFavoriteToggle}
+                className={css.topBtn}
+                SVGComponent={() => (
+                  <HeartIcon
+                    className={
+                      checkFavorite(_id)
+                        ? `${css.icons} ${css.favoriteIcon}`
+                        : css.icons
+                    }
+                  />
+                )}
+              />
+              {checkOwner(owner) && (
+                <Button
+                  onClick={openModalApprove}
+                  className={css.topBtn}
+                  SVGComponent={() => <TrashIcon color="#54ADFF" />}
                 />
               )}
-            />
-            {checkOwner(owner) && (
-              <Button
-                onClick={openModalApprove}
-                className={css.topBtn}
-                SVGComponent={() => <TrashIcon color="#54ADFF" />}
-              />
-            )}
-            {isModalOpenApprove && (
-              <ModalDeleteCardNotice
-                closeModal={closeModalApprove}
-                handleDelete={handleDelete}
-                _id={_id}
-                title={title}
-              />
-            )}
+              {isModalOpenApprove && (
+                <ModalDeleteCardNotice
+                  closeModal={closeModalApprove}
+                  handleDelete={handleDelete}
+                  _id={_id}
+                  title={title}
+                />
+              )}
+            </div>
+          </div>
+          <div className={css.infoCardBlock}>
+            <p className={css.noticeInfo}>
+              <LocationIcon className={css.icon} color="#54ADFF" />
+              {location}
+            </p>
+            <p className={css.noticeInfo}>
+              <ClockIcon className={css.icon} color="#54ADFF" />
+              {age === 1 ? '1 year' : `${age} years`}
+            </p>
+            <p className={css.noticeInfo}>
+              {sex.toLowerCase() === 'male' && (
+                <MaleIcon className={css.icon} color="#54ADFF" />
+              )}
+              {sex.toLowerCase() === 'female' && (
+                <FemaleIcon className={css.icon} color="#54ADFF" />
+              )}
+              {sex}
+            </p>
           </div>
         </div>
-        <div className={css.infoCardBlock}>
-          <p className={css.noticeInfo}>
-            <LocationIcon className={css.icon} color="#54ADFF" />
-            {location}
-          </p>
-          <p className={css.noticeInfo}>
-            <ClockIcon className={css.icon} color="#54ADFF" />
-            {age === 1 ? '1 year' : `${age} years`}
-          </p>
-          <p className={css.noticeInfo}>
-            {sex.toLowerCase() === 'male' && (
-              <MaleIcon className={css.icon} color="#54ADFF" />
-            )}
-            {sex.toLowerCase() === 'female' && (
-              <FemaleIcon className={css.icon} color="#54ADFF" />
-            )}
-            {sex}
-          </p>
+        <div className={css.noticeDesc}>
+          <h3 className={css.noticeTitle}>{title}</h3>
+          <Button className={css.learnBtn} onClick={openModal}>
+            Learn more
+          </Button>
+          {isModalOpen && (
+            <Modal closeModal={closeModal}>
+              <NoticeModal
+                _id={_id}
+                file={file}
+                category={category}
+                location={location}
+                date={date}
+                sex={sex}
+                title={title}
+                comments={comments}
+                breed={breed}
+                owner={owner}
+                name={name}
+                handleFavoriteToggle={handleFavoriteToggle}
+              />
+            </Modal>
+          )}
         </div>
-      </div>
-      <div className={css.noticeDesc}>
-        <h3 className={css.noticeTitle}>{title}</h3>
-        <Button className={css.learnBtn} onClick={openModal}>
-          Learn more
-        </Button>
-        {isModalOpen && (
-          <Modal closeModal={closeModal}>
-            <NoticeModal
-              _id={_id}
-              file={file}
-              category={category}
-              location={location}
-              date={date}
-              sex={sex}
-              title={title}
-              comments={comments}
-              breed={breed}
-              owner={owner}
-              name={name}
-              handleFavoriteToggle={handleFavoriteToggle}
-            />
-          </Modal>
-        )}
       </div>
     </li>
   );

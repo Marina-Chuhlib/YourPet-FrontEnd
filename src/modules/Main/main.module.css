@@ -108,3 +108,12 @@
     margin-top: 200px;
   }
 }
+
+.myСomponent:not(.dark) .sectionMain {
+  background-color: #fef9f9;
+}
+
+.myСomponent.dark .sectionMain {
+  background-color: #165158;
+  color: #c9c7c7;
+}

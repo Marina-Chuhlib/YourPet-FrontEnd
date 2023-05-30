@@ -39,6 +39,7 @@ const PaginationNotices = ({
             borderRadius: '45px',
             padding: '8px 12px',
             background: '#FEF9F9',
+            background: 'transparent',
           }}
           renderItem={item => (
             <PaginationItem

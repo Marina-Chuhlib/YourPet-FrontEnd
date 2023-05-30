@@ -1,4 +1,6 @@
 import css from './main.module.css';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 
 import dogsMobile1x from 'images/dogs-mobile1x.png';
 import dogsMobile2x from 'images/dogs-mobile2x.png';
@@ -8,8 +10,13 @@ import dogsDesc1x from 'images/dogs-desktop@1x.png';
 import dogsDesc2x from 'images/dogs-desktop2x.png';
 
 const Main = () => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <>
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
       <section className={css.sectionMain}>
         <div className="container">
           <div className={css.positionText}>
@@ -37,7 +44,7 @@ const Main = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 export default Main;

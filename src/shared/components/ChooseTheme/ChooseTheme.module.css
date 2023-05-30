@@ -1,0 +1,13 @@
+.myСomponent.light {
+  /* background-color: #b69e9e; */
+  color: #000000;
+}
+
+.myСomponent.dark {
+  background-color: #165158;
+  color: #c9c7c7;
+}
+
+.sectionMain.dark {
+  background-color: #165158;
+}

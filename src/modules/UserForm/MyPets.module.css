@@ -193,3 +193,21 @@
     font-weight: 600;
   }
 }
+
+.myСomponent.dark .addPetBtn {
+  color: #c9c7c7;
+  background-color: #417075;
+}
+
+.myСomponent.dark .addPetBtn:hover {
+  background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
+}
+
+.myСomponent.dark .item {
+  background-color: #467c82;
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .title {
+  color: #c3bfbf;
+}

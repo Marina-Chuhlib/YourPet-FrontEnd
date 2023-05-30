@@ -121,7 +121,7 @@ const OurFriendsItem = ({
             {phone ? <a href={`tel:${phone}`}>{phone}</a> : 'email only'}
           </Typography>
         </Box>
-      </Box>
+        </Box>
     </li>
   );
 };

@@ -1,8 +1,11 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import css from '../NewsItem/NewsItem.module.css';
 
 const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
+  const { theme } = useContext(ThemeContext);
   const formattedDate = useMemo(() => {
     const originalDate = new Date(date);
     const day = originalDate.getDate();
@@ -12,7 +15,10 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
   }, [date]);
 
   return (
-    <li key={_id} className={css.item}>
+    <li
+      key={_id}
+      className={`${css.item} ${theme === 'light' ? css.light : css.dark}`}
+    >
       <img src={imgUrl} alt={title} className={css.img} />
       <div className={css.textBox}>
         <h3 className={css.title}>{title}</h3>

@@ -9,6 +9,17 @@
   margin-bottom: 50px;
 }
 
+.titleDelete {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  text-align: center;
+  color: #111111;
+  margin-top: 68px;
+  margin-bottom: 50px;
+}
+
 @media (min-width: 768px) {
   .modalTitle {
     font-size: 36px;
@@ -94,8 +105,34 @@
 }
 
 .whiteBtn {
-  background-color: white;
+  /* background-color: white; */
+  background-color: transparent;
   color: #54adff;
   border: 2px solid #54adff;
   margin-right: 17px;
+}
+
+.myСomponent.dark .titleDelete {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .modalTitle {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .text {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .modalBtn {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .modalBtn {
+  border: 2px solid #2f5a5f;
+}
+
+.myСomponent.dark .modalBtn:hover {
+  background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
+  color: #d9d2d2;
 }

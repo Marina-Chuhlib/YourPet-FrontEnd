@@ -2,10 +2,10 @@
   width: 280px;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   padding: 16px 12px;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 768px) {

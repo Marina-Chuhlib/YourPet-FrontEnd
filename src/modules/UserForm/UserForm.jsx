@@ -3,6 +3,9 @@ import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+
 import { Formik, Form } from 'formik';
 import * as toasty from 'shared/toastify/toastify';
 
@@ -63,6 +66,8 @@ const UserForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (!isLoading && !isLoggedIn && logoutSuccessful) {
@@ -171,202 +176,212 @@ const UserForm = () => {
       {isModalOpen && <ModalApproveAction closeModal={closeModal} />}
       <div>
         {isLoading && <Loader />}
-        <div className={css.wrapper}>
-          <h2 className={css.title}>My information:</h2>
-          <Formik>
-            {({ errors, touched }) => (
-              <Form className={css.forma}>
-                <div className={css.avatarWrapper}>
-                  {previewImage ? (
-                    <img
-                      src={previewImage}
-                      alt="Preview"
-                      className={css.avatar}
-                    />
-                  ) : (
-                    <img
-                      src={user.imageURL}
-                      alt="avatar"
-                      className={css.avatar}
-                    />
-                  )}
 
-                  <div className={css.wrapperFile}>
-                    {selectedImage && !isPhotoUploaded && (
-                      <>
-                        <Button
-                          onClick={handleUpload}
-                          variant="outlined"
-                          style={{
-                            border: 'rgba(0, 0, 0, 0)',
-                            color: '#111111',
-                            fontSize: '12px',
-                            padding: '0',
-                            paddingRight: '5px',
-                            borderRadius: '10px',
-                            fontFamily: 'Manrope',
-                            textTransform: 'none',
-                            marginRight: '12px',
-                          }}
-                        >
-                          <DoneOutlinedIcon
+        <div
+          className={`${css.myСomponent} ${
+            theme === 'light' ? css.light : css.dark
+          }`}
+        >
+          <div className={css.wrapper}>
+            <h2 className={css.title}>My information:</h2>
+            <Formik>
+              {({ errors, touched }) => (
+                <Form className={css.forma}>
+                  <div className={css.avatarWrapper}>
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className={css.avatar}
+                      />
+                    ) : (
+                      <img
+                        src={user.imageURL}
+                        alt="avatar"
+                        className={css.avatar}
+                      />
+                    )}
+
+                    <div className={css.wrapperFile}>
+                      {selectedImage && !isPhotoUploaded && (
+                        <>
+                          <Button
+                            onClick={handleUpload}
+                            variant="outlined"
                             style={{
-                              color: '#54ADFF',
-                              padding: '0px',
-                              height: '24px',
-                              width: '24px',
-                              marginRight: '0',
+                              border: 'rgba(0, 0, 0, 0)',
+                              color: '#111111',
+                              fontSize: '12px',
+                              padding: '0',
+                              paddingRight: '5px',
+                              borderRadius: '10px',
+                              fontFamily: 'Manrope',
+                              textTransform: 'none',
+                              marginRight: '12px',
                             }}
-                          />
-                          Confirm
-                        </Button>
-                        <Button
-                          onClick={handleDeleteAvatar}
-                          style={{
-                            border: 'rgba(0, 0, 0, 0)',
-                            color: '#111111',
-                            fontSize: '12px',
-                            padding: '0',
-                            paddingRight: '5px',
-                            borderRadius: '10px',
-                            fontFamily: 'Manrope',
-                            textTransform: 'none',
-                            marginRight: 'auto',
-                          }}
-                        >
-                          <ClearOutlinedIcon
-                            style={{
-                              color: '#ffc107',
-                              padding: '0px',
-                              height: '24px',
-                              width: '24px',
-                            }}
-                          />
-                          Delete
-                        </Button>
-                      </>
-                    )}
-
-                    {!selectedImage && !isPhotoUploaded && (
-                      <label htmlFor="fileElem" className={css.avatarLabel}>
-                        <CameraAltOutlinedIcon
-                          style={{ color: '#54ADFF', marginRight: '8px' }}
-                          onClick={addAvatarBtn}
-                        />
-                        Edit photo
-                        <input
-                          type="file"
-                          id="fileElem"
-                          accept="image/*"
-                          name="Edit photo"
-                          ref={filePicker}
-                          className={css.avatarBtn}
-                          onChange={handleChangeAvatar}
-                        />
-                      </label>
-                    )}
-
-                    {isPhotoUploaded && (
-                      <label htmlFor="fileElem" className={css.avatarLabel}>
-                        <CameraAltOutlinedIcon
-                          style={{ color: '#54ADFF', marginRight: '8px' }}
-                          onClick={addAvatarBtn}
-                        />
-                        Edit photo
-                        <input
-                          type="file"
-                          id="fileElem"
-                          accept="image/*"
-                          name="Add photo"
-                          ref={filePicker}
-                          className={css.avatarBtn}
-                          onChange={handleChangeAvatar}
-                        />
-                      </label>
-                    )}
-                  </div>
-                </div>
-
-                {user && (
-                  <div className={css.formWrapper}>
-                    {fields.map(field => (
-                      <div className={css.row} key={field.fieldName}>
-                        <label className={css.label}>{field.label}:</label>
-
-                        <div className={css.inputContainer}>
-                          <input
-                            name={field.fieldName}
-                            type={field.type}
-                            className={css.input}
-                            value={formData[field.fieldName]}
-                            placeholder={field.placeholder}
-                            required={field.email}
-                            onChange={handleChangeInput}
-                            disabled={!editingFields[field.fieldName]}
-                          />
-                          {errors[field.fieldName] &&
-                          touched[field.fieldName] ? (
-                            <div>{errors[field.fieldName]}</div>
-                          ) : null}
-
-                          <div className={css.checkbox}>
-                            <Checkbox
-                              checked={editingFields[field.fieldName]}
-                              onChange={() => handleEditField(field.fieldName)}
-                              icon={
-                                <BorderColorOutlinedIcon
-                                  style={{
-                                    color: '#54ADFF',
-                                    width: '24px',
-                                    height: '24px',
-                                  }}
-                                />
-                              }
-                              checkedIcon={
-                                <CheckOutlinedIcon
-                                  style={{
-                                    color: '#00C3AD',
-                                    width: '24px',
-                                    height: '24px',
-                                    border: '1.5px',
-                                  }}
-                                />
-                              }
+                          >
+                            <DoneOutlinedIcon
+                              style={{
+                                color: '#54ADFF',
+                                padding: '0px',
+                                height: '24px',
+                                width: '24px',
+                                marginRight: '0',
+                              }}
                             />
+                            Confirm
+                          </Button>
+                          <Button
+                            onClick={handleDeleteAvatar}
+                            style={{
+                              border: 'rgba(0, 0, 0, 0)',
+                              color: '#111111',
+                              fontSize: '12px',
+                              padding: '0',
+                              paddingRight: '5px',
+                              borderRadius: '10px',
+                              fontFamily: 'Manrope',
+                              textTransform: 'none',
+                              marginRight: 'auto',
+                            }}
+                          >
+                            <ClearOutlinedIcon
+                              style={{
+                                color: '#ffc107',
+                                padding: '0px',
+                                height: '24px',
+                                width: '24px',
+                              }}
+                            />
+                            Delete
+                          </Button>
+                        </>
+                      )}
+
+                      {!selectedImage && !isPhotoUploaded && (
+                        <label htmlFor="fileElem" className={css.avatarLabel}>
+                          <CameraAltOutlinedIcon
+                            style={{ color: '#54ADFF', marginRight: '8px' }}
+                            onClick={addAvatarBtn}
+                          />
+                          Edit photo
+                          <input
+                            type="file"
+                            id="fileElem"
+                            accept="image/*"
+                            name="Edit photo"
+                            ref={filePicker}
+                            className={css.avatarBtn}
+                            onChange={handleChangeAvatar}
+                          />
+                        </label>
+                      )}
+
+                      {isPhotoUploaded && (
+                        <label htmlFor="fileElem" className={css.avatarLabel}>
+                          <CameraAltOutlinedIcon
+                            style={{ color: '#54ADFF', marginRight: '8px' }}
+                            onClick={addAvatarBtn}
+                          />
+                          Edit photo
+                          <input
+                            type="file"
+                            id="fileElem"
+                            accept="image/*"
+                            name="Add photo"
+                            ref={filePicker}
+                            className={css.avatarBtn}
+                            onChange={handleChangeAvatar}
+                          />
+                        </label>
+                      )}
+                    </div>
+                  </div>
+
+                  {user && (
+                    <div className={css.formWrapper}>
+                      {fields.map(field => (
+                        <div className={css.row} key={field.fieldName}>
+                          <label className={css.label}>{field.label}:</label>
+
+                          <div className={css.inputContainer}>
+                            <input
+                              name={field.fieldName}
+                              type={field.type}
+                              className={css.input}
+                              value={formData[field.fieldName]}
+                              placeholder={field.placeholder}
+                              required={field.email}
+                              onChange={handleChangeInput}
+                              disabled={!editingFields[field.fieldName]}
+                            />
+                            {errors[field.fieldName] &&
+                            touched[field.fieldName] ? (
+                              <div>{errors[field.fieldName]}</div>
+                            ) : null}
+
+                            <div className={css.checkbox}>
+                              <Checkbox
+                                checked={editingFields[field.fieldName]}
+                                onChange={() =>
+                                  handleEditField(field.fieldName)
+                                }
+                                icon={
+                                  <BorderColorOutlinedIcon
+                                    style={{
+                                      color: '#54ADFF',
+                                      width: '24px',
+                                      height: '24px',
+                                    }}
+                                  />
+                                }
+                                checkedIcon={
+                                  <CheckOutlinedIcon
+                                    style={{
+                                      color: '#00C3AD',
+                                      width: '24px',
+                                      height: '24px',
+                                      border: '1.5px',
+                                    }}
+                                  />
+                                }
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
 
-                    <Button
-                      onClick={onLogout}
-                      variant="outlined"
-                      style={{
-                        border: 'rgba(0, 0, 0, 0)',
-                        color: '#888888',
-                        fontSize: '16px',
-                        padding: '0',
-                        fontFamily: 'Manrope',
-                        textTransform: 'none',
-                        marginRight: 'auto',
-                      }}
-                      startIcon={
-                        <LogoutOutlinedIcon
-                          style={{
-                            color: '#54ADFF',
-                            transform: 'rotate(180deg)',
-                            fontSize: '24px',
-                          }}
-                        />
-                      }
-                    >
-                      Log Out
-                    </Button>
-                  </div>
-                )}
-              </Form>
-            )}
-          </Formik>
+                      <Button
+                        onClick={onLogout}
+                        variant="outlined"
+                        style={{
+                          border: 'rgba(0, 0, 0, 0)',
+                          color: '#888888',
+                          fontSize: '16px',
+                          padding: '0',
+                          fontFamily: 'Manrope',
+                          textTransform: 'none',
+                          marginRight: 'auto',
+                        }}
+                        className={css.logoutBtn}
+                        startIcon={
+                          <LogoutOutlinedIcon
+                            style={{
+                              color: '#54ADFF',
+                              transform: 'rotate(180deg)',
+                              fontSize: '24px',
+                            }}
+                          />
+                        }
+                      >
+                        Log Out
+                      </Button>
+                    </div>
+                  )}
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </>

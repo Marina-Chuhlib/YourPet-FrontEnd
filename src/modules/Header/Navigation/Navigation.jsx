@@ -12,6 +12,7 @@ import styles from './navigation.module.css';
 export default function Navigation({ isDesktop, isTablet, isMobile }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+ 
 
   useEffect(() => {
     if (isDesktop) {
@@ -25,7 +26,9 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
   };
 
   return (
-    <div className={styles.navigation}>
+
+      <div className={styles.navigation}>
+        
       {isDesktop && (
         <>
           <Nav />
@@ -51,7 +54,7 @@ export default function Navigation({ isDesktop, isTablet, isMobile }) {
           <Nav onClick={toggleMobileMenu}/>
         </MobileMenu>
       )}
-    </div>
+      </div>
   );
 }
 

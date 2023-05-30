@@ -1,15 +1,15 @@
 .wrapper {
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
 
-    border: 2px solid #FFC107;
-    border-radius: 50%;
+  border: 2px solid #ffc107;
+  border-radius: 50%;
 
-    overflow: hidden;
-    object-fit: cover;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .image {
-    display: block;
+  display: block;
 }

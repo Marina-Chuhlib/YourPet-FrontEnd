@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 
 import {
   fetchNoticesByCategory,
@@ -32,6 +34,7 @@ const NoticesPage = () => {
   const currentCategory = location.pathname.split('/')[2];
   const [ownCurrentPage, setOwnCurrentPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
+  const { theme } = useContext(ThemeContext);
 
 
   useEffect(() => {
@@ -114,33 +117,39 @@ const NoticesPage = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className={css.title}>Find your favorite pet</h2>
-      <NoticesSearch />
-      <NoticesCategoriesNav
-      onOwnClick={handleOwnClick}
-      onFavoriteClick={handleFavoriteClick}
-      />
-      {loading && <Loader />}
-      {notices && <Outlet />}
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
+      <div className="container">
+        <h2 className={css.title}>Find your favorite pet</h2>
+        <NoticesSearch />
+        <NoticesCategoriesNav
+          onOwnClick={handleOwnClick}
+          onFavoriteClick={handleFavoriteClick}
+        />
+        {loading && <Loader />}
+        {notices && <Outlet />}
 
-      <PaginationNotices
-        currentPage={currentPage}
-        totalPages={totalPages}
-        currentCategory={currentCategory}
-        ownCurrentPage={ownCurrentPage}
-        favoriteCurrentPage={favoriteCurrentPage}
-        onPageChange={page => {
-          if (currentCategory === 'own') {
-            handleOwnPageChange(page);
-          } else if (currentCategory === 'favorite') {
-            handleFavoritePageChange(page);
-          } else {
-            onPageChange(page);
-          }
-        }}
-      />
-      <ScrollButton />
+        <PaginationNotices
+          currentPage={currentPage}
+          totalPages={totalPages}
+          currentCategory={currentCategory}
+          ownCurrentPage={ownCurrentPage}
+          favoriteCurrentPage={favoriteCurrentPage}
+          onPageChange={page => {
+            if (currentCategory === 'own') {
+              handleOwnPageChange(page);
+            } else if (currentCategory === 'favorite') {
+              handleFavoritePageChange(page);
+            } else {
+              onPageChange(page);
+            }
+          }}
+        />
+        <ScrollButton />
+      </div>
     </div>
   );
 };

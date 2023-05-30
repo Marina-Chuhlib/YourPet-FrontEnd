@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store';
 import { App } from 'App';
 import AuthLayout from 'modules/AuthLayote/AuthLayote';
+import ThemeProvider from 'shared/hooks/context/ThemeProvider';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <AuthLayout>
           <BrowserRouter basename="/YourPet-FrontEnd">
-            <App />
+            <ThemeProvider>
+              <App />
+            </ThemeProvider>
           </BrowserRouter>
         </AuthLayout>
       </PersistGate>
