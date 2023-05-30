@@ -10,7 +10,7 @@ const OurFriendsList = () => {
 
   return (
     <>
-      <ul className={`${css.container} ${css.cardList} `}>
+      <ul className={css.cardList}>
         {friends.map(
           ({
             _id,

@@ -31,14 +31,14 @@ const OurFriendsItem = ({
           </a>
         }
       />
-      <Box sx={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
         <CardMedia
-          sx={{ width: 146, height: 104, objectFit: 'cover' }}
+          sx={{ width: 146, height: 104, backgroundSize: "contain" }}
           className={css.customCardMedia}
           image={imageUrl}
           title={title}
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           {!workDays && (
             <Typography
               variant="body1"
