@@ -17,3 +17,7 @@
     align-self: center;
   }
 }
+
+.myСomponent.dark .title {
+  color: #d9d2d2;
+}

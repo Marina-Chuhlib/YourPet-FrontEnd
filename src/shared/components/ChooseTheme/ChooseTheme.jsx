@@ -1,19 +1,21 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 
-import css from './formContainer.module.css';
+import css from './ChooseTheme.module.css';
 
-const FormContainerThird = ({ children }) => {
+const ChooseTheme = () => {
   const { theme } = useContext(ThemeContext);
+  console.log(theme);
+
   return (
     <div
       className={`${css.myСomponent} ${
         theme === 'light' ? css.light : css.dark
       }`}
     >
-      <div className={css.formContainerThird}>{children}</div>
+      <p className={`${css.myСomponent}  ${theme}`}>{theme}</p>
     </div>
   );
 };
 
-export default FormContainerThird;
+export default ChooseTheme;

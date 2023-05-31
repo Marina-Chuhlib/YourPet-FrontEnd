@@ -87,3 +87,32 @@
   color: #ffffff;
   cursor: pointer;
 }
+
+.myСomponent.dark .form {
+  background-color: #467c82;
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .title {
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .button {
+  color: #d9d2d2;
+  border: 1px solid #64999e;
+  background-color: #417075;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.myСomponent.dark .button:hover {
+  background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
+  color: #d9d2d2;
+}
+
+.myСomponent.dark {
+  background-color: #165158;
+  background-blend-mode: color-burn;
+  background-image: url('../../images/bg-desctop.jpg');
+  background-position: center;
+  background-size: contain;
+}

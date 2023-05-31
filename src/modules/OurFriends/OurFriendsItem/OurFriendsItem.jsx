@@ -33,7 +33,7 @@ const OurFriendsItem = ({
       />
       <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
         <CardMedia
-          sx={{ width: 146, height: 104, backgroundSize: "contain" }}
+          sx={{ width: 146, height: 104, backgroundSize: 'contain' }}
           className={css.customCardMedia}
           image={imageUrl}
           title={title}

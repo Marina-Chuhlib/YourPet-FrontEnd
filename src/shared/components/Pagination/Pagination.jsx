@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { Stack, Pagination, PaginationItem } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function PaginationLine({ totalPages, onChange, currentPage }) {
+  const { theme } = useContext(ThemeContext);
   const handlePageChange = (event, page) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     onChange(page);
@@ -18,22 +21,22 @@ function PaginationLine({ totalPages, onChange, currentPage }) {
           variant="outlined"
           onChange={handlePageChange}
           sx={{
-          marginX: 'auto',
-          marginBottom: '20px',
-          boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
-          borderRadius: '45px',
-          padding: '8px 12px',
-          background: '#FEF9F9',
-        }}
+            marginX: 'auto',
+            marginBottom: '20px',
+            boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
+            borderRadius: '45px',
+            padding: '8px 12px',
+            background: `${theme === 'light' ? '#FEF9F9' : 'transparent'}`,
+          }}
           renderItem={item => (
             <PaginationItem
               sx={{
                 '&.Mui-selected': {
                   background: '#54ADFF',
                   color: '#FEF9F9',
-                  border: "none",
+                  border: 'none',
                 },
-                background: '#FEF9F9',
+                background: `${theme === 'light' ? '#FEF9F9' : '#538690'}`,
                 color: '#CCE4FB',
                 borderColor: '#CCE4FB',
               }}

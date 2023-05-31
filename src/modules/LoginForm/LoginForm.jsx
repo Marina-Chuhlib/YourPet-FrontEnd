@@ -10,6 +10,7 @@ const LoginForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <>
+      {isLoading && <Loader /> }
       {isLoading && isLoggedIn && <Loader />}
       <LoginFormDetails />
     </>

@@ -1,12 +1,11 @@
 .statusContainer {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
   display: flex;
   align-self: flex-start;
   /* justify-content: center; */
   padding: 0px;
- 
- }
- /* Default */
+}
+/* Default */
 .textStatus {
   position: relative;
   color: #888888;
@@ -23,9 +22,9 @@
   margin-right: 12px;
 }
 .textStatus::after {
-    position: absolute;
-    content: "";
-    background-color: #cce4fb;
+  position: absolute;
+  content: '';
+  background-color: #cce4fb;
   width: 80px;
   height: 8px;
   border-radius: 8px;
@@ -34,12 +33,10 @@
   text-align: center;
 }
 
-
 @media screen and (min-width: 768px) {
   .statusContainer {
     margin-bottom: 16px;
     justify-content: center;
-
   }
   .textStatus {
     font-size: 14px;
@@ -52,8 +49,8 @@
   }
 
   .textStatus:not(:last-child) {
-  margin-right: 16px;
-}
+    margin-right: 16px;
+  }
 }
 
 /* Current */
@@ -73,9 +70,9 @@
   margin-right: 12px;
 }
 .textStatusCurrent::after {
-    position: absolute;
-    content: "";
-    background-color: #54adff;
+  position: absolute;
+  content: '';
+  background-color: #54adff;
   width: 80px;
   height: 8px;
   border-radius: 8px;
@@ -83,7 +80,6 @@
   bottom: -16px;
   text-align: center;
 }
-
 
 @media screen and (min-width: 768px) {
   .statusContainer {
@@ -100,8 +96,8 @@
   }
 
   .textStatusCurrent:not(:last-child) {
-  margin-right: 16px;
-}
+    margin-right: 16px;
+  }
 }
 
 /* Done */
@@ -121,9 +117,9 @@
   margin-right: 12px;
 }
 .textStatusDone::after {
-    position: absolute;
-    content: "";
-    background-color: #00c3ad;
+  position: absolute;
+  content: '';
+  background-color: #00c3ad;
   width: 80px;
   height: 8px;
   border-radius: 8px;
@@ -131,7 +127,6 @@
   bottom: -16px;
   text-align: center;
 }
-
 
 @media screen and (min-width: 768px) {
   .statusContainer {
@@ -150,6 +145,10 @@
   }
 
   .textStatusDone:not(:last-child) {
-  margin-right: 16px;
+    margin-right: 16px;
+  }
 }
+
+.myСomponent.dark .textStatus {
+  color: #bab6b6;
 }

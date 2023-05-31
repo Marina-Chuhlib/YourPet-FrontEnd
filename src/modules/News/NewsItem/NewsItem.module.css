@@ -110,3 +110,17 @@
     width: 395px;
   }
 }
+
+.dark {
+  background-color: #467c82;
+}
+
+.dark .text {
+  color: #c3bfbf;
+}
+.dark .title {
+  color: #c3bfbf;
+}
+.dark .date {
+  color: #c3bfbf;
+}

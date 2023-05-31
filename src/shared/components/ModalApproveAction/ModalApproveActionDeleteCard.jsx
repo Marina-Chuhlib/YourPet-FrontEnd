@@ -1,6 +1,8 @@
 import Modal from '../ModalWindow/Modal';
 
 import { useDispatch } from 'react-redux';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 
 // import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
@@ -12,6 +14,7 @@ import * as toasty from '../../../shared/toastify/toastify';
 
 const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
   const dispatch = useDispatch();
+  const { theme } = useContext(ThemeContext);
 
   const handleModalClose = () => {
     closeModal();
@@ -26,7 +29,14 @@ const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
   return (
     <>
       <Modal className={css.modalApprove} closeModal={handleModalClose}>
-        <h1>Delete card?</h1>
+
+      <div
+        className={`${css.myСomponent} ${
+          theme === 'light' ? css.light : css.dark
+        }`}
+      >
+
+        <h2 className={css.titleDelete}>Delete card?</h2>
         <p className={css.text}>
           Are you sure you want to delete {name}'s card? You don't undo this
           action.
@@ -45,7 +55,8 @@ const ModalApproveActionDeleteCard = ({ closeModal, _id, name }) => {
               style={{ marginLeft: '5px' }}
             />
           </button>
-        </div>
+          </div>
+          </div>
       </Modal>
     </>
   );

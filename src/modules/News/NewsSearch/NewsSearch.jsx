@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
@@ -22,6 +24,7 @@ const NewsSearch = () => {
   const currentPage = useSelector(selectAllNewsPage);
   const currentPageInt = Number(currentPage);
   const dispatch = useDispatch();
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (!submitted) {
@@ -69,54 +72,64 @@ const NewsSearch = () => {
 
   return (
     <>
-      <div className={css.inputContainer}>
-        <form onSubmit={handleSearch}>
-          <Input
-            value={keyword}
-            onChange={handleChange}
-            placeholder="Search"
-            disableUnderline
-            style={{
-              borderRadius: '20px',
-              backgroundColor: '#FFFFFF',
-              padding: '0px 14px 0px 20px',
-              height: '43px',
-              boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
-            }}
-            inputProps={{
-              className: css.placeholder,
-            }}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton onClick={handleSearch} style={{ color: '#54ADFF' }}>
-                  <Search />
-                </IconButton>
-                {keyword && (
+      <div
+        className={`${css.myСomponent} ${
+          theme === 'light' ? css.light : css.dark
+        }`}
+      >
+        <div className={css.inputContainer}>
+          <form onSubmit={handleSearch}>
+            <Input
+              value={keyword}
+              onChange={handleChange}
+              placeholder="Search"
+              disableUnderline
+              style={{
+                borderRadius: '20px',
+                border: "1px solid #aeadad",
+                background:"transparent",
+                padding: '0px 14px 0px 20px',
+                height: '43px',
+                boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
+              }}
+              inputProps={{
+                className: css.placeholder,
+              }}
+              endAdornment={
+                <InputAdornment position="end">
                   <IconButton
-                    onClick={handleClear}
-                    style={{ color: '#FFC107' }}
+                    onClick={handleSearch}
+                    style={{ color: '#54ADFF' }}
                   >
-                    <Clear />
+                    <Search />
                   </IconButton>
-                )}
-              </InputAdornment>
-            }
-            fullWidth
-          />
-        </form>
-      </div>
+                  {keyword && (
+                    <IconButton
+                      onClick={handleClear}
+                      style={{ color: '#FFC107' }}
+                    >
+                      <Clear />
+                    </IconButton>
+                  )}
+                </InputAdornment>
+              }
+              fullWidth
+            />
+          </form>
+        </div>
 
-      <NewsList />
-      <PaginationLine
-        totalPages={totalPages}
-        currentPage={currentPageInt}
-        onChange={page => {
-          if (!submitted) {
-            handleNewsPageChange(page);
-          }
-          handleFilterPageChange(page);
-        }}
-      />
+        <NewsList />
+        <PaginationLine
+          totalPages={totalPages}
+          currentPage={currentPageInt}
+          onChange={page => {
+            if (!submitted) {
+              handleNewsPageChange(page);
+            }
+            handleFilterPageChange(page);
+          }}
+        />
+      </div>
     </>
   );
 };

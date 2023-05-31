@@ -2,7 +2,6 @@
   position: relative;
   border-top: 2px solid var(--orange-color);
 
-
   background-color: transparent;
   padding-top: 40px;
   padding-bottom: 20px;
@@ -237,4 +236,28 @@
   .text {
     font-size: 16px;
   }
+}
+
+.myСomponent.dark .titleFooter {
+  color: #c3bfbf;
+}
+.myСomponent.dark .text {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .modalOpenButton {
+  color: #c9c7c7;
+  background-color: #417075;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.myСomponent.dark .modalOpenButton:hover {
+  background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .developerCard {
+  color: #c9c7c7;
+  background-color: #467c82;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 }

@@ -188,3 +188,27 @@
     line-height: 22px;
   }
 }
+
+.myСomponent.dark .title {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .label,
+.logoutBtn {
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .forma {
+  background-color: #467c82;
+  color: #c3bfbf;
+}
+
+.myСomponent.dark .input {
+  background-color: #467c82;
+  color: #c3bfbf;
+  border: 1px solid #2f5a5f;
+}
+
+.myСomponent.dark .input::placeholder {
+  color: #848a9f;
+}

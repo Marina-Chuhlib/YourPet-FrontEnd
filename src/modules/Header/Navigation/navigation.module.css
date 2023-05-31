@@ -4,7 +4,6 @@
   justify-content: center;
   box-sizing: border-box;
   height: 28px;
-  
 }
 @media screen and (min-width: 1280px) {
   .navigation {
@@ -23,7 +22,3 @@
     margin-left: 22px;
   }
 }
-
-
-
-

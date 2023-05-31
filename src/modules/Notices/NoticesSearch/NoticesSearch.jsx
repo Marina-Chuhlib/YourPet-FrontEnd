@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
@@ -19,6 +21,8 @@ const NoticesSearch = () => {
   const location = useLocation();
   const categoryIsLoginUser = location.pathname.split('/')[2];
   const category = useSelector(selectCategory);
+
+  const { theme } = useContext(ThemeContext);
 
   const handleClear = () => {
     setKeyword('');
@@ -96,6 +100,11 @@ const NoticesSearch = () => {
   );
 
   return (
+          <div
+        className={`${css.myСomponent} ${
+          theme === 'light' ? css.light : css.dark
+        }`}
+      >
     <div className={css.inputContainer}>
       <form onSubmit={handleSubmit}>
         <Input
@@ -106,6 +115,8 @@ const NoticesSearch = () => {
           style={{
             borderRadius: '20px',
             backgroundColor: '#FFFFFF',
+            background: 'transparent',
+            border: '1px solid #aeadad',
             padding: '0px 14px 0px 20px',
             height: '43px',
             boxShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
@@ -128,7 +139,8 @@ const NoticesSearch = () => {
           fullWidth
         />
       </form>
-    </div>
+      </div>
+      </div>
   );
 };
 

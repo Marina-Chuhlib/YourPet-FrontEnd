@@ -53,3 +53,7 @@
   max-height: 600px;
   overflow-y: auto;
 }
+
+.myСomponent.dark .modal {
+  background-color: #467c82;
+}
