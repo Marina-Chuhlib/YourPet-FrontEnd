@@ -15,6 +15,7 @@ export const selectRegistrationSuccessful = ({ auth }) =>
   auth.registrationSuccessful;
 
 export const selectlogoutSuccessful = ({ auth }) => auth.logoutSuccessful;
+
 export const userInfo = state => state.auth;
 
 export const getFavorite = ({ auth }) => auth.user.favorite;

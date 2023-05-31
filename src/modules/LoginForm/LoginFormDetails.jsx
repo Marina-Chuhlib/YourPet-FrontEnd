@@ -86,6 +86,9 @@ export const LoginFormDetails = () => {
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
                     },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
+                    },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
                         borderRadius: 40,
@@ -134,6 +137,9 @@ export const LoginFormDetails = () => {
                     },
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {

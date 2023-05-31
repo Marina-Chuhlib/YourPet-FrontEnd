@@ -1,6 +1,7 @@
 .wrapper {
   width: 28px;
   height: 28px;
+
   margin-right: 12px;
 
   border: 2px solid #ffc107;
@@ -8,6 +9,13 @@
 
   overflow: hidden;
   object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .image {

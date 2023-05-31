@@ -108,6 +108,9 @@ export const RegisterFormDetails = () => {
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
                     },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
+                    },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
                         borderRadius: 40,
@@ -160,6 +163,9 @@ export const RegisterFormDetails = () => {
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
                     },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
+                    },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
                         borderRadius: 40,
@@ -205,6 +211,9 @@ export const RegisterFormDetails = () => {
                   sx={{
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -277,6 +286,9 @@ export const RegisterFormDetails = () => {
                   sx={{
                     '& .MuiInputLabel-root': {
                       color: theme === 'dark' && '#b2abab',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: theme === 'light' ? '#54ADFF' : '#183a3d',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {

@@ -33,6 +33,7 @@ export const login = createAsyncThunk(
         toasty.toastError(
           (response.data.message = 'Email or password invalid')
         );
+        return rejectWithValue(response);
       } else {
         toasty.toastError(response.data.message);
         return rejectWithValue(response);
