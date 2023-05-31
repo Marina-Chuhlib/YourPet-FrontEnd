@@ -106,7 +106,7 @@ export const RegisterFormDetails = () => {
                       borderRadius: '40px',
                     },
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -128,6 +128,9 @@ export const RegisterFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}
@@ -155,7 +158,7 @@ export const RegisterFormDetails = () => {
                       borderRadius: '40px',
                     },
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -174,6 +177,9 @@ export const RegisterFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}
@@ -198,7 +204,7 @@ export const RegisterFormDetails = () => {
                   fullWidth
                   sx={{
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -218,6 +224,9 @@ export const RegisterFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}
@@ -267,7 +276,7 @@ export const RegisterFormDetails = () => {
                   fullWidth
                   sx={{
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -286,6 +295,9 @@ export const RegisterFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}

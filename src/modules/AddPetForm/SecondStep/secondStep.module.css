@@ -49,3 +49,21 @@
   }
 }
 
+.myСomponent.dark .label {
+  color: #b2abab;
+}
+
+.myСomponent.dark .input {
+  color: #d9d2d2;
+  background-color: #467c82;
+  border: 1px solid #2f5a5f;
+}
+
+.myСomponent.dark .input:focus {
+  border: none;
+  border: 1px solid #d9d2d2;
+}
+
+.myСomponent.dark .input::placeholder {
+  color: #b2abab;
+}

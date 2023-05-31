@@ -255,3 +255,9 @@
   background: linear-gradient(290.46deg, #55787c 0%, #64999e 107.89%);
   color: #d9d2d2;
 }
+
+.myСomponent.dark .developerCard {
+  color: #c9c7c7;
+  background-color: #467c82;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+}

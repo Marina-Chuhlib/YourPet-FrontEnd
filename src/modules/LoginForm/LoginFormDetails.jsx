@@ -84,7 +84,7 @@ export const LoginFormDetails = () => {
                       borderRadius: '40px',
                     },
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -95,7 +95,7 @@ export const LoginFormDetails = () => {
                       },
                       '&:hover fieldset': {
                         borderColor: `${
-                          theme === 'light' ? '#54ADFF' : '#2f5a5f'
+                          theme === 'light' ? '#54ADFF' : '#d9d2d2'
                         }`,
                       },
                       '&.Mui-focused fieldset': {
@@ -103,6 +103,9 @@ export const LoginFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}
@@ -130,7 +133,7 @@ export const LoginFormDetails = () => {
                       borderRadius: '40px',
                     },
                     '& .MuiInputLabel-root': {
-                      color: theme === 'dark' && '#d9d2d2',
+                      color: theme === 'dark' && '#b2abab',
                     },
                     '& .MuiOutlinedInput-root': {
                       '& fieldset': {
@@ -141,7 +144,7 @@ export const LoginFormDetails = () => {
                       },
                       '&:hover fieldset': {
                         borderColor: `${
-                          theme === 'light' ? '#54ADFF' : '#2f5a5f'
+                          theme === 'light' ? '#54ADFF' : '#d9d2d2'
                         }`,
                       },
                       '&.Mui-focused fieldset': {
@@ -149,6 +152,9 @@ export const LoginFormDetails = () => {
                           theme === 'light' ? '#54ADFF' : '#2f5a5f'
                         }`,
                         borderWidth: '2px',
+                      },
+                      '& .MuiInputBase-input': {
+                        color: theme === 'dark' && '#d9d2d2',
                       },
                     },
                   }}

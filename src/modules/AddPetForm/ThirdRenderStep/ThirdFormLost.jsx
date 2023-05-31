@@ -1,7 +1,8 @@
 import css from './thirdStep.module.css';
 
 import { ReactComponent as Plus } from '../../../icons/Plus.svg';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { validationSchemaThirdAddLost } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
@@ -27,6 +28,8 @@ export const ThirdFormLost = ({
   const [sex, setSex] = useState(formData.sex || '');
   const [active, setActive] = useState(null);
   const [errors, setErrors] = useState({});
+
+  const { theme } = useContext(ThemeContext);
 
   // const handleDone = () => {
   //   const category = 'lost-found';
@@ -58,110 +61,117 @@ export const ThirdFormLost = ({
   };
 
   return (
-    <div className={css.wparForm}>
-      <TitleModal titleForm={titleForm} />
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
+      <div className={css.wparForm}>
+        <TitleModal titleForm={titleForm} />
 
-      <StatusIndicator
-        currentStatus={currentStatus}
-        chooseOption={chooseOption}
-      />
-      <div className={css.pointBlock}>
-        <div className={css.sexPhotoBlock}>
-          <div className={css.sexContainer}>
-            <p className={css.labelSex}>The Sex</p>
-            <ul className={css.sexBlock}>
-              <li>
-                <button
-                  type="button"
-                  className={`${css.sexButton} ${
-                    active === 1 ? css.sexButtonChoosed : ''
-                  }`}
-                  onClick={() => {
-                    handleSex('female', 1);
-                  }}
-                >
-                  <FemaleIcon color="#F43F5E" className={css.sexIcon} /> Female
-                </button>
-              </li>
+        <StatusIndicator
+          currentStatus={currentStatus}
+          chooseOption={chooseOption}
+        />
+        <div className={css.pointBlock}>
+          <div className={css.sexPhotoBlock}>
+            <div className={css.sexContainer}>
+              <p className={css.labelSex}>The Sex</p>
+              <ul className={css.sexBlock}>
+                <li>
+                  <button
+                    type="button"
+                    className={`${css.sexButton} ${
+                      active === 1 ? css.sexButtonChoosed : ''
+                    }`}
+                    onClick={() => {
+                      handleSex('female', 1);
+                    }}
+                  >
+                    <FemaleIcon color="#F43F5E" className={css.sexIcon} />{' '}
+                    Female
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  type="button"
-                  className={`${css.sexButton} ${
-                    active === 2 ? css.sexButtonChoosed : ''
-                  }`}
-                  onClick={() => {
-                    handleSex('male', 2);
-                  }}
-                >
-                  <MaleIcon color="#54adff" className={css.sexIcon} /> Male
-                </button>
-              </li>
-            </ul>
-            {errors.sex && <p className={css.errorSex}>{errors.sex}</p>}
-          </div>
-
-          <div className={css.photoContainerSell}>
-            <label className={css.labelAddPhoto}>Add photo</label>
-            <div>
-              <input
-                type="file"
-                id="photo"
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
-              />
+                <li>
+                  <button
+                    type="button"
+                    className={`${css.sexButton} ${
+                      active === 2 ? css.sexButtonChoosed : ''
+                    }`}
+                    onClick={() => {
+                      handleSex('male', 2);
+                    }}
+                  >
+                    <MaleIcon color="#54adff" className={css.sexIcon} /> Male
+                  </button>
+                </li>
+              </ul>
+              {errors.sex && <p className={css.errorSex}>{errors.sex}</p>}
             </div>
-            <label htmlFor="photo">
-              <div className={css.labelPhoto}>
-                {file && (
-                  <img
-                    className={css.previewPhoto}
-                    src={URL.createObjectURL(file)}
-                    alt="Pet"
-                  />
-                )}
-                <Plus className={css.plusIcon} />
+
+            <div className={css.photoContainerSell}>
+              <label className={css.labelAddPhoto}>Add photo</label>
+              <div>
+                <input
+                  type="file"
+                  id="photo"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
               </div>
+              <label htmlFor="photo">
+                <div className={css.labelPhoto}>
+                  {file && (
+                    <img
+                      className={css.previewPhoto}
+                      src={URL.createObjectURL(file)}
+                      alt="Pet"
+                    />
+                  )}
+                  <Plus className={css.plusIcon} />
+                </div>
+              </label>
+              {errors.file && (
+                <p className={css.ErrorTextLowSell}>{errors.file}</p>
+              )}
+            </div>
+          </div>
+          <div className={css.inputContainer}>
+            <label className={css.label} htmlFor="location">
+              Location
             </label>
-            {errors.file && (
-              <p className={css.ErrorTextLowSell}>{errors.file}</p>
+            <input
+              className={css.input}
+              type="text"
+              id="location"
+              value={location}
+              onChange={e => setLocation(e.target.value)}
+              placeholder="Type of location"
+            />
+            {errors.location && (
+              <p className={css.ErrorTextLostLocation}>{errors.location}</p>
+            )}
+            <label className={css.labelCommentsSell} htmlFor="comments">
+              Comments
+            </label>
+            <textarea
+              className={css.inputCommentsLost}
+              id="comments"
+              value={comments}
+              placeholder="Type comment"
+              onChange={e => setComments(e.target.value)}
+            />
+            {errors.comments && (
+              <p className={css.errorComentSell}>{errors.comments}</p>
             )}
           </div>
         </div>
-        <div className={css.inputContainer}>
-          <label className={css.label} htmlFor="location">
-            Location
-          </label>
-          <input
-            className={css.input}
-            type="text"
-            id="location"
-            value={location}
-            onChange={e => setLocation(e.target.value)}
-            placeholder="Type of location"
-          />
-          {errors.location && (
-            <p className={css.ErrorTextLostLocation}>{errors.location}</p>
-          )}
-          <label className={css.labelCommentsSell} htmlFor="comments">
-            Comments
-          </label>
-          <textarea
-            className={css.inputCommentsLost}
-            id="comments"
-            value={comments}
-            placeholder="Type comment"
-            onChange={e => setComments(e.target.value)}
-          />
-          {errors.comments && (
-            <p className={css.errorComentSell}>{errors.comments}</p>
-          )}
-        </div>
+        <ButtonRoutes>
+          <ButtonNext textButton={'Done'} handleNextData={handleDone} />
+          <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        </ButtonRoutes>
       </div>
-      <ButtonRoutes>
-        <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
-      </ButtonRoutes>
     </div>
   );
 };

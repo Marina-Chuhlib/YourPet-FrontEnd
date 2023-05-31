@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { validationSchemaThirdMy } from '../../../shared/services/FormValidation/addPetValidation';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
@@ -20,6 +21,8 @@ export const ThirdFormMyPet = ({
   const [imageURL, setImageURL] = useState('');
   const [comments, setComments] = useState('');
   const [errors, setErrors] = useState({});
+
+  const { theme } = useContext(ThemeContext);
 
   // const handleDone = () => {
   //   handleNextData({ imageURL, comments });
@@ -46,7 +49,11 @@ export const ThirdFormMyPet = ({
     setImageURL(e.target.files[0]);
   };
   return (
-    <div>
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
       <TitleModal titleForm={'Add my pet'} />
 
       <StatusIndicator

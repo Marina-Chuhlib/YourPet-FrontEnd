@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import css from './secondStep.module.css';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -21,6 +22,8 @@ export const SecondFormSell = ({
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
+  const { theme } = useContext(ThemeContext);
+
   // const handleNextValidation = () => {
 
   //   handleNextData({ name, date, breed, title });
@@ -42,7 +45,11 @@ export const SecondFormSell = ({
   };
 
   return (
-    <div>
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
       <TitleModal titleForm={titleForm} />
 
       <StatusIndicator

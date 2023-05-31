@@ -408,3 +408,75 @@
     margin-right: 72px;
   }
 }
+
+.myСomponent.dark .labelAddPhoto {
+  color: #b2abab;
+}
+
+.myСomponent.dark .labelComments {
+  color: #b2abab;
+  background-color: transparent;
+}
+
+.myСomponent.dark .inputComments::placeholder {
+  color: #b2abab;
+}
+
+.myСomponent.dark .inputComments {
+  color: #b2abab;
+  background-color: transparent;
+  border: 1px solid #2f5a5f;
+}
+
+.myСomponent.dark {
+  background-color: #467c82;
+}
+
+.myСomponent.dark .labelSex {
+  color: #b2abab;
+}
+
+.myСomponent.dark .sexContainer {
+  color: #b2abab;
+  background-color: transparent;
+}
+
+.myСomponent.dark .sexButton {
+  color: #b2abab;
+}
+
+.myСomponent.dark .sexButtonChoosed {
+  color: #00c3ad;
+}
+
+.myСomponent.dark .label {
+  color: #b2abab;
+}
+
+.myСomponent.dark .input {
+  color: #d9d2d2;
+  background-color: transparent;
+  border: 1px solid #2f5a5f;
+}
+
+.myСomponent.dark .input::placeholder {
+  color: #b2abab;
+}
+
+.myСomponent.dark .labelCommentsSell {
+  color: #b2abab;
+}
+
+.myСomponent.dark .inputComments {
+  color: #d9d2d2;
+}
+
+.myСomponent.dark .inputCommentsLost::placeholder {
+  color: #b2abab;
+}
+
+.myСomponent.dark .inputCommentsLost {
+  color: #d9d2d2;
+  background-color: transparent;
+  border: 1px solid #2f5a5f;
+}

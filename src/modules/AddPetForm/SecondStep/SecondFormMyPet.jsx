@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import css from './secondStep.module.css';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -12,17 +13,16 @@ export const SecondFormMyPet = ({
   handlePrevStep,
   formData,
   currentStatus,
-
 }) => {
   const [name, setName] = useState(formData.name || '');
   const [birthday, setBirthday] = useState(formData.birthday || '');
   const [breed, setBreed] = useState(formData.breed || '');
   const [errors, setErrors] = useState({});
 
+  const { theme } = useContext(ThemeContext);
 
-  
   // const handleNextValidation = () => {
-    
+
   //   handleNextData({ name, birthday, breed });
   //    };
 
@@ -33,7 +33,6 @@ export const SecondFormMyPet = ({
         handleNextData({ name, birthday, breed });
       })
       .catch(err => {
-    
         const validationErrors = {};
         err.inner.forEach(error => {
           validationErrors[error.path] = error.message;
@@ -42,7 +41,11 @@ export const SecondFormMyPet = ({
       });
   };
   return (
-    <div>
+    <div
+      className={`${css.myСomponent} ${
+        theme === 'light' ? css.light : css.dark
+      }`}
+    >
       <TitleModal titleForm={'Add my pet'} />
 
       <StatusIndicator currentStatus={currentStatus} />
@@ -92,13 +95,8 @@ export const SecondFormMyPet = ({
       </div>
       <ButtonRoutes>
         <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev
-          textButton={'Back'}
-          handlePrevStep={handlePrevStep}
-         />
+        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );
 };
-
-

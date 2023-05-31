@@ -30,7 +30,7 @@ const Footer = () => {
   const developers = [
     {
       id: 1,
-      name: 'Maryna Chuhlib',
+      name: 'Maryna Chukhlib',
       position: 'Team-Lead, Full-stack Developer',
       github: 'https://github.com/Marina-Chuhlib',
       linkedin: 'https://www.linkedin.com/in/marina-chukhlib/',
@@ -164,38 +164,48 @@ const Footer = () => {
           </div>
           {isModalOpen && (
             <Modal closeModal={closeModal}>
-              <div className={styles.developersContainer}>
-                {developers.map(developer => (
-                  <div key={developer.id} className={styles.developerCard}>
-                    <img
-                      src={developer.photo}
-                      alt={developer.name}
-                      className={styles.developerPhoto}
-                    />
-                    <h3 className={styles.name}>{developer.name}</h3>
-                    <p>{developer.position}</p>
-                    <div className={styles.socialLinks}>
-                      <a
-                        className={`${styles.link} ${styles.iconContainer}`}
-                        href={developer.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GitHubIcon style={{ fontSize: '24px' }} />
-                      </a>
-                      <a
-                        className={`${styles.link} ${styles.iconContainer}`}
-                        href={developer.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <LinkedInIcon
-                          style={{ fontSize: '24px', color: '#0e76a8' }}
-                        />
-                      </a>
+              <div
+                className={`${styles.myСomponent} ${
+                  theme === 'light' ? styles.light : styles.dark
+                }`}
+              >
+                <div className={styles.developersContainer}>
+                  {developers.map(developer => (
+                    <div key={developer.id} className={styles.developerCard}>
+                      <img
+                        src={developer.photo}
+                        alt={developer.name}
+                        className={styles.developerPhoto}
+                      />
+                      <h3 className={styles.name}>{developer.name}</h3>
+                      <p>{developer.position}</p>
+                      <div className={styles.socialLinks}>
+                        <a
+                          className={`${styles.link} ${styles.iconContainer}`}
+                          href={developer.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <GitHubIcon style={{ fontSize: '24px' }} />
+                        </a>
+                        <a
+                          className={`${styles.link} ${styles.iconContainer}`}
+                          href={developer.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <LinkedInIcon
+                            style={{
+                              fontSize: '24px',
+                              color: '#0e76a8',
+                              background: theme === 'dark' && '#d9d2d2',
+                            }}
+                          />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </Modal>
           )}
