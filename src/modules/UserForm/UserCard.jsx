@@ -10,9 +10,6 @@ import MyPets from './MyPets';
 import { selectIsLoading } from 'redux/auth/auth-selectors';
 import { fetchUser } from 'redux/auth/auth-operations';
 
-import { useContext } from 'react';
-import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
-
 import css from './UserCard.module.css';
 
 const UserCard = () => {

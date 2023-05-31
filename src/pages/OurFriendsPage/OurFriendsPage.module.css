@@ -17,3 +17,7 @@
     margin-bottom: 40px;
   }
 }
+
+.myСomponent.dark .title {
+  color: #c9c7c7;
+}

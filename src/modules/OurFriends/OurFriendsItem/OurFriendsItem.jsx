@@ -33,7 +33,7 @@ const OurFriendsItem = ({
       />
       <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
         <CardMedia
-          sx={{ width: 146, height: 104, backgroundSize: "contain" }}
+          sx={{ width: 146, height: 104, backgroundSize: 'contain' }}
           className={css.customCardMedia}
           image={imageUrl}
           title={title}
@@ -121,7 +121,7 @@ const OurFriendsItem = ({
             {phone ? <a href={`tel:${phone}`}>{phone}</a> : 'email only'}
           </Typography>
         </Box>
-        </Box>
+      </Box>
     </li>
   );
 };
