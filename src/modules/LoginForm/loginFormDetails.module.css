@@ -88,52 +88,6 @@
   cursor: pointer;
 }
 
-.myСomponent.dark {
-  background-color: #165158;
-
-  background-blend-mode: multiply;
-  background-image: url('../../images/bg-mobile.jpg');
-  background-position: center;
-  background-size: contain;
-}
-
-@media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  .myСomponent.dark {
-    background-image: url('../../images/bg-mobile2xjpg.jpg');
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .myСomponent.dark {
-    background-blend-mode: color-burn;
-    background-image: url('../../images/bg-tablet.jpg');
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .myСomponent.dark {
-      background-image: url('../../images/bg-tablet2x.jpg');
-    }
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .myСomponent.dark {
-    background-image: url('../../images/bg-desctop.jpg');
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .myСomponent.dark {
-      background-image: url('../../images/bg-desctop2x.jpg');
-    }
-  }
-}
-
 .myСomponent.dark .form {
   background-color: #467c82;
   color: #d9d2d2;
