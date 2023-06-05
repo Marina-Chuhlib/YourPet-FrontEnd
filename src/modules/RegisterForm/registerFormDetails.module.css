@@ -115,6 +115,10 @@
   background-image: url('../../images/bg-mobile.jpg');
   background-position: center;
   background-size: contain;
+
+  background-blend-mode: color-burn;
+  -webkit-background-blend-mode: color-burn;
+  -moz-background-blend-mode: color-burn;
 }
 
 @media (min-device-pixel-ratio: 2),
