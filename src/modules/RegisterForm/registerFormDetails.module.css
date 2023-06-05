@@ -109,7 +109,7 @@
   color: #d9d2d2;
 }
 
-.myСomponent.dark {
+/* .myСomponent.dark {
   background-color: #165158;
   background-blend-mode: multiply;
   background-image: url('../../images/bg-mobile.jpg');
@@ -152,4 +152,4 @@
       background-image: url('../../images/bg-desctop2x.jpg');
     }
   }
-}
+} */
