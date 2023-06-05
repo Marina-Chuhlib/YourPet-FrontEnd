@@ -111,14 +111,10 @@
 
 .myСomponent.dark {
   background-color: #165158;
-  background-blend-mode: color-burn;
+  background-blend-mode: multiply;
   background-image: url('../../images/bg-mobile.jpg');
   background-position: center;
   background-size: contain;
-
-  background-blend-mode: color-burn;
-  -webkit-background-blend-mode: color-burn;
-  -moz-background-blend-mode: color-burn;
 }
 
 @media (min-device-pixel-ratio: 2),
@@ -131,6 +127,7 @@
 
 @media screen and (min-width: 768px) {
   .myСomponent.dark {
+    background-blend-mode: color-burn;
     background-image: url('../../images/bg-tablet.jpg');
   }
 
