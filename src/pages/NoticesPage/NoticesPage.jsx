@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
-
+import { useTranslation } from 'react-i18next';
 import {
   fetchNoticesByCategory,
   fetchNoticesByOwn,
@@ -35,7 +35,7 @@ const NoticesPage = () => {
   const [ownCurrentPage, setOwnCurrentPage] = useState(1);
   const [favoriteCurrentPage, setFavoriteCurrentPage] = useState(1);
   const { theme } = useContext(ThemeContext);
-
+const { t } = useTranslation();
 
   useEffect(() => {
     if (currentCategory === 'sell') {
@@ -123,7 +123,7 @@ const NoticesPage = () => {
       }`}
     >
       <div className="container">
-        <h2 className={css.title}>Find your favorite pet</h2>
+        <h2 className={css.title}>{t("Find your favorite pet")}</h2>
         <NoticesSearch />
         <NoticesCategoriesNav
           onOwnClick={handleOwnClick}

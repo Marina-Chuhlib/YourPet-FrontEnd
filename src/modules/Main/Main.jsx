@@ -1,6 +1,7 @@
 import css from './main.module.css';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 import dogsMobile1x from 'images/dogs-mobile1x.png';
 import dogsMobile2x from 'images/dogs-mobile2x.png';
@@ -10,6 +11,7 @@ import dogsDesc1x from 'images/dogs-desktop@1x.png';
 import dogsDesc2x from 'images/dogs-desktop2x.png';
 
 const Main = () => {
+  const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   return (
     <div
@@ -21,7 +23,7 @@ const Main = () => {
         <div className="container">
           <div className={css.positionText}>
             <div>
-              <h1 className={css.text}>Take good care of your small pets</h1>
+              <h1 className={css.text}>{t('Take good care of your small pets')}</h1>
             </div>
 
             <div className={css.wrapper}>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 import Modal from 'shared/components/ModalWindow/Modal';
 import styles from './Footer.module.css';
 import Logo from '../Header/Logo/Logo';
@@ -12,6 +13,7 @@ const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ const Footer = () => {
   const developers = [
     {
       id: 1,
-      name: 'Maryna Chukhlib',
+      name: t("Maryna Chukhlib"),
       position: 'Team-Lead, Full-stack Developer',
       github: 'https://github.com/Marina-Chuhlib',
       linkedin: 'https://www.linkedin.com/in/marina-chukhlib/',
@@ -38,7 +40,7 @@ const Footer = () => {
     },
     {
       id: 2,
-      name: 'Mariia Lutsenko',
+      name: t('Mariia Lutsenko'),
       position: 'Team-Lead, Full-stack Developer',
       github: 'https://github.com/Mariya-Lutsenko',
       linkedin: 'https://www.linkedin.com/in/mariya-lutsenko',
@@ -46,7 +48,7 @@ const Footer = () => {
     },
     {
       id: 3,
-      name: 'Olena Holubonkova',
+      name: t('Olena Holubonkova'),
       position: 'Scrum-Master, Full-stack Developer',
       github: 'https://github.com/OlenaTeplodar',
       linkedin: 'https://www.linkedin.com/in/olena-holubonkova/',
@@ -54,7 +56,7 @@ const Footer = () => {
     },
     {
       id: 4,
-      name: 'Oksana Riaboshapka',
+      name: t('Oksana Riaboshapka'),
       position: 'Full-stack Developer',
       github: 'https://github.com/Oksana1594',
       linkedin: 'https://www.linkedin.com/in/oksana-ryaboshapka/',
@@ -62,7 +64,7 @@ const Footer = () => {
     },
     {
       id: 5,
-      name: 'Iryna Hubish',
+      name: t('Iryna Hubish'),
       position: 'Full-stack Developer',
       github: 'https://github.com/IraGubish2022',
       linkedin: 'https://www.linkedin.com/in/iryna-hubish',
@@ -70,7 +72,7 @@ const Footer = () => {
     },
     {
       id: 6,
-      name: 'Tetiana Hela',
+      name: t('Tetiana Hela'),
       position: 'Full-stack Developer',
       github: 'https://github.com/Tatiana-Hela',
       linkedin: 'https://www.linkedin.com/in/tetiana-hela',
@@ -78,7 +80,7 @@ const Footer = () => {
     },
     {
       id: 7,
-      name: 'Olena Bondarenko',
+      name: t('Olena Bondarenko'),
       position: 'Full-stack Developer',
       github: 'https://github.com/OllBond',
       linkedin: 'https://www.linkedin.com/in/olena-bondarenko-ollbond/',
@@ -86,7 +88,7 @@ const Footer = () => {
     },
     {
       id: 8,
-      name: 'Serhii Zhydkov',
+      name: t('Serhii Zhydkov'),
       position: 'Full-stack Developer',
       github: 'https://github.com/serhii95zhydkov',
       linkedin: 'https://www.linkedin.com/in/serhii-zhydkov',
@@ -94,7 +96,7 @@ const Footer = () => {
     },
     {
       id: 9,
-      name: 'Dmytro Shatnyi',
+      name: t('Dmytro Shatnyi'),
       position: 'Full-stack Developer',
       github: 'https://github.com/shatniydmitriy',
       linkedin: 'https://www.linkedin.com/in/dmytro-shatnyi-6401a3269',
@@ -102,7 +104,7 @@ const Footer = () => {
     },
     {
       id: 10,
-      name: 'Olena Kudryk',
+      name: t('Olena Kudryk'),
       position: 'Full-stack Developer',
       github: 'https://github.com/YelenaKudryk',
       linkedin: 'https://www.linkedin.com/in/yelena-kudryk/',
@@ -110,7 +112,7 @@ const Footer = () => {
     },
     {
       id: 11,
-      name: 'Maryna Aponasko',
+      name: t('Maryna Aponasko'),
       position: 'Full-stack Developer',
       github: 'https://github.com/MarynaAponasko',
       linkedin: 'http://linkedin.com/in/aponasko',
@@ -147,18 +149,16 @@ const Footer = () => {
           </div>
           <div className={styles.footerContent}>
             <div className={styles.footerSection}>
-              <h2 className={styles.titleFooter}>About Us</h2>
+              <h2 className={styles.titleFooter}>{t("About Us")}</h2>
               <p className={styles.text}>
-                YourPet - a platform for pet owners and animal
-                enthusiasts.Discover, connect, and care for animals together on
-                YourPet.
+                {t("YourPet - a platform for pet owners and animal enthusiasts.Discover, connect, and care for animals together on YourPet.")}
               </p>
             </div>
             <div className={styles.footerSection}>
-              <h2 className={styles.titleFooter}>Developers</h2>
-              <p className={styles.text}>Meet the developers behind YourPet:</p>
+              <h2 className={styles.titleFooter}>{t("Developers")}</h2>
+              <p className={styles.text}>{t("Meet the developers behind YourPet:")}</p>
               <button className={styles.modalOpenButton} onClick={openModal}>
-                View Developers
+                {t("View Developers")}
               </button>
             </div>
           </div>

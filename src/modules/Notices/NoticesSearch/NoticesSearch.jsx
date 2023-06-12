@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
@@ -22,6 +23,7 @@ const NoticesSearch = () => {
   const categoryIsLoginUser = location.pathname.split('/')[2];
   const category = useSelector(selectCategory);
 
+  const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
   const handleClear = () => {
@@ -75,7 +77,7 @@ const NoticesSearch = () => {
       const trimmedKeyword = keyword.trim();
 
       if (trimmedKeyword === '') {
-        toastInfo('Please enter something');
+        toastInfo(t('Please enter something'));
         return;
       }
       try {
@@ -96,7 +98,7 @@ const NoticesSearch = () => {
         console.log(error);
       }
     },
-    [category, categoryIsLoginUser, dispatch, keyword]
+    [category, categoryIsLoginUser, dispatch, keyword,t]
   );
 
   return (
@@ -110,7 +112,7 @@ const NoticesSearch = () => {
         <Input
           value={keyword}
           onChange={handleKeywordChange}
-          placeholder="Search"
+          placeholder={t("Search")}
           disableUnderline
           style={{
             borderRadius: '20px',

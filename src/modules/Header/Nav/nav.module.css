@@ -1,3 +1,7 @@
+.menu {
+  position: relative;
+}
+
 .list {
   list-style: none;
   text-align: center;

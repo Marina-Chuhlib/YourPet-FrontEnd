@@ -1,0 +1,29 @@
+.changeLang {
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .changeLang {
+    position: absolute;
+    left: -145px;
+    display: flex;
+    width: 50px;
+    font-family: 'Manrope';
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 700;
+    background-color: initial;
+    color: #ffc107;
+    border: #ffc107;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .changeLangItem {
+    color: #ffc107;
+    font-family: 'Manrope';
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 700;
+  }
+}

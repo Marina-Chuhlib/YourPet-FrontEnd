@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getFavorite } from 'redux/auth/auth-selectors';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 
@@ -12,7 +13,8 @@ import css from './addToFavorite.module.css';
 const AddToFavorite = ({ handleFavoriteToggle, _id }) => {
   const favorite = useSelector(getFavorite);
   const { theme } = useContext(ThemeContext);
-
+const { t } = useTranslation();
+  
   return (
     <>
       <div
@@ -22,12 +24,12 @@ const AddToFavorite = ({ handleFavoriteToggle, _id }) => {
       >
         {favorite.includes(_id) ? (
           <Button className={css.addTo} onClick={handleFavoriteToggle}>
-            Remove
+            {t("Remove")}
             <HeartIcon className={css.heartIcon} />
           </Button>
         ) : (
           <Button className={css.addTo} onClick={handleFavoriteToggle}>
-            Add to
+            {t("Add to")}
             <HeartIcon className={css.heartIcon} />
           </Button>
         )}
