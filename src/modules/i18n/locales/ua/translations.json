@@ -135,8 +135,16 @@
   "years": "років",
   "male": "чол.",
   "female": "жін.",
-  "Time": "Час",
+  "Time": "Час роботи",
   "Address": "Адреса",
   "day and night": "вдень та вночі",
-  "website only": "тільки веб-сайт"
+  "website only": "тільки веб-сайт",
+  "MN": "ПН",
+  "TU": "ВТ",
+  "WE": "CР",
+  "TH": "ЧТ",
+  "FR": "ПТ",
+  "SA": "СБ",
+  "SU": "НД",
+  "No working hours available": "Немає робочих годин"
 }

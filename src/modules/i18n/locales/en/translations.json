@@ -137,5 +137,13 @@
   "Time": "Time",
   "Address": "Address",
   "day and night": "day and night",
-  "website only": "website only"
+  "website only": "website only",
+  "MN": "MN",
+  "TU": "TU",
+  "WE": "WE",
+  "TH": "TH",
+  "FR": "FR",
+  "SA": "SA",
+  "SU": "SU",
+  "No working hours available": "No working hours available"
 }
