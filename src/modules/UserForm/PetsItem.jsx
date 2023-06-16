@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import ModalApproveActionDeleteCard from 'shared/components/ModalApproveAction/ModalApproveActionDeleteCard';
 
 import css from './MyPets.module.css';
@@ -19,6 +19,8 @@ const PetsItem = ({
     setIsModalOpen(false);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       {isModalOpen && (
@@ -32,7 +34,7 @@ const PetsItem = ({
       <div className={css.infoWrapper}>
         <div className={css.delBtnWrapper}>
           <p className={css.info}>
-            <span className={css.tit}>Name:</span> {name}
+            <span className={css.tit}>{t("Name")}:</span> {name}
           </p>
           <button
             type="button"
@@ -44,13 +46,13 @@ const PetsItem = ({
         </div>
 
         <p className={css.info}>
-          <span className={css.tit}>Date of birth:</span> {birthday}
+          <span className={css.tit}>{t("Date of birth")}:</span> {birthday}
         </p>
         <p className={css.info}>
-          <span className={css.tit}> Breed:</span> {breed}
+          <span className={css.tit}>{t("Breed")}</span> {breed}
         </p>
         <p className={css.info}>
-          <span className={css.tit}>Comments:</span> {comments}
+          <span className={css.tit}>{t("Comments")}:</span> {comments}
         </p>
       </div>
     </>

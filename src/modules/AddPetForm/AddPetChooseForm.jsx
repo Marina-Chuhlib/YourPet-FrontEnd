@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { addNotice, addPet } from 'redux/pets/pets-operations';
 
 import * as toasty from '../../shared/toastify/toastify';
@@ -32,6 +33,8 @@ export const AddPetChooseForm = () => {
 
   const [formData, setFormData] = useState({});
 
+  const { t } = useTranslation();
+
   useEffect(() => {}, [formData]);
 
   const dispatch = useDispatch();
@@ -47,7 +50,7 @@ export const AddPetChooseForm = () => {
     const category = chooseOption;
     handleNextData({ category });
     if (category === '') {
-      toasty.toastError('Please, choose the category!');
+      toasty.toastError(t('Please, choose the category!'));
     }
   };
   const handleNextData = stepData => {
@@ -127,10 +130,10 @@ export const AddPetChooseForm = () => {
       setIsLoading(true);
       dispatch(addPet(formDataSend)).then(response => {
         if (typeof response.payload !== 'object') {
-          toasty.toastError('Oops, something went wrong!');
+          toasty.toastError(t('Oops, something went wrong!'));
           setIsLoading(false);
         } else {
-          toasty.toastSuccess('Congratulations!!! Your pet is added!');
+          toasty.toastSuccess(t('Congratulations!!! Your pet is added!'));
           navigate('/user');
         }
       });
@@ -143,11 +146,11 @@ export const AddPetChooseForm = () => {
       setIsLoading(true);
       dispatch(addNotice(formDataSend)).then(response => {
         if (typeof response.payload !== 'object') {
-          toasty.toastError('Oops, something went wrong!');
+          toasty.toastError(t('Oops, something went wrong!'));
           setIsLoading(false);
         } else {
           toasty.toastSuccess(
-            'Congratulations!!! You successfully created an ad!'
+            t('Congratulations!!! You successfully created an ad!')
           );
           returnToNotice(sendDataForm.category);
         }
@@ -161,7 +164,7 @@ export const AddPetChooseForm = () => {
       {isLoading && <Loader />}
       {step === 1 && (
         <FormContainer>
-          <TitleModal titleForm={'Add pet'} />
+          <TitleModal titleForm={t('Add pet')} />
 
           <StatusIndicator currentStatus={currentStatus} />
           <ButtonChooseOption
@@ -170,10 +173,10 @@ export const AddPetChooseForm = () => {
           />
           <ButtonRoutes>
             <ButtonNext
-              textButton={'Next'}
+              textButton={t('Next')}
               handleNextData={handleNextDataOption}
             />
-            <ButtonPrev textButton={'Cancel'} handlePrevStep={handleCancel} />
+            <ButtonPrev textButton={t('Cancel')} handlePrevStep={handleCancel} />
           </ButtonRoutes>
         </FormContainer>
       )}
@@ -249,7 +252,7 @@ export const AddPetChooseForm = () => {
         </>
       )}
       {showModal && (
-        <Modal onClose={handleCloseModal}>{'Way, you add the pet!!!'}</Modal>
+        <Modal onClose={handleCloseModal}>{t('Way, you add the pet!!!')}</Modal>
       )}
     </>
   );

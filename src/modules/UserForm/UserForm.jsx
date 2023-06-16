@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
@@ -68,6 +69,7 @@ const UserForm = () => {
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isLoading && !isLoggedIn && logoutSuccessful) {
@@ -96,7 +98,7 @@ const UserForm = () => {
     formData.append('imageURL', selectedImage);
 
     await dispatch(fetchUpdateAvatar({ token, formData }));
-    toasty.toastSuccess('Photo added successfully');
+    toasty.toastSuccess(t('Photo added successfully'));
 
     setIsPhotoUploaded(true);
   };
@@ -118,7 +120,7 @@ const UserForm = () => {
     }));
 
     if (!value && editingFields[fieldName]) {
-      toasty.toastInfo('Fill in the field');
+      toasty.toastInfo(t('Fill in the field'));
       return;
     }
 
@@ -129,37 +131,37 @@ const UserForm = () => {
         );
 
         if (result.meta.requestStatus !== 'fulfilled') {
-          toasty.toastError(`Opps! Incorrect ${fieldName} try,again`);
+          toasty.toastError(t(`Opps! Incorrect ${fieldName} try,again`));
           return;
         }
-        toasty.toastSuccess('Added successfully');
+        toasty.toastSuccess(t('Added successfully'));
       } catch (error) {
-        toasty.toastError(`Error, try again`);
+        toasty.toastError(t(`Error, try again`));
       }
     }
   };
 
   const fields = [
-    { fieldName: 'name', label: 'Name', type: 'text', placeholder: 'Name' },
+    { fieldName: 'name', label: t('Name'), type: 'text', placeholder: 'Name' },
     {
       fieldName: 'email',
-      label: 'Email',
+      label: t('Email'),
       type: 'email',
       placeholder: 'email@xxx.com',
     },
     {
       fieldName: 'birthday',
-      label: 'Birthday',
+      label: t('Birthday'),
       type: 'text',
       placeholder: '00.00.0000',
     },
     {
       fieldName: 'phone',
-      label: 'Phone',
+      label: t('Phone'),
       type: 'tel',
       placeholder: '+38000000000',
     },
-    { fieldName: 'city', label: 'City', type: 'text', placeholder: 'Kyiv' },
+    { fieldName: 'city', label: t('City'), type: 'text', placeholder: 'Kyiv' },
   ];
 
   const closeModal = () => {
@@ -183,7 +185,7 @@ const UserForm = () => {
           }`}
         >
           <div className={css.wrapper}>
-            <h2 className={css.title}>My information:</h2>
+            <h2 className={css.title}>{t('My information')}:</h2>
             <Formik>
               {({ errors, touched }) => (
                 <Form className={css.forma}>
@@ -253,7 +255,7 @@ const UserForm = () => {
                                 width: '24px',
                               }}
                             />
-                            Delete
+                            {t('Delete')}
                           </Button>
                         </>
                       )}
@@ -264,7 +266,7 @@ const UserForm = () => {
                             style={{ color: '#54ADFF', marginRight: '8px' }}
                             onClick={addAvatarBtn}
                           />
-                          Edit photo
+                          {t('Edit photo')}
                           <input
                             type="file"
                             id="fileElem"
@@ -283,7 +285,7 @@ const UserForm = () => {
                             style={{ color: '#54ADFF', marginRight: '8px' }}
                             onClick={addAvatarBtn}
                           />
-                          Edit photo
+                          {t('Edit photo')}
                           <input
                             type="file"
                             id="fileElem"
@@ -374,7 +376,7 @@ const UserForm = () => {
                           />
                         }
                       >
-                        Log Out
+                        {t('Log Out')}
                       </Button>
                     </div>
                   )}

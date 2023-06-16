@@ -146,5 +146,12 @@
   "FR": "ПТ",
   "SA": "СБ",
   "SU": "НД",
-  "No working hours available": "Немає робочих годин"
+  "No working hours available": "Немає робочих годин",
+  "Please, choose the category!": "Будь ласка, виберіть категорію!",
+  "Congratulations!!! Your pet is added!": "Вітаю!!! Ваш домашній улюбленець доданий!",
+  "Congratulations!!! You successfully created an ad!": "Вітаю!!! Ви успішно створили оголошення!",
+  "Cancel": "Скасувати",
+  "Way, you add the pet!!!": "Так, ви додаєте тваринку!!!",
+  "Pet in good hands": "Домашня тварина в добрі руки",
+  "Add lost pet": "Додайте втрачену тварину"
 }
