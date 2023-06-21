@@ -4,7 +4,7 @@ import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { validationSchemaThirdAddLost } from '../../../shared/services/FormValidation/addPetValidation';
-
+import { useTranslation } from 'react-i18next';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import MaleIcon from 'icons/MaleIcon';
@@ -30,7 +30,7 @@ export const ThirdFormLost = ({
   const [errors, setErrors] = useState({});
 
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   // const handleDone = () => {
   //   const category = 'lost-found';
   //   handleNextData({ file, comments, sex, location, category });
@@ -76,7 +76,7 @@ export const ThirdFormLost = ({
         <div className={css.pointBlock}>
           <div className={css.sexPhotoBlock}>
             <div className={css.sexContainer}>
-              <p className={css.labelSex}>The Sex</p>
+              <p className={css.labelSex}>{t('The Sex')}</p>
               <ul className={css.sexBlock}>
                 <li>
                   <button
@@ -89,7 +89,7 @@ export const ThirdFormLost = ({
                     }}
                   >
                     <FemaleIcon color="#F43F5E" className={css.sexIcon} />{' '}
-                    Female
+                    {t('Female')}
                   </button>
                 </li>
 
@@ -103,7 +103,8 @@ export const ThirdFormLost = ({
                       handleSex('male', 2);
                     }}
                   >
-                    <MaleIcon color="#54adff" className={css.sexIcon} /> Male
+                    <MaleIcon color="#54adff" className={css.sexIcon} />{' '}
+                    {t('Male')}
                   </button>
                 </li>
               </ul>
@@ -111,7 +112,7 @@ export const ThirdFormLost = ({
             </div>
 
             <div className={css.photoContainerSell}>
-              <label className={css.labelAddPhoto}>Add photo</label>
+              <label className={css.labelAddPhoto}>{t('Add photo')}</label>
               <div>
                 <input
                   type="file"
@@ -139,7 +140,7 @@ export const ThirdFormLost = ({
           </div>
           <div className={css.inputContainer}>
             <label className={css.label} htmlFor="location">
-              Location
+              {t('Location')}
             </label>
             <input
               className={css.input}
@@ -147,19 +148,19 @@ export const ThirdFormLost = ({
               id="location"
               value={location}
               onChange={e => setLocation(e.target.value)}
-              placeholder="Type of location"
+              placeholder={t('Type of location')}
             />
             {errors.location && (
               <p className={css.ErrorTextLostLocation}>{errors.location}</p>
             )}
             <label className={css.labelCommentsSell} htmlFor="comments">
-              Comments
+              {t('Comments')}
             </label>
             <textarea
               className={css.inputCommentsLost}
               id="comments"
               value={comments}
-              placeholder="Type comment"
+              placeholder={t('Type comment')}
               onChange={e => setComments(e.target.value)}
             />
             {errors.comments && (
@@ -168,8 +169,8 @@ export const ThirdFormLost = ({
           </div>
         </div>
         <ButtonRoutes>
-          <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-          <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+          <ButtonNext textButton={t('Done')} handleNextData={handleDone} />
+          <ButtonPrev textButton={t('Back')} handlePrevStep={handlePrevStep} />
         </ButtonRoutes>
       </div>
     </div>

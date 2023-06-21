@@ -7,6 +7,7 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 import { validationSchema } from '../../../shared/services/FormValidation/addPetValidation';
+import { useTranslation } from 'react-i18next';
 
 export const SecondFormMyPet = ({
   handleNextData,
@@ -20,6 +21,7 @@ export const SecondFormMyPet = ({
   const [errors, setErrors] = useState({});
 
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   // const handleNextValidation = () => {
 
@@ -46,12 +48,12 @@ export const SecondFormMyPet = ({
         theme === 'light' ? css.light : css.dark
       }`}
     >
-      <TitleModal titleForm={'Add my pet'} />
+      <TitleModal titleForm={t('Add my pet')} />
 
       <StatusIndicator currentStatus={currentStatus} />
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="name">
-          Pet's name
+          {t("Pet's name")}
         </label>
         <input
           className={css.input}
@@ -59,13 +61,13 @@ export const SecondFormMyPet = ({
           id="name"
           value={name}
           onChange={e => setName(e.target.value)}
-          placeholder="Type name pet"
+          placeholder={t("Type name pet")}
         />
         {errors.name && <p className={css.ErrorText}>{errors.name}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="birthday">
-          Date of birth
+          {t("Date of birth")}
         </label>
         <input
           className={css.input}
@@ -74,13 +76,13 @@ export const SecondFormMyPet = ({
           value={birthday}
           onChange={e => setBirthday(e.target.value)}
           required
-          placeholder="dd.mm.yyyy"
+          placeholder={t("dd.mm.yyyy")}
         />
         {errors.birthday && <p className={css.ErrorText}>{errors.birthday}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="breed">
-          Breed
+          {t("Breed")}
         </label>
         <input
           className={css.input}
@@ -89,13 +91,13 @@ export const SecondFormMyPet = ({
           value={breed}
           onChange={e => setBreed(e.target.value)}
           required
-          placeholder="Type breed"
+          placeholder={t("Type breed")}
         />
         {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
       <ButtonRoutes>
-        <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonNext textButton={t('Next')} handleNextData={handleNextValidation} />
+        <ButtonPrev textButton={t('Back')} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

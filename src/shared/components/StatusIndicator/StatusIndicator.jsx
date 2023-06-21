@@ -1,10 +1,12 @@
 import React from 'react';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import css from './statusIndicator.module.css';
 
 const StatusIndicator = ({ currentStatus }) => {
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <div
       className={`${css.myСomponent} ${
@@ -17,7 +19,7 @@ const StatusIndicator = ({ currentStatus }) => {
             currentStatus === 1 ? css.textStatusCurrent : css.textStatusDone
           }`}
         >
-          Choose option
+          {t("Choose option")}
         </li>
         <li
           className={`${
@@ -28,14 +30,14 @@ const StatusIndicator = ({ currentStatus }) => {
               : css.textStatus
           }`}
         >
-          Personal details
+          {t("Personal details")}
         </li>
         <li
           className={`${
             currentStatus === 3 ? css.textStatusCurrent : css.textStatus
           }`}
         >
-          More info
+          {t("More info")}
         </li>
       </ul>
     </div>

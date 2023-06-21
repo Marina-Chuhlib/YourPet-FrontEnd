@@ -7,6 +7,7 @@ import ButtonRoutes from 'shared/components/ButtonRoutes/ButtonRoutes';
 import ButtonNext from 'shared/components/ButtonRoutes/ButtonNext';
 import ButtonPrev from 'shared/components/ButtonRoutes/ButtonPrev';
 import { validationSchemaAdd } from '../../../shared/services/FormValidation/addPetValidation';
+import { useTranslation } from 'react-i18next';
 
 export const SecondFormSell = ({
   formData,
@@ -23,7 +24,7 @@ export const SecondFormSell = ({
   const [errors, setErrors] = useState({});
 
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   // const handleNextValidation = () => {
 
   //   handleNextData({ name, date, breed, title });
@@ -58,7 +59,7 @@ export const SecondFormSell = ({
       />
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="addTitle">
-          Title of add
+          {t('Title of add')}
         </label>
         <input
           className={css.input}
@@ -66,13 +67,13 @@ export const SecondFormSell = ({
           id="addTitle"
           value={title}
           onChange={e => setAddTitle(e.target.value)}
-          placeholder="Type title of add"
+          placeholder={t('Type title of add')}
         />
         {errors.title && <p className={css.ErrorText}>{errors.title}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="name">
-          Pet's name
+          {t("Pet's name")}
         </label>
         <input
           className={css.input}
@@ -80,13 +81,13 @@ export const SecondFormSell = ({
           id="name"
           value={name}
           onChange={e => setName(e.target.value)}
-          placeholder="Type name pet"
+          placeholder={t('Type name pet')}
         />
         {errors.name && <p className={css.ErrorText}>{errors.name}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="date">
-          Date of birth
+          {t('Date of birth')}
         </label>
         <input
           className={css.input}
@@ -95,13 +96,13 @@ export const SecondFormSell = ({
           value={date}
           onChange={e => setDate(e.target.value)}
           required
-          placeholder="dd.mm.yyyy"
+          placeholder={t('dd.mm.yyyy')}
         />
         {errors.date && <p className={css.ErrorText}>{errors.date}</p>}
       </div>
       <div className={css.inputContainer}>
         <label className={css.label} htmlFor="breed">
-          Breed
+          {t('Breed')}
         </label>
         <input
           className={css.input}
@@ -110,13 +111,16 @@ export const SecondFormSell = ({
           value={breed}
           onChange={e => setBreed(e.target.value)}
           required
-          placeholder="Type breed"
+          placeholder={t('Type breed')}
         />
         {errors.breed && <p className={css.ErrorText}>{errors.breed}</p>}
       </div>
       <ButtonRoutes>
-        <ButtonNext textButton={'Next'} handleNextData={handleNextValidation} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonNext
+          textButton={t('Next')}
+          handleNextData={handleNextValidation}
+        />
+        <ButtonPrev textButton={t('Back')} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

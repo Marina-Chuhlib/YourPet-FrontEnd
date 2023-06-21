@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { useTranslation } from 'react-i18next';
-import ChangeLanguage from 'modules/ChangeLanguage/ChangeLanguage';
+import ChangeLanguage from 'shared/components/ChangeLanguage/ChangeLanguage';
 import styles from './nav.module.css';
 
 export default function Nav({ onClick }) {
