@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 import { InputAdornment, IconButton, Input } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 import {
@@ -25,6 +26,7 @@ const NewsSearch = () => {
   const currentPageInt = Number(currentPage);
   const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
+   const { t } = useTranslation();
 
   useEffect(() => {
     if (!submitted) {
@@ -50,7 +52,7 @@ const NewsSearch = () => {
   const handleSearch = e => {
     e.preventDefault();
     if (keyword.trim() === '') {
-      toastInfo('Please enter something');
+      toastInfo(t('Please enter something'));
       setKeyword('');
     } else {
       setSubmitted(true);
@@ -82,7 +84,7 @@ const NewsSearch = () => {
             <Input
               value={keyword}
               onChange={handleChange}
-              placeholder="Search"
+              placeholder={t("Search")}
               disableUnderline
               style={{
                 borderRadius: '20px',

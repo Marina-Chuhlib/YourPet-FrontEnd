@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 import { TextField, IconButton, Box } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -55,7 +56,8 @@ export const RegisterFormDetails = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
+  
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -87,7 +89,7 @@ export const RegisterFormDetails = () => {
         >
           {({ values, errors, touched, handleSubmit, handleChange }) => (
             <Form className={css.form} onSubmit={handleSubmit}>
-              <h2 className={css.title}>Registration</h2>
+              <h2 className={css.title}>{t("Registration")}</h2>
               <Box
                 sx={{
                   marginBottom: '10px',
@@ -98,7 +100,7 @@ export const RegisterFormDetails = () => {
                 <TextField
                   name="name"
                   type="text"
-                  label="Name"
+                  label={t("Name")}
                   size="small"
                   fullWidth
                   sx={{
@@ -153,7 +155,7 @@ export const RegisterFormDetails = () => {
                 <TextField
                   name="email"
                   type="email"
-                  label="Email"
+                  label={t("Email")}
                   size="small"
                   fullWidth
                   sx={{
@@ -205,7 +207,7 @@ export const RegisterFormDetails = () => {
                 <TextField
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  label="Password"
+                  label={t("Password")}
                   size="small"
                   fullWidth
                   sx={{
@@ -280,7 +282,7 @@ export const RegisterFormDetails = () => {
                 <TextField
                   name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
-                  label="Confirm password"
+                  label={t("Confirm password")}
                   size="small"
                   fullWidth
                   sx={{
@@ -347,13 +349,13 @@ export const RegisterFormDetails = () => {
               </Box>
               <div className={css.buttonContainer}>
                 <button type="submit" className={css.button}>
-                  Registration
+                  {t("Registration")}
                 </button>
               </div>
               <p className={css.questionText}>
-                Already have an account?{' '}
+                {t("Already have an account?")}{' '}
                 <Link to="/login" className={css.loginLink}>
-                  Login
+                  {t("Login")}
                 </Link>
               </p>
             </Form>

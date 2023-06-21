@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import css from './buttonChooseOption.module.css';
 
 const ButtonChooseOption = ({ handleChooseChange }) => {
+  const { t } = useTranslation();
   return (
     <ul className={css.buttonContainer}>
       <li>
@@ -12,7 +14,7 @@ const ButtonChooseOption = ({ handleChooseChange }) => {
             handleChooseChange('your pet', 1);
           }}
         >
-          your pet
+          {t("your pet")}
         </button>
       </li>
       <li>
@@ -23,7 +25,7 @@ const ButtonChooseOption = ({ handleChooseChange }) => {
             handleChooseChange('sell', 2);
           }}
         >
-          sell
+          {t("sell")}
         </button>
       </li>
       <li>
@@ -34,7 +36,7 @@ const ButtonChooseOption = ({ handleChooseChange }) => {
             handleChooseChange('lost-found', 3);
           }}
         >
-          lost/found
+          {t("lost/found")}
         </button>
       </li>
       <li>
@@ -45,7 +47,7 @@ const ButtonChooseOption = ({ handleChooseChange }) => {
             handleChooseChange('for-free', 4);
           }}
         >
-          in good hands
+          {t("in good hands")}
         </button>
       </li>
     </ul>

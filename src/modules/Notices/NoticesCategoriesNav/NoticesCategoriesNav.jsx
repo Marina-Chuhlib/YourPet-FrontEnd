@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import * as toasty from '../../../shared/toastify/toastify';
@@ -10,11 +11,7 @@ import PlusIcon from 'icons/PlusIcon';
 
 import css from './NoticesCategoriesNav.module.css';
 
-const link = [
-  { to: 'sell', text: 'sell' },
-  { to: 'lost-found', text: 'lost/found' },
-  { to: 'for-free', text: 'in good hands' },
-];
+
 
 const getClassNameLink = ({ isActive }) => {
   const className = isActive ? `${css.navLink} ${css.active}` : css.navLink;
@@ -25,10 +22,17 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
+  
+const link = [
+  { to: 'sell', text: t('sell') },
+  { to: 'lost-found', text: t('lost/found') },
+  { to: 'for-free', text: t('in good hands') },
+];
 
   const handleClick = () => {
     if (!isLoggedIn) {
-      toasty.toastInfo('You must be logged in');
+      toasty.toastInfo(t('You must be logged in'));
       return;
     } else {
       navigate('/add-pet');
@@ -60,7 +64,7 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
                     onOwnClick();
                   }}
                 >
-                  my ads
+                  {t("my ads")}
                 </NavLink>
               </li>
               <li key="favorite">
@@ -71,7 +75,7 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
                     onFavoriteClick();
                   }}
                 >
-                  favorite ads
+                  {t("favorite ads")}
                 </NavLink>
               </li>
             </>
@@ -80,7 +84,7 @@ const NoticesCategoriesNav = ({ onOwnClick, onFavoriteClick }) => {
         <div className={css.btnContainer}>
           {/* <Filter /> */}
           <button className={css.btn} onClick={handleClick}>
-            Add Pet <PlusIcon color="#FEF9F9" className={css.iconBtn} />
+            {t("Add Pet")}<PlusIcon color="#FEF9F9" className={css.iconBtn} />
           </button>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { ReactComponent as Plus } from '../../../icons/Plus.svg';
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { validationSchemaThirdAddSell } from '../../../shared/services/FormValidation/addPetValidation';
+import { useTranslation } from 'react-i18next';
 
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
@@ -28,7 +29,7 @@ export const ThirdFormSell = ({
   const [errors, setErrors] = useState({});
 
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   //   const handleDone = () => {
   //    const category = 'sell';
   //    handleNextData({ file, comments, sex, location, price, category });
@@ -74,7 +75,7 @@ export const ThirdFormSell = ({
         <div className={css.pointBlock}>
           <div className={css.sexPhotoBlock}>
             <div className={css.sexContainer}>
-              <p className={css.labelSex}>The Sex</p>
+              <p className={css.labelSex}>{t('The Sex')}</p>
               <ul className={css.sexBlock}>
                 <li>
                   <button
@@ -87,7 +88,7 @@ export const ThirdFormSell = ({
                     }}
                   >
                     <FemaleIcon color="#F43F5E" className={css.sexIcon} />{' '}
-                    Female
+                    {t('Female')}
                   </button>
                 </li>
 
@@ -101,7 +102,8 @@ export const ThirdFormSell = ({
                       handleSex('male', 2);
                     }}
                   >
-                    <MaleIcon color="#54adff" className={css.sexIcon} /> Male
+                    <MaleIcon color="#54adff" className={css.sexIcon} />{' '}
+                    {t('Male')}
                   </button>
                 </li>
               </ul>
@@ -109,7 +111,7 @@ export const ThirdFormSell = ({
             </div>
 
             <div className={css.photoContainerSell}>
-              <label className={css.labelAddPhoto}>Add photo</label>
+              <label className={css.labelAddPhoto}>{t('Add photo')}</label>
               <div>
                 <input
                   type="file"
@@ -137,7 +139,7 @@ export const ThirdFormSell = ({
           </div>
           <div className={css.inputContainer}>
             <label className={css.label} htmlFor="location">
-              Location
+              {t('Location')}
             </label>
             <input
               className={css.input}
@@ -145,14 +147,14 @@ export const ThirdFormSell = ({
               id="location"
               value={location}
               onChange={e => setLocation(e.target.value)}
-              placeholder="Type of location"
+              placeholder={t('Type of location')}
             />
             {errors.location && (
               <p className={css.ErrorTextSellLocation}>{errors.location}</p>
             )}
 
             <label className={css.label} htmlFor="price">
-              Price
+              {t('Price')}
             </label>
             <input
               className={css.input}
@@ -161,20 +163,20 @@ export const ThirdFormSell = ({
               value={price}
               onChange={e => setPrice(e.target.value)}
               required
-              placeholder="Type of price"
+              placeholder={t('Type of price')}
             />
             {errors.price && (
               <p className={css.ErrorTextPrice}>{errors.price}</p>
             )}
 
             <label className={css.labelCommentsSell} htmlFor="comments">
-              Comments
+              {t('Comments')}
             </label>
             <textarea
               className={css.inputComments}
               id="comments"
               value={comments}
-              placeholder="Type comment"
+              placeholder={t('Type comment')}
               onChange={e => setComments(e.target.value)}
             />
             {errors.comments && (
@@ -183,8 +185,8 @@ export const ThirdFormSell = ({
           </div>
         </div>
         <ButtonRoutes>
-          <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-          <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+          <ButtonNext textButton={t('Done')} handleNextData={handleDone} />
+          <ButtonPrev textButton={t('Back')} handlePrevStep={handlePrevStep} />
         </ButtonRoutes>
       </div>
     </div>

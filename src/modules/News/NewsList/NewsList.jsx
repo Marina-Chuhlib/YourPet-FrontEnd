@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { selectAllNews, selectIsLoadingNews } from 'redux/news/newsSelectors';
 import NewsItem from '../NewsItem/NewsItem';
 
@@ -11,16 +12,15 @@ import css from '../NewsList/NewsList.module.css';
 const NewsList = () => {
   const allNews = useSelector(selectAllNews);
   const isLoading = useSelector(selectIsLoadingNews);
-
+ const { t } = useTranslation();
 
 
   return (
     <>
       {isLoading && <Loader />}
-
         {allNews.length === 0 && !isLoading ? (
           <p className={css.helperText}>
-            There are no results matching your search.
+            {t('There are no results matching your search.')}
           </p>
         ) : (
           <>

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
 import { validationSchemaThirdMy } from '../../../shared/services/FormValidation/addPetValidation';
-
+import { useTranslation } from 'react-i18next';
 import TitleModal from 'shared/components/TitleModal/TitleModal';
 import StatusIndicator from 'shared/components/StatusIndicator/StatusIndicator';
 import { ReactComponent as Plus } from '../../../icons/Plus.svg';
@@ -23,7 +23,7 @@ export const ThirdFormMyPet = ({
   const [errors, setErrors] = useState({});
 
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   // const handleDone = () => {
   //   handleNextData({ imageURL, comments });
   // };
@@ -61,7 +61,7 @@ export const ThirdFormMyPet = ({
         chooseOption={chooseOption}
       />
       <div className={css.photoContainer}>
-        <label className={css.labelAddPhoto}>Add photo</label>
+        <label className={css.labelAddPhoto}>{t("Add photo")}</label>
         <div>
           <input
             type="file"
@@ -88,13 +88,13 @@ export const ThirdFormMyPet = ({
       </div>
       <div className={css.commentsContainerMyPet}>
         <label className={css.labelComments} htmlFor="comments">
-          Comments
+          {t("Comments")}
         </label>
         <textarea
           className={css.inputComments}
           id="comments"
           value={comments}
-          placeholder="Type comment"
+          placeholder={t("Type comment")}
           onChange={e => setComments(e.target.value)}
         />
         {errors.comments && (
@@ -102,8 +102,8 @@ export const ThirdFormMyPet = ({
         )}
       </div>
       <ButtonRoutes>
-        <ButtonNext textButton={'Done'} handleNextData={handleDone} />
-        <ButtonPrev textButton={'Back'} handlePrevStep={handlePrevStep} />
+        <ButtonNext textButton={t('Done')} handleNextData={handleDone} />
+        <ButtonPrev textButton={t('Back')} handlePrevStep={handlePrevStep} />
       </ButtonRoutes>
     </div>
   );

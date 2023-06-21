@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 import { userMyPets, selectIsLoading } from 'redux/auth/auth-selectors';
 
 import Loader from 'shared/components/Loader/Loader';
@@ -20,6 +20,7 @@ const MyPets = () => {
   const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
+const { t } = useTranslation();
 
   const handleClick = () => {
     navigate('/add-pet');
@@ -34,9 +35,9 @@ const MyPets = () => {
         }`}
       >
         <dir className={css.wrapperTitle}>
-          <h3 className={css.title}>My Pets:</h3>
+          <h3 className={css.title}>{t("My Pets")}:</h3>
           <button type="button" onClick={handleClick} className={css.addPetBtn}>
-            Add Pet
+            {t("Add Pet")}
             <AddOutlinedIcon
               style={{
                 textAlign: 'center',
@@ -76,7 +77,7 @@ const MyPets = () => {
                 })}
               </ul>
             ) : (
-              <p className={css.text}>My pets list empty</p>
+              <p className={css.text}>{t("My pets list empty")}</p>
             )}
           </div>
         )}

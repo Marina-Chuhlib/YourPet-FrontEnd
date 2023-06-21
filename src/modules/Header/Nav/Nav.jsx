@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
+import ChangeLanguage from 'shared/components/ChangeLanguage/ChangeLanguage';
 import styles from './nav.module.css';
 
 export default function Nav({ onClick }) {
@@ -8,6 +10,7 @@ export default function Nav({ onClick }) {
   const currentCategory = location.pathname.split('/')[2];
   const [category, setCategory] = useState('sell');
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!currentCategory) {
@@ -24,23 +27,26 @@ export default function Nav({ onClick }) {
           theme === 'light' ? styles.light : styles.dark
         }`}
       >
-        <ul className={styles.list}>
-          <li className={styles.item} onClick={onClick}>
-            <NavLink className={styles.link} to="/news">
-              News
-            </NavLink>
-          </li>
-          <li className={styles.item} onClick={onClick}>
-            <NavLink className={styles.link} to={`/notices/${category}`}>
-              Find pet
-            </NavLink>
-          </li>
-          <li className={styles.item} onClick={onClick}>
-            <NavLink className={styles.link} to="/friends">
-              Our friends
-            </NavLink>
-          </li>
-        </ul>
+        <div className={styles.menu}>
+          <ChangeLanguage />
+          <ul className={styles.list}>
+            <li className={styles.item} onClick={onClick}>
+              <NavLink className={styles.link} to="/news">
+                {t('News')}
+              </NavLink>
+            </li>
+            <li className={styles.item} onClick={onClick}>
+              <NavLink className={styles.link} to={`/notices/${category}`}>
+                {t('Find pet')}
+              </NavLink>
+            </li>
+            <li className={styles.item} onClick={onClick}>
+              <NavLink className={styles.link} to="/friends">
+                 {t('Our friends')}
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

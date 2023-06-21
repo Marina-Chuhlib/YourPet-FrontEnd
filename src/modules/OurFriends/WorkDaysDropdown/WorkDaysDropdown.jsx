@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';
 import css from './WorkDaysDropdown.module.css';
 
 const WorkDaysDropdown = ({ workDays }) => {
   const [showSchedule, setShowSchedule] = useState(false);
+
+  const { t } = useTranslation();
 
   const [defaultTime] = useState(getDefaultTime());
 
@@ -28,7 +31,15 @@ const WorkDaysDropdown = ({ workDays }) => {
     e.stopPropagation();
   };
 
-  const daysOfWeek = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  const daysOfWeek = [
+    t('MN'),
+    t('TU'),
+    t('WE'),
+    t('TH'),
+    t('FR'),
+    t('SA'),
+    t('SU'),
+  ];
 
   return (
     <div>
@@ -45,7 +56,7 @@ const WorkDaysDropdown = ({ workDays }) => {
           },
         }}
       >
-        <strong>Time:</strong> <br /> {defaultTime}
+        <strong>{t('Time')}:</strong> <br /> {defaultTime}
       </Typography>
       {showSchedule && (
         <div onClick={handleScheduleClick} className={css.timeBox}>

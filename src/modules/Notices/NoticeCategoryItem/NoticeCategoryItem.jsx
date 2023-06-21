@@ -10,6 +10,7 @@ import LocationIcon from 'icons/LocationIcon';
 import HeartIcon from 'icons/HeartIcon';
 import TrashIcon from 'icons/TrashIcon';
 import MaleIcon from 'icons/MaleIcon';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'shared/components/ButtonNotices/ButtonNotices';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
@@ -45,15 +46,16 @@ const NoticeCategoryItem = ({
   const favorites = useSelector(getFavorite);
   const userId = useSelector(getUserId);
   const { theme } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
+  
   const dispatch = useDispatch();
 
   const handleFavoriteToggle = async () => {
-    if (!isLoggedIn) return toasty.toastInfo('You must be logged in');
+    if (!isLoggedIn) return toasty.toastInfo(t('You must be logged in'));
     if (favorites.includes(_id)) {
       try {
         await dispatch(fetchRemoveFromFavorite(_id));
-        toasty.toastSuccess('remove from favorite');
+        toasty.toastSuccess(t('remove from favorite'));
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -61,7 +63,7 @@ const NoticeCategoryItem = ({
     } else {
       try {
         await dispatch(fetchAddToFavorite(_id));
-        toasty.toastSuccess('add to favorite');
+        toasty.toastSuccess(t('add to favorite'));
         return;
       } catch (e) {
         toasty.toastError(e.message);
@@ -112,7 +114,7 @@ const NoticeCategoryItem = ({
   const handleDelete = _id => {
     console.log(_id);
     dispatch(fetchDeleteNotice(_id));
-    toasty.toastSuccess('Deleted successful');
+    toasty.toastSuccess(t('Deleted successful'));
     closeModal();
   };
   return (
@@ -184,7 +186,7 @@ const NoticeCategoryItem = ({
         <div className={css.noticeDesc}>
           <h3 className={css.noticeTitle}>{title}</h3>
           <Button className={css.learnBtn} onClick={openModal}>
-            Learn more
+            {t("Learn more")}
           </Button>
           {isModalOpen && (
             <Modal closeModal={closeModal}>

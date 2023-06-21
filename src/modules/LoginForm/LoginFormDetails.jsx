@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -37,6 +38,7 @@ export const LoginFormDetails = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { theme } = useContext(ThemeContext);
+ const { t } = useTranslation();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -65,7 +67,7 @@ export const LoginFormDetails = () => {
         >
           {({ values, errors, touched, handleSubmit, handleChange }) => (
             <Form className={css.form} onSubmit={handleSubmit}>
-              <h2 className={css.title}>Login</h2>
+              <h2 className={css.title}>{t('Login')}</h2>
               <Box
                 sx={{
                   marginBottom: '10px',
@@ -76,7 +78,7 @@ export const LoginFormDetails = () => {
                 <TextField
                   name="email"
                   type="email"
-                  label="Email"
+                  label={t("Email")}
                   size="small"
                   fullWidth
                   sx={{
@@ -128,7 +130,7 @@ export const LoginFormDetails = () => {
                 <TextField
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  label="Password"
+                  label={t("Password")}
                   size="small"
                   fullWidth
                   sx={{
@@ -197,13 +199,13 @@ export const LoginFormDetails = () => {
               </Box>
               <div className={css.buttonContainer}>
                 <button type="submit" className={css.button}>
-                  Login
+                  {t("Login")}
                 </button>
               </div>
               <p className={css.questionText}>
-                Don't have an account?{' '}
+                {t("Don't have an account?")}{' '}
                 <Link to="/register" className={css.registerLink}>
-                  Register
+                  {t("Register")}
                 </Link>
               </p>
             </Form>

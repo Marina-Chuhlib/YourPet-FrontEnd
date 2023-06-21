@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
-
+import { useTranslation } from 'react-i18next';
 import {
   getNoticesById,
   getNoticesByIdOwner,
@@ -19,6 +19,7 @@ const NoticeModal = ({ handleFavoriteToggle, _id }) => {
   const item = useSelector(getNoticesById);
   const owner = useSelector(getNoticesByIdOwner);
   const { theme } = useContext(ThemeContext);
+const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchNoticeById(_id));
@@ -46,27 +47,27 @@ const NoticeModal = ({ handleFavoriteToggle, _id }) => {
               <caption className={css.title}>{item.title}</caption>
               <tbody>
                 <tr>
-                  <td className={css.infoTitle}>Name:</td>
+                  <td className={css.infoTitle}>{t("Name")}:</td>
                   <td className={css.info}>{item.name}</td>
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>Birthday:</td>
+                  <td className={css.infoTitle}>{t("Birthday")}:</td>
                   <td className={css.info}>{item.date}</td>
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>Breed:</td>
+                  <td className={css.infoTitle}>{t("Breed")}</td>
                   <td className={css.info}>{item.breed}</td>
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>Place:</td>
+                  <td className={css.infoTitle}>{t("Place")}</td>
                   <td className={css.info}>{item.location}</td>
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>The sex:</td>
+                  <td className={css.infoTitle}>{t("The sex")}:</td>
                   <td className={css.info}>{item.sex}</td>
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>Price:</td>
+                  <td className={css.infoTitle}>{t("Price")}</td>
                   {item.price ? (
                     <td className={css.info}>{item.price} $</td>
                   ) : (
@@ -74,7 +75,7 @@ const NoticeModal = ({ handleFavoriteToggle, _id }) => {
                   )}
                 </tr>
                 <tr>
-                  <td className={css.infoTitle}>Email:</td>
+                  <td className={css.infoTitle}>{t("Email")}:</td>
                   <td>
                     <a href={`mailto:${owner.email}`} className={css.contacts}>
                       {owner.email}
@@ -82,7 +83,7 @@ const NoticeModal = ({ handleFavoriteToggle, _id }) => {
                   </td>
                 </tr>
                 <tr>
-                  {owner.phone && <td className={css.infoTitle}>Phone:</td>}
+                  {owner.phone && <td className={css.infoTitle}>{t("Phone")}:</td>}
                   <td>
                     {owner.phone && (
                       <a href={`tel:${owner.phone}`} className={css.contacts}>
@@ -95,7 +96,7 @@ const NoticeModal = ({ handleFavoriteToggle, _id }) => {
             </table>
           </div>
           <p className={css.commentsInfo}>
-            <span className={css.commentsTitle}>Comments: </span>
+            <span className={css.commentsTitle}>{t("Comments")}: </span>
             {item.comments}
           </p>
           <div className={css.btnWrapper}>

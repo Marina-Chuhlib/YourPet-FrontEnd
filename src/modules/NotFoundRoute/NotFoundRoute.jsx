@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PawPrintIcon from 'icons/PawPrintIcon';
 import css from './not-found-route.module.css';
 
@@ -10,10 +11,11 @@ import oopsDesc1x from 'images/oops-desc@1x.png';
 import oopsDesc2x from 'images/oops-desc@2x.png';
 
 const NotFoundRoute = () => {
+  const { t } = useTranslation();
   return (
     <section className={css.section}>
       <div className="container">
-        <h2 className={css.text}>Ooops! This page not found:(</h2>
+        <h2 className={css.text}>{t('Ooops! This page not found:(')}</h2>
         <div className={css.wrapper}>
           <picture>
             <source
@@ -33,7 +35,7 @@ const NotFoundRoute = () => {
         </div>
         <Link to="/">
           <button className={css.btn}>
-            To main page <PawPrintIcon className={css.icon} />
+            {t('To main page')} <PawPrintIcon className={css.icon} />
           </button>
         </Link>
       </div>

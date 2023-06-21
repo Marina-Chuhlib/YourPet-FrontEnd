@@ -2,9 +2,11 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { ThemeContext } from 'shared/hooks/context/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 import css from '../NewsItem/NewsItem.module.css';
 
 const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
+  const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const formattedDate = useMemo(() => {
     const originalDate = new Date(date);
@@ -31,7 +33,7 @@ const NewsItem = ({ _id, text, imgUrl, title, url, date }) => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            Read more
+            {t('Read more')}
           </a>
         </div>
       </div>

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import WorkDaysDropdown from '../WorkDaysDropdown/WorkDaysDropdown';
 
+import { useTranslation } from 'react-i18next';
+
 import { CardHeader, Box, CardMedia, Typography } from '@mui/material';
 import css from './OurFriendsItem.module.css';
 
@@ -16,6 +18,9 @@ const OurFriendsItem = ({
   email,
   phone,
 }) => {
+  
+const { t } = useTranslation();
+
   return (
     <li key={_id} className={css.cardItem}>
       <CardHeader
@@ -46,7 +51,7 @@ const OurFriendsItem = ({
               gutterBottom
               className={css.customTypography}
             >
-              <strong>Time:</strong> <br /> day and night
+              <strong>{t("Time")}:</strong> <br /> {t("day and night")}
             </Typography>
           )}
           {workDays && <WorkDaysDropdown workDays={workDays} />}
@@ -68,14 +73,14 @@ const OurFriendsItem = ({
                   }),
             }}
           >
-            <strong>Address:</strong>
+            <strong>{t("Address")}:</strong>
             <br />
             {address ? (
               <a href={addressUrl} target="_blank" rel="noreferrer">
                 {address}
               </a>
             ) : (
-              'website only'
+              t('website only')
             )}
           </Typography>
           <Typography
@@ -96,7 +101,7 @@ const OurFriendsItem = ({
                   }),
             }}
           >
-            <strong>Email:</strong> <br />
+            <strong>{t("Email")}:</strong> <br />
             {email ? <a href={`mailto:${email}`}>{email}</a> : 'website only'}
           </Typography>
           <Typography
@@ -117,7 +122,7 @@ const OurFriendsItem = ({
                   }),
             }}
           >
-            <strong>Phone:</strong> <br />
+            <strong>{t("Phone")}:</strong> <br />
             {phone ? <a href={`tel:${phone}`}>{phone}</a> : 'email only'}
           </Typography>
         </Box>
